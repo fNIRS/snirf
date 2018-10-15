@@ -13,14 +13,14 @@ for convenient editing and version control.
 ## How to participate
 
 You can use a number of methods to provide your feedback to the working 
-draft of this file spec. 
+draft of this file specification, including
 
 - [Create an "Issue"](https://github.com/fNIRS/snirf/issues)
   - This is the most recommended method to provide detailed feedback or 
-    discussion. An "Issue" in github is highly versertal. One can ask 
-    questions, report a bug, provide a feature request, or simply propose
+    discussion. An "Issue" in github is highly versatile. One can ask a 
+    question, report a bug, provide a feature request, or simply propose
     general discussions. Please use URLs or keywords to link your discussion 
-    to a specific section/topic in the document.
+    to a specific line/section/topic in the document.
 - [Write short comments on Request for Comments (RFC) commits](https://github.com/fNIRS/snirf/commit/06e210379876e797098057ae35c373323c05b754)
   - A milestone version of the specification will be associated with an
     RFC (Request for comments) commit (where the entire file is removed
@@ -43,7 +43,7 @@ draft of this file spec.
     will be resubmitted as an Issue, and changes to the specification will be
     associated with this issue page.
 
-For anyone who want to contribute to the writing or revisions of this document
+For anyone who wants to contribute to the writing or revision of this document
 
 - Fork this repository and make updates, then create a pull-request
   - Please first register an account on github, then, browse the 
