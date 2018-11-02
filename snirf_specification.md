@@ -4,6 +4,7 @@ Shared Near Infrared File Format Specification
 
 ### Last Updated – Aug 13, 2018
 ### Copied Aug 7, 2018 from Aug 1, 2013
+### License: This document is in the public domain.
 
 The file format specification uses the extension \*.snirf.  These are HDF5 
 format files, renamed with the .snirf extension.  For a program to be 
@@ -266,3 +267,11 @@ would be specified as follows:
     [0.2 0.2 1.0]
     [0.6 0.2 1.0]
 ```
+
+## Acknowledgement
+
+This document was drafted by David Boas <dboas at bu.edu>.
+
+Other contributors of this specification include:
+
+- Theodore Huppert <huppert1 at pitt.edu>
