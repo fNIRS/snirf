@@ -270,8 +270,8 @@ would be specified as follows:
 
 ## Acknowledgement
 
-This document was drafted by David Boas <dboas at bu.edu>.
+This document was drafted by David Boas (dboas at bu.edu).
 
 Other contributors of this specification include:
 
-- Theodore Huppert <huppert1 at pitt.edu>
+- Theodore Huppert (huppert1 at pitt.edu)
