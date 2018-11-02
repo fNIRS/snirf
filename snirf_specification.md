@@ -11,7 +11,7 @@ format files, renamed with the .snirf extension.  For a program to be
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.  
 
 The structure of each data file has a minimum of 5 required elements. All 
-variables are double unless otherwise specified.  All arrays are zero indexed.
+variables are double unless otherwise specified.
 
 ## “Standard” SNIRF file specification:
 ### Required fields 
@@ -20,26 +20,26 @@ variables are double unless otherwise specified.  All arrays are zero indexed.
 <dd>This is a string that specifies the version of the file format.  This 
 document describes format version “1.0”</dd>
 
-<dt>data(idx)</dt>
+<dt>data(n)</dt>
 <dd>This is a structure containing the data d, the time vector t of when the 
 samples were acquired, and a description of the channels used to acquire the 
 data. The data can be grouped in blocks indexed by idx. One convenient approach 
 to blocking the data is to group all channels with the same time vector t.</dd>
 
-<dt>data(idx).d</dt>
+<dt>data(n).d</dt>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt;</tt> x <tt>&lt;number of channels&gt;</tt>.   
 Columns in d are mapped to the measurement list (ml variable described below).  
 The d variable can be complex (as in the case of sine-cosine demodulation for 
 the laser carrier frequencies).</dd>
 
-<dt>data(idx).t</dt>
+<dt>data(n).t</dt>
 <dd>The time variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  The 
 size of this variable is <tt>&lt;number of time points&gt;</tt> x 1.</dd>
 
-<dt>data(idx).ml</dt>
+<dt>data(n).ml</dt>
 <dd>The measurement list. This variable serves to map the data array onto the 
 probe geometry (sources and detectors), data type, and wavelength.   This 
 variable is an array structure that has the size <tt>&lt;number of 
@@ -50,15 +50,15 @@ For example, the *ml(3)* describes the third column of the data matrix (i.e.
 	
 Each element of the array is a structure which describes the measurement 
 conditions for this data with the following fields:
-* *ml(chIdx).sourceIndex*
-* *ml(chIdx).detectorIndex*
-* *ml(chIdx).wavelengthIndex*
-* *ml(chIdx).dataType*
-* *ml(chIdx).dataTypeIndex*
+* *ml(k).sourceIndex*
+* *ml(k).detectorIndex*
+* *ml(k).wavelengthIndex*
+* *ml(k).dataType*
+* *ml(k).dataTypeIndex*
 
 Optional fields include:
-* *ml(chIdx).sourcePower*
-* *ml(chIdx).detectorGain*
+* *ml(k).sourcePower*
+* *ml(k).detectorGain*
 
 For example, if *ml(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
@@ -121,8 +121,8 @@ wavelength index of the ml variable.
 	
 For example, *sd.lambda* = [690 780 830]; implies that the measurements were 
 taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of 
-*ml(n).wavelengthIndex* variable refers to this field.  *ml(n).wavelengthIndex* 
-= 2 means the n<sup>th</sup> measurement was at 780nm.
+*ml(k).wavelengthIndex* variable refers to this field.  *ml(k).wavelengthIndex* 
+= 2 means the k<sup>th</sup> measurement was at 780nm.
 
 The number of wavelengths is not limited (except that at least two are needed 
 to calculate the two forms of hemoglobin).  Each source-detector pair would 
@@ -150,7 +150,7 @@ between this SNIRF coordinate system and other coordinate systems.
 </dl>
 There are additional required elements of the *sd* structure, depending on the 
 data type of the measurement.  These variables are indexed by 
-*ml(chIdx).dataTypeIndex*:
+*ml(k).dataTypeIndex*:
 
 <dl>
 Continuous wave (Fluorescence or non-fluorescence):
@@ -179,13 +179,13 @@ There are optional fields of the *sd* structure that can be used.
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each source. This can be of size <tt>&lt;number of sources&gt;</tt> 
 x 1 or <tt>&lt;number of sources&gt;</tt> x <tt>&lt;number of 
-wavelengths&gt;</tt>. This is indexed by *ml(chIdx).sourceIndex* and 
-*ml(chIdx).wavelengthIndex*.
+wavelengths&gt;</tt>. This is indexed by *ml(k).sourceIndex* and 
+*ml(k).wavelengthIndex*.
 </dd>
 
 <dt>sd.detLabels</dt>
 <dd>This is a string array providing user friendly or instrument specific 
-labels for each detector. This is indexed by *ml(chIdx).detectorIndex*.</dd>
+labels for each detector. This is indexed by *ml(k).detectorIndex*.</dd>
 
 <dt>metaDataTags</dt>
 <dd>This is a two column string array of arbitrary length consisting of any 
@@ -275,3 +275,4 @@ This document was drafted by David Boas (dboas at bu.edu).
 Other contributors of this specification include:
 
 - Theodore Huppert (huppert1 at pitt.edu)
+- Jay Dubb (jdubb at bu.edu)
