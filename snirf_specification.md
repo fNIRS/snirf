@@ -249,6 +249,24 @@ spacing.  The size of this variable is <tt>&lt;number of time points&gt;</tt> x
 <dt>timeOffset</dt><tt>[Type: numeric]</tt>
 <dd>This variable specifies the offset of the file time origin relative to 
 absolute (clock) time in seconds.</dd>
+
+The aux data structure also supports the below optional subfields:
+
+<dt>aux(n).landmark</dt><tt>[Type: numeric]</tt>
+<dd>This is a 2-D array storing the neurological landmark positions measurement
+from 3-D digitization and tracking systems to facilitate the registration and 
+mapping of optical data to brain anatomy. This array should contain a minimum 
+of 3 columns, representing the x, y and z coordinates of the digitized landmark
+positions. If a 4th column presents, it stores the index to the labels of the 
+given landmark. Label names are stored in the *aux(n).landmarkName* subfield.
+An label index of 0 refers to an undefined landmark. </dd>
+
+<dt>aux(n).landmarkName</dt><tt>[Type: container]</tt>
+<dd>This string array stores the names of the landmarks. The first string 
+denotes the name of the landmarks with an index of 1 in the 4th column of 
+*aux(n).landmark*, and so on. One can adopt the commonly used 10-20 landmark 
+names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
+labels. All strings are UTF-8 encoded.</dd>
 <dl>
 
 ## Appendix
