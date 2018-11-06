@@ -35,8 +35,8 @@ to blocking the data is to group all channels with the same time vector t.</dd>
 <dt>data(n).d</dt><tt>[Type: numeric]</tt>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt;</tt> x <tt>&lt;number of channels&gt;</tt>.   
-Columns in d are mapped to the measurement list (ml variable described below).  
-The d variable can be complex (as in the case of sine-cosine demodulation for 
+Columns in <i>d</i> are mapped to the measurement list (<i>ml</i> variable described below).  
+The <i>d</i> variable can be complex (as in the case of sine-cosine demodulation for 
 the laser carrier frequencies).</dd>
 
 <dt>data(n).t</dt><tt>[Type: numeric]</tt>
@@ -137,13 +137,13 @@ generally have measurements at all wavelengths.
 <dt>sd.lambdaEmission</dt><tt>[Type: numeric]</tt>
 <dd>This field is required only for fluorescence data types, and describes the 
 emission wavelengths used.  The indexing of this variable is the same 
-wavelength index in ml used for *sd.lambda* such that the excitation wavelength 
+wavelength index in ml used for <i>sd.lambda</i> such that the excitation wavelength 
 is paired with this emission wavelength for a given measurement.</dd>
 
 <dt>sd.srcPos</dt><tt>[Type: numeric]</tt>
 <dd>This field describes the position (in spatialUnit units) of each source 
 optode.  This field has size <tt>&lt;number of sources&gt;</tt> x 3.  For 
-example, *sd.srcPos(1,:)* = [1.4 1 0], and *SpatialUnit='cm'*; places source 
+example, <i>sd.srcPos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
 Dimensions are relative coordinates (i.e. to some arbitrary defined origin).  
@@ -152,11 +152,11 @@ between this SNIRF coordinate system and other coordinate systems.
 </dd>
 
 <dt>sd.detPos</dt><tt>[Type: numeric]</tt>
-<dd>Same as *sd.srcPos*, but describing the detector positions.</dd>
+<dd>Same as <i>sd.srcPos</i>, but describing the detector positions.</dd>
 </dl>
-There are additional required elements of the *sd* structure, depending on the 
+There are additional required elements of the <i>sd</i> structure, depending on the 
 data type of the measurement.  These variables are indexed by 
-*ml(k).dataTypeIndex*:
+<i>ml(k).dataTypeIndex</i>:
 
 <dl>
 Continuous wave (Fluorescence or non-fluorescence):
@@ -185,13 +185,12 @@ There are optional fields of the *sd* structure that can be used.
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each source. This can be of size <tt>&lt;number of sources&gt;</tt> 
 x 1 or <tt>&lt;number of sources&gt;</tt> x <tt>&lt;number of 
-wavelengths&gt;</tt>. This is indexed by *ml(k).sourceIndex* and 
-*ml(k).wavelengthIndex*.
-</dd>
+wavelengths&gt;</tt>. This is indexed by <i>ml(k).sourceIndex</i> and 
+<i>ml(k).wavelengthIndex</i>.</dd>
 
 <dt>sd.detLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
-labels for each detector. This is indexed by *ml(k).detectorIndex*.</dd>
+labels for each detector. This is indexed by <i>ml(k).detectorIndex</i>.</dd>
 
 <dt>metaDataTags</dt><tt>[Type: container]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any 
@@ -230,7 +229,7 @@ get more out of your data sets.
 <dl>
 <dt>aux</dt><tt>[Type: container]</tt>
 <dd>This optional array specifies any recorded auxiliary data. Each element of 
-*aux* has the following required fields:</dd>
+<i>aux</i> has the following required fields:</dd>
 
 <dt>aux(n).name</dt><tt>[Type: string]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
@@ -258,13 +257,13 @@ from 3-D digitization and tracking systems to facilitate the registration and
 mapping of optical data to brain anatomy. This array should contain a minimum 
 of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the *aux(n).landmarkName* subfield.
+given landmark. Label names are stored in the <i>aux(n).landmarkName</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
 
 <dt>aux(n).landmarkName</dt><tt>[Type: container]</tt>
 <dd>This string array stores the names of the landmarks. The first string 
 denotes the name of the landmarks with an index of 1 in the 4th column of 
-*aux(n).landmark*, and so on. One can adopt the commonly used 10-20 landmark 
+<i>aux(n).landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
 names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
 labels. All strings are UTF-8 encoded.</dd>
 <dl>
