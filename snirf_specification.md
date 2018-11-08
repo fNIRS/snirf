@@ -56,15 +56,15 @@ For example, the *ml(3)* describes the third column of the data matrix (i.e.
 	
 Each element of the array is a structure which describes the measurement 
 conditions for this data with the following fields:
-* *ml(k).sourceIndex*<tt>[Type: integer]</tt>
-* *ml(k).detectorIndex*<tt>[Type: integer]</tt>
-* *ml(k).wavelengthIndex*<tt>[Type: integer]</tt>
-* *ml(k).dataType*<tt>[Type: integer]</tt>
-* *ml(k).dataTypeIndex*<tt>[Type: integer]</tt>
+* *ml(k).sourceIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the source
+* *ml(k).detectorIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the detector
+* *ml(k).wavelengthIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the wavelength
+* *ml(k).dataType*<tt>[Type: integer]</tt>: data-type identifier, see Appendix
+* *ml(k).dataTypeIndex*<tt>[Type: integer]</tt>: data-type specific parameter indices
 
 Optional fields include:
-* *ml(k).sourcePower*<tt>[Type: numeric]</tt>
-* *ml(k).detectorGain*<tt>[Type: numeric]</tt>
+* *ml(k).sourcePower*<tt>[Type: numeric]</tt>: source power in milliwatt (mW)
+* *ml(k).detectorGain*<tt>[Type: numeric]</tt>: detector gain
 
 For example, if *ml(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
@@ -164,7 +164,7 @@ Continuous wave (Fluorescence or non-fluorescence):
 - *None*
 
 Frequency Domain (Fluorescence or non-fluorescence):
-- *sd.frequency*<tt>[Type: numeric]</tt>
+- *sd.frequency*<tt>[Type: numeric]</tt>: modulation frequency in Hz
 
 Time domain – gated (Fluorescence or non-fluorescence):
 - *sd.timeDelay*<tt>[Type: numeric]</tt>
