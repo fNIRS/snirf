@@ -65,6 +65,7 @@ conditions for this data with the following fields:
 Optional fields include:
 * *ml(k).sourcePower*<tt>[Type: numeric]</tt>: source power in milliwatt (mW)
 * *ml(k).detectorGain*<tt>[Type: numeric]</tt>: detector gain
+* *ml(k).moduleIndex*<tt>[Type: integer]</tt>: index (starting from 1) of a repeating module
 
 For example, if *ml(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
@@ -191,6 +192,12 @@ wavelengths&gt;</tt>. This is indexed by <i>ml(k).sourceIndex</i> and
 <dt>sd.detLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each detector. This is indexed by <i>ml(k).detectorIndex</i>.</dd>
+
+<dt>sd.useLocalIndex</dt><tt>[Type: integer]</tt>
+<dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates
+that <i>ml(k).sourceIndex</i> and <i>ml(k).detectorIndex</i> are module-specific
+local-indices. One must also include <i>ml(k).moduleIndex</i> in the <i>ml</i>
+structure in order to restore the global indices of the sources/detectors.</dd>
 
 <dt>metaDataTags</dt><tt>[Type: container]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any 
