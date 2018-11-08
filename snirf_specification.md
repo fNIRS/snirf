@@ -16,6 +16,7 @@ each element in the data structure, one of the 4 types is assigned, including
 - `string`: a UTF-8 (ISO 10646) encoded string
 - `integer`: one of the integer types (1-byte, 2-byte, 4-byte, 8-byte)
 - `numeric`: one of the floating-point types (8-byte, 4-byte, 2-byte)
+
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
 
@@ -34,7 +35,7 @@ to blocking the data is to group all channels with the same time vector t.</dd>
 
 <dt>data(n).d</dt><tt>[Type: numeric]</tt>
 <dd>This is the actual raw data variable. This variable has dimensions of 
-<tt>&lt;number of time points&gt;</tt> x <tt>&lt;number of channels&gt;</tt>.   
+<tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   
 Columns in <i>d</i> are mapped to the measurement list (<i>ml</i> variable described below).  
 The <i>d</i> variable can be complex (as in the case of sine-cosine demodulation for 
 the laser carrier frequencies).</dd>
@@ -43,7 +44,7 @@ the laser carrier frequencies).</dd>
 <dd>The time variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  The 
-size of this variable is <tt>&lt;number of time points&gt;</tt> x 1.</dd>
+size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
 <dt>data(n).ml</dt><tt>[Type: container]</tt>
 <dd>The measurement list. This variable serves to map the data array onto the 
@@ -143,7 +144,7 @@ is paired with this emission wavelength for a given measurement.</dd>
 
 <dt>sd.srcPos</dt><tt>[Type: numeric]</tt>
 <dd>This field describes the position (in spatialUnit units) of each source 
-optode.  This field has size <tt>&lt;number of sources&gt;</tt> x 3.  For 
+optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>.  For 
 example, <i>sd.srcPos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
@@ -184,8 +185,8 @@ There are optional fields of the *sd* structure that can be used.
 <dl>
 <dt>sd.srcLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
-labels for each source. This can be of size <tt>&lt;number of sources&gt;</tt> 
-x 1 or <tt>&lt;number of sources&gt;</tt> x <tt>&lt;number of 
+labels for each source. This can be of size <tt>&lt;number of sources&gt;
+x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of 
 wavelengths&gt;</tt>. This is indexed by <i>ml(k).sourceIndex</i> and 
 <i>ml(k).wavelengthIndex</i>.</dd>
 
@@ -243,14 +244,13 @@ get more out of your data sets.
 
 <dt>aux(n).d</dt><tt>[Type: numeric]</tt>
 <dd>This is the aux data variable. This variable has dimensions of 
-<tt>&lt;number of time points&gt;</tt> x 1.</dd>
+<tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
 <dt>aux(n).t</dt><tt>[Type: numeric]</tt>
 <dd>The time variable. This provides the acquisition time of the aux 
 measurement relative to the time origin.  This will usually be a straight line 
 with slope equal to the acquisition frequency, but does not need to be equal 
-spacing.  The size of this variable is <tt>&lt;number of time points&gt;</tt> x 
-1.</dd>
+spacing.  The size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
 <dt>timeOffset</dt><tt>[Type: numeric]</tt>
 <dd>This variable specifies the offset of the file time origin relative to 
