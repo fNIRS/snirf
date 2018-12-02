@@ -274,19 +274,19 @@ absolute (clock) time in seconds.</dd>
 
 The aux data structure also supports the below optional subfields:
 
-<dt>aux(n).landmark</dt><tt>[Type: numeric]</tt>
+<dt>aux.landmark</dt><tt>[Type: numeric]</tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
 from 3-D digitization and tracking systems to facilitate the registration and 
 mapping of optical data to brain anatomy. This array should contain a minimum 
 of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the <i>aux(n).landmarkName</i> subfield.
+given landmark. Label names are stored in the <i>aux.landmarkName</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
 
-<dt>aux(n).landmarkName</dt><tt>[Type: container]</tt>
+<dt>aux.landmarkName</dt><tt>[Type: container]</tt>
 <dd>This string array stores the names of the landmarks. The first string 
 denotes the name of the landmarks with an index of 1 in the 4th column of 
-<i>aux(n).landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
+<i>aux.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
 names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
 labels. All strings are UTF-8 encoded.</dd>
 <dl>
@@ -321,7 +321,7 @@ This document was originally drafted by Blaise Frederic (bbfrederick at mclean.h
 Other significant contributors to this specification include:
 - Theodore Huppert (huppert1 at pitt.edu)
 - Jay Dubb (jdubb at bu.edu)
-- Qianqian Fang (q.fang at northeastern.edu)
+- Qianqian Fang (q.fang at neu.edu)
 
 The following individuals representing academic, industrial, software, and hardware interests are also contributing to and supporting the adoption of this specification:
 
