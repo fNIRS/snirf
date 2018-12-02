@@ -316,9 +316,36 @@ would be specified as follows:
 
 ## Acknowledgement
 
-This document was drafted by David Boas (dboas at bu.edu).
+This document was originally drafted by Blaise Frederic (bbfrederick at mclean.harvard.edu) and David Boas (dboas at bu.edu).
 
-Other contributors of this specification include:
-
+Other significant contributors to this specification include:
 - Theodore Huppert (huppert1 at pitt.edu)
 - Jay Dubb (jdubb at bu.edu)
+- Qianqian Fang (q.fang at northeastern.edu)
+
+The following individuals representing academic, industrial, software, and hardware interests are also contributing to and supporting the adoption of this specification:
+
+### Software
+- Adam Eggebrecht, University of Washington, neuroDOT
+- Felipe Orihuela-Espina, Instituto Nacional de Astrofísica, Óptica y Electrónica, ICNNA
+- Sungho Tak, Korea Basic Science Institute, NIR-SPM
+- Luca Pollonini, Houston Methodist, Phoebe
+- Hamid Deghani, University of Birmingham, NIRFAST
+- Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
+- Joe Culver, University of Washington, neuroDOT
+- Christophe Grova, McGill University, NIRS Storm
+- Ata Akin, Acıbadem University
+- Alessandro Torricelli, Politecnico di Milano
+
+### Hardware
+- Jorn Horschig, Artinis Inc
+- Hasan Ayaz, Biopac Inc
+- Rob Cooper, Gower Labs Inc
+- Rueben Hill, Gower Labs Inc
+- Hanseok Yun, OdeLab Inc
+- Hirokazu Asaka, Hitachi
+- Takumi Inakazu, Hitachi
+- Lamija Pasalic, NIRx
+- Mathieu Coursolle, Rogue
+
+
