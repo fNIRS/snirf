@@ -211,6 +211,10 @@ the array consists of two strings. Some possible examples:
 ['SubjectName', 'Pseudonym, I.M.A.'],
 ['DateOfBirth','20120401'],
 ['AcquisitionStartTime','150127.34']
+['StudyID','Infant Brain Development']
+['StudyDescription','We study infant cognitive development.']
+['AccessionNumber','INA2S12']
+['InstanceNumber','2']
 ['CalibrationFileName','phantomcal_121015.snirf']
 ```
 While these tags are freeform, some conventions must be followed.  Keys should 
@@ -229,6 +233,18 @@ MeasurementTime
 SpatialUnit    (allowed values are 'mm' and 'cm')
 ```
 </dd>
+
+The metadata tags "StudyID" and "AccessionNumber" are unique strings that can 
+be used to link the current dataset to a particular study and a particular
+procedure, respectively. The "StudyID" tag is similar to the DICOM tag 
+"Study ID" (0020,0010) and "AccessionNumber" is similar to the DICOM tag 
+"Accession Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
+
+The metadata tag "InstanceNumber" is defined similarly to the DICOM tag 
+"Instance Number" (0020,0013), and can be used as the sequence number to
+group multiple datasets into a larger dataset - for example, concatenating 
+streamed data segments during a long measurement session.
+
 
 ### Optional variables:
 These variables are not required for basic functions, but might be useful to 
