@@ -21,13 +21,13 @@ draft of this file specification, including
     question, report a bug, provide a feature request, or simply propose
     general discussions. Please use URLs or keywords to link your discussion 
     to a specific line/section/topic in the document.
-- [Write short comments on Request for Comments (RFC) commits](https://github.com/fNIRS/snirf/commit/06e210379876e797098057ae35c373323c05b754)
+- [Write short comments on Request for Comments (RFC) commits](https://github.com/fNIRS/snirf/commit/88baa2a2ed3347e868ec184b9daa4b357ddbbfd1)
   - A milestone version of the specification will be associated with an
     RFC (Request for comments) commit (where the entire file is removed
     and re-added so that every line appears in such comment). One can
     write short comments as well as post replies on this RFC page. 
-  - The latest RFC commit is based on version from Aug 13, 2018, please use
-    [this link](https://github.com/fNIRS/snirf/commit/06e210379876e797098057ae35c373323c05b754) to comment.
+  - The latest RFC commit is based on version from Dec. 5, 2018 please use
+    [this link](https://github.com/fNIRS/snirf/commit/88baa2a2ed3347e868ec184b9daa4b357ddbbfd1) to comment.
   - To add a comment, you need to first register a github account, and then 
     browse the above RFC page. When hovering your cursor over each line, a 
     "plus" icon is displayed, clicking it will allow one to comment on a 
@@ -54,6 +54,8 @@ For anyone who wants to contribute to the writing or revision of this document
     edit the files using a text editor;
   - once your revision is complete, please "commit" and "push" it to your forked
     git repository. Then you should create a pull-request agaist the upstream
-    repository (i.e., fNIRS/snirf). The project maintainer will review your updates
+    repository (i.e., fNIRS/snirf). Please select "Compare cross forks" and 
+    select "fNIRS/snirf" as "base fork". Please write a descriptive title for
+    your pull-request. The project maintainer will review your updates
     and choose to merge to the upstream files or request revision from you.
     

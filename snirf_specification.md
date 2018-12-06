@@ -2,8 +2,6 @@
 Shared Near Infrared File Format Specification
 ============================================================
 
-### Last Updated – Aug 13, 2018
-### Copied Aug 7, 2018 from Aug 1, 2013
 ### License: This document is in the public domain.
 
 The file format specification uses the extension \*.snirf.  These are HDF5 
