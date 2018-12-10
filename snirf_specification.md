@@ -18,7 +18,7 @@ each element in the data structure, one of the 4 types is assigned, including
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
 
-## “Standard” SNIRF file specification:
+## SNIRF file specification
 ### Required fields 
 <dl>
 <dt>formatVersion</dt><tt>[Type: string]</tt>
