@@ -43,7 +43,9 @@ draft of this file specification, including
     will be resubmitted as an Issue, and changes to the specification will be
     associated with this issue page.
 
-For anyone who wants to contribute to the writing or revision of this document
+For anyone who wants to contribute to the writing or revision of this document,
+please browse [this tutorial](https://kwafoo.coe.neu.edu/~fangq/share/snirf/tutorial.htm)
+first, and then follow the below steps
 
 - Fork this repository and make updates, then create a pull-request
   - Please first register an account on github, then, browse the 
