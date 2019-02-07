@@ -183,14 +183,18 @@ There are optional fields of the *sd* structure that can be used.
 <dl>
 <dt>sd.srcLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
-labels for each source. This can be of size <tt>&lt;number of sources&gt;
+labels for each source. Each element of the array must be a unique string
+among both <i>sd.srcLabels</i> and <i>sd.detLabels</i>.
+This can be of size <tt>&lt;number of sources&gt;
 x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of 
 wavelengths&gt;</tt>. This is indexed by <i>ml(k).sourceIndex</i> and 
 <i>ml(k).wavelengthIndex</i>.</dd>
 
 <dt>sd.detLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
-labels for each detector. This is indexed by <i>ml(k).detectorIndex</i>.</dd>
+labels for each detector. Each element of the array must be a unique string
+among both <i>sd.srcLabels</i> and <i>sd.detLabels</i>.
+This is indexed by <i>ml(k).detectorIndex</i>.</dd>
 
 <dt>sd.landmark</dt><tt>[Type: numeric]</tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
@@ -206,7 +210,10 @@ An label index of 0 refers to an undefined landmark. </dd>
 denotes the name of the landmarks with an index of 1 in the 4th column of 
 <i>sd.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
 names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
-labels. All strings are UTF-8 encoded.</dd>
+labels. The landmark label can also use the unique source and detector labels
+defined in <i>sd.srcLabels</i> and <i>sd.detLabels</i>, respectively, to 
+associate the given landmark to a specific source or detector. All 
+strings are UTF-8 encoded.</dd>
 <dl>
 
 <dt>sd.useLocalIndex</dt><tt>[Type: integer]</tt>
