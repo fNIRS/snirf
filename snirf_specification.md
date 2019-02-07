@@ -26,55 +26,55 @@ Datatype Interface to query the byte-length stored in the file.
 document describes format version “1.0”</dd>
 
 <dt>data(n)</dt><tt>[Type: container]</tt>
-<dd>This is a structure containing the data d, the time vector t of when the 
+<dd>This is a structure containing the data <i>dataTimeSeries</i>, the time vector <i>time</i> of when the 
 samples were acquired, and a description of the channels used to acquire the 
-data. The data can be grouped in blocks indexed by idx. One convenient approach 
-to blocking the data is to group all channels with the same time vector t.</dd>
+data. The data can be grouped in blocks indexed by index <i>n</i>. One convenient approach 
+to blocking the data is to group all channels with the same time vector <i>time</i>.</dd>
 
-<dt>data(n).d</dt><tt>[Type: numeric]</tt>
+<dt>data(n).dataTimeSeries</dt><tt>[Type: numeric]</tt>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   
-Columns in <i>d</i> are mapped to the measurement list (<i>ml</i> variable described below).  
-The <i>d</i> variable can be complex (as in the case of sine-cosine demodulation for 
+Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
+The <i>dataTimeSeries</i> variable can be complex (as in the case of sine-cosine demodulation for 
 the laser carrier frequencies).</dd>
 
-<dt>data(n).t</dt><tt>[Type: numeric]</tt>
-<dd>The time variable. This provides the acquisition time of the measurement 
+<dt>data(n).time</dt><tt>[Type: numeric]</tt>
+<dd>The <i>time</i> variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  The 
 size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
-<dt>data(n).ml</dt><tt>[Type: container]</tt>
+<dt>data(n).measurementList</dt><tt>[Type: container]</tt>
 <dd>The measurement list. This variable serves to map the data array onto the 
 probe geometry (sources and detectors), data type, and wavelength.   This 
 variable is an array structure that has the size <tt>&lt;number of 
 channels&gt;</tt> that describes the corresponding column in the data matrix. 
 
-For example, the *ml(3)* describes the third column of the data matrix (i.e. 
-*d(:,3)*).
+For example, the *measurementList(3)* describes the third column of the data matrix (i.e. 
+*dataTimeSeries(:,3)*).
 	
 Each element of the array is a structure which describes the measurement 
 conditions for this data with the following fields:
-* *ml(k).sourceIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the source
-* *ml(k).detectorIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the detector
-* *ml(k).wavelengthIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the wavelength
-* *ml(k).dataType*<tt>[Type: integer]</tt>: data-type identifier, see Appendix
-* *ml(k).dataTypeIndex*<tt>[Type: integer]</tt>: data-type specific parameter indices
+* *measurementList(k).sourceIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the source
+* *measurementList(k).detectorIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the detector
+* *measurementList(k).wavelengthIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the wavelength
+* *measurementList(k).dataType*<tt>[Type: integer]</tt>: data-type identifier, see Appendix
+* *measurementList(k).dataTypeIndex*<tt>[Type: integer]</tt>: data-type specific parameter indices
 
 Optional fields include:
-* *ml(k).sourcePower*<tt>[Type: numeric]</tt>: source power in milliwatt (mW)
-* *ml(k).detectorGain*<tt>[Type: numeric]</tt>: detector gain
-* *ml(k).moduleIndex*<tt>[Type: integer]</tt>: index (starting from 1) of a repeating module
+* *measurementList(k).sourcePower*<tt>[Type: numeric]</tt>: source power in milliwatt (mW)
+* *measurementList(k).detectorGain*<tt>[Type: numeric]</tt>: detector gain
+* *measurementList(k).moduleIndex*<tt>[Type: integer]</tt>: index (starting from 1) of a repeating module
 
-For example, if *ml(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
+For example, if *measurementList(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
-in the 5th column of the *d* variable was measured with source #2 and detector 
+in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector 
 #3 at wavelength #1.  Wavelengths (in nanometers) are described in the 
-*sd.lambda* variable  (described later). The data type in this case is 1, 
+*probe.wavelengths* variable  (described later). The data type in this case is 1, 
 implying that it was a continuous wave measurement.  The complete list of 
 currently supported data types is found in the Appendix. The data type index 
 specifies additional data type specific parameters that are further elaborated 
-by other fields in the *sd* structure, as detailed below. Note that the Time 
+by other fields in the *probe* structure, as detailed below. Note that the Time 
 Domain and Diffuse Correlation Spectroscopy data types have two additional 
 parameters and so the data type index must be a vector with 2 elements that 
 index the additional parameters.
@@ -94,7 +94,7 @@ these two wavelengths will be indexed by the same source, detector, and data
 type values, but have different wavelength indices. Using the same source index 
 for lasers at the same location but with different wavelengths simplifies the 
 bookkeeping for converting intensity measurements into concentration changes. 
-As described below, optional variables *sd.srcLabels* and *sd.detLabels* are 
+As described below, optional variables *probe.sourceLabels* and *probe.detectorLabels* are 
 provided for indicating the instrument specific label for sources and detectors.
 </dd>
 
@@ -116,34 +116,34 @@ and value is the stimulus amplitude.  The number of rows is not constrained.
 (see examples in the appendix).</dd>
 </dl>
 
-<dt>sd</dt><tt>[Type: container]</tt>
+<dt>probe</dt><tt>[Type: container]</tt>
 <dd>This is a structured variable that describes the probe (source-detector) 
 geometry.  This variable has a number of required fields.</dd>
 
 <dl>
-<dt>sd.lambda</dt><tt>[Type: numeric]</tt>
+<dt>probe.wavelengths</dt><tt>[Type: numeric]</tt>
 <dd>This field describes the wavelengths used.  This is indexed by the 
-wavelength index of the ml variable.
+wavelength index of the measurementList variable.
 	
-For example, *sd.lambda* = [690 780 830]; implies that the measurements were 
+For example, *probe.wavelengths* = [690 780 830]; implies that the measurements were 
 taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of 
-*ml(k).wavelengthIndex* variable refers to this field.  *ml(k).wavelengthIndex* 
+*measurementList(k).wavelengthIndex* variable refers to this field.  *measurementList(k).wavelengthIndex* 
 = 2 means the k<sup>th</sup> measurement was at 780nm.
 
 The number of wavelengths is not limited (except that at least two are needed 
 to calculate the two forms of hemoglobin).  Each source-detector pair would 
 generally have measurements at all wavelengths.
 </dd>
-<dt>sd.lambdaEmission</dt><tt>[Type: numeric]</tt>
+<dt>probe.wavelengthsEmission</dt><tt>[Type: numeric]</tt>
 <dd>This field is required only for fluorescence data types, and describes the 
 emission wavelengths used.  The indexing of this variable is the same 
-wavelength index in ml used for <i>sd.lambda</i> such that the excitation wavelength 
+wavelength index in measurementList used for <i>probe.wavelengths</i> such that the excitation wavelength 
 is paired with this emission wavelength for a given measurement.</dd>
 
-<dt>sd.srcPos</dt><tt>[Type: numeric]</tt>
+<dt>probe.sourcePos</dt><tt>[Type: numeric]</tt>
 <dd>This field describes the position (in spatialUnit units) of each source 
 optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>.  For 
-example, <i>sd.srcPos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
+example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
 Dimensions are relative coordinates (i.e. to some arbitrary defined origin).  
@@ -151,12 +151,12 @@ The *qform* variable described below can be used to define the transformation
 between this SNIRF coordinate system and other coordinate systems.
 </dd>
 
-<dt>sd.detPos</dt><tt>[Type: numeric]</tt>
-<dd>Same as <i>sd.srcPos</i>, but describing the detector positions.</dd>
+<dt>probe.detectorPos</dt><tt>[Type: numeric]</tt>
+<dd>Same as <i>probe.sourcePos</i>, but describing the detector positions.</dd>
 </dl>
-There are additional required elements of the <i>sd</i> structure, depending on the 
+There are additional required elements of the <i>probe</i> structure, depending on the 
 data type of the measurement.  These variables are indexed by 
-<i>ml(k).dataTypeIndex</i>:
+<i>measurementList(k).dataTypeIndex</i>:
 
 <dl>
 Continuous wave (Fluorescence or non-fluorescence):
@@ -164,62 +164,62 @@ Continuous wave (Fluorescence or non-fluorescence):
 - *None*
 
 Frequency Domain (Fluorescence or non-fluorescence):
-- *sd.frequency*<tt>[Type: numeric]</tt>: modulation frequency in Hz
+- *probe.frequency*<tt>[Type: numeric]</tt>: modulation frequency in Hz
 
 Time domain – gated (Fluorescence or non-fluorescence):
-- *sd.timeDelay*<tt>[Type: numeric]</tt>
-- *sd.timeDelayWidth*<tt>[Type: numeric]</tt>
+- *probe.timeDelay*<tt>[Type: numeric]</tt>
+- *probe.timeDelayWidth*<tt>[Type: numeric]</tt>
 
 Time domain – moments (Fluorescence or non-fluorescence):
-- *sd.momentOrder*<tt>[Type: numeric]</tt>
+- *probe.momentOrder*<tt>[Type: numeric]</tt>
 
 Diffuse Correlation spectroscopy (Fluorescence or non-fluorescence):
-- *sd.correlationTimeDelay*<tt>[Type: numeric]</tt>
-- *sd.correlationTimeDelayWidth*<tt>[Type: numeric]</tt>
+- *probe.correlationTimeDelay*<tt>[Type: numeric]</tt>
+- *probe.correlationTimeDelayWidth*<tt>[Type: numeric]</tt>
 </dl>
 
-There are optional fields of the *sd* structure that can be used.
+There are optional fields of the *probe* structure that can be used.
 
 <dl>
-<dt>sd.srcLabels</dt><tt>[Type: string]</tt>
+<dt>probe.sourceLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each source. Each element of the array must be a unique string
-among both <i>sd.srcLabels</i> and <i>sd.detLabels</i>.
+among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
 This can be of size <tt>&lt;number of sources&gt;
 x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of 
-wavelengths&gt;</tt>. This is indexed by <i>ml(k).sourceIndex</i> and 
-<i>ml(k).wavelengthIndex</i>.</dd>
+wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> and 
+<i>measurementList(k).wavelengthIndex</i>.</dd>
 
-<dt>sd.detLabels</dt><tt>[Type: string]</tt>
+<dt>probe.detectorLabels</dt><tt>[Type: string]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each detector. Each element of the array must be a unique string
-among both <i>sd.srcLabels</i> and <i>sd.detLabels</i>.
-This is indexed by <i>ml(k).detectorIndex</i>.</dd>
+among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
+This is indexed by <i>measurementList(k).detectorIndex</i>.</dd>
 
-<dt>sd.landmark</dt><tt>[Type: numeric]</tt>
+<dt>probe.landmark</dt><tt>[Type: numeric]</tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
 from 3-D digitization and tracking systems to facilitate the registration and 
 mapping of optical data to brain anatomy. This array should contain a minimum 
 of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the <i>sd.landmarkLabels</i> subfield.
+given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
 
-<dt>sd.landmarkLabels</dt><tt>[Type: container]</tt>
+<dt>probe.landmarkLabels</dt><tt>[Type: container]</tt>
 <dd>This string array stores the names of the landmarks. The first string 
 denotes the name of the landmarks with an index of 1 in the 4th column of 
-<i>sd.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
+<i>probe.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
 names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
 labels. The landmark label can also use the unique source and detector labels
-defined in <i>sd.srcLabels</i> and <i>sd.detLabels</i>, respectively, to 
+defined in <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>, respectively, to 
 associate the given landmark to a specific source or detector. All 
 strings are UTF-8 encoded.</dd>
 <dl>
 
-<dt>sd.useLocalIndex</dt><tt>[Type: integer]</tt>
+<dt>probe.useLocalIndex</dt><tt>[Type: integer]</tt>
 <dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates
-that <i>ml(k).sourceIndex</i> and <i>ml(k).detectorIndex</i> are module-specific
-local-indices. One must also include <i>ml(k).moduleIndex</i> in the <i>ml</i>
+that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorIndex</i> are module-specific
+local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
 structure in order to restore the global indices of the sources/detectors.</dd>
 
 <dt>metaDataTags</dt><tt>[Type: container]</tt>
@@ -280,11 +280,11 @@ get more out of your data sets.
 <dt>aux(n).name</dt><tt>[Type: string]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
 
-<dt>aux(n).d</dt><tt>[Type: numeric]</tt>
+<dt>aux(n).dataTimeSeries</dt><tt>[Type: numeric]</tt>
 <dd>This is the aux data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
-<dt>aux(n).t</dt><tt>[Type: numeric]</tt>
+<dt>aux(n).time</dt><tt>[Type: numeric]</tt>
 <dd>The time variable. This provides the acquisition time of the aux 
 measurement relative to the time origin.  This will usually be a straight line 
 with slope equal to the acquisition frequency, but does not need to be equal 
@@ -297,7 +297,7 @@ absolute (clock) time in seconds.</dd>
 
 ## Appendix
 
-Supported data types for “d”
+Supported data types for “dataTimeSeries”
 1.	Raw - Continuous wave
 2.	Raw - Frequency Domain
 3.	Raw - Time domain - gated
