@@ -8,43 +8,77 @@ The file format specification uses the extension \*.snirf.  These are HDF5
 format files, renamed with the .snirf extension.  For a program to be 
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.  
 
+The HDF5 specificiations are defined by the HDF5 group and found at
+https://www.hdfgroup.org.  At this time, the current version of the specificiations
+is version 1.10 (Feburary 2019) as the basis for the SNIRF format.  It is expected that
+HDF5 future versions will remain backwards compatibility in the foreseeable future.
+
+The HDF5 format defines "groups" (H5G class) and "datasets" (H5D class) that are the two primary 
+data organization and storage classes used in the SNIRF specificiation. 
+
+
 The structure of each data file has a minimum of 5 required elements. For 
 each element in the data structure, one of the 4 types is assigned, including
-- `container`: a structure containing sub-fields
-- `string`: a UTF-8 (ISO 10646) encoded string
-- `integer`: one of the integer types (1-byte, 2-byte, 4-byte, 8-byte)
-- `numeric`: one of the floating-point types (8-byte, 4-byte, 2-byte)
+- `group`: a structure containing sub-fields  (defined in the H5G object class)
+- `string`: ASCII encoded 1-byte CHAR array.   Defined by the H5T.NATIVE_CHAR datatype in H5D.
+- `integer`: one of the integer types H5T.NATIVE_INT or H5T.NATIVE_UINT datatypes in H5D
+- `numeric`: one of the double or floating-point types; H5T.NATIVE_DOUBLE, H5T.NATIVE_FLOAT, or H5T.NATIVE_LDOUBLE in H5D.    		   This can also be stored as a compound dataset (H5T.COMPOUND) to store complex data. 
 
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
 
+<mark>
+TED's NOTE:
+I really like starting the root with the grouping "/nirs"  because this is a simple addition to the definition that gives us huge flexibility in the future (including but not limited to the ability to add NIRS forward model and anatomical information and other modalities such as concurrent EEG into the file).  I am writing the definitions here with this change in mind </mark>
+
 ## SNIRF file specification
+
+The SNIRF data format must have the initial H5G group type "/nirs" at the initial file location.
+
+
 ### Required fields 
 <dl>
-<dt>formatVersion</dt><tt>[Type: string]</tt>
+
+<h3> /nirs/formatVersion [Required]</h3>
+<dt>formatVersion</dt><tt>[Type: string] [Location: /nirs/formatVersion ]</tt>
 <dd>This is a string that specifies the version of the file format.  This 
 document describes format version “1.0”</dd>
 
-<dt>data(n)</dt><tt>[Type: container]</tt>
-<dd>This is a structure containing the data <i>dataTimeSeries</i>, the time vector <i>time</i> of when the 
-samples were acquired, and a description of the channels used to acquire the 
-data. The data can be grouped in blocks indexed by index <i>n</i>. One convenient approach 
-to blocking the data is to group all channels with the same time vector <i>time</i>.</dd>
+<h3> /nirs/dataCount [Required]</h3>
+<dt>dataCount</dt><tt>[Type: integer] [Location: /nirs/dataCount ]</tt>
+<dd>This interger denotes the number of elements in the "/nirs/data" group </dd>
 
-<dt>data(n).dataTimeSeries</dt><tt>[Type: numeric]</tt>
+<h3> /nirs/data{0} [Required]</h3>
+<dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index from 0:dataCount-1]</tt>
+<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. data0, data1,...) to the group name.  The total number of data groups is set by the /nirs/dataCount value.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
+	/nirs/dataCount = 2
+	/nirs/data0 =  first subject's data
+	/nirs/data1 =  second subject's data
+</dd>
+	
+<h3> /nirs/data{0}/dataTimeSeries [Required] </h3>	
+<dt>data{0}.dataTimeSeries</dt><tt>[Type: numeric 2D-array] [Location: /nirs/data{0}/dataTimeSeries ] </tt>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   
 Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
-The <i>dataTimeSeries</i> variable can be complex (as in the case of sine-cosine demodulation for 
-the laser carrier frequencies).</dd>
+<mark>The <i>dataTimeSeries</i> variable can be a H5T.COMPOUND datatype (as in the case of sine-cosine demodulation for 
+the laser carrier frequencies). Compound datatypes are inserted (H5T.insert method) with the additional naming convention of the subfields that depends the SNIRF data type (see appendix).  For example H5T.inset(loc ID of dataTimeSeries, "ac",...)
+H5T.inset(loc ID of dataTimeSeries, "dc",...), and H5T.inset(loc ID of dataTimeSeries, "phase",...) is used to denote frequency-domain NIRS data. </mark>  	
+</dd>
 
-<dt>data(n).time</dt><tt>[Type: numeric]</tt>
+<h3> /nirs/data{0}/time [Required] </h3>	
+<dt>data{0}.time</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/time ]</tt>
 <dd>The <i>time</i> variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  The 
 size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
-<dt>data(n).measurementList</dt><tt>[Type: container]</tt>
+<h3> /nirs/data{0}/measurementListCount [Required] </h3>	
+<dt>data{0}.measurementListCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementListCount ]</tt>
+<dd>This interger denotes the number of elements in the "/nirs/data{0}/measurementList" group </dd>
+
+<h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
+<dt>data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
 <dd>The measurement list. This variable serves to map the data array onto the 
 probe geometry (sources and detectors), data type, and wavelength.   This 
 variable is an array structure that has the size <tt>&lt;number of 
@@ -52,21 +86,47 @@ channels&gt;</tt> that describes the corresponding column in the data matrix.
 
 For example, the *measurementList(3)* describes the third column of the data matrix (i.e. 
 *dataTimeSeries(:,3)*).
-	
+
 Each element of the array is a structure which describes the measurement 
 conditions for this data with the following fields:
-* *measurementList(k).sourceIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the source
-* *measurementList(k).detectorIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the detector
-* *measurementList(k).wavelengthIndex*<tt>[Type: integer]</tt>: index (starting from 1) of the wavelength
-* *measurementList(k).dataType*<tt>[Type: integer]</tt>: data-type identifier, see Appendix
-* *measurementList(k).dataTypeIndex*<tt>[Type: integer]</tt>: data-type specific parameter indices
 
-Optional fields include:
-* *measurementList(k).sourcePower*<tt>[Type: numeric]</tt>: source power in milliwatt (mW)
-* *measurementList(k).detectorGain*<tt>[Type: numeric]</tt>: detector gain
-* *measurementList(k).moduleIndex*<tt>[Type: integer]</tt>: index (starting from 1) of a repeating module
+<h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
+<dt> ./measurementList{0}/sourceIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex</dt>
+	<dd>: index (starting from 1) of the source</dd>
+	
+<h3> /nirs/data{0}/measurementList{0}/detectorIndex [Required] </h3>	
+<dt> ./measurementList{0}/detectorIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex</dt>
+	<dd>: index (starting from 1) of the detector</dd>
 
-For example, if *measurementList(5)* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
+<h3> /nirs/data{0}/measurementList{0}/wavelengthIndex [Required] </h3>	
+<dt> ./measurementList{0}/wavelengthIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex</dt>
+	<dd>: index (starting from 1) of the wavelength</dd>
+	
+<h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
+<dt> ./measurementList{0}/dataType [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType</dt>
+	<dd>: data-type identifier, see Appendix</dd>
+
+<mark>
+<h3> /nirs/data{0}/measurementList{0}/dataTypeIndex [?????] </h3>	
+<dt> ./measurementList{0}/dataTypeIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex</dt>
+	<dd>: data-type specific parameter indices</dd>
+</mark>
+
+<h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
+<dt> ./measurementList{0}/sourcePower [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower</dt>
+	<dd>: source power in milliwatt (mW) </dd>
+
+<h3> /nirs/data{0}/measurementList{0}/detectorGain [Optional] </h3>	
+<dt> ./measurementList{0}/detectorGain [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain</dt>
+	<dd>: detector gain</dd>
+
+<mark>
+<h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
+<dt> ./measurementList{0}/moduleIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex</dt>
+	<dd>: index (starting from 1) of a repeating module</dd>
+</mark>
+
+For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
 in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector 
 #3 at wavelength #1.  Wavelengths (in nanometers) are described in the 
@@ -96,17 +156,19 @@ for lasers at the same location but with different wavelengths simplifies the
 bookkeeping for converting intensity measurements into concentration changes. 
 As described below, optional variables *probe.sourceLabels* and *probe.detectorLabels* are 
 provided for indicating the instrument specific label for sources and detectors.
-</dd>
 
-<dt>stim</dt><tt>[Type: container]</tt>
+
+<h3>/nirs/data{0}/stim{0} [Optional]</h3>
+<dt>stim</dt><tt>[Type: indexed group]</tt>
 <dd>This is an array describing any stimulus conditions. Each element of the 
 array has the following required fields.</dd>
 
-<dl>
-<dt>stim(n).name</dt><tt>[Type: string]</tt>
+<h3>/nirs/data{0}/stim{0}/name [Required as part of stim{0}] </h3>
+<dt>stim(n).name</dt><tt>[Type: string] [Location:/nirs/data{0}/stim{0}/name ]</tt>
 <dd>This is a string describing the n<sup>th</sup> stimulus condition.</dd>
 
-<dt>stim(n).data</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/stim{0}/data [Required as part of stim{0}] </h3>
+<dt>stim(n).data</dt><tt>[Type: numeric 2D array] [Location:/nirs/data{0}/stim{0}/data ]</tt>
 <dd> This is a three-column array specifying the stimulus time course for the 
 n<sup>th</sup> condition. Each row corresponds with a specific stimulus trial. 
 The three columns indicate [starttime duration value].  The starttime, in 
@@ -114,14 +176,15 @@ seconds, is the time relative to the time origin when the stimulus takes on a
 value; the duration is the time in seconds that the stimulus value continues, 
 and value is the stimulus amplitude.  The number of rows is not constrained. 
 (see examples in the appendix).</dd>
-</dl>
 
-<dt>probe</dt><tt>[Type: container]</tt>
+
+<h3>/nirs/data{0}/probe [Required] </h3>
+<dt>/nirs/data{0}/probe</dt><tt>[Type: group] [Location: /nirs/data{0}/probe ]</tt>
 <dd>This is a structured variable that describes the probe (source-detector) 
 geometry.  This variable has a number of required fields.</dd>
 
-<dl>
-<dt>probe.wavelengths</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/probe/wavelengths [Required] </h3>
+<dt>/nirs/data{0}/probe.wavelengths</dt><tt>[Type: numeric 1D array] [Location: /nirs/data{0}/probe/wavelengths ]</tt>
 <dd>This field describes the wavelengths used.  This is indexed by the 
 wavelength index of the measurementList variable.
 	
@@ -134,13 +197,21 @@ The number of wavelengths is not limited (except that at least two are needed
 to calculate the two forms of hemoglobin).  Each source-detector pair would 
 generally have measurements at all wavelengths.
 </dd>
-<dt>probe.wavelengthsEmission</dt><tt>[Type: numeric]</tt>
+
+
+<h3>/nirs/data{0}/probe/wavelengthsEmission [Optional] </h3>
+<dt>/nirs/data{0}/probe.wavelengthsEmission</dt><tt>[Type: numeric 1D array]</tt>
 <dd>This field is required only for fluorescence data types, and describes the 
 emission wavelengths used.  The indexing of this variable is the same 
 wavelength index in measurementList used for <i>probe.wavelengths</i> such that the excitation wavelength 
 is paired with this emission wavelength for a given measurement.</dd>
 
-<dt>probe.sourcePos</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/probe/sourceCount [Required] </h3>
+<dt>/nirs/data{0}/probe.sourceCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe/sourceCount ] </tt>
+<dd>Number of source positions</dd>
+
+<h3>/nirs/data{0}/probe/sourcePos [Required] </h3>
+<dt>/nirs/data{0}/probe.sourcePos</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe/sourcePos ] </tt>
 <dd>This field describes the position (in spatialUnit units) of each source 
 optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>.  For 
 example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
@@ -151,16 +222,31 @@ The *qform* variable described below can be used to define the transformation
 between this SNIRF coordinate system and other coordinate systems.
 </dd>
 
-<dt>probe.detectorPos</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/probe/sourcePos3D [Optional] </h3>
+<dt>/nirs/data{0}/probe.sourcePos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe/sourcePos3D ] </tt>
+<dd>This field describes the position (in spatialUnit units) of each source 
+optode in 3D.  <dd>
+
+<h3>/nirs/data{0}/probe/detectorCount [Required] </h3>
+<dt>/nirs/data{0}/probe.detectorCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe/detectorCount ] </tt>
+<dd>Number of detector positions</dd>
+
+<h3>/nirs/data{0}/probe/detectorPos [Required] </h3>
+<dt>/nirs/data{0}/probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/data{0}/probe/detectorPos]</tt>
 <dd>Same as <i>probe.sourcePos</i>, but describing the detector positions.</dd>
-</dl>
+
+<h3>/nirs/data{0}/probe/detectorPos3D [Optional] </h3>
+<dt>/nirs/data{0}/probe.detectorPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe/detectorPos3D ] </tt>
+<dd>This field describes the position (in spatialUnit units) of each detector
+optode in 3D.  <dd>
+	
+	
+<mark>	
 There are additional required elements of the <i>probe</i> structure, depending on the 
 data type of the measurement.  These variables are indexed by 
 <i>measurementList(k).dataTypeIndex</i>:
 
-<dl>
 Continuous wave (Fluorescence or non-fluorescence):
-
 - *None*
 
 Frequency Domain (Fluorescence or non-fluorescence):
@@ -177,11 +263,13 @@ Diffuse Correlation spectroscopy (Fluorescence or non-fluorescence):
 - *probe.correlationTimeDelay*<tt>[Type: numeric]</tt>
 - *probe.correlationTimeDelayWidth*<tt>[Type: numeric]</tt>
 </dl>
+</mark>
 
 There are optional fields of the *probe* structure that can be used.
 
-<dl>
-<dt>probe.sourceLabels</dt><tt>[Type: string]</tt>
+<h3>/nirs/data{0}/probe/sourceLabels [Optional] </h3>
+<dt>/nirs/data{0}/probe.sourceLabels{0}</dt><tt>[Type: indexed string]
+[Location: /nirs/data{0}/probe.sourceLabels{0} indexed 0:sourceCount-1]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each source. Each element of the array must be a unique string
 among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
@@ -190,13 +278,20 @@ x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of
 wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> and 
 <i>measurementList(k).wavelengthIndex</i>.</dd>
 
-<dt>probe.detectorLabels</dt><tt>[Type: string]</tt>
+<h3>/nirs/data{0}/probe/detectorLabels [Optional] </h3>
+<dt>/nirs/data{0}/probe.detectorLabels{0}</dt><tt>[Type: indexed string]
+[Location: /nirs/data{0}/probe.detectorLabels{0} indexed 0:detectorCount-1]</tt>
 <dd>This is a string array providing user friendly or instrument specific 
 labels for each detector. Each element of the array must be a unique string
 among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
 This is indexed by <i>measurementList(k).detectorIndex</i>.</dd>
 
-<dt>probe.landmark</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/probe/landmarkCount [Optional; Required if landmarkPos used] </h3>
+<dt>/nirs/data{0}/probe.landmarkCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe.landmarkCount] </tt>
+<dd> Number of landmarks specified </dd>
+	
+<h3>/nirs/data{0}/probe/landmarkPos [Optional] </h3>
+<dt>/nirs/data{0}/probe.landmarkPos</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe.landmarkPos] </tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
 from 3-D digitization and tracking systems to facilitate the registration and 
 mapping of optical data to brain anatomy. This array should contain a minimum 
@@ -205,7 +300,19 @@ positions. If a 4th column presents, it stores the index to the labels of the
 given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
 
-<dt>probe.landmarkLabels</dt><tt>[Type: container]</tt>
+<h3>/nirs/data{0}/probe/landmarkPos3D [Optional] </h3>
+<dt>/nirs/data{0}/probe.landmarkPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe.landmarkPos3D] </tt>
+<dd>This is a 2-D array storing the neurological landmark positions measurement
+from 3-D digitization and tracking systems to facilitate the registration and 
+mapping of optical data to brain anatomy. This array should contain a minimum 
+of 3 columns, representing the x, y and z coordinates of the digitized landmark
+positions. If a 4th column presents, it stores the index to the labels of the 
+given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
+An label index of 0 refers to an undefined landmark. </dd>
+
+<h3>/nirs/data{0}/probe/landmarkLabels{0} [Optional] </h3>
+<dt>/nirs/data{0}/probe/landmarkLabels{0}</dt><tt>[Type: indexed string]
+[Location: /nirs/data{0}/probe/landmarkLabels{0} indexed 0:landmarkCount-1]</tt>
 <dd>This string array stores the names of the landmarks. The first string 
 denotes the name of the landmarks with an index of 1 in the 4th column of 
 <i>probe.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
@@ -213,16 +320,17 @@ names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark
 labels. The landmark label can also use the unique source and detector labels
 defined in <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>, respectively, to 
 associate the given landmark to a specific source or detector. All 
-strings are UTF-8 encoded.</dd>
-<dl>
+strings are ASCII encoded char arrays.</dd>
 
-<dt>probe.useLocalIndex</dt><tt>[Type: integer]</tt>
+<h3>/nirs/data{0}/probe/useLocalIndex [Optional] </h3>
+<dt>/nirs/data{0}/probeuseLocalIndex</dt><tt>[Type: integer] [Location: nirs/data{0}/probe/useLocalIndex]</tt>
 <dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates
 that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorIndex</i> are module-specific
 local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
 structure in order to restore the global indices of the sources/detectors.</dd>
 
-<dt>metaDataTags</dt><tt>[Type: container]</tt>
+<h3>/nirs/data{0}/metaDataTags [Optional] </h3>
+<dt>/nirs/data{0}/metaDataTags</dt><tt>[Type: group] [Location: /nirs/data{0}/metaDataTags ]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any 
 key/value pairs the user (or manufacturer) would like to put in.  Each row of 
 the array consists of two strings. Some possible examples:
@@ -267,30 +375,36 @@ The metadata tag "InstanceNumber" is defined similarly to the DICOM tag
 group multiple datasets into a larger dataset - for example, concatenating 
 streamed data segments during a long measurement session.
 
+<h3>/nirs/data{0}/auxCount [Optional; Required if aux{0} used] </h3>
+<dt>/nirs/data{0}/auxCount</dt><tt>[Type: integer][Location: /nirs/data{0}/auxCount ]</tt>
+<dd>The number of aux group fields</dd>
 
-### Optional variables:
-These variables are not required for basic functions, but might be useful to 
-get more out of your data sets.
-
-<dl>
-<dt>aux</dt><tt>[Type: container]</tt>
+<h3>/nirs/data{0}/aux{0} [Optional] </h3>
+<dt>/nirs/data{0}/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/data{0}/aux{0} where index 0:auxCount-1]</tt>
 <dd>This optional array specifies any recorded auxiliary data. Each element of 
 <i>aux</i> has the following required fields:</dd>
 
-<dt>aux(n).name</dt><tt>[Type: string]</tt>
+<h3>/nirs/data{0}/aux{0}/name [Optional; Required if aux{0} used] </h3>
+<dt>/nirs/data{0}/aux{0}name</dt><tt>[Type: string]
+[Location: /nirs/data{0}/aux{0}/name]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
 
-<dt>aux(n).dataTimeSeries</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/aux{0}/dataTimeSeries [Optional; Required if aux{0} used] </h3>
+<dt>aux(n).dataTimeSeries</dt><tt>[Type: numeric]
+[Location: /nirs/data{0}/aux{0}/dataTimeSeries]</tt>
 <dd>This is the aux data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
-<dt>aux(n).time</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/aux{0}/time [Optional; Required if aux{0} used] </h3>
+<dt>/nirs/data{0}/aux{0}/time</dt><tt>[Type: numeric] [Location: /nirs/data{0}/aux{0}/time]</tt>
 <dd>The time variable. This provides the acquisition time of the aux 
 measurement relative to the time origin.  This will usually be a straight line 
 with slope equal to the acquisition frequency, but does not need to be equal 
 spacing.  The size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
 
-<dt>timeOffset</dt><tt>[Type: numeric]</tt>
+<h3>/nirs/data{0}/aux{0}/timeOffset [Optional] </h3>
+<dt>/nirs/data{0}/aux{0}/timeOffset</dt><tt>[Type: numeric]
+[Location: /nirs/data{0}/aux{0}/timeOffset]</tt>
 <dd>This variable specifies the offset of the file time origin relative to 
 absolute (clock) time in seconds.</dd>
 
