@@ -330,24 +330,25 @@ Other significant contributors to this specification include:
 The following individuals representing academic, industrial, software, and hardware interests are also contributing to and supporting the adoption of this specification:
 
 ### Software
-- Adam Eggebrecht, University of Washington, neuroDOT
-- Felipe Orihuela-Espina, Instituto Nacional de Astrofísica, Óptica y Electrónica, ICNNA
-- Sungho Tak, Korea Basic Science Institute, NIR-SPM
-- Luca Pollonini, Houston Methodist, Phoebe
-- Hamid Deghani, University of Birmingham, NIRFAST
-- Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
-- Joe Culver, University of Washington, neuroDOT
-- Christophe Grova, McGill University, NIRS Storm
 - Ata Akin, Acıbadem University
+- Hasan Ayaz, Drexel University
+- Joe Culver, University of Washington, neuroDOT
+- Hamid Deghani, University of Birmingham, NIRFAST
+- Adam Eggebrecht, University of Washington, neuroDOT
+- Christophe Grova, McGill University, NIRS Storm
+- Felipe Orihuela-Espina, Instituto Nacional de Astrofísica, Óptica y Electrónica, ICNNA
+- Luca Pollonini, Houston Methodist, Phoebe
+- Sungho Tak, Korea Basic Science Institute, NIR-SPM
 - Alessandro Torricelli, Politecnico di Milano
+- Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 
 ### Hardware
-- Jorn Horschig, Artinis Inc
-- Hasan Ayaz, Biopac Inc
-- Rob Cooper, Gower Labs Inc
-- Rueben Hill, Gower Labs Inc
-- Hanseok Yun, OdeLab Inc
 - Hirokazu Asaka, Hitachi
+- Rob Cooper, Gower Labs Inc
+- Mathieu Coursolle, Rogue
+- Rueben Hill, Gower Labs Inc
+- Jorn Horschig, Artinis Inc
 - Takumi Inakazu, Hitachi
 - Lamija Pasalic, NIRx
-- Mathieu Coursolle, Rogue
+- Davood Tashayyod, fNIR Devices and Biopac Inc
+- Hanseok Yun, OdeLab Inc
