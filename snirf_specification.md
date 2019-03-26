@@ -22,14 +22,10 @@ each element in the data structure, one of the 4 types is assigned, including
 - `group`: a structure containing sub-fields  (defined in the H5G object class)
 - `string`: ASCII encoded 1-byte CHAR array.   Defined by the H5T.NATIVE_CHAR datatype in H5D.
 - `integer`: one of the integer types H5T.NATIVE_INT or H5T.NATIVE_UINT datatypes in H5D
-- `numeric`: one of the double or floating-point types; H5T.NATIVE_DOUBLE, H5T.NATIVE_FLOAT, or H5T.NATIVE_LDOUBLE in H5D.    		   This can also be stored as a compound dataset (H5T.COMPOUND) to store complex data. 
+- `numeric`: one of the double or floating-point types; H5T.NATIVE_DOUBLE or H5T.NATIVE_FLOAT in H5D.    		   T 
 
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
-
-<mark>
-TED's NOTE:
-I really like starting the root with the grouping "/nirs"  because this is a simple addition to the definition that gives us huge flexibility in the future (including but not limited to the ability to add NIRS forward model and anatomical information and other modalities such as concurrent EEG into the file).  I am writing the definitions here with this change in mind </mark>
 
 ## SNIRF file specification
 
@@ -39,21 +35,25 @@ The SNIRF data format must have the initial H5G group type "/nirs" at the initia
 ### Required fields 
 <dl>
 
+
+<h3> /nirs{0} [Required]</h3>
+<dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index </tt>
+<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs0, nirs1,...) to the group name.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
+	/nirs0 =  first subject's data
+	/nirs1 =  second subject's data
+The use of a non-indexed (e.g. /nirs/) entry is allowed. 	
+</dd>
+
 <h3> /nirs/formatVersion [Required]</h3>
 <dt>formatVersion</dt><tt>[Type: string] [Location: /nirs/formatVersion ]</tt>
 <dd>This is a string that specifies the version of the file format.  This 
 document describes format version “1.0”</dd>
 
-<h3> /nirs/dataCount [Required]</h3>
-<dt>dataCount</dt><tt>[Type: integer] [Location: /nirs/dataCount ]</tt>
-<dd>This interger denotes the number of elements in the "/nirs/data" group </dd>
-
 <h3> /nirs/data{0} [Required]</h3>
-<dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index from 0:dataCount-1]</tt>
-<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. data0, data1,...) to the group name.  The total number of data groups is set by the /nirs/dataCount value.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
-	/nirs/dataCount = 2
-	/nirs/data0 =  first subject's data
-	/nirs/data1 =  second subject's data
+<dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index</tt>
+<dd> This group stores one block of NIRS data.  This can be extended adding the count number (e.g. data0, data1,...) to the group name.  This is intended to allow the storage of 1 or more blocks of NIRS data from within the same /nirs entry
+	/nirs/data0 =  block 1
+	/nirs/data1 =  block 2
 </dd>
 	
 <h3> /nirs/data{0}/dataTimeSeries [Required] </h3>	
@@ -61,9 +61,6 @@ document describes format version “1.0”</dd>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   
 Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
-<mark>The <i>dataTimeSeries</i> variable can be a H5T.COMPOUND datatype (as in the case of sine-cosine demodulation for 
-the laser carrier frequencies). Compound datatypes are inserted (H5T.insert method) with the additional naming convention of the subfields that depends the SNIRF data type (see appendix).  For example H5T.inset(loc ID of dataTimeSeries, "ac",...)
-H5T.inset(loc ID of dataTimeSeries, "dc",...), and H5T.inset(loc ID of dataTimeSeries, "phase",...) is used to denote frequency-domain NIRS data. </mark>  	
 </dd>
 
 <h3> /nirs/data{0}/time [Required] </h3>	
@@ -72,10 +69,6 @@ H5T.inset(loc ID of dataTimeSeries, "dc",...), and H5T.inset(loc ID of dataTimeS
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  The 
 size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
-
-<h3> /nirs/data{0}/measurementListCount [Required] </h3>	
-<dt>data{0}.measurementListCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementListCount ]</tt>
-<dd>This interger denotes the number of elements in the "/nirs/data{0}/measurementList" group </dd>
 
 <h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
 <dt>data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
@@ -106,11 +99,9 @@ conditions for this data with the following fields:
 <dt> ./measurementList{0}/dataType [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType</dt>
 	<dd>: data-type identifier, see Appendix</dd>
 
-<mark>
-<h3> /nirs/data{0}/measurementList{0}/dataTypeIndex [?????] </h3>	
+<h3> /nirs/data{0}/measurementList{0}/dataTypeIndex [Required] </h3>	
 <dt> ./measurementList{0}/dataTypeIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex</dt>
 	<dd>: data-type specific parameter indices</dd>
-</mark>
 
 <h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
 <dt> ./measurementList{0}/sourcePower [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower</dt>
@@ -120,11 +111,9 @@ conditions for this data with the following fields:
 <dt> ./measurementList{0}/detectorGain [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain</dt>
 	<dd>: detector gain</dd>
 
-<mark>
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
 <dt> ./measurementList{0}/moduleIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex</dt>
 	<dd>: index (starting from 1) of a repeating module</dd>
-</mark>
 
 For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
 *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data 
@@ -227,10 +216,6 @@ between this SNIRF coordinate system and other coordinate systems.
 <dd>This field describes the position (in spatialUnit units) of each source 
 optode in 3D.  <dd>
 
-<h3>/nirs/data{0}/probe/detectorCount [Required] </h3>
-<dt>/nirs/data{0}/probe.detectorCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe/detectorCount ] </tt>
-<dd>Number of detector positions</dd>
-
 <h3>/nirs/data{0}/probe/detectorPos [Required] </h3>
 <dt>/nirs/data{0}/probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/data{0}/probe/detectorPos]</tt>
 <dd>Same as <i>probe.sourcePos</i>, but describing the detector positions.</dd>
@@ -285,10 +270,6 @@ wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> a
 labels for each detector. Each element of the array must be a unique string
 among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
 This is indexed by <i>measurementList(k).detectorIndex</i>.</dd>
-
-<h3>/nirs/data{0}/probe/landmarkCount [Optional; Required if landmarkPos used] </h3>
-<dt>/nirs/data{0}/probe.landmarkCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe.landmarkCount] </tt>
-<dd> Number of landmarks specified </dd>
 	
 <h3>/nirs/data{0}/probe/landmarkPos [Optional] </h3>
 <dt>/nirs/data{0}/probe.landmarkPos</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe.landmarkPos] </tt>
@@ -329,8 +310,8 @@ that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorInd
 local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
 structure in order to restore the global indices of the sources/detectors.</dd>
 
-<h3>/nirs/data{0}/metaDataTags [Optional] </h3>
-<dt>/nirs/data{0}/metaDataTags</dt><tt>[Type: group] [Location: /nirs/data{0}/metaDataTags ]</tt>
+<h3>/nirs/data{0}/metaDataTags{0} [Optional] </h3>
+<dt>/nirs/data{0}/metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/data{0}/metaDataTags ]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any 
 key/value pairs the user (or manufacturer) would like to put in.  Each row of 
 the array consists of two strings. Some possible examples:
