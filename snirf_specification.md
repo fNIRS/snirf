@@ -383,7 +383,7 @@ group multiple datasets into a larger dataset - for example, concatenating
 streamed data segments during a long measurement session.
 
 <h3>/nirs/data{0}/aux{0} [Optional] </h3>
-<dt>/nirs/data{0}/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/data{0}/aux{0} where index 0:auxCount-1]</tt>
+<dt>/nirs/data{0}/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/data{0}/aux{0} where index starting with 1]</tt>
 <dd>This optional array specifies any recorded auxiliary data. Each element of 
 <i>aux</i> has the following required fields:</dd>
 
