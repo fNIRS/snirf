@@ -88,9 +88,10 @@ equal to the acquisition frequency, but does not need to be equal spacing.  For 
 case of equal sample spacing a shorthand <2x1> array is allowed where the first entry is the start time and the 
 second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms [equivelent to 5Hz]) 
 		
-	Option1 - The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> and 
+	Option1 - The size of this variable is <tt>[number of time points x 1]</tt> and 
 	corresponds to the sample time of every data point
-	Option2-  The size of this variable is <tt>&lt;2&gt; x 1</tt> and correponds to the start
+	
+	Option2-  The size of this variable is <tt>[2x1]</tt> and correponds to the start
 	time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.   
