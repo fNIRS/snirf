@@ -382,14 +382,14 @@ The metadata tag "InstanceNumber" is defined similarly to the DICOM tag
 group multiple datasets into a larger dataset - for example, concatenating 
 streamed data segments during a long measurement session.
 
-<h3>/nirs/data{0}/aux{0} [Optional] </h3>
-<dt>/nirs/data{0}/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/data{0}/aux{0} where index starting with 1]</tt>
+<h3>/nirs/aux{0} [Optional] </h3>
+<dt>/nirs/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/aux{0} where index starting with 1]</tt>
 <dd>This optional array specifies any recorded auxiliary data. Each element of 
 <i>aux</i> has the following required fields:</dd>
 
-<h3>/nirs/data{0}/aux{0}/name [Optional; Required if aux{0} used] </h3>
-<dt>/nirs/data{0}/aux{0}name</dt><tt>[Type: string]
-[Location: /nirs/data{0}/aux{0}/name]</tt>
+<h3>/nirs/aux{0}/name [Optional; Required if aux{0} used] </h3>
+<dt>/nirs/aux{0}name</dt><tt>[Type: string]
+[Location: /nirs/aux{0}/name]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
 
 <h3>/nirs/aux{0}/dataTimeSeries [Optional; Required if aux{0} used] </h3>
