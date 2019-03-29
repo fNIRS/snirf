@@ -32,7 +32,7 @@ H5T_NATIVE_B16 will need to be interpeted and converted to/from unicode-16 withi
 - `integer`: the native integer types H5T.NATIVE_INT H5T datatype (alias of H5T_STD_I32BE or H5T_STD_I32LE)
 
 - `numeric`: one of the native double or floating-point types; H5T.NATIVE_DOUBLE or H5T.NATIVE_FLOAT in H5T.  
-(alias of H5T_IEEE_F64BE,H5T_IEEE_F64LE [double] or H5T_IEEE_F32BE, H5T_IEEE_F32LE [float])    		   T 
+(alias of H5T_IEEE_F64BE,H5T_IEEE_F64LE [double] or H5T_IEEE_F32BE, H5T_IEEE_F32LE [float])    		   
 
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
@@ -53,7 +53,7 @@ The SNIRF data format must have the initial H5G group type "/nirs" at the initia
 document describes format version “1.0”</dd>
 	
 <h3> /nirs{0} [Required]</h3>
-<dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index </tt>
+<dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index] </tt>
 <dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs1, nirs2,...) to the group name.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
 	/nirs1 =  first subject's data
 	/nirs2 =  second subject's data
@@ -62,7 +62,7 @@ The use of a non-indexed (e.g. /nirs/) entry is allowed when only one entry is p
 
 
 <h3> /nirs/data{0} [Required]</h3>
-<dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index</tt>
+<dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index]</tt>
 <dd> This group stores one block of NIRS data.  This can be extended adding the count number (e.g. data1, data2,...) to the group name.  This is intended to allow the storage of 1 or more blocks of NIRS data from within the same /nirs entry
 	/nirs/data1 =  block 1
 	/nirs/data2 =  block 2	
@@ -88,8 +88,10 @@ equal to the acquisition frequency, but does not need to be equal spacing.  For 
 case of equal sample spacing a shorthand <2x1> array is allowed where the first entry is the start time and the 
 second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms [equivelent to 5Hz]) 
 		
-	Option1 - The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> and corresponds to the sample time of every data point
-	Option2-  The size of this variable is <tt>&lt;2&gt; x 1</tt> and correponds to the start time and sample spacing.
+	Option1 - The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> and 
+	corresponds to the sample time of every data point
+	Option2-  The size of this variable is <tt>&lt;2&gt; x 1</tt> and correponds to the start
+	time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.   
 
@@ -109,35 +111,35 @@ Each element of the array is a structure which describes the measurement
 conditions for this data with the following fields:
 
 <h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
-<dt> ./measurementList{0}/sourceIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex</dt>
+<dt> ./measurementList{0}/sourceIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</dt>
 	<dd>: index (starting from 1) of the source</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/detectorIndex [Required] </h3>	
-<dt> ./measurementList{0}/detectorIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex</dt>
+<dt> ./measurementList{0}/detectorIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</dt>
 	<dd>: index (starting from 1) of the detector</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/wavelengthIndex [Required] </h3>	
-<dt> ./measurementList{0}/wavelengthIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex</dt>
+<dt> ./measurementList{0}/wavelengthIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</dt>
 	<dd>: index (starting from 1) of the wavelength</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
-<dt> ./measurementList{0}/dataType [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType</dt>
+<dt> ./measurementList{0}/dataType [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</dt>
 	<dd>: data-type identifier, see Appendix</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/dataTypeIndex [Required] </h3>	
-<dt> ./measurementList{0}/dataTypeIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex</dt>
+<dt> ./measurementList{0}/dataTypeIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</dt>
 	<dd>: data-type specific parameter indices</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
-<dt> ./measurementList{0}/sourcePower [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower</dt>
+<dt> ./measurementList{0}/sourcePower [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower]</dt>
 	<dd>: source power in milliwatt (mW) </dd>
 
 <h3> /nirs/data{0}/measurementList{0}/detectorGain [Optional] </h3>	
-<dt> ./measurementList{0}/detectorGain [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain</dt>
+<dt> ./measurementList{0}/detectorGain [Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain]</dt>
 	<dd>: detector gain</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
-<dt> ./measurementList{0}/moduleIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex</dt>
+<dt> ./measurementList{0}/moduleIndex [Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</dt>
 	<dd>: index (starting from 1) of a repeating module</dd>
 
 For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
