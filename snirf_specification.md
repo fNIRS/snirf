@@ -109,6 +109,7 @@ For example, the *measurementList(3)* describes the third column of the data mat
 
 Each element of the array is a structure which describes the measurement 
 conditions for this data with the following fields:
+</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
 <dt> ./measurementList{0}/sourceIndex*[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</dt>
