@@ -27,7 +27,7 @@ to "zero out" an entry).
 
 - `string`: either ASCII encoded 8bit CHAR array or UNICODE UTF-16 array.   Defined by the H5T.NATIVE_CHAR or
 H5T.H5T_NATIVE_B16 datatypes in H5T.  (note, at this time HDF5 does not have a UTF16 native type, so 
-H5T_NATIVE_B16 will need to be interpeted and converted to/from unicode-16 within the read/write code).  
+H5T_NATIVE_B16 will need to be converted to/from unicode-16 within the read/write code).  
 
 - `integer`: the native integer types H5T.NATIVE_INT H5T datatype (alias of H5T_STD_I32BE or H5T_STD_I32LE)
 
@@ -335,7 +335,7 @@ that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorInd
 local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
 structure in order to restore the global indices of the sources/detectors.</dd>
 
-<h3>/nirs/data{0}/metaDataTags{0} [Optional] </h3>
+<h3>/nirs/data{0}/metaDataTags{0} [Required] </h3>
 <dt>/nirs/data{0}/metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/data{0}/metaDataTags ]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any 
 key/value pairs the user (or manufacturer) would like to put in.  Each row of 
@@ -395,20 +395,27 @@ streamed data segments during a long measurement session.
 <dt>aux(n).dataTimeSeries</dt><tt>[Type: numeric]
 [Location: /nirs/data{0}/aux{0}/dataTimeSeries]</tt>
 <dd>This is the aux data variable. This variable has dimensions of 
-<tt>&lt;number of time points&gt; x 1</tt>.</dd>
+<tt>&lt;number of time points&gt; x 1</tt>.
+
+Chunked data is allowed to support real-time data streaming
+</dd>
 
 <h3>/nirs/data{0}/aux{0}/time [Optional; Required if aux{0} used] </h3>
 <dt>/nirs/data{0}/aux{0}/time</dt><tt>[Type: numeric] [Location: /nirs/data{0}/aux{0}/time]</tt>
 <dd>The time variable. This provides the acquisition time of the aux 
 measurement relative to the time origin.  This will usually be a straight line 
 with slope equal to the acquisition frequency, but does not need to be equal 
-spacing.  The size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
+spacing.  The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> or <2x1> similar to 
+definition of the /nirs/data/time field.
+
+Chunked data is allowed to support real-time data streaming
+</dd>
 
 <h3>/nirs/data{0}/aux{0}/timeOffset [Optional] </h3>
 <dt>/nirs/data{0}/aux{0}/timeOffset</dt><tt>[Type: numeric]
 [Location: /nirs/data{0}/aux{0}/timeOffset]</tt>
 <dd>This variable specifies the offset of the file time origin relative to 
-absolute (clock) time in seconds.</dd>
+absolute (clock) time in seconds. </dd>
 
 
 ## Appendix
