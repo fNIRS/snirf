@@ -17,15 +17,28 @@ The HDF5 format defines "groups" (H5G class) and "datasets" (H5D class) that are
 data organization and storage classes used in the SNIRF specificiation. 
 
 
-The structure of each data file has a minimum of 5 required elements. For 
+The structure of each data file has a minimum of required elements noted below. For 
 each element in the data structure, one of the 4 types is assigned, including
-- `group`: a structure containing sub-fields  (defined in the H5G object class)
-- `string`: ASCII encoded 1-byte CHAR array.   Defined by the H5T.NATIVE_CHAR datatype in H5D.
-- `integer`: one of the integer types H5T.NATIVE_INT or H5T.NATIVE_UINT datatypes in H5D
-- `numeric`: one of the double or floating-point types; H5T.NATIVE_DOUBLE or H5T.NATIVE_FLOAT in H5D.    		   T 
+
+- `group`: a structure containing sub-fields  (defined in the H5G object class).  Arrays of groups are 
+denoted with numbers at the end (e.g. /nirs/data1, /nirs/data2) starting with index 1.  Array indices 
+should be contiguious with no skipped values (although an empty group with no sub-members can be used 
+to "zero out" an entry).
+
+- `string`: either ASCII encoded 8bit CHAR array or UNICODE UTF-16 array.   Defined by the H5T.NATIVE_CHAR or
+H5T.H5T_NATIVE_B16 datatypes in H5T.  (note, at this time HDF5 does not have a UTF16 native type, so 
+H5T_NATIVE_B16 will need to be interpeted and converted to/from unicode-16 within the read/write code).  
+
+- `integer`: the native integer types H5T.NATIVE_INT H5T datatype (alias of H5T_STD_I32BE or H5T_STD_I32LE)
+
+- `numeric`: one of the native double or floating-point types; H5T.NATIVE_DOUBLE or H5T.NATIVE_FLOAT in H5T.  
+(alias of H5T_IEEE_F64BE,H5T_IEEE_F64LE [double] or H5T_IEEE_F32BE, H5T_IEEE_F32LE [float])    		   T 
 
 For `integer` and `numeric` data fields, users should use HDF5's 
 Datatype Interface to query the byte-length stored in the file.
+
+Note, native datatypes are defined by the build of the software (e.g. little/big endian) and are 
+autmatically converted by the HDF5 backend for consistent read/write between OS platforms.
 
 ## SNIRF file specification
 
@@ -34,26 +47,25 @@ The SNIRF data format must have the initial H5G group type "/nirs" at the initia
 
 ### Required fields 
 <dl>
-
-
-<h3> /nirs{0} [Required]</h3>
-<dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index </tt>
-<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs0, nirs1,...) to the group name.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
-	/nirs0 =  first subject's data
-	/nirs1 =  second subject's data
-The use of a non-indexed (e.g. /nirs/) entry is allowed. 	
-</dd>
-
-<h3> /nirs/formatVersion [Required]</h3>
-<dt>formatVersion</dt><tt>[Type: string] [Location: /nirs/formatVersion ]</tt>
+<h3> /formatVersion [Required]</h3>
+<dt>formatVersion</dt><tt>[Type: string] [Location: /formatVersion ]</tt>
 <dd>This is a string that specifies the version of the file format.  This 
 document describes format version “1.0”</dd>
+	
+<h3> /nirs{0} [Required]</h3>
+<dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index </tt>
+<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs1, nirs2,...) to the group name.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
+	/nirs1 =  first subject's data
+	/nirs2 =  second subject's data
+The use of a non-indexed (e.g. /nirs/) entry is allowed when only one entry is present and is assumed to be entry 1. 	
+</dd>
+
 
 <h3> /nirs/data{0} [Required]</h3>
 <dt>data{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0} where {0} is the array index</tt>
-<dd> This group stores one block of NIRS data.  This can be extended adding the count number (e.g. data0, data1,...) to the group name.  This is intended to allow the storage of 1 or more blocks of NIRS data from within the same /nirs entry
-	/nirs/data0 =  block 1
-	/nirs/data1 =  block 2
+<dd> This group stores one block of NIRS data.  This can be extended adding the count number (e.g. data1, data2,...) to the group name.  This is intended to allow the storage of 1 or more blocks of NIRS data from within the same /nirs entry
+	/nirs/data1 =  block 1
+	/nirs/data2 =  block 2	
 </dd>
 	
 <h3> /nirs/data{0}/dataTimeSeries [Required] </h3>	
@@ -61,14 +73,27 @@ document describes format version “1.0”</dd>
 <dd>This is the actual raw data variable. This variable has dimensions of 
 <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   
 Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
+
+dataTimeSeries can be compressed using the Hdf5 filter (prebuilt filters 305-LZO or 307-bzip2 supported; see https://support.hdfgroup.org/services/filters.html).  
+
+Chunked data is allowed to support real-time streaming of data in this array.   
+
 </dd>
 
 <h3> /nirs/data{0}/time [Required] </h3>	
-<dt>data{0}.time</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/time ]</tt>
+<dt>data{0}.time</dt><tt>[Type: numeric 1D array] [Location: /nirs/data{0}/time ]</tt>
 <dd>The <i>time</i> variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
-equal to the acquisition frequency, but does not need to be equal spacing.  The 
-size of this variable is <tt>&lt;number of time points&gt; x 1</tt>.</dd>
+equal to the acquisition frequency, but does not need to be equal spacing.  For the special
+case of equal sample spacing a shorthand <2x1> array is allowed where the first entry is the start time and the 
+second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms [equivelent to 5Hz]) 
+		
+	Option1 - The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> and corresponds to the sample time of every data point
+	Option2-  The size of this variable is <tt>&lt;2&gt; x 1</tt> and correponds to the start time and sample spacing.
+
+Chunked data is allowed to support real-time streaming of data in this array.   
+
+</dd>
 
 <h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
 <dt>data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
@@ -153,7 +178,7 @@ provided for indicating the instrument specific label for sources and detectors.
 array has the following required fields.</dd>
 
 <h3>/nirs/data{0}/stim{0}/name [Required as part of stim{0}] </h3>
-<dt>stim(n).name</dt><tt>[Type: string] [Location:/nirs/data{0}/stim{0}/name ]</tt>
+<dt>stim{0}.name</dt><tt>[Type: string] [Location:/nirs/data{0}/stim{0}/name ]</tt>
 <dd>This is a string describing the n<sup>th</sup> stimulus condition.</dd>
 
 <h3>/nirs/data{0}/stim{0}/data [Required as part of stim{0}] </h3>
@@ -195,9 +220,6 @@ emission wavelengths used.  The indexing of this variable is the same
 wavelength index in measurementList used for <i>probe.wavelengths</i> such that the excitation wavelength 
 is paired with this emission wavelength for a given measurement.</dd>
 
-<h3>/nirs/data{0}/probe/sourceCount [Required] </h3>
-<dt>/nirs/data{0}/probe.sourceCount</dt><tt>[Type: integer] [Location: /nirs/data{0}/probe/sourceCount ] </tt>
-<dd>Number of source positions</dd>
 
 <h3>/nirs/data{0}/probe/sourcePos [Required] </h3>
 <dt>/nirs/data{0}/probe.sourcePos</dt><tt>[Type: numeric 2D array] [Location: /nirs/data{0}/probe/sourcePos ] </tt>
@@ -355,10 +377,6 @@ The metadata tag "InstanceNumber" is defined similarly to the DICOM tag
 "Instance Number" (0020,0013), and can be used as the sequence number to
 group multiple datasets into a larger dataset - for example, concatenating 
 streamed data segments during a long measurement session.
-
-<h3>/nirs/data{0}/auxCount [Optional; Required if aux{0} used] </h3>
-<dt>/nirs/data{0}/auxCount</dt><tt>[Type: integer][Location: /nirs/data{0}/auxCount ]</tt>
-<dd>The number of aux group fields</dd>
 
 <h3>/nirs/data{0}/aux{0} [Optional] </h3>
 <dt>/nirs/data{0}/aux{0}</dt><tt>[Type: indexed group][Location: /nirs/data{0}/aux{0} where index 0:auxCount-1]</tt>
