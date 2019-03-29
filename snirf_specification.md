@@ -112,35 +112,35 @@ conditions for this data with the following fields:
 </dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
-<dt> ./measurementList{0}/sourceIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</dt>
+<dt> ./measurementList{0}/sourceIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</tt>
 	<dd>: index (starting from 1) of the source</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/detectorIndex [Required] </h3>	
-<dt> ./measurementList{0}/detectorIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</dt>
+<dt> ./measurementList{0}/detectorIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</tt>
 	<dd>: index (starting from 1) of the detector</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/wavelengthIndex [Required] </h3>	
-<dt> ./measurementList{0}/wavelengthIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</dt>
+<dt> ./measurementList{0}/wavelengthIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</tt>
 	<dd>: index (starting from 1) of the wavelength</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
-<dt> ./measurementList{0}/dataType </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</dt>
+<dt> ./measurementList{0}/dataType </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</tt>
 	<dd>: data-type identifier, see Appendix</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/dataTypeIndex [Required] </h3>	
-<dt> ./measurementList{0}/dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</dt>
+<dt> ./measurementList{0}/dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</tt>
 	<dd>: data-type specific parameter indices</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
-<dt> ./measurementList{0}/sourcePower </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower]</dt>
+<dt> ./measurementList{0}/sourcePower </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower]</tt>
 	<dd>: source power in milliwatt (mW) </dd>
 
 <h3> /nirs/data{0}/measurementList{0}/detectorGain [Optional] </h3>	
-<dt> ./measurementList{0}/detectorGain </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain]</dt>
+<dt> ./measurementList{0}/detectorGain </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain]</tt>
 	<dd>: detector gain</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
-<dt> ./measurementList{0}/moduleIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</dt>
+<dt> ./measurementList{0}/moduleIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</tt>
 	<dd>: index (starting from 1) of a repeating module</dd>
 
 For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
