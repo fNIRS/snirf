@@ -100,7 +100,7 @@ Chunked data is allowed to support real-time streaming of data in this array.
 </dd>
 
 <h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
-<dt>./data{0}/measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
+<dt>./data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
 <dd>The measurement list. This variable serves to map the data array onto the 
 probe geometry (sources and detectors), data type, and wavelength.   This 
 variable is an array structure that has the size <tt>&lt;number of 
@@ -114,15 +114,15 @@ conditions for this data with the following fields:
 </dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
-<dt> ./measurementList{0}/sourceIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</tt>
+<dt> ./measurementList{0}.sourceIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</tt>
 	<dd>: index (starting from 1) of the source</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/detectorIndex [Required] </h3>	
-<dt> ./measurementList{0}/detectorIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</tt>
+<dt> ./measurementList{0}.detectorIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</tt>
 	<dd>: index (starting from 1) of the detector</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/wavelengthIndex [Required] </h3>	
-<dt> ./measurementList{0}/wavelengthIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</tt>
+<dt> ./measurementList{0}.wavelengthIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</tt>
 	<dd>: index (starting from 1) of the wavelength</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
