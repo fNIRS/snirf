@@ -1,0 +1,4972 @@
+HDF5 SNIRF_example.snirf 
+Group '/' 
+    Dataset 'formatVersion' 
+        Size:  6
+        MaxSize:  6
+        Datatype:   H5T_STD_I8LE (int8)
+        ChunkSize:  []
+        Filters:  none
+        FillValue:  0
+    Group '/nirs' 
+        Group '/nirs/data1' 
+            Dataset 'dataTimeSeries' 
+                Size:  3559x110
+                MaxSize:  3559x110
+                Datatype:   H5T_IEEE_F64LE (double)
+                ChunkSize:  []
+                Filters:  none
+                FillValue:  0.000000
+            Dataset 'time' 
+                Size:  3559
+                MaxSize:  3559
+                Datatype:   H5T_IEEE_F64LE (double)
+                ChunkSize:  []
+                Filters:  none
+                FillValue:  0.000000
+            Group '/nirs/data1/measurementList1' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList10' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList100' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList101' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList102' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList103' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList104' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList105' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList106' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList107' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList108' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList109' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList11' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList110' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList12' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList13' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList14' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList15' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList16' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList17' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList18' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList19' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList2' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList20' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList21' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList22' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList23' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList24' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList25' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList26' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList27' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList28' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList29' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList3' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList30' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList31' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList32' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList33' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList34' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList35' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList36' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList37' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList38' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList39' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList4' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList40' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList41' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList42' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList43' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList44' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList45' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList46' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList47' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList48' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList49' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList5' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList50' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList51' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList52' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList53' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList54' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList55' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList56' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList57' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList58' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList59' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList6' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList60' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList61' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList62' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList63' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList64' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList65' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList66' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList67' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList68' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList69' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList7' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList70' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList71' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList72' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList73' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList74' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList75' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList76' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList77' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList78' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList79' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList8' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList80' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList81' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList82' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList83' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList84' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList85' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList86' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList87' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList88' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList89' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList9' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList90' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList91' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList92' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList93' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList94' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList95' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList96' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList97' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList98' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/measurementList99' 
+                Dataset 'dataType' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'dataTypeIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'wavelengthIndex' 
+                    Size:  1
+                    MaxSize:  1
+                    Datatype:   H5T_STD_I32LE (int32)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags1' 
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  2
+                    MaxSize:  2
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags10' 
+                Dataset 'name' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags11' 
+                Dataset 'name' 
+                    Size:  30
+                    MaxSize:  30
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags12' 
+                Dataset 'name' 
+                    Size:  30
+                    MaxSize:  30
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags13' 
+                Dataset 'name' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags14' 
+                Dataset 'name' 
+                    Size:  28
+                    MaxSize:  28
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags15' 
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags16' 
+                Dataset 'name' 
+                    Size:  30
+                    MaxSize:  30
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags2' 
+                Dataset 'name' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  38
+                    MaxSize:  38
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags3' 
+                Dataset 'name' 
+                    Size:  8
+                    MaxSize:  8
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags4' 
+                Dataset 'name' 
+                    Size:  12
+                    MaxSize:  12
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  28
+                    MaxSize:  28
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags5' 
+                Dataset 'name' 
+                    Size:  12
+                    MaxSize:  12
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  6
+                    MaxSize:  6
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags6' 
+                Dataset 'name' 
+                    Size:  6
+                    MaxSize:  6
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  26
+                    MaxSize:  26
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags7' 
+                Dataset 'name' 
+                    Size:  6
+                    MaxSize:  6
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  8
+                    MaxSize:  8
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags8' 
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  8
+                    MaxSize:  8
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/metaDataTags9' 
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'value' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/probe' 
+                Dataset 'detectorLabels1' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels10' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels11' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels12' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels13' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels14' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels15' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels16' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels17' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels18' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels19' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels2' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels20' 
+                    Size:  22
+                    MaxSize:  22
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels3' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels4' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels5' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels6' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels7' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels8' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorLabels9' 
+                    Size:  20
+                    MaxSize:  20
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'detectorPos' 
+                    Size:  3x20
+                    MaxSize:  3x20
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'detectorPos3D' 
+                    Size:  3x20
+                    MaxSize:  3x20
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'landmark' 
+                    Size:  3x55
+                    MaxSize:  3x55
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'landmark3D' 
+                    Size:  3x55
+                    MaxSize:  3x55
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'landmarkLabels1' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels10' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels11' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels12' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels13' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels14' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels15' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels16' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels17' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels18' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels19' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels2' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels20' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels21' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels22' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels23' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels24' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels25' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels26' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels27' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels28' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels29' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels3' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels30' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels31' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels32' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels33' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels34' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels35' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels36' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels37' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels38' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels39' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels4' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels40' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels41' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels42' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels43' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels44' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels45' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels46' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels47' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels48' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels49' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels5' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels50' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels51' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels52' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels53' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels54' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels55' 
+                    Size:  34
+                    MaxSize:  34
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels6' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels7' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels8' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'landmarkLabels9' 
+                    Size:  32
+                    MaxSize:  32
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels1' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels10' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels11' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels12' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels13' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels14' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels15' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels16' 
+                    Size:  18
+                    MaxSize:  18
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels2' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels3' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels4' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels5' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels6' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels7' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels8' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourceLabels9' 
+                    Size:  16
+                    MaxSize:  16
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+                Dataset 'sourcePos' 
+                    Size:  3x16
+                    MaxSize:  3x16
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'sourcePos3D' 
+                    Size:  3x16
+                    MaxSize:  3x16
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'wavelengths' 
+                    Size:  2
+                    MaxSize:  2
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+            Group '/nirs/data1/stim1' 
+                Dataset 'data' 
+                    Size:  3x120
+                    MaxSize:  3x120
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/stim2' 
+                Dataset 'data' 
+                    Size:  3x120
+                    MaxSize:  3x120
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/stim3' 
+                Dataset 'data' 
+                    Size:  3x120
+                    MaxSize:  3x120
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
+            Group '/nirs/data1/stim4' 
+                Dataset 'data' 
+                    Size:  3x120
+                    MaxSize:  3x120
+                    Datatype:   H5T_IEEE_F64LE (double)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0.000000
+                Dataset 'name' 
+                    Size:  14
+                    MaxSize:  14
+                    Datatype:   H5T_STD_I8LE (int8)
+                    ChunkSize:  []
+                    Filters:  none
+                    FillValue:  0
