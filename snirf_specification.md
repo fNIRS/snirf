@@ -131,7 +131,7 @@ conditions for this data with the following fields:
 
 <h3> /nirs/data{0}/measurementList{0}/dataTypeLabel [Optional] </h3>	
 <dt> ./measurementList{0}.dataTypeLabel </dt><tt>[Type: string] [Location: /nirs/data{0}/measurementList{0}/dataTypeLabel]</tt>
-	<dd>: data-type label only required if detaType is "processed". See Appendix</dd>
+	<dd>: data-type label only required if dataType is "processed". See Appendix</dd>
 
 <h3> /nirs/measurementList{0}/dataTypeIndex [Required] </h3>	
 <dt> ./measurementList{0}.dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</tt>
@@ -242,46 +242,59 @@ The *qform* variable described below can be used to define the transformation
 between this SNIRF coordinate system and other coordinate systems.
 </dd>
 
+
 <h3>/nirs/probe/sourcePos3D [Optional] </h3>
 <dt>./probe.sourcePos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos3D ] </tt>
 <dd>This field describes the position (in spatialUnit units) of each source 
 optode in 3D.  <dd>
 
+
 <h3>/nirs/probe/detectorPos [Required] </h3>
 <dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPos]</tt>
 <dd>Same as <i>probe.sourcePos</i>, but describing the detector positions.</dd>
+
 
 <h3>/nirs/probe/detectorPos3D [Optional] </h3>
 <dt>./probe.detectorPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/detectorPos3D ] </tt>
 <dd>This field describes the position (in spatialUnit units) of each detector
 optode in 3D.  <dd>
-	
-	
-<mark>	
-There are additional required elements of the <i>probe</i> structure, depending on the 
-data type of the measurement.  These variables are indexed by 
-<i>measurementList(k).dataTypeIndex</i>:
 
-Continuous wave (Fluorescence or non-fluorescence):
-- *None*
 
-Frequency Domain (Fluorescence or non-fluorescence):
-- *probe.frequency*<tt>[Type: numeric]</tt>: modulation frequency in Hz
+<h3>/nirs/probe/frequencies [Optional] </h3>
+<dt>./probe.frequencies</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/frequencies ] </tt>
+<dd>This field describes the frequencies used for frequency domain measurements. This field is only required for frequency domain data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>.  <dd>
 
-Time domain – gated (Fluorescence or non-fluorescence):
-- *probe.timeDelay*<tt>[Type: numeric]</tt>
-- *probe.timeDelayWidth*<tt>[Type: numeric]</tt>
 
-Time domain – moments (Fluorescence or non-fluorescence):
-- *probe.momentOrder*<tt>[Type: numeric]</tt>
+<h3>/nirs/probe/timeDelays [Optional] </h3>
+<dt>./probe.timeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelays ] </tt>
+<dd>This field describes the time delays used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.timeDelayWidths</i>. <dd>
 
-Diffuse Correlation spectroscopy (Fluorescence or non-fluorescence):
-- *probe.correlationTimeDelay*<tt>[Type: numeric]</tt>
-- *probe.correlationTimeDelayWidth*<tt>[Type: numeric]</tt>
-</dl>
-</mark>
 
-There are optional fields of the *probe* structure that can be used.
+<h3>/nirs/probe/timeDelayWidths [Optional] </h3>
+<dt>./probe.timeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelayWidths ] </tt>
+<dd>This field describes the time delay widths used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.timeDelays</i>.<dd>
+
+
+<h3>/nirs/probe/momentOrders [Optional] </h3>
+<dt>./probe.momentOrders</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/momentOrders ] </tt>
+<dd>This field describes the moment orders of the temporal point spread function for moment time domain measurements. This field is only required for moment time domain data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>.  <dd>
+
+
+<h3>/nirs/probe/correlationTimeDelays [Optional] </h3>
+<dt>./probe.correlationTimeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelays ] </tt>
+<dd>This field describes the time delays used for diffuse correlation spectroscopy measurements. This field is only required for diffuse correlation spectroscopy data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelayWidths</i>.<dd>
+
+
+<h3>/nirs/probe/correlationTimeDelayWidths [Optional] </h3>
+<dt>./probe.correlationTimeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelayWidths ] </tt>
+<dd>This field describes the time delay widths used for diffuse correlation spectroscopy measurements. This field is only required for gated time domain data types, and is indexed by  
+<i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelays</i>.  <dd>
+
 
 <h3>/nirs/probe/sourceLabels [Optional] </h3>
 <dt>/nirs/probe.sourceLabels{0}</dt><tt>[Type: indexed string]
@@ -294,6 +307,7 @@ x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of
 wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> and 
 <i>measurementList(k).wavelengthIndex</i>.</dd>
 
+
 <h3>/nirs/probe/detectorLabels [Optional] </h3>
 <dt>/nirs/probe/detectorLabels{0}</dt><tt>[Type: indexed string]
 [Location: /nirs/probe.detectorLabels{0} indexed from 1]</tt>
@@ -302,6 +316,7 @@ labels for each detector. Each element of the array must be a unique string
 among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
 This is indexed by <i>measurementList(k).detectorIndex</i>.</dd>
 	
+
 <h3>/nirs/probe/landmarkPos [Optional] </h3>
 <dt>./probe.landmarkPos</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/landmarkPos] </tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
@@ -312,6 +327,7 @@ positions. If a 4th column presents, it stores the index to the labels of the
 given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
 
+
 <h3>/nirs/probe/landmarkPos3D [Optional] </h3>
 <dt>./probe.landmarkPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe.landmarkPos3D] </tt>
 <dd>This is a 2-D array storing the neurological landmark positions measurement
@@ -321,6 +337,7 @@ of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
 given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
 An label index of 0 refers to an undefined landmark. </dd>
+
 
 <h3>/nirs/probe/landmarkLabels{0} [Optional] </h3>
 <dt>./probe/landmarkLabels{0}</dt><tt>[Type: indexed string]
@@ -334,12 +351,14 @@ defined in <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>, respective
 associate the given landmark to a specific source or detector. All 
 strings are ASCII encoded char arrays.</dd>
 
+
 <h3>/nirs/probe/useLocalIndex [Optional] </h3>
 <dt>/nirs/probeuseLocalIndex</dt><tt>[Type: integer] [Location: nirs/probe/useLocalIndex]</tt>
 <dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates
 that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorIndex</i> are module-specific
 local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
 structure in order to restore the global indices of the sources/detectors.</dd>
+
 
 <h3>/nirs/metaDataTags{0} [Required] </h3>
 <dt>./metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/metaDataTags ]</tt>
