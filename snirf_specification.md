@@ -129,6 +129,10 @@ conditions for this data with the following fields:
 <dt> ./measurementList{0}.dataType </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</tt>
 	<dd>: data-type identifier, see Appendix</dd>
 
+<h3> /nirs/data{0}/measurementList{0}/dataTypeLabel [Optional] </h3>	
+<dt> ./measurementList{0}.dataTypeLabel </dt><tt>[Type: string] [Location: /nirs/data{0}/measurementList{0}/dataTypeLabel]</tt>
+	<dd>: data-type label only required if detaType is "processed". See Appendix</dd>
+
 <h3> /nirs/measurementList{0}/dataTypeIndex [Required] </h3>	
 <dt> ./measurementList{0}.dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</tt>
 	<dd>: data-type specific parameter indices</dd>
