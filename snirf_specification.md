@@ -422,17 +422,52 @@ absolute (clock) time in seconds. </dd>
 
 ## Appendix
 
-Supported data types for “dataTimeSeries”
-1.	Raw - Continuous wave
-2.	Raw - Frequency Domain
-3.	Raw - Time domain - gated
-4.	Raw - Time domain – moments
-5.	Raw - Diffuse Correlation spectroscopy
-6.	Raw - Fluorescence – continuous wave 
-7.	Raw - Fluorescence - Frequency Domain
-8.	Raw - Fluorescence - Time domain - gated
-9.	Raw - Fluorescence - Time domain – moments
-10.	Raw - Bioluminescence – continuous wave
+<p>Supported data types for “dataTimeSeries”. These are the possible values for measurementList{0}.dataType</p>
+
+<p>001-100: Raw, Continuous Wave (CW):</p>
+<ul>
+<li>001:  Amplitude</li>
+<li>051:  Fluorescence Amplitude</li>
+</ul>
+	
+<p>101-200: Raw - Frequency Domain (FD):</p>
+<ul>
+<li>101: AC Amplitude</li>
+<li>102: Phase</li>
+<li>151: Fluorescence Amplitude</li>
+<li>152: Fluorescence Phase</li>
+</ul>
+	
+<p>201-300: Raw - Time Domain - Gated (TD Gated):</p>
+<ul>
+<li>201: Amplitude</li>
+<li>251: Fluorescence Amplitude</li>
+</ul>
+	
+<p>301-400: Raw - Time domain – Moments (TD Moments):</p>
+<ul>
+<li>301: Amplitude</li>
+<li>351: Fluorescence Amplitude</li>
+</ul>
+	
+<p>401-500: Raw - Diffuse Correlation Spectroscopy (DCS):</p>
+<ul>
+<li>401: g2</li>
+<li>410: BFi</li>
+</ul>
+
+<p>1000 - 9999:  Processed:</p>
+<ul>
+<li>1001 - dOD</li>
+<li>1002 - mua</li>
+<li>1003 - musp</li>
+<li>1020 - HbO</li>
+<li>1021 - HbR</li>
+<li>1022 - HbT</li>
+<li>1023 - H2O</li>
+<li>1024 - Lipid</li>
+</ul>
+
 
 Examples of stimulus waveforms
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
