@@ -424,13 +424,7 @@ absolute (clock) time in seconds. </dd>
 
 ### Supported data types for “dataTimeSeries”
 
-<style>
-p.linespacing_small {
-  line-height: 1.0;
-}
-</style>
-
-<p class="linespacing_small">
+<p>
 001-100:  Raw - Continuous Wave (CW):
 <ul>
 001 - Amplitude<br>
@@ -438,7 +432,7 @@ p.linespacing_small {
 </ul>
 </p>
 	
-<p class="linespacing_small">
+<p>
 101-200:  Raw - Frequency Domain (FD):
 <ul>
 101 - AC Amplitude<br>
@@ -448,7 +442,7 @@ p.linespacing_small {
 </ul>
 </p>
 	
-<p class="linespacing_small">
+<p>
 201-300: Raw - Time Domain - Gated (TD Gated):
 <ul>
 201 - Amplitude<br>
@@ -464,7 +458,7 @@ p.linespacing_small {
 </ul>
 </p>
 
-<p class="linespacing_small">
+<p>
 401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
 <ul>
 401 - g2<br>
@@ -472,7 +466,7 @@ p.linespacing_small {
 </ul>
 </p>
 
-<p class="linespacing_small">
+<p>
 1000 - 9999:  Processed:
 <ul>
 1001 - dOD<br>
