@@ -424,49 +424,67 @@ absolute (clock) time in seconds. </dd>
 
 ### Supported data types for “dataTimeSeries”
 
-<br>001-100:  Raw - Continuous Wave (CW):</br>
-<ul>
-<li>001 - Amplitude</li>
-<li>051 - Fluorescence Amplitude</li>
-</ul>
-	
-<br>101-200:  Raw - Frequency Domain (FD):</br>
-<ul>
-<li>101 - AC Amplitude</li>
-<li>102 - Phase</li>
-<li>151 - Fluorescence Amplitude</li>
-<li>152 - Fluorescence Phase</li>
-</ul>
-	
-<br>201-300: Raw - Time Domain - Gated (TD Gated):</br>
-<ul>
-<li>201 - Amplitude</li>
-<li>251 - Fluorescence Amplitude</li>
-</ul>
-	
-<br>301-400:  Raw - Time domain – Moments (TD Moments):</br>
-<ul>
-<li>301 - Amplitude</li>
-<li>351 - Fluorescence Amplitude</li>
-</ul>
-	
-<br>401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):</br>
-<ul>
-<li>401 - g2</li>
-<li>410 - BFi</li>
-</ul>
+<style>
+p.linespacing_small {
+  line-height: 1.0;
+}
+</style>
 
-<br>1000 - 9999:  Processed:</br>
+<p class="linespacing_small">
+001-100:  Raw - Continuous Wave (CW):
 <ul>
-<li>1001 - dOD</li>
-<li>1002 - mua</li>
-<li>1003 - musp</li>
-<li>1020 - HbO</li>
-<li>1021 - HbR</li>
-<li>1022 - HbT</li>
-<li>1023 - H2O</li>
-<li>1024 - Lipid</li>
+001 - Amplitude<br>
+051 - Fluorescence Amplitude<br>
 </ul>
+</p>
+	
+<p class="linespacing_small">
+101-200:  Raw - Frequency Domain (FD):
+<ul>
+101 - AC Amplitude<br>
+102 - Phase<br>
+151 - Fluorescence Amplitude<br>
+152 - Fluorescence Phase<br>
+</ul>
+</p>
+	
+<p class="linespacing_small">
+201-300: Raw - Time Domain - Gated (TD Gated):
+<ul>
+201 - Amplitude<br>
+251 - Fluorescence Amplitude<br>
+</ul>
+</p>
+
+<p class="linespacing_small">
+301-400:  Raw - Time domain – Moments (TD Moments):
+<ul>
+301 - Amplitude<br>
+351 - Fluorescence Amplitude<br>
+</ul>
+</p>
+
+<p class="linespacing_small">
+401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
+<ul>
+401 - g2<br>
+410 - BFi<br>
+</ul>
+</p>
+
+<p class="linespacing_small">
+1000 - 9999:  Processed:
+<ul>
+1001 - dOD<br>
+1002 - mua<br>
+1003 - musp<br>
+1020 - HbO<br>
+1021 - HbR<br>
+1022 - HbT<br>
+1023 - H2O<br>
+1024 - Lipid<br>
+</ul>
+</p>
 
 Examples of stimulus waveforms
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
