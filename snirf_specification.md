@@ -422,41 +422,41 @@ absolute (clock) time in seconds. </dd>
 
 ## Appendix
 
-<p>Supported data types for “dataTimeSeries”. These are the possible values for measurementList{0}.dataType</p>
+### Supported data types for “dataTimeSeries”
 
-<p>001-100: Raw, Continuous Wave (CW):</p>
+<br>001-100:  Raw - Continuous Wave (CW):</br>
 <ul>
-<li>001:  Amplitude</li>
-<li>051:  Fluorescence Amplitude</li>
+<li>001 - Amplitude</li>
+<li>051 - Fluorescence Amplitude</li>
 </ul>
 	
-<p>101-200: Raw - Frequency Domain (FD):</p>
+<br>101-200:  Raw - Frequency Domain (FD):</br>
 <ul>
-<li>101: AC Amplitude</li>
-<li>102: Phase</li>
-<li>151: Fluorescence Amplitude</li>
-<li>152: Fluorescence Phase</li>
+<li>101 - AC Amplitude</li>
+<li>102 - Phase</li>
+<li>151 - Fluorescence Amplitude</li>
+<li>152 - Fluorescence Phase</li>
 </ul>
 	
-<p>201-300: Raw - Time Domain - Gated (TD Gated):</p>
+<br>201-300: Raw - Time Domain - Gated (TD Gated):</br>
 <ul>
-<li>201: Amplitude</li>
-<li>251: Fluorescence Amplitude</li>
+<li>201 - Amplitude</li>
+<li>251 - Fluorescence Amplitude</li>
 </ul>
 	
-<p>301-400: Raw - Time domain – Moments (TD Moments):</p>
+<br>301-400:  Raw - Time domain – Moments (TD Moments):</br>
 <ul>
-<li>301: Amplitude</li>
-<li>351: Fluorescence Amplitude</li>
+<li>301 - Amplitude</li>
+<li>351 - Fluorescence Amplitude</li>
 </ul>
 	
-<p>401-500: Raw - Diffuse Correlation Spectroscopy (DCS):</p>
+<br>401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):</br>
 <ul>
-<li>401: g2</li>
-<li>410: BFi</li>
+<li>401 - g2</li>
+<li>410 - BFi</li>
 </ul>
 
-<p>1000 - 9999:  Processed:</p>
+<br>1000 - 9999:  Processed:</br>
 <ul>
 <li>1001 - dOD</li>
 <li>1002 - mua</li>
@@ -467,7 +467,6 @@ absolute (clock) time in seconds. </dd>
 <li>1023 - H2O</li>
 <li>1024 - Lipid</li>
 </ul>
-
 
 Examples of stimulus waveforms
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
