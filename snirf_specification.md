@@ -484,7 +484,7 @@ absolute (clock) time in seconds. </dd>
 "HRF HbT" - Hemodynamic response function for total hemoglobin concentration<br>
 "H2O" - Water content<br>
 "Lipid" - Lipid concentration<br>
-"HRF BFi" - Hemodynamic response function for <br>
+"HRF BFi" - Hemodynamic response function for blood flow index (BFi)<br>
 </ul>
 
 
