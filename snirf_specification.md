@@ -118,10 +118,10 @@ Each element of the array is a structure which describes the measurement conditi
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
 <dt> ./measurementList{0}.moduleIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</tt>
 <dd>Index (starting from 1) of a repeating module. 
-	
+
 For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in nanometers) are described in the *probe.wavelengths* variable  (described later). The data type in this case is 1, implying that it was a continuous wave measurement.  The complete list of currently supported data types is found in the Appendix. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the *probe* structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters.
 
-sourcePower provides the option for information about the source power for that channel to be saved along with the data. The units are not defined, unless the user takes the option of using a *metaDataTag* described below to define, for instance, *sourcePowerUnit*. *detectorGain* provides the option for information about the detector gain for that channel to be saved along with the data.
+*sourcePower* provides the option for information about the source power for that channel to be saved along with the data. The units are not defined, unless the user takes the option of using a *metaDataTag* described below to define, for instance, *sourcePowerUnit*. *detectorGain* provides the option for information about the detector gain for that channel to be saved along with the data.
 
 Note:  The source indices generally refer to the optode naming (probe positions) and not necessarily the physical laser numbers on the instrument. The same is true for the detector indices.  Each source optode would generally, but not necessarily, have 2 or more wavelengths (hence lasers) plugged into it in order to calculate deoxy- and oxy-hemoglobin concentrations. The data from 
 these two wavelengths will be indexed by the same source, detector, and data type values, but have different wavelength indices. Using the same source index for lasers at the same location but with different wavelengths simplifies the bookkeeping for converting intensity measurements into concentration changes. As described below, optional variables *probe.sourceLabels* and *probe.detectorLabels* are provided for indicating the instrument specific label for sources and detectors.</dd>
@@ -148,7 +148,7 @@ these two wavelengths will be indexed by the same source, detector, and data typ
 <h3>/nirs/probe/wavelengths [Required] </h3>
 <dt>./probe.wavelengths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/wavelengths ]</tt>
 <dd>This field describes the wavelengths used.  This is indexed by the wavelength index of the measurementList variable.
-	
+
 For example, *probe.wavelengths* = [690 780 830]; implies that the measurements were taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of *measurementList(k).wavelengthIndex* variable refers to this field.  *measurementList(k).wavelengthIndex* = 2 means the k<sup>th</sup> measurement was at 780nm.
 
 The number of wavelengths is not limited (except that at least two are needed to calculate the two forms of hemoglobin).  Each source-detector pair would generally have measurements at all wavelengths.
