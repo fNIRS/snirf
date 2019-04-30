@@ -445,19 +445,74 @@ absolute (clock) time in seconds. </dd>
 
 ## Appendix
 
-Supported data types for “dataTimeSeries”
-1.	Raw - Continuous wave
-2.	Raw - Frequency Domain
-3.	Raw - Time domain - gated
-4.	Raw - Time domain – moments
-5.	Raw - Diffuse Correlation spectroscopy
-6.	Raw - Fluorescence – continuous wave 
-7.	Raw - Fluorescence - Frequency Domain
-8.	Raw - Fluorescence - Time domain - gated
-9.	Raw - Fluorescence - Time domain – moments
-10.	Raw - Bioluminescence – continuous wave
+### Supported measurementList{0}.dataType values in “dataTimeSeries”
 
-Examples of stimulus waveforms
+<p>
+001-100:  Raw - Continuous Wave (CW):
+<ul>
+001 - Amplitude<br>
+051 - Fluorescence Amplitude<br>
+</ul>
+</p>
+	
+<p>
+101-200:  Raw - Frequency Domain (FD):
+<ul>
+101 - AC Amplitude<br>
+102 - Phase<br>
+151 - Fluorescence Amplitude<br>
+152 - Fluorescence Phase<br>
+</ul>
+</p>
+	
+<p>
+201-300: Raw - Time Domain - Gated (TD Gated):
+<ul>
+201 - Amplitude<br>
+251 - Fluorescence Amplitude<br>
+</ul>
+</p>
+
+<p class="linespacing_small">
+301-400:  Raw - Time domain – Moments (TD Moments):
+<ul>
+301 - Amplitude<br>
+351 - Fluorescence Amplitude<br>
+</ul>
+</p>
+
+<p>
+401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
+<ul>
+401 - g2<br>
+410 - BFi<br>
+</ul>
+</p>
+
+<p>
+99999:  Processed:
+</p>
+
+
+### Supported measurementList{0}.dataTypeLabel values in “dataTimeSeries”
+<ul>
+"dOD" - Change in optical density<br>
+"mua" - Absorption coefficient<br>
+"musp" - Scattering coefficient<br>
+"HbO" - Oxygenated hemoglobin (oxyhemoglobin) concentration<br>
+"HbR" - Deoxygenated hemoglobin (deoxyhemoglobin) concentration<br>
+"HbT" - Total hemoglobin concentration<br>
+"HRF HbO" - Hemodynamic response function for oxyhemoglobin concentration<br>
+"HRF HbR" - Hemodynamic response function for deoxyhemoglobin concentration<br>
+"HRF HbT" - Hemodynamic response function for total hemoglobin concentration<br>
+"H2O" - Water content<br>
+"Lipid" - Lipid concentration<br>
+"HRF BFi" - Hemodynamic response function for blood flow index (BFi)<br>
+</ul>
+
+
+### Examples of stimulus waveforms
+
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
 assume a stimulus to be a 0.2 second off, 0.2 second on repeating block, it 
 would be specified as follows:
