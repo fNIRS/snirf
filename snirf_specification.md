@@ -76,9 +76,7 @@ Chunked data is allowed to support real-time streaming of data in this array.  <
 
 <h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
 <dt>./data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
-<dd>The measurement list. This variable serves to map the data array onto the probe geometry (sources and detectors), data type, and wavelength. This variable is an array structure that has the size <tt>&lt;number of channels&gt;</tt> that describes the corresponding column in the data matrix. 
-
-For example, the *measurementList(3)* describes the third column of the data matrix (i.e. *dataTimeSeries(:,3)*).
+<dd>The measurement list. This variable serves to map the data array onto the probe geometry (sources and detectors), data type, and wavelength. This variable is an array structure that has the size <tt>&lt;number of channels&gt;</tt> that describes the corresponding column in the data matrix. For example, the *measurementList(3)* describes the third column of the data matrix (i.e. *dataTimeSeries(:,3)*).
 
 Each element of the array is a structure which describes the measurement conditions for this data with the following fields:
 </dd>
@@ -117,9 +115,7 @@ Each element of the array is a structure which describes the measurement conditi
 
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
 <dt> ./measurementList{0}.moduleIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</tt>
-<dd>Index (starting from 1) of a repeating module. 
-
-For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in nanometers) are described in the *probe.wavelengths* variable  (described later). The data type in this case is 1, implying that it was a continuous wave measurement.  The complete list of currently supported data types is found in the Appendix. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the *probe* structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters.
+<dd>Index (starting from 1) of a repeating module. For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in nanometers) are described in the *probe.wavelengths* variable  (described later). The data type in this case is 1, implying that it was a continuous wave measurement.  The complete list of currently supported data types is found in the Appendix. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the *probe* structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters.
 
 *sourcePower* provides the option for information about the source power for that channel to be saved along with the data. The units are not defined, unless the user takes the option of using a *metaDataTag* described below to define, for instance, *sourcePowerUnit*. *detectorGain* provides the option for information about the detector gain for that channel to be saved along with the data.
 
@@ -147,9 +143,7 @@ these two wavelengths will be indexed by the same source, detector, and data typ
 
 <h3>/nirs/probe/wavelengths [Required] </h3>
 <dt>./probe.wavelengths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/wavelengths ]</tt>
-<dd>This field describes the wavelengths used.  This is indexed by the wavelength index of the measurementList variable.
-
-For example, *probe.wavelengths* = [690 780 830]; implies that the measurements were taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of *measurementList(k).wavelengthIndex* variable refers to this field.  *measurementList(k).wavelengthIndex* = 2 means the k<sup>th</sup> measurement was at 780nm.
+<dd>This field describes the wavelengths used.  This is indexed by the wavelength index of the measurementList variable. For example, *probe.wavelengths* = [690 780 830]; implies that the measurements were taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of *measurementList(k).wavelengthIndex* variable refers to this field.  *measurementList(k).wavelengthIndex* = 2 means the k<sup>th</sup> measurement was at 780nm.
 
 The number of wavelengths is not limited (except that at least two are needed to calculate the two forms of hemoglobin).  Each source-detector pair would generally have measurements at all wavelengths.
 </dd>
@@ -163,9 +157,7 @@ is paired with this emission wavelength for a given measurement.</dd>
 
 <h3>/nirs/probe/sourcePos [Required] </h3>
 <dt>./probe.sourcePos</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos ] </tt>
-<dd>This field describes the position (in spatialUnit units) of each source optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>.  
-
-For example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
+<dd>This field describes the position (in spatialUnit units) of each source optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>. For example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
 Dimensions are relative coordinates (i.e. to some arbitrary defined origin). The *qform* variable described below can be used to define the transformation between this SNIRF coordinate system and other coordinate systems.</dd>
