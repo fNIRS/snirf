@@ -183,8 +183,7 @@ provided for indicating the instrument specific label for sources and detectors.
 
 <h3>/nirs/stim{0} [Optional]</h3>
 <dt>./stim</dt><tt>[Type: indexed group]</tt>
-<dd>This is an array describing any stimulus conditions. Each element of the 
-array has the following required fields.</dd>
+<dd>This is an array describing any stimulus conditions. Each element of the array has the following required fields.</dd>
 
 <h3>/nirs/stim{0}/name [Required as part of stim{0}] </h3>
 <dt>./stim{0}.name</dt><tt>[Type: string] [Location:/nirs/stim{0}/name ]</tt>
@@ -192,13 +191,7 @@ array has the following required fields.</dd>
 
 <h3>/nirs/stim{0}/data [Required as part of stim{0}] </h3>
 <dt>./stim(n).data</dt><tt>[Type: numeric 2D array] [Location:/nirs/stim{0}/data ]</tt>
-<dd> This is a three-column array specifying the stimulus time course for the 
-n<sup>th</sup> condition. Each row corresponds with a specific stimulus trial. 
-The three columns indicate [starttime duration value].  The starttime, in 
-seconds, is the time relative to the time origin when the stimulus takes on a 
-value; the duration is the time in seconds that the stimulus value continues, 
-and value is the stimulus amplitude.  The number of rows is not constrained. 
-(see examples in the appendix).</dd>
+<dd> This is a three-column array specifying the stimulus time course for the n<sup>th</sup> condition. Each row corresponds with a specific stimulus trial. The three columns indicate [starttime duration value].  The starttime, in seconds, is the time relative to the time origin when the stimulus takes on a value; the duration is the time in seconds that the stimulus value continues, and value is the stimulus amplitude.  The number of rows is not constrained. (see examples in the appendix).</dd>
 
 
 <h3>/nirs/probe [Required] </h3>
@@ -245,37 +238,32 @@ between this SNIRF coordinate system and other coordinate systems.
 
 <h3>/nirs/probe/sourcePos3D [Optional] </h3>
 <dt>./probe.sourcePos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos3D ] </tt>
-<dd>This field describes the position (in spatialUnit units) of each source 
-optode in 3D.  <dd>
+<dd>This field describes the position (in spatialUnit units) of each source optode in 3D.  </dd>
 
 
 <h3>/nirs/probe/detectorPos [Required] </h3>
-<dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPos]</tt>
+dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPos]</tt>
 <dd>Same as <i>probe.sourcePos</i>, but describing the detector positions.</dd>
 
 
 <h3>/nirs/probe/detectorPos3D [Optional] </h3>
 <dt>./probe.detectorPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/detectorPos3D ] </tt>
-<dd>This field describes the position (in spatialUnit units) of each detector
-optode in 3D.  <dd>
+<dd>This field describes the position (in spatialUnit units) of each detector optode in 3D.  </dd>
 
 
 <h3>/nirs/probe/frequencies [Optional] </h3>
 <dt>./probe.frequencies</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/frequencies ] </tt>
-<dd>This field describes the frequencies used for frequency domain measurements. This field is only required for frequency domain data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>.  <dd>
+<dd>This field describes the frequencies used for frequency domain measurements. This field is only required for frequency domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  </dd>
 
 
 <h3>/nirs/probe/timeDelays [Optional] </h3>
 <dt>./probe.timeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelays ] </tt>
-<dd>This field describes the time delays used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.timeDelayWidths</i>. <dd>
+<dd>This field describes the time delays used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.timeDelayWidths</i>. </dd>
 
 
 <h3>/nirs/probe/timeDelayWidths [Optional] </h3>
 <dt>./probe.timeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelayWidths ] </tt>
-<dd>This field describes the time delay widths used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.timeDelays</i>.<dd>
+<dd>This field describes the time delay widths used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.timeDelays</i>.</dd>
 
 
 <h3>/nirs/probe/momentOrders [Optional] </h3>
@@ -286,85 +274,49 @@ optode in 3D.  <dd>
 
 <h3>/nirs/probe/correlationTimeDelays [Optional] </h3>
 <dt>./probe.correlationTimeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelays ] </tt>
-<dd>This field describes the time delays used for diffuse correlation spectroscopy measurements. This field is only required for diffuse correlation spectroscopy data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelayWidths</i>.<dd>
+<dd>This field describes the time delays used for diffuse correlation spectroscopy measurements. This field is only required for diffuse correlation spectroscopy data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelayWidths</i>.</dd>
 
 
 <h3>/nirs/probe/correlationTimeDelayWidths [Optional] </h3>
 <dt>./probe.correlationTimeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelayWidths ] </tt>
-<dd>This field describes the time delay widths used for diffuse correlation spectroscopy measurements. This field is only required for gated time domain data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelays</i>.  <dd>
+<dd>This field describes the time delay widths used for diffuse correlation spectroscopy measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelays</i>.  </dd>
 
 
 <h3>/nirs/probe/sourceLabels [Optional] </h3>
-<dt>/nirs/probe.sourceLabels{0}</dt><tt>[Type: indexed string]
-[Location: /nirs/probe/sourceLabels{0} indexed from 1]</tt>
-<dd>This is a string array providing user friendly or instrument specific 
-labels for each source. Each element of the array must be a unique string
-among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
-This can be of size <tt>&lt;number of sources&gt;
-x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of 
-wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> and 
-<i>measurementList(k).wavelengthIndex</i>.</dd>
+<dt>/nirs/probe.sourceLabels{0}</dt><tt>[Type: indexed string] [Location: /nirs/probe/sourceLabels{0} indexed from 1]</tt>
+<dd>This is a string array providing user friendly or instrument specific labels for each source. Each element of the array must be a unique string among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.This can be of size <tt>&lt;number of sources&gt;
+x 1</tt> or <tt>&lt;number of sources&gt; x &lt;number of wavelengths&gt;</tt>. This is indexed by <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).wavelengthIndex</i>.</dd>
 
 
 <h3>/nirs/probe/detectorLabels [Optional] </h3>
-<dt>/nirs/probe/detectorLabels{0}</dt><tt>[Type: indexed string]
-[Location: /nirs/probe.detectorLabels{0} indexed from 1]</tt>
-<dd>This is a string array providing user friendly or instrument specific 
-labels for each detector. Each element of the array must be a unique string
-among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
+<dt>/nirs/probe/detectorLabels{0}</dt><tt>[Type: indexed string] [Location: /nirs/probe.detectorLabels{0} indexed from 1]</tt>
+<dd>This is a string array providing user friendly or instrument specific labels for each detector. Each element of the array must be a unique string among both <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>.
 This is indexed by <i>measurementList(k).detectorIndex</i>.</dd>
 	
 
 <h3>/nirs/probe/landmarkPos [Optional] </h3>
 <dt>./probe.landmarkPos</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/landmarkPos] </tt>
-<dd>This is a 2-D array storing the neurological landmark positions measurement
-from 3-D digitization and tracking systems to facilitate the registration and 
-mapping of optical data to brain anatomy. This array should contain a minimum 
-of 3 columns, representing the x, y and z coordinates of the digitized landmark
-positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
-An label index of 0 refers to an undefined landmark. </dd>
+<dd>This is a 2-D array storing the neurological landmark positions measurement from 3-D digitization and tracking systems to facilitate the registration and mapping of optical data to brain anatomy. This array should contain a minimum of 3 columns, representing the x, y and z coordinates of the digitized landmark positions. If a 4th column presents, it stores the index to the labels of the given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield. An label index of 0 refers to an undefined landmark. </dd>
 
 
 <h3>/nirs/probe/landmarkPos3D [Optional] </h3>
 <dt>./probe.landmarkPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe.landmarkPos3D] </tt>
-<dd>This is a 2-D array storing the neurological landmark positions measurement
-from 3-D digitization and tracking systems to facilitate the registration and 
-mapping of optical data to brain anatomy. This array should contain a minimum 
-of 3 columns, representing the x, y and z coordinates of the digitized landmark
-positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield.
-An label index of 0 refers to an undefined landmark. </dd>
+<dd>This is a 2-D array storing the neurological landmark positions measurement from 3-D digitization and tracking systems to facilitate the registration and mapping of optical data to brain anatomy. This array should contain a minimum of 3 columns, representing the x, y and z coordinates of the digitized landmark positions. If a 4th column presents, it stores the index to the labels of the given landmark. Label names are stored in the <i>probe.landmarkLabels</i> subfield. An label index of 0 refers to an undefined landmark. </dd>
 
 
 <h3>/nirs/probe/landmarkLabels{0} [Optional] </h3>
-<dt>./probe/landmarkLabels{0}</dt><tt>[Type: indexed string]
-[Location: /nirs/probe/landmarkLabels{0} indexed from 1]</tt>
-<dd>This string array stores the names of the landmarks. The first string 
-denotes the name of the landmarks with an index of 1 in the 4th column of 
-<i>probe.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark 
-names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
-labels. The landmark label can also use the unique source and detector labels
-defined in <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>, respectively, to 
-associate the given landmark to a specific source or detector. All 
-strings are ASCII encoded char arrays.</dd>
+<dt>./probe/landmarkLabels{0}</dt><tt>[Type: indexed string] [Location: /nirs/probe/landmarkLabels{0} indexed from 1]</tt>
+<dd>This string array stores the names of the landmarks. The first string denotes the name of the landmarks with an index of 1 in the 4th column of <i>probe.landmark</i>, and so on. One can adopt the commonly used 10-20 landmark names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark labels. The landmark label can also use the unique source and detector labels defined in <i>probe.sourceLabels</i> and <i>probe.detectorLabels</i>, respectively, to associate the given landmark to a specific source or detector. All strings are ASCII encoded char arrays.</dd>
 
 
 <h3>/nirs/probe/useLocalIndex [Optional] </h3>
 <dt>/nirs/probeuseLocalIndex</dt><tt>[Type: integer] [Location: nirs/probe/useLocalIndex]</tt>
-<dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates
-that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorIndex</i> are module-specific
-local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i>
-structure in order to restore the global indices of the sources/detectors.</dd>
+<dd>For modular fNIRS systems, setting this flag to a non-zero integer indicates that <i>measurementList(k).sourceIndex</i> and <i>measurementList(k).detectorIndex</i> are module-specific local-indices. One must also include <i>measurementList(k).moduleIndex</i> in the <i>measurementList</i> structure in order to restore the global indices of the sources/detectors.</dd>
 
 
 <h3>/nirs/metaDataTags{0} [Required] </h3>
 <dt>./metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/metaDataTags ]</tt>
-<dd>This is a two column string array of arbitrary length consisting of any 
-key/value pairs the user (or manufacturer) would like to put in.  Each row of 
-the array consists of two strings. Some possible examples:
+<dd>This is a two column string array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in.  Each row of the array consists of two strings. Some possible examples:
 
 ```
 ['ManufacturerName','ISS'],
@@ -408,30 +360,22 @@ streamed data segments during a long measurement session.
 
 <h3>/nirs/aux{0} [Optional] </h3>
 <dt>./aux{0}</dt><tt>[Type: indexed group][Location: /nirs/aux{0} where index starting with 1]</tt>
-<dd>This optional array specifies any recorded auxiliary data. Each element of 
-<i>aux</i> has the following required fields:</dd>
+<dd>This optional array specifies any recorded auxiliary data. Each element of <i>aux</i> has the following required fields:</dd>
 
 <h3>/nirs/aux{0}/name [Optional; Required if aux{0} used] </h3>
-<dt>./aux{0}.name</dt><tt>[Type: string]
-[Location: /nirs/aux{0}/name]</tt>
+<dt>./aux{0}.name</dt><tt>[Type: string] [Location: /nirs/aux{0}/name]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
 
 <h3>/nirs/aux{0}/dataTimeSeries [Optional; Required if aux{0} used] </h3>
-<dt>./aux(n).dataTimeSeries</dt><tt>[Type: numeric]
-[Location: /nirs/aux{0}/dataTimeSeries]</tt>
-<dd>This is the aux data variable. This variable has dimensions of 
-<tt>&lt;number of time points&gt; x 1</tt>.
+<dt>./aux(n).dataTimeSeries</dt><tt>[Type: numeric] [Location: /nirs/aux{0}/dataTimeSeries]</tt>
+<dd>This is the aux data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x 1</tt>.
 
 Chunked data is allowed to support real-time data streaming
 </dd>
 
 <h3>/nirs/aux{0}/time [Optional; Required if aux{0} used] </h3>
 <dt>./aux{0}.time</dt><tt>[Type: numeric] [Location: /nirs/aux{0}/time]</tt>
-<dd>The time variable. This provides the acquisition time of the aux 
-measurement relative to the time origin.  This will usually be a straight line 
-with slope equal to the acquisition frequency, but does not need to be equal 
-spacing.  The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> or <2x1> similar to 
-definition of the /nirs/data/time field.
+<dd>The time variable. This provides the acquisition time of the aux measurement relative to the time origin.  This will usually be a straight line with slope equal to the acquisition frequency, but does not need to be equal spacing. The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> or <2x1> similar to definition of the /nirs/data/time field.
 
 Chunked data is allowed to support real-time data streaming
 </dd>
@@ -439,8 +383,7 @@ Chunked data is allowed to support real-time data streaming
 <h3>/nirs/aux{0}/timeOffset [Optional] </h3>
 <dt>./aux{0}.timeOffset</dt><tt>[Type: numeric]
 [Location: /nirs/aux{0}/timeOffset]</tt>
-<dd>This variable specifies the offset of the file time origin relative to 
-absolute (clock) time in seconds. </dd>
+<dd>This variable specifies the offset of the file time origin relative to absolute (clock) time in seconds. </dd>
 
 
 ## Appendix
