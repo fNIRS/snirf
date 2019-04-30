@@ -268,8 +268,7 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 <h3>/nirs/probe/momentOrders [Optional] </h3>
 <dt>./probe.momentOrders</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/momentOrders ] </tt>
-<dd>This field describes the moment orders of the temporal point spread function for moment time domain measurements. This field is only required for moment time domain data types, and is indexed by  
-<i>measurementList(k).dataTypeIndex</i>.  <dd>
+<dd>This field describes the moment orders of the temporal point spread function for moment time domain measurements. This field is only required for moment time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  </dd>
 
 
 <h3>/nirs/probe/correlationTimeDelays [Optional] </h3>
