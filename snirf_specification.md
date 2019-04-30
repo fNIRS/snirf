@@ -422,7 +422,7 @@ absolute (clock) time in seconds. </dd>
 
 ## Appendix
 
-### Supported measurementList{0}.dataType for “dataTimeSeries”
+### Supported measurementList{0}.dataType values in “dataTimeSeries”
 
 <p>
 001-100:  Raw - Continuous Wave (CW):
@@ -471,7 +471,7 @@ absolute (clock) time in seconds. </dd>
 </p>
 
 
-### Supported measurementList{0}.dataTypeLabel for “dataTimeSeries”
+### Supported measurementList{0}.dataTypeLabel values in “dataTimeSeries”
 <ul>
 "dOD" - Change in optical density<br>
 "mua" - Absorption coefficient<br>
