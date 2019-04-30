@@ -422,7 +422,7 @@ absolute (clock) time in seconds. </dd>
 
 ## Appendix
 
-### Supported data types for “dataTimeSeries”
+### Supported measurementList{0}.dataType for “dataTimeSeries”
 
 <p>
 001-100:  Raw - Continuous Wave (CW):
@@ -470,7 +470,25 @@ absolute (clock) time in seconds. </dd>
 99999:  Processed:
 </p>
 
-Examples of stimulus waveforms
+### Supported measurementList{0}.dataTypeLabel for “dataTimeSeries”
+
+"dOD" - 
+"mua" - 
+"musp" - 
+"HbO" - 
+"HbR" - 
+"HbT" - 
+"HRF HbO" - 
+"HRF HbR" - 
+"HRF HbT" -
+"H2O" - 
+"Lipid" - 
+"HRF BFi" -
+
+
+
+### Examples of stimulus waveforms
+
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
 assume a stimulus to be a 0.2 second off, 0.2 second on repeating block, it 
 would be specified as follows:
