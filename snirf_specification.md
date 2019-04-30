@@ -470,21 +470,22 @@ absolute (clock) time in seconds. </dd>
 99999:  Processed:
 </p>
 
+
 ### Supported measurementList{0}.dataTypeLabel for “dataTimeSeries”
-
-"dOD" - 
-"mua" - 
-"musp" - 
-"HbO" - 
-"HbR" - 
-"HbT" - 
-"HRF HbO" - 
-"HRF HbR" - 
-"HRF HbT" -
-"H2O" - 
-"Lipid" - 
-"HRF BFi" -
-
+<ul>
+"dOD" - Change in optical density<br>
+"mua" - Absorption coefficient<br>
+"musp" - Scattering coefficient<br>
+"HbO" - Oxygenated hemoglobin (oxyhemoglobin) concentration<br>
+"HbR" - Deoxygenated hemoglobin (deoxyhemoglobin) concentration<br>
+"HbT" - Total hemoglobin concentration<br>
+"HRF HbO" - Hemodynamic response function for oxyhemoglobin concentration<br>
+"HRF HbR" - Hemodynamic response function for deoxyhemoglobin concentration<br>
+"HRF HbT" - Hemodynamic response function for total hemoglobin concentration<br>
+"H2O" - Water content<br>
+"Lipid" - Lipid concentration<br>
+"HRF BFi" - Hemodynamic response function for <br>
+</ul>
 
 
 ### Examples of stimulus waveforms
