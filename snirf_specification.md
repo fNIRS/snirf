@@ -467,17 +467,7 @@ absolute (clock) time in seconds. </dd>
 </p>
 
 <p>
-1000 - 9999:  Processed:
-<ul>
-1001 - dOD<br>
-1002 - mua<br>
-1003 - musp<br>
-1020 - HbO<br>
-1021 - HbR<br>
-1022 - HbT<br>
-1023 - H2O<br>
-1024 - Lipid<br>
-</ul>
+99999:  Processed:
 </p>
 
 Examples of stimulus waveforms
