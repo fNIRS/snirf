@@ -158,7 +158,7 @@ is paired with this emission wavelength for a given measurement.</dd>
 
 
 <h3>/nirs/probe/sourcePos [Required] </h3>
-<dt>./probe.sourcePos</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos ] </tt>
+<dt>./probe.sourcePos</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos] </tt>
 <dd>This field describes the position (in spatialUnit units) of each source optode.  This field has size <tt>&lt;number of sources&gt; x 3</tt>. For example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
@@ -166,7 +166,7 @@ Dimensions are relative coordinates (i.e. to some arbitrary defined origin). The
 
 
 <h3>/nirs/probe/sourcePos3D [Optional] </h3>
-<dt>./probe.sourcePos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos3D ] </tt>
+<dt>./probe.sourcePos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/sourcePos3D] </tt>
 <dd>This field describes the position (in spatialUnit units) of each source optode in 3D.  </dd>
 
 
@@ -176,17 +176,17 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 
 <h3>/nirs/probe/detectorPos3D [Optional] </h3>
-<dt>./probe.detectorPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/detectorPos3D ] </tt>
+<dt>./probe.detectorPos3D</dt><tt>[Type: numeric 2D array] [Location: /nirs/probe/detectorPos3D] </tt>
 <dd>This field describes the position (in spatialUnit units) of each detector optode in 3D.  </dd>
 
 
 <h3>/nirs/probe/frequencies [Optional] </h3>
-<dt>./probe.frequencies</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/frequencies ] </tt>
+<dt>./probe.frequencies</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/frequencies] </tt>
 <dd>This field describes the frequencies used for frequency domain measurements. This field is only required for frequency domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  </dd>
 
 
 <h3>/nirs/probe/timeDelays [Optional] </h3>
-<dt>./probe.timeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelays ] </tt>
+<dt>./probe.timeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelays] </tt>
 <dd>This field describes the time delays used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.timeDelayWidths</i>. </dd>
 
 
@@ -196,17 +196,17 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 
 <h3>/nirs/probe/momentOrders [Optional] </h3>
-<dt>./probe.momentOrders</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/momentOrders ] </tt>
+<dt>./probe.momentOrders</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/momentOrders] </tt>
 <dd>This field describes the moment orders of the temporal point spread function for moment time domain measurements. This field is only required for moment time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  </dd>
 
 
 <h3>/nirs/probe/correlationTimeDelays [Optional] </h3>
-<dt>./probe.correlationTimeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelays ] </tt>
+<dt>./probe.correlationTimeDelays</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelays] </tt>
 <dd>This field describes the time delays used for diffuse correlation spectroscopy measurements. This field is only required for diffuse correlation spectroscopy data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelayWidths</i>.</dd>
 
 
 <h3>/nirs/probe/correlationTimeDelayWidths [Optional] </h3>
-<dt>./probe.correlationTimeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelayWidths] </tt>
+<dt>./probe.correlationTimeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/correlationTimeDelayWidth] </tt>
 <dd>This field describes the time delay widths used for diffuse correlation spectroscopy measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>. The indexing of this field is paired with the indexing of <i>probe.correlationTimeDelays</i>.  </dd>
 
 
