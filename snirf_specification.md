@@ -40,7 +40,7 @@ The SNIRF data format must have the initial H5G group type "/nirs" at the initia
 	
 <h3> /nirs{0} [Required]</h3>
 <dt>nirs{0}</dt><tt>[Type: indexed group] [Location: /nirs{0} where {0} is the array index] </tt>
-<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs1, nirs2,...) to the group name.  This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
+<dd> This group stores one set of NIRS data.  This can be extended adding the count number (e.g. nirs1, nirs2,...) to the group name. This is intended to allow the storage of 1 or more complete NIRS datasets inside the single SNIRF format.  For example, two-person hyperscanning can be stored using the notation
 	/nirs1 =  first subject's data
 	/nirs2 =  second subject's data
 The use of a non-indexed (e.g. /nirs/) entry is allowed when only one entry is present and is assumed to be entry 1. 	
@@ -59,9 +59,7 @@ The use of a non-indexed (e.g. /nirs/) entry is allowed when only one entry is p
 
 dataTimeSeries can be compressed using the Hdf5 filter (prebuilt filters 305-LZO or 307-bzip2 supported; see https://support.hdfgroup.org/services/filters.html).  
 
-Chunked data is allowed to support real-time streaming of data in this array.   
-
-</dd>
+Chunked data is allowed to support real-time streaming of data in this array. </dd>
 
 <h3> /nirs/data{0}/time [Required] </h3>	
 <dt>data{0}.time</dt><tt>[Type: numeric 1D array] [Location: /nirs/data{0}/time ]</tt>
@@ -74,9 +72,7 @@ second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms [equivelent
 	Option2-  The size of this variable is <2x1> and correponds to the start
 	time and sample spacing.
 
-Chunked data is allowed to support real-time streaming of data in this array.   
-
-</dd>
+Chunked data is allowed to support real-time streaming of data in this array.  </dd>
 
 <h3> /nirs/data{0}/measurementList{0} [Required] </h3>	
 <dt>./data{0}.measurementList{0}</dt><tt>[Type: indexed group] [Location: /nirs/data{0}/measurementList{0} ]</tt>
@@ -89,48 +85,46 @@ Each element of the array is a structure which describes the measurement conditi
 
 <h3> /nirs/data{0}/measurementList{0}/sourceIndex [Required] </h3>	
 <dt> ./measurementList{0}.sourceIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/sourceIndex]</tt>
-	<dd>: index (starting from 1) of the source</dd>
+<dd>Index (starting from 1) of the source.</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/detectorIndex [Required] </h3>	
 <dt> ./measurementList{0}.detectorIndex</dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/detectorIndex]</tt>
-	<dd>: index (starting from 1) of the detector</dd>
+<dd>Index (starting from 1) of the detector.</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/wavelengthIndex [Required] </h3>	
 <dt> ./measurementList{0}.wavelengthIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/wavelengthIndex]</tt>
-<dd>: index (starting from 1) of the wavelength</dd>
+<dd>Index (starting from 1) of the wavelength.</dd>
 	
 <h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
 <dt> ./measurementList{0}.dataType </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</tt>
-<dd>: data-type identifier, see Appendix</dd>
+<dd>Data-type identifier, see Appendix.</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/dataTypeLabel [Optional] </h3>	
 <dt> ./measurementList{0}.dataTypeLabel </dt><tt>[Type: string] [Location: /nirs/data{0}/measurementList{0}/dataTypeLabel]</tt>
-<dd>: data-type label only required if dataType is "processed". See Appendix</dd>
+<dd>Data-type label only required if dataType is "processed". See Appendix</dd>
 
 <h3> /nirs/measurementList{0}/dataTypeIndex [Required] </h3>	
 <dt> ./measurementList{0}.dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</tt>
-<dd>: data-type specific parameter indices</dd>
+<dd>Data-type specific parameter indices.</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
 <dt> ./measurementList{0}.sourcePower </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower]</tt>
-<dd>: source power in milliwatt (mW) </dd>
+<dd>Source power in milliwatt (mW). </dd>
 
 <h3> /nirs/data{0}/measurementList{0}/detectorGain [Optional] </h3>	
 <dt> ./measurementList{0}.detectorGain </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/detectorGain]</tt>
-<dd>: detector gain</dd>
+<dd>Detector gain</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/moduleIndex [Optional] </h3>	
 <dt> ./measurementList{0}.moduleIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/moduleIndex]</tt>
-<dd>: index (starting from 1) of a repeating module</dd>
-
-For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, 
-*wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in nanometers) are described in the *probe.wavelengths* variable  (described later). The data type in this case is 1, implying that it was a continuous wave measurement.  The complete list of currently supported data types is found in the Appendix. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the *probe* structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters.
+<dd>Index (starting from 1) of a repeating module. 
+	
+For example, if *measurementList{5}* is a structure with *sourceIndex=2*, *detectorIndex=3*, *wavelengthIndex=1*, *dataType=1*, *dataTypeIndex=1* would imply that the data in the 5th column of the *dataTimeSeries* variable was measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in nanometers) are described in the *probe.wavelengths* variable  (described later). The data type in this case is 1, implying that it was a continuous wave measurement.  The complete list of currently supported data types is found in the Appendix. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the *probe* structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters.
 
 sourcePower provides the option for information about the source power for that channel to be saved along with the data. The units are not defined, unless the user takes the option of using a *metaDataTag* described below to define, for instance, *sourcePowerUnit*. *detectorGain* provides the option for information about the detector gain for that channel to be saved along with the data.
 
 Note:  The source indices generally refer to the optode naming (probe positions) and not necessarily the physical laser numbers on the instrument. The same is true for the detector indices.  Each source optode would generally, but not necessarily, have 2 or more wavelengths (hence lasers) plugged into it in order to calculate deoxy- and oxy-hemoglobin concentrations. The data from 
-these two wavelengths will be indexed by the same source, detector, and data type values, but have different wavelength indices. Using the same source index for lasers at the same location but with different wavelengths simplifies the bookkeeping for converting intensity measurements into concentration changes. As described below, optional variables *probe.sourceLabels* and *probe.detectorLabels* are provided for indicating the instrument specific label for sources and detectors.
-
+these two wavelengths will be indexed by the same source, detector, and data type values, but have different wavelength indices. Using the same source index for lasers at the same location but with different wavelengths simplifies the bookkeeping for converting intensity measurements into concentration changes. As described below, optional variables *probe.sourceLabels* and *probe.detectorLabels* are provided for indicating the instrument specific label for sources and detectors.</dd>
 
 <h3>/nirs/stim{0} [Optional]</h3>
 <dt>./stim</dt><tt>[Type: indexed group]</tt>
@@ -174,8 +168,7 @@ is paired with this emission wavelength for a given measurement.</dd>
 For example, <i>probe.sourcePos(1,:)</i> = [1.4 1 0], and <i>SpatialUnit='cm'</i>; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
-Dimensions are relative coordinates (i.e. to some arbitrary defined origin). The *qform* variable described below can be used to define the transformation between this SNIRF coordinate system and other coordinate systems.
-</dd>
+Dimensions are relative coordinates (i.e. to some arbitrary defined origin). The *qform* variable described below can be used to define the transformation between this SNIRF coordinate system and other coordinate systems.</dd>
 
 
 <h3>/nirs/probe/sourcePos3D [Optional] </h3>
@@ -269,21 +262,23 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 ['InstanceNumber','2']
 ['CalibrationFileName','phantomcal_121015.snirf']
 ```
+
 While these tags are freeform, some conventions must be followed.  Keys should use only alphanumeric characters with no spaces, with individual words capitalized.  All values will be stored as strings, How strings are converted into numeric values is left to whoever defines the Key.  However, it is required that dates be stored as YYYYMMDD, and clock times be stored as 
 HHMMSS.SSSS… (24 hour format) for consistency.  Time intervals must be in seconds.
 
 The following metadata tags are required:
+
 ```
 SubjectID
 MeasurementDate
 MeasurementTime
 SpatialUnit    (allowed values are 'mm' and 'cm')
 ```
-</dd>
 
 The metadata tags "StudyID" and "AccessionNumber" are unique strings that can be used to link the current dataset to a particular study and a particular procedure, respectively. The "StudyID" tag is similar to the DICOM tag "Study ID" (0020,0010) and "AccessionNumber" is similar to the DICOM tag "Accession Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
 
-The metadata tag "InstanceNumber" is defined similarly to the DICOM tag "Instance Number" (0020,0013), and can be used as the sequence number to group multiple datasets into a larger dataset - for example, concatenating streamed data segments during a long measurement session.
+The metadata tag "InstanceNumber" is defined similarly to the DICOM tag "Instance Number" (0020,0013), and can be used as the sequence number to group multiple datasets into a larger dataset - for example, concatenating streamed data segments during a long measurement session.</dd>
+
 
 <h3>/nirs/aux{0} [Optional] </h3>
 <dt>./aux{0}</dt><tt>[Type: indexed group][Location: /nirs/aux{0} where index starting with 1]</tt>
@@ -297,15 +292,13 @@ The metadata tag "InstanceNumber" is defined similarly to the DICOM tag "Instanc
 <dt>./aux(n).dataTimeSeries</dt><tt>[Type: numeric] [Location: /nirs/aux{0}/dataTimeSeries]</tt>
 <dd>This is the aux data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x 1</tt>.
 
-Chunked data is allowed to support real-time data streaming
-</dd>
+Chunked data is allowed to support real-time data streaming</dd>
 
 <h3>/nirs/aux{0}/time [Optional; Required if aux{0} used] </h3>
 <dt>./aux{0}.time</dt><tt>[Type: numeric] [Location: /nirs/aux{0}/time]</tt>
 <dd>The time variable. This provides the acquisition time of the aux measurement relative to the time origin.  This will usually be a straight line with slope equal to the acquisition frequency, but does not need to be equal spacing. The size of this variable is <tt>&lt;number of time points&gt; x 1</tt> or <2x1> similar to definition of the /nirs/data/time field.
 
-Chunked data is allowed to support real-time data streaming
-</dd>
+Chunked data is allowed to support real-time data streaming</dd>
 
 <h3>/nirs/aux{0}/timeOffset [Optional] </h3>
 <dt>./aux{0}.timeOffset</dt><tt>[Type: numeric]
