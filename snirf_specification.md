@@ -359,12 +359,14 @@ Chunked data is allowed to support real-time data streaming</dd>
 "HbO" - Oxygenated hemoglobin (oxyhemoglobin) concentration<br>
 "HbR" - Deoxygenated hemoglobin (deoxyhemoglobin) concentration<br>
 "HbT" - Total hemoglobin concentration<br>
+"H2O" - Water content<br>
+"Lipid" - Lipid concentration<br>
+"BFi" - Blood flow index<br>
+"HRF dOD" - Hemodynamic response function for change in optical density<br>
 "HRF HbO" - Hemodynamic response function for oxyhemoglobin concentration<br>
 "HRF HbR" - Hemodynamic response function for deoxyhemoglobin concentration<br>
 "HRF HbT" - Hemodynamic response function for total hemoglobin concentration<br>
-"H2O" - Water content<br>
-"Lipid" - Lipid concentration<br>
-"HRF BFi" - Hemodynamic response function for blood flow index (BFi)<br>
+"HRF BFi" - Hemodynamic response function for blood flow index<br>
 </ul>
 
 
