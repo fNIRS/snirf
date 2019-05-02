@@ -54,15 +54,15 @@ The use of a non-indexed (e.g. /nirs/) entry is allowed when only one entry is p
 </dd>
 	
 <h3> /nirs/data{0}/dataTimeSeries [Required] </h3>	
-<dt>data{0}.dataTimeSeries</dt><tt>[Type: numeric 2D-array] [Location: /nirs/data{0}/dataTimeSeries ] </tt>
-<dd>This is the actual raw data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>.   Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
+<dt>data{0}.dataTimeSeries</dt><tt>[Type: numeric 2D-array] [Location: /nirs/data{0}/dataTimeSeries] </tt>
+<dd>This is the actual raw or processed data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x &lt;number of channels&gt;</tt>. Columns in <i>dataTimeSeries</i> are mapped to the measurement list (<i>measurementList</i> variable described below).  
 
 dataTimeSeries can be compressed using the Hdf5 filter (prebuilt filters 305-LZO or 307-bzip2 supported; see https://support.hdfgroup.org/services/filters.html).  
 
 Chunked data is allowed to support real-time streaming of data in this array. </dd>
 
 <h3> /nirs/data{0}/time [Required] </h3>	
-<dt>data{0}.time</dt><tt>[Type: numeric 1D array] [Location: /nirs/data{0}/time ]</tt>
+<dt>data{0}.time</dt><tt>[Type: numeric 1D array] [Location: /nirs/data{0}/time]</tt>
 <dd>The <i>time</i> variable. This provides the acquisition time of the measurement relative to the time origin.  This will usually be a straight line with slope equal to the acquisition frequency, but does not need to be equal spacing.  For the special case of equal sample spacing a shorthand <2x1> array is allowed where the first entry is the start time and the 
 second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms [equivelent to 5Hz]) 
 		
@@ -95,15 +95,15 @@ Each element of the array is a structure which describes the measurement conditi
 	
 <h3> /nirs/data{0}/measurementList{0}/dataType [Required] </h3>	
 <dt> ./measurementList{0}.dataType </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataType]</tt>
-<dd>Data-type identifier, see Appendix.</dd>
+<dd>Data-type identifier. See Appendix for list possible values.</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/dataTypeLabel [Optional] </h3>	
 <dt> ./measurementList{0}.dataTypeLabel </dt><tt>[Type: string] [Location: /nirs/data{0}/measurementList{0}/dataTypeLabel]</tt>
-<dd>Data-type label only required if dataType is "processed". See Appendix</dd>
+<dd>Data-type label only required if dataType is "processed". See Appendix for list of possible values.</dd>
 
 <h3> /nirs/measurementList{0}/dataTypeIndex [Required] </h3>	
 <dt> ./measurementList{0}.dataTypeIndex </dt><tt>[Type: integer] [Location: /nirs/data{0}/measurementList{0}/dataTypeIndex]</tt>
-<dd>Data-type specific parameter indices.</dd>
+<dd>Data-type specific parameter indices. One use of this parameter is as a stimulus condition index when measurementList{0}.dataType = Processed and measurementList{0}.dataTypeLabel = 'HRF ...' .</dd>
 
 <h3> /nirs/data{0}/measurementList{0}/sourcePower [Optional] </h3>	
 <dt> ./measurementList{0}.sourcePower </dt><tt>[Type: numeric] [Location: /nirs/data{0}/measurementList{0}/sourcePower]</tt>
@@ -130,12 +130,12 @@ these two wavelengths will be indexed by the same source, detector, and data typ
 
 
 <h3>/nirs/stim{0}/name [Required as part of stim{0}] </h3>
-<dt>./stim{0}.name</dt><tt>[Type: string] [Location:/nirs/stim{0}/name ]</tt>
+<dt>./stim{0}.name</dt><tt>[Type: string] [Location:/nirs/stim{0}/name]</tt>
 <dd>This is a string describing the n<sup>th</sup> stimulus condition.</dd>
 
 
 <h3>/nirs/stim{0}/data [Required as part of stim{0}] </h3>
-<dt>./stim(n).data</dt><tt>[Type: numeric 2D array] [Location:/nirs/stim{0}/data ]</tt>
+<dt>./stim(n).data</dt><tt>[Type: numeric 2D array] [Location:/nirs/stim{0}/data]</tt>
 <dd> This is a three-column array specifying the stimulus time course for the n<sup>th</sup> condition. Each row corresponds with a specific stimulus trial. The three columns indicate [starttime duration value].  The starttime, in seconds, is the time relative to the time origin when the stimulus takes on a value; the duration is the time in seconds that the stimulus value continues, and value is the stimulus amplitude.  The number of rows is not constrained. (see examples in the appendix).</dd>
 
 
@@ -144,7 +144,7 @@ these two wavelengths will be indexed by the same source, detector, and data typ
 <dd>This is a structured variable that describes the probe (source-detector) geometry.  This variable has a number of required fields.</dd>
 
 <h3>/nirs/probe/wavelengths [Required] </h3>
-<dt>./probe.wavelengths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/wavelengths ]</tt>
+<dt>./probe.wavelengths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/wavelengths]</tt>
 <dd>This field describes the wavelengths used.  This is indexed by the wavelength index of the measurementList variable. For example, *probe.wavelengths* = [690 780 830]; implies that the measurements were taken at three wavelengths (690nm, 780nm, and 830nm).  The wavelength index of *measurementList(k).wavelengthIndex* variable refers to this field.  *measurementList(k).wavelengthIndex* = 2 means the k<sup>th</sup> measurement was at 780nm.
 
 The number of wavelengths is not limited (except that at least two are needed to calculate the two forms of hemoglobin).  Each source-detector pair would generally have measurements at all wavelengths.
@@ -191,7 +191,7 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 
 <h3>/nirs/probe/timeDelayWidths [Optional] </h3>
-<dt>./probe.timeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelayWidths ] </tt>
+<dt>./probe.timeDelayWidths</dt><tt>[Type: numeric 1D array] [Location: /nirs/probe/timeDelayWidths] </tt>
 <dd>This field describes the time delay widths used for gated time domain measurements. This field is only required for gated time domain data types, and is indexed by <i>measurementList(k).dataTypeIndex</i>.  The indexing of this field is paired with the indexing of <i>probe.timeDelays</i>.</dd>
 
 
@@ -241,7 +241,7 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 
 <h3>/nirs/metaDataTags{0} [Required] </h3>
-<dt>./metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/metaDataTags ]</tt>
+<dt>./metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/metaDataTags]</tt>
 <dd>This is a two column string array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in.  Each row of the array consists of two strings. Some possible examples:
 
 ```
