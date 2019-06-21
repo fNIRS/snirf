@@ -182,8 +182,8 @@ is present and is assumed to be entry 1.
 * **Location**: `/nirs(i)/data(j)`
 
 This group stores one block of NIRS data.  This can be extended adding the 
-count number (e.g. data1, data2,...) to the group name.  This is intended to 
-allow the storage of 1 or more blocks of NIRS data from within the same /nirs 
+count number (e.g. `data1`, `data2`,...) to the group name.  This is intended to 
+allow the storage of 1 or more blocks of NIRS data from within the same `/nirs` 
 entry
 * `/nirs/data1` =  data block 1
 * `/nirs/data2` =  data block 2	
@@ -191,7 +191,7 @@ entry
 	
 #### /nirs(i)/data(j)/dataTimeSeries 
 * **Presence**: required
-* **Type**:  numeric 2D-array
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/data(j)/dataTimeSeries`
 
 This is the actual raw or processed data variable. This variable has dimensions 
