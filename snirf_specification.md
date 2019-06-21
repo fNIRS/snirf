@@ -6,9 +6,21 @@ Shared Near Infrared File Format Specification
 * **Date**: Feburary, 2019
 * **License**: This document is in the public domain.
 
+## Table of Content
+
+- [Introduction](#introduction)
+- [SNIRF file specification](#snirf-file-specification)
+  * [SNIRF data format summary](#snirf-data-format-summary)
+  * [SNIRF data container definitions](#snirf-data-container-definitions)
+- [Appendix](#appendix)
+- [Acknowledgement](#acknowledgement)
+
+
+## Introduction
+
 The file format specification uses the extension `*.snirf`.  These are HDF5 
 format files, renamed with the `.snirf` extension.  For a program to be 
-“SNIRF-compliant”, it must be able to read and write the SNIRF file.  
+“SNIRF-compliant”, it must be able to read and write the SNIRF file.
 
 The HDF5 specificiations are defined by the HDF5 group and found at 
 https://www.hdfgroup.org. It is expected that HDF5 future versions will remain 
@@ -28,7 +40,7 @@ including
   `/nirs/data1`, `/nirs/data2`) starting with index 1.  Array indices should be 
   contiguious with no skipped values (although an empty group with no sub-members 
   can be used to "zero out" an entry).
-- `string`: either ASCII encoded 8bit `char` array or UNICODE UTF-16 array.   
+- `string`: either ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
   Defined by the `H5T.NATIVE_CHAR` or
   `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
   have a UTF16 native type, so 
@@ -53,8 +65,77 @@ consistent read/write between OS platforms.
 The SNIRF data format must have the initial `H5G` group type `"/nirs"` at the 
 initial file location.
 
+### SNIRF data format summary
 
-### Required fields 
+|  SNIRF-formatted fNIRS data structure |             Meaning of the data               |   Type   |
+|---------------------------------------|-----------------------------------------------|----------|
+| `/formatVersion`                      | ** SNIRF format version                       |  `"s"` * |
+| `/nirs{.}`                            | ** fNIRS measurement dataset container        |          |
+|     `metaDataTags`                    | ** Metadata headers                           |  `{.}` * |
+|        `"SubjectID"`                  | ** Subject identifier                         |  `"s"` * |
+|        `"MeasurementDate"`            | ** Date of the measurement                    |  `"s"` * |
+|        `"MeasurementTime"`            | ** Time of the measurement                    |  `"s"` * |
+|        `"LengthUnit"`                 | ** Length unit                                |  `"s"` * |
+|        `"TimeUnit"`                   | ** Time unit                                  |  `"s"` * |
+|        `"SubjectName"`                | ** Subject name                               |  `"s"`   |
+|        `"StudyID"`                    | ** Study ID                                   |  `"s"`   |
+|        `"ManufacturerName"`           | ** fNIRS system manufacturer name             |  `"s"`   |
+|        `"Model"`                      | ** fNIRS system model number                  |  `"s"`   |
+|         ...                           | ** Additional user-defined metadata entries   |          |
+|     `data{.}`                         | ** Groups of fNIRS measurement data chunks    |  `{.}` * |
+|        `dataTimeSeries`               | ** Time-varying signals from all channels     | `[[]]` * |
+|        `time`                         | ** Time (in `TimeUnit` defined in metaDataTag)|  `[]`  * |
+|        `measurementList{.}`           | ** Per-channel source-detector information    |  `{.}` * |
+|            `sourceIndex`              | ** Source index of a given channel            |  `<i>` * |
+|            `detectorIndex`            | ** Detector index of a given channel          |  `<i>` * |
+|            `wavelengthIndex`          | ** Wavelength index of a given channel        |  `<i>` * |
+|            `dataType`                 | ** Data type of a given channel               |  `<i>` * |
+|            `dataTypeLabel`            | ** Data type name of a given channel          |  `"s"`   |
+|            `dataTypeIndex`            | ** Data type index of a given channel         |  `<i>` * |
+|            `sourcePower`              | ** Source power of a given channel            |  `<f>`   |
+|            `detectorGain`             | ** Detector gain of a given channel           |  `<f>`   |
+|            `moduleIndex`              | ** Index of the parent module (if modular)    |  `<i>`   |
+|     `stim{.}`                         | ** Groups of stimulus data                    |  `{.}`   |
+|         `name`                        | ** Name of the stimulus data                  |  `"s"` + |
+|         `data`                        | ** Data stream of the stimulus channel        |  `[]`  + |
+|     `probe`                           | ** fNIRS probe information                    |  `{.}` * |
+|         `wavelengths`                 | ** List of wavelengths                        |  `[]`  * |
+|         `wavelengthsEmission`         | ** List of emission wavelengths               |  `[]`    |
+|         `sourcePos`                   | ** Source 2-D positions                       | `[[]]` * |
+|         `sourcePos3D`                 | ** Source 3-D positions                       | `[[]]`   |
+|         `detectorPos`                 | ** Detector 2-D positions                     | `[[]]` * |
+|         `detectorPos3D`               | ** Detector 3-D positions                     | `[[]]`   |
+|         `frequencies`                 | ** Modulation frequency list                  |  `[]`    |
+|         `timeDelays`                  | ** Time delays for gated time-domain data     |  `[]`    |
+|         `timeDelayWidths`             | ** Time delay width for gated time-domain data|  `[]`    |
+|         `momentOrders`                | ** Moment orders of the moment TD data        |  `[]`    |
+|         `correlationTimeDelays`       | ** Time delays for DCS measurements           |  `[]`    |
+|         `correlationTimeDelayWidths`  | ** Time delay width for DCS measurements      |  `[]`    |
+|         `sourceLabels`                | ** String arrays specifying the source names  |  `"s"`   |
+|         `detectorLabels`              | ** String arrays specifying the detector names|  `"s"`   |
+|         `landmarkPos`                 | ** Anatomical landmark 2-D positions          | `[[]]`   |
+|         `landmarkPos3D`               | ** Anatomical landmark 3-D positions          | `[[]]`   |
+|         `landmarkLabels`              | ** String arrays specifying the landmark names|  `[]`    |
+|         `useLocalIndex`               | ** If source/detector index is within a module|  `<i>`   |
+|     `aux{.}`                          | ** Auxilary data container                    |  `{.}`   |
+|         `name`                        | ** Name of the auxilary channel               |  `"s"` + |
+|         `dataTimeSeries`              | ** Data acquired from the auxilary channel    | `[[]]` + |
+|         `time`                        | ** Corresponding time                         |  `[]`  + |
+|         `timeOffset`                  | ** Time offset of the auxilary channel data   |  `[]`    |
+
+In the above table, the notations are explained below
+
+* `{.}` represents an HDF5 group with one or multiple sub-groups (i.e. a group-array)
+* `<i>` represents an integer value
+* `<f>` represents an numeric value
+* `"s"` represents a string of arbitrary length
+* `[]` represents a 1-D (row or column) vector, can be empty
+* `[[]]` represents a 2-D array, can be empty
+* `...` (optional) additional elements similar to the previous element
+* `*` in the last column indicates a required subfield
+* `+` in the last column indicates a required subfield if the optional parent object is included
+
+### SNIRF data container definitions
 
 #### /formatVersion 
 * **Presence**: required
@@ -121,9 +202,9 @@ where the first entry is the start time and the
 second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms 
 [equivelent to 5Hz]) 
 		
-* Option 1 - The size of this variable is `<number of time points x 1>` and 
+* **Option 1** - The size of this variable is `<number of time points x 1>` and 
              corresponds to the sample time of every data point
-* Option 2-  The size of this variable is `<2x1>` and correponds to the start
+* **Option 2**-  The size of this variable is `<2x1>` and correponds to the start
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
@@ -317,9 +398,9 @@ is paired with this emission wavelength for a given measurement.
 * **Type**:  numeric 2D array
 * **Location**: `/nirs/probe/sourcePos`
 
-This field describes the position (in `SpatialUnit` units) of each source 
+This field describes the position (in `LengthUnit` units) of each source 
 optode.  This field has size `<number of sources> x 3`. For example, 
-`probe.sourcePos(1,:) = [1.4 1 0]`, and `SpatialUnit='cm'`; places source 
+`probe.sourcePos(1,:) = [1.4 1 0]`, and `LengthUnit='cm'`; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
 Dimensions are relative coordinates (i.e. to some arbitrary defined origin). 
@@ -332,7 +413,7 @@ between this SNIRF coordinate system and other coordinate systems.
 * **Type**:  numeric 2D array
 * **Location**: `/nirs/probe/sourcePos3D`
 
-This field describes the position (in `SpatialUnit` units) of each source 
+This field describes the position (in `LengthUnit` units) of each source 
 optode in 3D.
 
 
@@ -349,7 +430,7 @@ Same as `probe.sourcePos`, but describing the detector positions.
 * **Type**:  numeric 2D array
 * **Location**: `/nirs/probe/detectorPos3D`
 
-This field describes the position (in `SpatialUnit` units) of each detector 
+This field describes the position (in `LengthUnit` units) of each detector 
 optode in 3D.
 
 
@@ -532,7 +613,7 @@ The following metadata tags are required:
 SubjectID
 MeasurementDate
 MeasurementTime
-SpatialUnit    (allowed values are 'mm' and 'cm')
+LengthUnit    (allowed values are 'mm' and 'cm')
 ```
 
 The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
