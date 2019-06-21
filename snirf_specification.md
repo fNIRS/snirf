@@ -56,7 +56,7 @@ initial file location.
 
 ### Required fields 
 
-###  /formatVersion 
+#### /formatVersion 
 * **Presence**: required
 * **Type**:  string
 * **Location**: `/formatVersion `
@@ -64,7 +64,7 @@ initial file location.
 This is a string that specifies the version of the file format.  This document 
 describes format version “1.0”
 	
-###  /nirs(i) 
+#### /nirs(i) 
 * **Presence**: required
 * **Type**:  indexed group
 * **Location**: `/nirs(i) where (i) is the array index`
@@ -79,7 +79,7 @@ The use of a non-indexed (e.g. `/nirs/`) entry is allowed when only one entry
 is present and is assumed to be entry 1.
 
 
-###  /nirs/data(i) 
+#### /nirs/data(i) 
 * **Presence**: required
 * **Type**:  indexed group
 * **Location**: `/nirs/data(i) where (i) is the array index`
@@ -92,7 +92,7 @@ entry
 * `/nirs/data2` =  block 2	
 
 	
-###  /nirs/data(i)/dataTimeSeries 
+#### /nirs/data(i)/dataTimeSeries 
 * **Presence**: required
 * **Type**:  numeric 2D-array
 * **Location**: `/nirs/data(i)/dataTimeSeries`
@@ -108,7 +108,7 @@ https://support.hdfgroup.org/services/filters.html).
 
 Chunked data is allowed to support real-time streaming of data in this array. 
 
-###  /nirs/data(i)/time 
+#### /nirs/data(i)/time 
 * **Presence**: required
 * **Type**:  numeric 1D array
 * **Location**: `/nirs/data(i)/time`
@@ -116,19 +116,19 @@ Chunked data is allowed to support real-time streaming of data in this array.
 The `time` variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  For 
-the special case of equal sample spacing a shorthand <2x1> array is allowed 
+the special case of equal sample spacing a shorthand `<2x1>` array is allowed 
 where the first entry is the start time and the 
 second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms 
 [equivelent to 5Hz]) 
 		
-* Option 1 - The size of this variable is <number of time points x 1> and 
+* Option 1 - The size of this variable is `<number of time points x 1>` and 
              corresponds to the sample time of every data point
-* Option 2-  The size of this variable is <2x1> and correponds to the start
+* Option 2-  The size of this variable is `<2x1>` and correponds to the start
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
 
-###  /nirs/data(i)/measurementList(j) 
+#### /nirs/data(i)/measurementList(j) 
 * **Presence**: required
 * **Type**:  indexed group
 * **Location**: `/nirs/data(i)/measurementList(j) `
@@ -144,35 +144,35 @@ Each element of the array is a structure which describes the measurement
 conditions for this data with the following fields:
 
 
-###  /nirs/data(i)/measurementList(j)/sourceIndex 
+#### /nirs/data(i)/measurementList(j)/sourceIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/sourceIndex`
 
 Index (starting from 1) of the source.
 	
-###  /nirs/data(i)/measurementList(j)/detectorIndex 
+#### /nirs/data(i)/measurementList(j)/detectorIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/detectorIndex`
 
 Index (starting from 1) of the detector.
 
-###  /nirs/data(i)/measurementList(j)/wavelengthIndex 
+#### /nirs/data(i)/measurementList(j)/wavelengthIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/wavelengthIndex`
 
 Index (starting from 1) of the wavelength.
 	
-###  /nirs/data(i)/measurementList(j)/dataType 
+#### /nirs/data(i)/measurementList(j)/dataType 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/dataType`
 
 Data-type identifier. See Appendix for list possible values.
 
-###  /nirs/data(i)/measurementList(j)/dataTypeLabel 
+#### /nirs/data(i)/measurementList(j)/dataTypeLabel 
 * **Presence**: optional
 * **Type**:  string
 * **Location**: `/nirs/data(i)/measurementList(j)/dataTypeLabel`
@@ -180,7 +180,7 @@ Data-type identifier. See Appendix for list possible values.
 Data-type label only required if dataType is "processed". See Appendix for list 
 of possible values.
 
-###  /nirs/measurementList(j)/dataTypeIndex 
+#### /nirs/measurementList(j)/dataTypeIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/dataTypeIndex`
@@ -189,21 +189,21 @@ Data-type specific parameter indices. One use of this parameter is as a
 stimulus condition index when `measurementList(j).dataType` = Processed and 
 `measurementList(j).dataTypeLabel = 'HRF ...'` .
 
-###  /nirs/data(i)/measurementList(j)/sourcePower 
+#### /nirs/data(i)/measurementList(j)/sourcePower 
 * **Presence**: optional
 * **Type**:  numeric
 * **Location**: `/nirs/data(i)/measurementList(j)/sourcePower`
 
 Source power in milliwatt (mW). 
 
-###  /nirs/data(i)/measurementList(j)/detectorGain 
+#### /nirs/data(i)/measurementList(j)/detectorGain 
 * **Presence**: optional
 * **Type**:  numeric
 * **Location**: `/nirs/data(i)/measurementList(j)/detectorGain`
 
 Detector gain
 
-###  /nirs/data(i)/measurementList(j)/moduleIndex 
+#### /nirs/data(i)/measurementList(j)/moduleIndex 
 * **Presence**: optional
 * **Type**:  integer
 * **Location**: `/nirs/data(i)/measurementList(j)/moduleIndex`
@@ -319,7 +319,7 @@ is paired with this emission wavelength for a given measurement.
 
 This field describes the position (in `SpatialUnit` units) of each source 
 optode.  This field has size `<number of sources> x 3`. For example, 
-`probe.sourcePos(1,:)` = [1.4 1 0], and `SpatialUnit='cm'`; places source 
+`probe.sourcePos(1,:) = [1.4 1 0]`, and `SpatialUnit='cm'`; places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 
 Dimensions are relative coordinates (i.e. to some arbitrary defined origin). 
@@ -425,7 +425,7 @@ of this field is paired with the indexing of `probe.correlationTimeDelays`.
 This is a string array providing user friendly or instrument specific labels 
 for each source. Each element of the array must be a unique string among both 
 `probe.sourceLabels` and `probe.detectorLabels`.This can be of size `<number 
-of sources>x 1</tt> or <tt><number of sources> x <number of 
+of sources>x 1` or `<number of sources> x <number of 
 wavelengths>`. This is indexed by `measurementList(k).sourceIndex` and 
 `measurementList(k).wavelengthIndex`.
 
@@ -580,7 +580,7 @@ Chunked data is allowed to support real-time data streaming
 The time variable. This provides the acquisition time of the aux measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing. The 
-size of this variable is `<number of time points> x 1` or <2x1> similar 
+size of this variable is `<number of time points> x 1` or `<2x1>` similar 
 to definition of the /nirs/data/time field.
 
 Chunked data is allowed to support real-time data streaming
