@@ -215,8 +215,9 @@ relative to the time origin.  This will usually be a straight line with slope
 equal to the acquisition frequency, but does not need to be equal spacing.  For 
 the special case of equal sample spacing a shorthand `<2x1>` array is allowed 
 where the first entry is the start time and the 
-second entry is the sample time spacing in seconds (e.g. 0.2 = 200ms 
-[equivelent to 5Hz]) 
+second entry is the sample time spacing in `TimeUnit` specified in the 
+`metaDataTags`. The default time unit is in second ("s"). For example, 
+a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 		
 * **Option 1** - The size of this variable is `<number of time points x 1>` and 
              corresponds to the sample time of every data point
@@ -234,7 +235,7 @@ The measurement list. This variable serves to map the data array onto the probe
 geometry (sources and detectors), data type, and wavelength. This variable is 
 an array structure that has the size `<number of channels>` that 
 describes the corresponding column in the data matrix. For example, the 
-`measurementList(3)` describes the third column of the data matrix (i.e. 
+`measurementList3` describes the third column of the data matrix (i.e. 
 `dataTimeSeries(:,3)`).
 
 Each element of the array is a structure which describes the measurement 
@@ -274,7 +275,7 @@ Data-type identifier. See Appendix for list possible values.
 * **Type**:  string
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataTypeLabel`
 
-Data-type label only required if dataType is "processed" (`99999`). See Appendix 
+Data-type label. Only required if dataType is "processed" (`99999`). See Appendix 
 for list of possible values.
 
 #### /nirs/measurementList(k)/dataTypeIndex 
@@ -646,20 +647,20 @@ data segments during a long measurement session.
 #### /nirs(i)/aux(j) 
 * **Presence**: optional 
 * **Type**:  indexed group
-* **Location**: `/nirs(i)/aux(j) where index starting with 1`
+* **Location**: `/nirs(i)/aux(j)`
 
 This optional array specifies any recorded auxiliary data. Each element of 
 `aux` has the following required fields:
 
 #### /nirs(i)/aux(j)/name 
-* **Presence**: optional; required if aux(i) used
+* **Presence**: optional; required if `aux` is used
 * **Type**:  string
 * **Location**: `/nirs(i)/aux(j)/name`
 
 This is string describing the j<sup>th</sup> auxiliary data timecourse.
 
 #### /nirs(i)/aux(j)/dataTimeSeries 
-* **Presence**: optional; required if aux(i) used
+* **Presence**: optional; required if `aux` is used
 * **Type**:  numeric
 * **Location**: `/nirs(i)/aux(j)/dataTimeSeries`
 
@@ -669,7 +670,7 @@ time points> x 1`.
 Chunked data is allowed to support real-time data streaming
 
 #### /nirs(i)/aux(j)/time 
-* **Presence**: optional; required if aux(i) used
+* **Presence**: optional; required if `aux` is used
 * **Type**:  numeric
 * **Location**: `/nirs(i)/aux(j)/time`
 
