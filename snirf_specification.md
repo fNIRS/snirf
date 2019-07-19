@@ -1,9 +1,8 @@
 
-Shared Near Infrared File Format Specification
+Shared Near Infrared File Format V1.0 Specification
 ============================================================
 
-* **Version**: 1.10
-* **Date**: Feburary, 2019
+* **Document Version**: Draft 3
 * **License**: This document is in the public domain.
 
 ## Table of Content
@@ -145,7 +144,7 @@ In the above table, the notations are explained below
 * `<i>` represents an integer value
 * `<f>` represents an numeric value
 * `"s"` represents a string of arbitrary length
-* `[...]` represents a 1-D (row or column) vector, can be empty
+* `[...]` represents a 1-D vector, can be empty
 * `[[...]]` represents a 2-D array, can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
@@ -174,6 +173,58 @@ document.  For example, a two-subject hyperscanning can be stored using the nota
 * `/nirs2` =  second subject's data
 The use of a non-indexed (e.g. `/nirs/`) entry is allowed when only one entry 
 is present and is assumed to be entry 1.
+
+
+#### /nirs(i)/metaDataTags(j) 
+* **Presence**: required 
+* **Type**:  group array
+* **Location**: `/nirs(i)/metaDataTags(j)`
+
+This is a two column string array of arbitrary length consisting of any 
+key/value pairs the user (or manufacturer) would like to put in.  Each row of 
+the array consists of two strings. Some possible examples:
+
+```
+['ManufacturerName','ISS'],
+['Model','Imagent'],
+['SubjectName', 'Pseudonym, I.M.A.'],
+['DateOfBirth','20120401'],
+['AcquisitionStartTime','150127.34']
+['StudyID','Infant Brain Development']
+['StudyDescription','We study infant cognitive development.']
+['AccessionNumber','INA2S12']
+['InstanceNumber','2']
+['CalibrationFileName','phantomcal_121015.snirf']
+```
+
+While these tags are freeform, some conventions must be followed.  Keys should 
+use only alphanumeric characters with no spaces, with individual words 
+capitalized.  All values will be stored as strings, How strings are converted 
+into numeric values is left to whoever defines the Key.  However, it is 
+required that dates be stored as `YYYYMMDD`, and clock times be stored as 
+`HHMMSS.SSSS…` (24 hour format) for consistency.  Time intervals must be in 
+seconds.
+
+The following metadata tags are required:
+
+```
+SubjectID
+MeasurementDate
+MeasurementTime
+LengthUnit    (allowed values are 'mm' and 'cm')
+TimeUnit      (allowed values are 'ms' and 's')
+```
+
+The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
+can be used to link the current dataset to a particular study and a particular 
+procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
+ID" (0020,0010) and `"AccessionNumber"` is similar to the DICOM tag "Accession 
+Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
+
+The metadata tag `"InstanceNumber"` is defined similarly to the DICOM tag 
+"Instance Number" (0020,0013), and can be used as the sequence number to group 
+multiple datasets into a larger dataset - for example, concatenating streamed 
+data segments during a long measurement session.
 
 
 #### /nirs(i)/data(j) 
@@ -590,58 +641,6 @@ that `measurementList(k).sourceIndex` and `measurementList(k).detectorIndex`
 are module-specific local-indices. One must also include 
 `measurementList(k).moduleIndex` in the `measurementList` structure in order to 
 restore the global indices of the sources/detectors.
-
-
-#### /nirs(i)/metaDataTags(j) 
-* **Presence**: required 
-* **Type**:  group array
-* **Location**: `/nirs(i)/metaDataTags(j)`
-
-This is a two column string array of arbitrary length consisting of any 
-key/value pairs the user (or manufacturer) would like to put in.  Each row of 
-the array consists of two strings. Some possible examples:
-
-```
-['ManufacturerName','ISS'],
-['Model','Imagent'],
-['SubjectName', 'Pseudonym, I.M.A.'],
-['DateOfBirth','20120401'],
-['AcquisitionStartTime','150127.34']
-['StudyID','Infant Brain Development']
-['StudyDescription','We study infant cognitive development.']
-['AccessionNumber','INA2S12']
-['InstanceNumber','2']
-['CalibrationFileName','phantomcal_121015.snirf']
-```
-
-While these tags are freeform, some conventions must be followed.  Keys should 
-use only alphanumeric characters with no spaces, with individual words 
-capitalized.  All values will be stored as strings, How strings are converted 
-into numeric values is left to whoever defines the Key.  However, it is 
-required that dates be stored as `YYYYMMDD`, and clock times be stored as 
-`HHMMSS.SSSS…` (24 hour format) for consistency.  Time intervals must be in 
-seconds.
-
-The following metadata tags are required:
-
-```
-SubjectID
-MeasurementDate
-MeasurementTime
-LengthUnit    (allowed values are 'mm' and 'cm')
-TimeUnit      (allowed values are 'ms' and 's')
-```
-
-The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
-can be used to link the current dataset to a particular study and a particular 
-procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
-ID" (0020,0010) and `"AccessionNumber"` is similar to the DICOM tag "Accession 
-Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
-
-The metadata tag `"InstanceNumber"` is defined similarly to the DICOM tag 
-"Instance Number" (0020,0013), and can be used as the sequence number to group 
-multiple datasets into a larger dataset - for example, concatenating streamed 
-data segments during a long measurement session.
 
 
 #### /nirs(i)/aux(j) 
