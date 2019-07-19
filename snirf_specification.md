@@ -241,20 +241,30 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 
 <h3>/nirs/metaDataTags{0} [Required] </h3>
-<dt>./metaDataTags{0}</dt><tt>[Type: group array] [Location: /nirs/metaDataTags]</tt>
-<dd>This is a two column string array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in.  Each row of the array consists of two strings. Some possible examples:
+<dt>./metaDataTags{0}</dt><tt>[Type: indexed group] [Location: /nirs/metaDataTags]</tt>
+<dd>This array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in. Each element of <i>metaDataTags</i> has the following required fields:</dd>
+	
+<h3>/nirs/metaDataTags{0}/key [Optional; Required] </h3>
+<dt>./metaDataTags{0}.key</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/key]</tt>
+<dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
+
+<h3>/nirs/metaDataTags{0}/value [Optional; Required] </h3>
+<dt>./metaDataTags(n).dataTimeSeries</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/value]</tt>
+<dd>This is the aux data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x 1</tt>.
+
+Some possible examples of metaDataTags are:
 
 ```
-['ManufacturerName','ISS'],
-['Model','Imagent'],
-['SubjectName', 'Pseudonym, I.M.A.'],
-['DateOfBirth','20120401'],
-['AcquisitionStartTime','150127.34']
-['StudyID','Infant Brain Development']
-['StudyDescription','We study infant cognitive development.']
-['AccessionNumber','INA2S12']
-['InstanceNumber','2']
-['CalibrationFileName','phantomcal_121015.snirf']
+[key: 'ManufacturerName',     value: 'ISS'],
+[key: 'Model',                value: 'Imagent'],
+[key: 'SubjectName',          value: 'Pseudonym, I.M.A.'],
+[key: 'DateOfBirth',          value: '20120401'],
+[key: 'AcquisitionStartTime', value: '150127.34']
+[key: 'StudyID',              value: 'Infant Brain Development']
+[key: 'StudyDescription',     value: 'We study infant cognitive development.']
+[key: 'AccessionNumber',      value: 'INA2S12']
+[key: 'InstanceNumber',       value: '2']
+[key: 'CalibrationFileName',  value: 'phantomcal_121015.snirf']
 ```
 
 While these tags are freeform, some conventions must be followed.  Keys should use only alphanumeric characters with no spaces, with individual words capitalized.  All values will be stored as strings, How strings are converted into numeric values is left to whoever defines the Key.  However, it is required that dates be stored as YYYYMMDD, and clock times be stored as 
