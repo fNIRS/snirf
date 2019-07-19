@@ -244,11 +244,11 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 <dt>./metaDataTags{0}</dt><tt>[Type: indexed group] [Location: /nirs/metaDataTags]</tt>
 <dd>This array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in. Each element of <i>metaDataTags</i> has the following required fields:</dd>
 	
-<h3>/nirs/metaDataTags{0}/key [Optional; Required] </h3>
+<h3>/nirs/metaDataTags{0}/key [Required] </h3>
 <dt>./metaDataTags{0}.key</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/key]</tt>
 <dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
 
-<h3>/nirs/metaDataTags{0}/value [Optional; Required] </h3>
+<h3>/nirs/metaDataTags{0}/value [Required] </h3>
 <dt>./metaDataTags(n).dataTimeSeries</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/value]</tt>
 <dd>This is the aux data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x 1</tt>.
 
