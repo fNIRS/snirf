@@ -1,4 +1,4 @@
-
+Rewrite 
 Shared Near Infrared File Format Specification
 ============================================================
 
@@ -242,16 +242,8 @@ dt>./probe.detectorPos</dt><tt>[Type: numeric] [Location: /nirs/probe/detectorPo
 
 <h3>/nirs/metaDataTags{0} [Required] </h3>
 <dt>./metaDataTags{0}</dt><tt>[Type: indexed group] [Location: /nirs/metaDataTags]</tt>
-<dd>This array of arbitrary length consisting of any key/value pairs the user (or manufacturer) would like to put in. Each element of <i>metaDataTags</i> has the following required fields:</dd>
+<dd>This array of arbitrary length consists of any key/value pairs the user (or manufacturer) would like to put in. 
 	
-<h3>/nirs/metaDataTags{0}/key [Required] </h3>
-<dt>./metaDataTags{0}.key</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/key]</tt>
-<dd>This is string describing the n<sup>th</sup> auxiliary data timecourse.</dd>
-
-<h3>/nirs/metaDataTags{0}/value [Required] </h3>
-<dt>./metaDataTags(n).dataTimeSeries</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/value]</tt>
-<dd>This is the aux data variable. This variable has dimensions of <tt>&lt;number of time points&gt; x 1</tt>.
-
 Some possible examples of metaDataTags are:
 
 ```
@@ -267,9 +259,6 @@ Some possible examples of metaDataTags are:
 [key: 'CalibrationFileName',  value: 'phantomcal_121015.snirf']
 ```
 
-While these tags are freeform, some conventions must be followed.  Keys should use only alphanumeric characters with no spaces, with individual words capitalized.  All values will be stored as strings, How strings are converted into numeric values is left to whoever defines the Key.  However, it is required that dates be stored as YYYYMMDD, and clock times be stored as 
-HHMMSS.SSSS… (24 hour format) for consistency.  Time intervals must be in seconds.
-
 The following metadata tags are required:
 
 ```
@@ -281,7 +270,18 @@ SpatialUnit    (allowed values are 'mm' and 'cm')
 
 The metadata tags "StudyID" and "AccessionNumber" are unique strings that can be used to link the current dataset to a particular study and a particular procedure, respectively. The "StudyID" tag is similar to the DICOM tag "Study ID" (0020,0010) and "AccessionNumber" is similar to the DICOM tag "Accession Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
 
-The metadata tag "InstanceNumber" is defined similarly to the DICOM tag "Instance Number" (0020,0013), and can be used as the sequence number to group multiple datasets into a larger dataset - for example, concatenating streamed data segments during a long measurement session.</dd>
+The metadata tag "InstanceNumber" is defined similarly to the DICOM tag "Instance Number" (0020,0013), and can be used as the sequence number to group multiple datasets into a larger dataset - for example, concatenating streamed data segments during a long measurement session.</dd>	
+	
+Each element of <i>metaDataTags</i> has the following required fields:</dd>
+	
+<h3>/nirs/metaDataTags{0}/key [Required] </h3>
+<dt>./metaDataTags{0}.key</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/key]</tt>
+<dd>This is a string naming the key portion of the metadata tag. While these tags are freeform, some conventions must be followed. Keys should use only alphanumeric characters with no spaces, with individual words capitalized.</dd>
+
+<h3>/nirs/metaDataTags{0}/value [Required] </h3>
+<dt>./metaDataTags(n).value</dt><tt>[Type: string] [Location: /nirs/metaDataTags{0}/value]</tt>
+<dd>This is a string value of the metadata tag. All values will be stored as strings. How strings are converted into numeric values is left to whoever defines the key.  However, it is required that dates be stored as YYYYMMDD, and clock times be stored as 
+HHMMSS.SSSS… (24 hour format) for consistency.  Time intervals must be in seconds.</dd>
 
 
 <h3>/nirs/aux{0} [Optional] </h3>
