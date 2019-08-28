@@ -149,7 +149,7 @@ In the above table, the notations are explained below
 
 #### /formatVersion 
 * **Presence**: required
-* **Type**:  string
+* **Type**:  string dataset
 * **Location**: `/formatVersion`
 
 This is a string that specifies the version of the file format.  This document 
