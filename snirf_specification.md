@@ -39,7 +39,7 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguious with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: either ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
+- `string`: either a H5T.C_S1 (null terminated string) type or as ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
   Defined by the `H5T.NATIVE_CHAR` or
   `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
   have a UTF16 native type, so 
@@ -67,7 +67,8 @@ initial file location.
 All indices (source, detector, wavelength, datatype etc) start at 1.
 
 All SNIRF data elements are associated with a unique HDF5 location path in the
-form of `/root/parent/.../name`. All paths must use `/nirs` as the root name.
+form of `/root/parent/.../name`. All paths must use `/nirs` or `/nirs#` (indexed group array).  
+Note that the root '/nirs' can be either indexed or a non-indexed single entry. 
 
 If a data element is an HDF5 group and contains multiple sub-groups, it is referred
 to as an **indexed group**. Each element of the sub-group is uniquely identified 
@@ -179,10 +180,22 @@ is present and is assumed to be entry 1.
 * **Presence**: required 
 * **Type**:  group array
 * **Location**: `/nirs(i)/metaDataTags(j)`
+The metaDataTag indexed array consists of key/value pairs the user 
+(or manufacturer) would like to put in.  Each entry of 
+the array consists of a string key and a value.
 
-This is a two column string array of arbitrary length consisting of any 
-key/value pairs the user (or manufacturer) would like to put in.  Each row of 
-the array consists of two strings. Some possible examples:
+#### /nirs(i)/metaDataTags(j).key 
+* **Presence**: required  as part of metaDataTags(j) 
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags(j)/key`
+
+
+#### /nirs(i)/metaDataTags(j).value 
+* **Presence**: required  as part of metaDataTags(j) 
+* **Type**:  string or numeric
+* **Location**: `/nirs(i)/metaDataTags(j)/value`
+
+ Some possible examples:
 
 ```
 ['ManufacturerName','ISS'],
@@ -193,11 +206,11 @@ the array consists of two strings. Some possible examples:
 ['StudyID','Infant Brain Development']
 ['StudyDescription','We study infant cognitive development.']
 ['AccessionNumber','INA2S12']
-['InstanceNumber','2']
+['InstanceNumber',2]
 ['CalibrationFileName','phantomcal_121015.snirf']
 ```
 
-While these tags are freeform, some conventions must be followed.  Keys should 
+While the name of these tags are freeform, some conventions must be followed.  Keys should 
 use only alphanumeric characters with no spaces, with individual words 
 capitalized.  All values will be stored as strings, How strings are converted 
 into numeric values is left to whoever defines the Key.  However, it is 
