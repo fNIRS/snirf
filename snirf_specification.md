@@ -87,8 +87,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
 |     `metaDataTags`                    | * Root-group for 1 or more metadata tags     |   `{.}`      * |
-|        `key`		                | * Metadata tag key name                      |   `"s"`      * |
-|        `value`		        | * Metadata tag key value	               |   `"s"`      * |
+|        `key`                          | * Metadata tag key name                      |   `"s"`      * |
+|        `value`                        | * Metadata tag key value	                   |   `"s"`      * |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
@@ -170,56 +170,56 @@ is present and is assumed to be entry 1.
 
 #### /nirs(i)/metaDataTags(j) 
 * **Presence**: required 
-* **Type**:  group array
+* **Type**:  indexed group
 * **Location**: `/nirs(i)/metaDataTags(j)`
-The metaDataTag indexed array consists of key/value pairs the user 
-(or manufacturer) would like to put in.  Each entry of 
-the array consists of a string key and a value.
 
-#### /nirs(i)/metaDataTags(j).key 
-* **Presence**: required  as part of metaDataTags(j) 
+This group stores metadata tags consisting of any key/value dataset pairs the user 
+(or manufacturer) would like to put in. Each tag is a group with two datasets strings: 
+key and value. 
+
+### /nirs/metaDataTags(i)/key
+* **Presence**: required 
 * **Type**:  string
 * **Location**: `/nirs(i)/metaDataTags(j)/key`
 
+While the key names are freeform, some conventions must be followed.  Key names
+should use only alphanumeric characters with no spaces, with individual words 
+capitalized.  
 
-#### /nirs(i)/metaDataTags(j).value 
-* **Presence**: required  as part of metaDataTags(j) 
-* **Type**:  string or numeric
+### /nirs/metaDataTags(i)/value
+* **Presence**: required 
+* **Type**:  string
 * **Location**: `/nirs(i)/metaDataTags(j)/value`
 
- Some possible examples:
-
-```
-['ManufacturerName','ISS'],
-['Model','Imagent'],
-['SubjectName', 'Pseudonym, I.M.A.'],
-['DateOfBirth','20120401'],
-['AcquisitionStartTime','150127.34']
-['StudyID','Infant Brain Development']
-['StudyDescription','We study infant cognitive development.']
-['AccessionNumber','INA2S12']
-['InstanceNumber',2]
-['CalibrationFileName','phantomcal_121015.snirf']
-```
-
-While the name of these tags are freeform, some conventions must be followed.  Keys should 
-use only alphanumeric characters with no spaces, with individual words 
-capitalized.  All values will be stored as strings, How strings are converted 
-into numeric values is left to whoever defines the Key.  However, it is 
-required that dates be stored as `YYYYMMDD`, and clock times be stored as 
-`HHMMSS.SSSS…` (24 hour format) for consistency.  Time intervals must be in 
-seconds.
+All values will be stored as strings, How strings are converted into numeric values 
+is left to whoever defines the Key.  However, it is required that dates be stored 
+as `YYYYMMDD`, and clock times be stored as `HHMMSS.SSSS…` (24 hour format) for 
+consistency. Time intervals must be in seconds.
 
 The following metadata tags are required:
 
 ```
-SubjectID
-MeasurementDate
-MeasurementTime
-LengthUnit    (allowed values are 'mm' and 'cm')
-TimeUnit      (allowed values are 'ms' and 's')
+[key: 'SubjectID',       value: <Subject ID>]
+[key: 'MeasurementDate', value: <YYYYMMDD>]
+[key: 'MeasurementTime', value: <HHMMSS.SSSS>]
+[key: 'LengthUnit',      value: {'mm'|'cm'}]
+[key: 'TimeUnit',        value: {'ms'|'s'}]
 ```
 
+Some other possible examples of metadata tags are:
+
+```
+[key: 'ManufacturerName',     value: 'ISS'],
+[key: 'Model',                value: 'Imagent'],
+[key: 'SubjectName',          value: 'Pseudonym, I.M.A.'],
+[key: 'DateOfBirth',          value: '20120401'],
+[key: 'AcquisitionStartTime', value: '150127.34']
+[key: 'StudyID',              value: 'Infant Brain Development']
+[key: 'StudyDescription',     value: 'We study infant cognitive development.']
+[key: 'AccessionNumber',      value: 'INA2S12']
+[key: 'InstanceNumber',       value: '2']
+[key: 'CalibrationFileName',  value: 'phantomcal_121015.snirf']
+```
 The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
 can be used to link the current dataset to a particular study and a particular 
 procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
