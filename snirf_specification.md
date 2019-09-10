@@ -86,17 +86,9 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
-|     `metaDataTags`                    | * Metadata headers                           |   `{.}`      * |
-|        `"SubjectID"`                  | * Subject identifier                         |   `"s"`      * |
-|        `"MeasurementDate"`            | * Date of the measurement                    |   `"s"`      * |
-|        `"MeasurementTime"`            | * Time of the measurement                    |   `"s"`      * |
-|        `"LengthUnit"`                 | * Length unit                                |   `"s"`      * |
-|        `"TimeUnit"`                   | * Time unit                                  |   `"s"`      * |
-|        `"SubjectName"`                | * Subject name                               |   `"s"`        |
-|        `"StudyID"`                    | * Study identifier                           |   `"s"`        |
-|        `"ManufacturerName"`           | * NIRS system manufacturer name              |   `"s"`        |
-|        `"Model"`                      | * NIRS system model number                   |   `"s"`        |
-|         ...                           | * Additional user-defined metadata entries   |                |
+|     `metaDataTags`                    | * Root-group for 1 or more metadata tags     |   `{.}`      * |
+|        `key`		                | * Metadata tag key name                      |   `"s"`      * |
+|        `value`		        | * Metadata tag key value	               |   `"s"`      * |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
