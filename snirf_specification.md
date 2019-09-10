@@ -88,11 +88,11 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
 |     `metaDataTags`                    | * Root-group for 1 or more metadata tags     |   `{.}`      * |
 |        `key`                          | * Metadata tag key name                      |   `"s"`      * |
-|        `value`                        | * Metadata tag key value	                   |   `"s"`      * |
+|        `value`                        | * Metadata tag key value	               |   `"s"`      * |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
-|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
+|        `measurementList{i}`           | * Root group for source-detector information |   `{i}`      * |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
@@ -102,7 +102,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|     `stim{i}`                         | * Root-group for the stimulus measurements   |   `{i}`        |
+|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
 |     `probe`                           | * NIRS probe information                     |   `{.}`      * |
@@ -124,7 +124,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying the landmark names|  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
-|     `aux{i}`                          | * Root-group for the auxiliary measurements  |   `{i}`        |
+|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
