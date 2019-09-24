@@ -39,7 +39,7 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguious with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: either ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
+- `string`: either a H5T.C_S1 (null terminated string) type or as ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
   Defined by the `H5T.NATIVE_CHAR` or
   `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
   have a UTF16 native type, so 
@@ -67,7 +67,8 @@ initial file location.
 All indices (source, detector, wavelength, datatype etc) start at 1.
 
 All SNIRF data elements are associated with a unique HDF5 location path in the
-form of `/root/parent/.../name`. All paths must use `/nirs` as the root name.
+form of `/root/parent/.../name`. All paths must use `/nirs` or `/nirs#` (indexed group array).  
+Note that the root '/nirs' can be either indexed or a non-indexed single entry. 
 
 If a data element is an HDF5 group and contains multiple sub-groups, it is referred
 to as an **indexed group**. Each element of the sub-group is uniquely identified 
@@ -85,21 +86,13 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
-|     `metaDataTags`                    | * Metadata headers                           |   `{.}`      * |
-|        `"SubjectID"`                  | * Subject identifier                         |   `"s"`      * |
-|        `"MeasurementDate"`            | * Date of the measurement                    |   `"s"`      * |
-|        `"MeasurementTime"`            | * Time of the measurement                    |   `"s"`      * |
-|        `"LengthUnit"`                 | * Length unit                                |   `"s"`      * |
-|        `"TimeUnit"`                   | * Time unit                                  |   `"s"`      * |
-|        `"SubjectName"`                | * Subject name                               |   `"s"`        |
-|        `"StudyID"`                    | * Study identifier                           |   `"s"`        |
-|        `"ManufacturerName"`           | * NIRS system manufacturer name              |   `"s"`        |
-|        `"Model"`                      | * NIRS system model number                   |   `"s"`        |
-|         ...                           | * Additional user-defined metadata entries   |                |
+|     `metaDataTags`                    | * Root-group for 1 or more metadata tags     |   `{.}`      * |
+|        `key`                          | * Metadata tag key name                      |   `"s"`      * |
+|        `value`                        | * Metadata tag key value	               |   `"s"`      * |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
-|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
+|        `measurementList{i}`           | * Root group for source-detector information |   `{i}`      * |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
@@ -109,7 +102,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|     `stim{i}`                         | * Root-group for the stimulus measurements   |   `{i}`        |
+|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
 |     `probe`                           | * NIRS probe information                     |   `{.}`      * |
@@ -131,7 +124,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying the landmark names|  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
-|     `aux{i}`                          | * Root-group for the auxiliary measurements  |   `{i}`        |
+|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
@@ -177,44 +170,56 @@ is present and is assumed to be entry 1.
 
 #### /nirs(i)/metaDataTags(j) 
 * **Presence**: required 
-* **Type**:  group array
+* **Type**:  indexed group
 * **Location**: `/nirs(i)/metaDataTags(j)`
 
-This is a two column string array of arbitrary length consisting of any 
-key/value pairs the user (or manufacturer) would like to put in.  Each row of 
-the array consists of two strings. Some possible examples:
+This group stores metadata tags consisting of any key/value dataset pairs the user 
+(or manufacturer) would like to put in. Each tag is a group with two datasets strings: 
+key and value. 
 
-```
-['ManufacturerName','ISS'],
-['Model','Imagent'],
-['SubjectName', 'Pseudonym, I.M.A.'],
-['DateOfBirth','20120401'],
-['AcquisitionStartTime','150127.34']
-['StudyID','Infant Brain Development']
-['StudyDescription','We study infant cognitive development.']
-['AccessionNumber','INA2S12']
-['InstanceNumber','2']
-['CalibrationFileName','phantomcal_121015.snirf']
-```
+### /nirs(i)/metaDataTags(j)/key
+* **Presence**: required 
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags(j)/key`
 
-While these tags are freeform, some conventions must be followed.  Keys should 
-use only alphanumeric characters with no spaces, with individual words 
-capitalized.  All values will be stored as strings, How strings are converted 
-into numeric values is left to whoever defines the Key.  However, it is 
-required that dates be stored as `YYYYMMDD`, and clock times be stored as 
-`HHMMSS.SSSS…` (24 hour format) for consistency.  Time intervals must be in 
-seconds.
+While the key names are freeform, some conventions must be followed.  Key names
+should use only alphanumeric characters with no spaces, with individual words 
+capitalized.  
+
+### /nirs(i)/metaDataTags(j)/value
+* **Presence**: required 
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags(j)/value`
+
+All values will be stored as strings, How strings are converted into numeric values 
+is left to whoever defines the Key.  However, it is required that dates be stored 
+as `YYYYMMDD`, and clock times be stored as `HHMMSS.SSSS…` (24 hour format) for 
+consistency. Time intervals must be in seconds.
 
 The following metadata tags are required:
 
 ```
-SubjectID
-MeasurementDate
-MeasurementTime
-LengthUnit    (allowed values are 'mm' and 'cm')
-TimeUnit      (allowed values are 'ms' and 's')
+[key: 'SubjectID',       value: <Subject ID>]
+[key: 'MeasurementDate', value: <YYYYMMDD>]
+[key: 'MeasurementTime', value: <HHMMSS.SSSS>]
+[key: 'LengthUnit',      value: {'mm'|'cm'}]
+[key: 'TimeUnit',        value: {'ms'|'s'}]
 ```
 
+Some other possible examples of metadata tags are:
+
+```
+[key: 'ManufacturerName',     value: 'ISS'],
+[key: 'Model',                value: 'Imagent'],
+[key: 'SubjectName',          value: 'Pseudonym, I.M.A.'],
+[key: 'DateOfBirth',          value: '20120401'],
+[key: 'AcquisitionStartTime', value: '150127.34']
+[key: 'StudyID',              value: 'Infant Brain Development']
+[key: 'StudyDescription',     value: 'We study infant cognitive development.']
+[key: 'AccessionNumber',      value: 'INA2S12']
+[key: 'InstanceNumber',       value: '2']
+[key: 'CalibrationFileName',  value: 'phantomcal_121015.snirf']
+```
 The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
 can be used to link the current dataset to a particular study and a particular 
 procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
