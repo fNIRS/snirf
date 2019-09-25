@@ -87,15 +87,11 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
 |     `metaDataTags`                    | * Metadata headers                           |   `{.}`      * |
-|        `"SubjectID"`                  | * Subject identifier                         |   `"s"`      * |
-|        `"MeasurementDate"`            | * Date of the measurement                    |   `"s"`      * |
-|        `"MeasurementTime"`            | * Time of the measurement                    |   `"s"`      * |
-|        `"LengthUnit"`                 | * Length unit                                |   `"s"`      * |
-|        `"TimeUnit"`                   | * Time unit                                  |   `"s"`      * |
-|        `"SubjectName"`                | * Subject name                               |   `"s"`        |
-|        `"StudyID"`                    | * Study identifier                           |   `"s"`        |
-|        `"ManufacturerName"`           | * NIRS system manufacturer name              |   `"s"`        |
-|        `"Model"`                      | * NIRS system model number                   |   `"s"`        |
+|        `SubjectID"`                    | * Subject identifier                         |   `"s"`      * |
+|        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
+|        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
+|        `LengthUnit`                   | * Length unit                                |   `"s"`      * |
+|        `TimeUnit`                     | * Time unit                                  |   `"s"`      * |
 |         ...                           | * Additional user-defined metadata entries   |                |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
@@ -145,8 +141,8 @@ In the above table, the notations are explained below
 * `<i>` represents an integer value
 * `<f>` represents an numeric value
 * `"s"` represents a string of arbitrary length
-* `[...]` represents a 1-D vector, can be empty
-* `[[...]]` represents a 2-D array, can be empty
+* `[...]` represents a 1-D vector (dataset), can be empty
+* `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
 * `+` in the last column indicates a required subfield if the optional parent object is included
@@ -176,59 +172,88 @@ The use of a non-indexed (e.g. `/nirs/`) entry is allowed when only one entry
 is present and is assumed to be entry 1.
 
 
-#### /nirs(i)/metaDataTags(j) 
+#### /nirs(i)/metaDataTags
 * **Presence**: required 
-* **Type**:  group array
-* **Location**: `/nirs(i)/metaDataTags(j)`
-The metaDataTag indexed array consists of key/value pairs the user 
-(or manufacturer) would like to put in.  Each entry of 
-the array consists of a string key and a value.
+* **Type**:  a group
+* **Location**: `/nirs(i)/metaDataTags`
+The `metaDataTags` group contains the metadata associated with the measurements.
+Each metadata record is represented as a dataset under this group - with the name of
+the record, i.e. the key, as the dataset's name, and the value of the record as the 
+actual data stored in the dataset. Each metadata record can potentially have different 
+data types.
 
-#### /nirs(i)/metaDataTags(j).key 
-* **Presence**: required  as part of metaDataTags(j) 
+The below five metadata records are minimally required in a SNIRF file
+
+#### /nirs(i)/metaDataTags/SubjectID
+* **Presence**: required  as part of `metaDataTags`
 * **Type**:  string
-* **Location**: `/nirs(i)/metaDataTags(j)/key`
+* **Location**: `/nirs(i)/metaDataTags/SubjectID`
+
+This record stores the string-valued ID of the study subject or experiment.
+
+#### /nirs(i)/metaDataTags/MeasurementDate
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/MeasurementDate`
+
+This record stores the date of the measurement as a string. The format of the date
+string must follow the ISO 8601 date string format `YYYY-MM-DD`, where
+- `YYYY` is the 4-digit year
+- `MM` is the 2-digit month (padding zero if a single digit)
+- `DD` is the 2-digit date (padding zero if a single digit)
+
+#### /nirs(i)/metaDataTags/MeasurementTime
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/MeasurementTime`
+
+This record stores the time of the measurement as a string. The format of the time
+string must follow the ISO 8601 time string format `hh:mm:ss.sTZD`, where
+- `hh` is the 2-digit hour
+- `mm` is the 2-digit minute
+- `ss` is the 2-digit second
+- `s` is 1 or more digit representing a decimal fraction of a second
+- `TZD` is the time zone designator (`Z` or `+hh:mm` or `-hh:mm`)
+
+#### /nirs(i)/metaDataTags/LengthUnit
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/LengthUnit`
+
+This record stores the SI length unit used in this measurement. Sample
+length units include "mm", "cm", and "m". A value of "um" is the same
+as "μm", i.e. micrometer.
+
+#### /nirs(i)/metaDataTags/TimeUnit
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/TimeUnit`
+
+This record stores the SI time unit used in this measurement. Sample
+length units include "s", and "ms". A value of "us" is the same
+as "μs", i.e. microsecond.
+
+We do not limit the total number of metadata records in the `metaDataTags`. Users
+can add additional customized metadata records; no duplicated metadata record names
+are allowed.
+
+Additional metadata record samples can be found in the below table.
+
+| Metadata Key Name | Metadata value |
+|-------------------|----------------|
+|"ManufacturerName" | "ISS" |
+|"Model" | "Imagent" |
+|"SubjectName" | "Pseudonym, I.M.A." |
+|"DateOfBirth" | "20120401" |
+|"AcquisitionStartTime" | "150127.34" |
+|"StudyID" | "Infant Brain Development" |
+|"StudyDescription" | "We study infant cognitive development" |
+|"AccessionNumber" | "INA2S12" |
+|"InstanceNumber"  | 2 |
+|"CalibrationFileName" | "phantomcal_121015.snirf" |
 
 
-#### /nirs(i)/metaDataTags(j).value 
-* **Presence**: required  as part of metaDataTags(j) 
-* **Type**:  string or numeric
-* **Location**: `/nirs(i)/metaDataTags(j)/value`
-
- Some possible examples:
-
-```
-['ManufacturerName','ISS'],
-['Model','Imagent'],
-['SubjectName', 'Pseudonym, I.M.A.'],
-['DateOfBirth','20120401'],
-['AcquisitionStartTime','150127.34']
-['StudyID','Infant Brain Development']
-['StudyDescription','We study infant cognitive development.']
-['AccessionNumber','INA2S12']
-['InstanceNumber',2]
-['CalibrationFileName','phantomcal_121015.snirf']
-```
-
-While the name of these tags are freeform, some conventions must be followed.  Keys should 
-use only alphanumeric characters with no spaces, with individual words 
-capitalized.  All values will be stored as strings, How strings are converted 
-into numeric values is left to whoever defines the Key.  However, it is 
-required that dates be stored as `YYYYMMDD`, and clock times be stored as 
-`HHMMSS.SSSS…` (24 hour format) for consistency.  Time intervals must be in 
-seconds.
-
-The following metadata tags are required:
-
-```
-SubjectID
-MeasurementDate
-MeasurementTime
-LengthUnit    (allowed values are 'mm' and 'cm')
-TimeUnit      (allowed values are 'ms' and 's')
-```
-
-The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
+The metadata records `"StudyID"` and `"AccessionNumber"` are unique strings that 
 can be used to link the current dataset to a particular study and a particular 
 procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
 ID" (0020,0010) and `"AccessionNumber"` is similar to the DICOM tag "Accession 
