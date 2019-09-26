@@ -286,17 +286,17 @@ Additional metadata record samples can be found in the below table.
 
 | Metadata Key Name | Metadata value |
 |-------------------|----------------|
-|"ManufacturerName" | "ISS" |
-|"Model" | "Imagent" |
-|"SubjectName" | "Pseudonym, I.M.A." |
-|"DateOfBirth" | "20120401" |
-|"AcquisitionStartTime" | "150127.34" |
-|"StudyID" | "Infant Brain Development" |
-|"StudyDescription" | "We study infant cognitive development" |
-|"AccessionNumber" | "INA2S12" |
-|"InstanceNumber"  | 2 |
-|"CalibrationFileName" | "phantomcal_121015.snirf" |
-|"UnixTime" | "1569465667" |
+|ManufacturerName | "ISS" |
+|Model | "Imagent" |
+|SubjectName | "Pseudonym, I.M.A." |
+|DateOfBirth | "20120401" |
+|AcquisitionStartTime | "150127.34" |
+|StudyID | "Infant Brain Development" |
+|StudyDescription | "We study infant cognitive development" |
+|AccessionNumber | "INA2S12" |
+|InstanceNumber  | 2 |
+|CalibrationFileName | "phantomcal_121015.snirf" |
+|UnixTime | "1569465667" |
 
 The metadata records `"StudyID"` and `"AccessionNumber"` are unique strings that 
 can be used to link the current dataset to a particular study and a particular 
