@@ -11,6 +11,49 @@ Shared Near Infrared File Format V1.0 Specification
 - [SNIRF file specification](#snirf-file-specification)
   * [SNIRF data format summary](#snirf-data-format-summary)
   * [SNIRF data container definitions](#snirf-data-container-definitions)
+       * [formatVersion](#formatversion)
+       * [nirs](#nirsi)
+       * [metaDataTags](#nirsimetadatatags)
+       * [data](#nirsidataj)
+       * [data.dataTimeSeries](#nirsidatajdatatimeseries)
+       * [data.time](#nirsidatajtime)
+       * [data.measurementList](#nirsidatajmeasurementlistk)
+       * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
+       * [data.measurementList.detectorIndex](#nirsidatajmeasurementlistkdetectorindex)
+       * [data.measurementList.wavelengthIndex](#nirsidatajmeasurementlistkwavelengthindex)
+       * [data.measurementList.dataType](#nirsidatajmeasurementlistkdatatype)
+       * [data.measurementList.dataTypeLabel](#nirsidatajmeasurementlistkdatatypelabel)
+       * [data.measurementList.dataTypeIndex](#nirsmeasurementlistkdatatypeindex)
+       * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
+       * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
+       * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
+       * [stim](#nirsistimj)
+       * [stim.name](#nirsistimjname)
+       * [stim.data](#nirsistimjdata)
+       * [probe](#nirsiprobe)
+       * [probe.wavelengths](#nirsiprobewavelengths)
+       * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
+       * [probe.sourcePos](#nirsiprobesourcepos)
+       * [probe.sourcePos3D](#nirsiprobesourcepos3d)
+       * [probe.detectorPos](#nirsiprobedetectorpos)
+       * [probe.detectorPos3D](#nirsiprobedetectorpos3d)
+       * [probe.frequencies](#nirsiprobefrequencies)
+       * [probe.timeDelays](#nirsiprobetimedelays)
+       * [probe.timeDelayWidths](#nirsiprobetimedelaywidths)
+       * [probe.momentOrders](#nirsiprobemomentorders)
+       * [probe.correlationTimeDelays](#nirsiprobecorrelationtimedelays)
+       * [probe.correlationTimeDelayWidths](#nirsiprobecorrelationtimedelaywidths)
+       * [probe.sourceLabels](#nirsiprobesourcelabels)
+       * [probe.detectorLabels](#nirsiprobedetectorlabels)
+       * [probe.landmarkPos](#nirsiprobelandmarkpos)
+       * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
+       * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
+       * [probe.useLocalIndex](#nirsiprobeuselocalindex)
+       * [aux](#nirsiauxj)
+       * [aux.name](#nirsiauxjname)
+       * [aux.dataTimeSeries](#nirsiauxjdatatimeseries)
+       * [aux.time](#nirsiauxjtime)
+       * [aux.timeOffset](#nirsiauxjtimeoffset)
 - [Appendix](#appendix)
 - [Acknowledgement](#acknowledgement)
 
@@ -371,7 +414,7 @@ Data-type identifier. See Appendix for list possible values.
 Data-type label. Only required if dataType is "processed" (`99999`). See Appendix 
 for list of possible values.
 
-#### /nirs/measurementList(k)/dataTypeIndex 
+#### /nirs(i)/data(j)/measurementList(k)/dataTypeIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataTypeIndex`
