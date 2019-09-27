@@ -150,7 +150,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|     `stim{i}`                         | * Root-group for the stimulus measurements   |   `{i}`        |
+|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
 |     `probe`                           | * NIRS probe information                     |   `{.}`      * |
@@ -166,19 +166,19 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying the source names  |  `["s",...]`   |
-|         `detectorLabels`              | * String arrays specifying the detector names|  `["s",...]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
+|         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos`                 | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
-|         `landmarkLabels`              | * String arrays specifying the landmark names|  `["s",...]`   |
+|         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
-|     `aux{i}`                          | * Root-group for the auxiliary measurements  |   `{i}`        |
+|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
-|         `timeOffset`                  | * Time offset of the auxiliary channel data  |  `[<f>,...]`   |
+|         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
-In the above table, the notations are explained below
+In the above table, the used notations are explained below
 
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
