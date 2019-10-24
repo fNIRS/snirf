@@ -130,7 +130,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
-|     `metaDataTags`                    | * Metadata headers                           |   `{.}`      * |
+|     `metaDataTags`                    | * Root-group for metadata headers            |   `{.}`      * |
 |        `SubjectID`                    | * Subject identifier                         |   `"s"`      * |
 |        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
 |        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
@@ -153,7 +153,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|     `probe`                           | * NIRS probe information                     |   `{.}`      * |
+|     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths                        |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths               |  `[<f>,...]`   |
 |         `sourcePos`                   | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
@@ -218,7 +218,7 @@ is present and is assumed to be entry 1.
 
 #### /nirs(i)/metaDataTags
 * **Presence**: required 
-* **Type**:  a group
+* **Type**:  group
 * **Location**: `/nirs(i)/metaDataTags`
 
 The `metaDataTags` group contains the metadata associated with the measurements.
