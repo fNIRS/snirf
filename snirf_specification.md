@@ -11,13 +11,56 @@ Shared Near Infrared File Format V1.0 Specification
 - [SNIRF file specification](#snirf-file-specification)
   * [SNIRF data format summary](#snirf-data-format-summary)
   * [SNIRF data container definitions](#snirf-data-container-definitions)
+       * [formatVersion](#formatversion)
+       * [nirs](#nirsi)
+       * [metaDataTags](#nirsimetadatatags)
+       * [data](#nirsidataj)
+       * [data.dataTimeSeries](#nirsidatajdatatimeseries)
+       * [data.time](#nirsidatajtime)
+       * [data.measurementList](#nirsidatajmeasurementlistk)
+       * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
+       * [data.measurementList.detectorIndex](#nirsidatajmeasurementlistkdetectorindex)
+       * [data.measurementList.wavelengthIndex](#nirsidatajmeasurementlistkwavelengthindex)
+       * [data.measurementList.dataType](#nirsidatajmeasurementlistkdatatype)
+       * [data.measurementList.dataTypeLabel](#nirsidatajmeasurementlistkdatatypelabel)
+       * [data.measurementList.dataTypeIndex](#nirsmeasurementlistkdatatypeindex)
+       * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
+       * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
+       * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
+       * [stim](#nirsistimj)
+       * [stim.name](#nirsistimjname)
+       * [stim.data](#nirsistimjdata)
+       * [probe](#nirsiprobe)
+       * [probe.wavelengths](#nirsiprobewavelengths)
+       * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
+       * [probe.sourcePos](#nirsiprobesourcepos)
+       * [probe.sourcePos3D](#nirsiprobesourcepos3d)
+       * [probe.detectorPos](#nirsiprobedetectorpos)
+       * [probe.detectorPos3D](#nirsiprobedetectorpos3d)
+       * [probe.frequencies](#nirsiprobefrequencies)
+       * [probe.timeDelays](#nirsiprobetimedelays)
+       * [probe.timeDelayWidths](#nirsiprobetimedelaywidths)
+       * [probe.momentOrders](#nirsiprobemomentorders)
+       * [probe.correlationTimeDelays](#nirsiprobecorrelationtimedelays)
+       * [probe.correlationTimeDelayWidths](#nirsiprobecorrelationtimedelaywidths)
+       * [probe.sourceLabels](#nirsiprobesourcelabels)
+       * [probe.detectorLabels](#nirsiprobedetectorlabels)
+       * [probe.landmarkPos](#nirsiprobelandmarkpos)
+       * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
+       * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
+       * [probe.useLocalIndex](#nirsiprobeuselocalindex)
+       * [aux](#nirsiauxj)
+       * [aux.name](#nirsiauxjname)
+       * [aux.dataTimeSeries](#nirsiauxjdatatimeseries)
+       * [aux.time](#nirsiauxjtime)
+       * [aux.timeOffset](#nirsiauxjtimeoffset)
 - [Appendix](#appendix)
 - [Acknowledgement](#acknowledgement)
 
 
 ## Introduction
 
-The file format specification uses the extension `*.snirf`.  These are HDF5 
+The file format specification uses the extension `.snirf`.  These are HDF5 
 format files, renamed with the `.snirf` extension.  For a program to be 
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.
 
@@ -39,7 +82,8 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguious with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: either a H5T.C_S1 (null terminated string) type or as ASCII encoded 8bit `char` array or UNICODE UTF-16 array.
+- `string`: either a `H5T.C_S1` (null terminated string) type or as ASCII 
+  encoded 8-bit `char` array or UNICODE UTF-16 array.
   Defined by the `H5T.NATIVE_CHAR` or
   `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
   have a UTF16 native type, so 
@@ -48,7 +92,7 @@ including
 - `integer`: the native integer types `H5T_NATIVE_INT` `H5T` datatype (alias of 
   `H5T_STD_I32BE` or `H5T_STD_I32LE`)
 - `numeric`: one of the native double or floating-point types; 
-  `H5T_NATIVE_DOUBLE` or `H5T_NATIVE_FLOAT` in `H5T`. (alias of 
+  `H5T_NATIVE_DOUBLE` or `H5T_NATIVE_FLOAT` in `H5T` (alias of 
   `H5T_IEEE_F64BE`,`H5T_IEEE_F64LE`, i.e. "double", or `H5T_IEEE_F32BE`, 
   `H5T_IEEE_F32LE`, i.e. "float")
 
@@ -61,20 +105,20 @@ consistent read/write between OS platforms.
 
 ## SNIRF file specification
 
-The SNIRF data format must have the initial `H5G` group type `"/nirs"` at the 
+The SNIRF data format must have the initial `H5G` group type `/nirs` at the 
 initial file location.
 
 All indices (source, detector, wavelength, datatype etc) start at 1.
 
 All SNIRF data elements are associated with a unique HDF5 location path in the
 form of `/root/parent/.../name`. All paths must use `/nirs` or `/nirs#` (indexed group array).  
-Note that the root '/nirs' can be either indexed or a non-indexed single entry. 
+Note that the root `/nirs` can be either indexed or a non-indexed single entry. 
 
 If a data element is an HDF5 group and contains multiple sub-groups, it is referred
 to as an **indexed group**. Each element of the sub-group is uniquely identified 
-by appending a string-formatted index (starting from 1) in the name, for example, 
-`/.../name1` denotes the first sub-group of data element `name`, and `/.../name2` 
-denotes the 2nd element, and so on.
+by appending a string-formatted index (starting from 1, with no preceding zeros) 
+in the name, for example, `/.../name1` denotes the first sub-group of data element 
+`name`, and `/.../name2` denotes the 2nd element, and so on.
 
 In the below sections, we use the notations `"(i)"` `"(j)"` or `"(k)"` inside the 
 HDF5 location paths to denote the indices of sub-elements when multiplicity presents.
@@ -86,13 +130,17 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
 | `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
-|     `metaDataTags`                    | * Root-group for 1 or more metadata tags     |   `{.}`      * |
-|        `key`                          | * Metadata tag key name                      |   `"s"`      * |
-|        `value`                        | * Metadata tag key value	               |   `"s"`      * |
+|     `metaDataTags`                    | * Root-group for metadata headers            |   `{.}`      * |
+|        `SubjectID`                    | * Subject identifier                         |   `"s"`      * |
+|        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
+|        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
+|        `LengthUnit`                   | * Length unit                                |   `"s"`      * |
+|        `TimeUnit`                     | * Time unit                                  |   `"s"`      * |
+|         ...                           | * Additional user-defined metadata entries   |                |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
-|        `measurementList{i}`           | * Root group for source-detector information |   `{i}`      * |
+|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
@@ -102,10 +150,10 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
+|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|     `probe`                           | * NIRS probe information                     |   `{.}`      * |
+|     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths                        |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths               |  `[<f>,...]`   |
 |         `sourcePos`                   | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
@@ -118,27 +166,27 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying the source names  |  `["s",...]`   |
-|         `detectorLabels`              | * String arrays specifying the detector names|  `["s",...]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
+|         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos`                 | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
-|         `landmarkLabels`              | * String arrays specifying the landmark names|  `["s",...]`   |
+|         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
-|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
+|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
-|         `timeOffset`                  | * Time offset of the auxiliary channel data  |  `[<f>,...]`   |
+|         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
-In the above table, the notations are explained below
+In the above table, the used notations are explained below
 
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
 * `<i>` represents an integer value
-* `<f>` represents an numeric value
+* `<f>` represents an numerical value
 * `"s"` represents a string of arbitrary length
-* `[...]` represents a 1-D vector, can be empty
-* `[[...]]` represents a 2-D array, can be empty
+* `[...]` represents a 1-D vector (dataset), can be empty
+* `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
 * `+` in the last column indicates a required subfield if the optional parent object is included
@@ -164,73 +212,105 @@ allow the storage of 1 or more complete NIRS datasets inside a single SNIRF
 document.  For example, a two-subject hyperscanning can be stored using the notation
 * `/nirs1` =  first subject's data
 * `/nirs2` =  second subject's data
-The use of a non-indexed (e.g. `/nirs/`) entry is allowed when only one entry 
+The use of a non-indexed (e.g. `/nirs`) entry is allowed when only one entry 
 is present and is assumed to be entry 1.
 
 
-#### /nirs(i)/metaDataTags(j) 
+#### /nirs(i)/metaDataTags
 * **Presence**: required 
-* **Type**:  indexed group
-* **Location**: `/nirs(i)/metaDataTags(j)`
+* **Type**:  group
+* **Location**: `/nirs(i)/metaDataTags`
 
-This group stores metadata tags consisting of any key/value dataset pairs the user 
-(or manufacturer) would like to put in. Each tag is a group with two datasets strings: 
-key and value. 
+The `metaDataTags` group contains the metadata associated with the measurements.
+Each metadata record is represented as a dataset under this group - with the name of
+the record, i.e. the key, as the dataset's name, and the value of the record as the 
+actual data stored in the dataset. Each metadata record can potentially have different 
+data types.
 
-### /nirs(i)/metaDataTags(j)/key
-* **Presence**: required 
+The below five metadata records are minimally required in a SNIRF file
+
+#### /nirs(i)/metaDataTags/SubjectID
+* **Presence**: required  as part of `metaDataTags`
 * **Type**:  string
-* **Location**: `/nirs(i)/metaDataTags(j)/key`
+* **Location**: `/nirs(i)/metaDataTags/SubjectID`
 
-While the key names are freeform, some conventions must be followed.  Key names
-should use only alphanumeric characters with no spaces, with individual words 
-capitalized.  
+This record stores the string-valued ID of the study subject or experiment.
 
-### /nirs(i)/metaDataTags(j)/value
-* **Presence**: required 
+#### /nirs(i)/metaDataTags/MeasurementDate
+* **Presence**: required  as part of `metaDataTags`
 * **Type**:  string
-* **Location**: `/nirs(i)/metaDataTags(j)/value`
+* **Location**: `/nirs(i)/metaDataTags/MeasurementDate`
 
-All values will be stored as strings, How strings are converted into numeric values 
-is left to whoever defines the Key.  However, it is required that dates be stored 
-as `YYYYMMDD`, and clock times be stored as `HHMMSS.SSSS…` (24 hour format) for 
-consistency. Time intervals must be in seconds.
+This record stores the date of the measurement as a string. The format of the date
+string must follow the ISO 8601 date string format `YYYY-MM-DD`, where
+- `YYYY` is the 4-digit year
+- `MM` is the 2-digit month (padding zero if a single digit)
+- `DD` is the 2-digit date (padding zero if a single digit)
 
-The following metadata tags are required:
+#### /nirs(i)/metaDataTags/MeasurementTime
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/MeasurementTime`
 
-```
-[key: 'SubjectID',       value: <Subject ID>]
-[key: 'MeasurementDate', value: <YYYYMMDD>]
-[key: 'MeasurementTime', value: <HHMMSS.SSSS>]
-[key: 'LengthUnit',      value: {'mm'|'cm'}]
-[key: 'TimeUnit',        value: {'ms'|'s'}]
-```
+This record stores the time of the measurement as a string. The format of the time
+string must follow the ISO 8601 time string format `hh:mm:ss.sTZD`, where
+- `hh` is the 2-digit hour
+- `mm` is the 2-digit minute
+- `ss` is the 2-digit second
+- `.s` is 1 or more digit representing a decimal fraction of a second (optional)
+- `TZD` is the time zone designator (`Z` or `+hh:mm` or `-hh:mm`)
 
-Some other possible examples of metadata tags are:
+#### /nirs(i)/metaDataTags/LengthUnit
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/LengthUnit`
 
-```
-[key: 'ManufacturerName',     value: 'ISS'],
-[key: 'Model',                value: 'Imagent'],
-[key: 'SubjectName',          value: 'Pseudonym, I.M.A.'],
-[key: 'DateOfBirth',          value: '20120401'],
-[key: 'AcquisitionStartTime', value: '150127.34']
-[key: 'StudyID',              value: 'Infant Brain Development']
-[key: 'StudyDescription',     value: 'We study infant cognitive development.']
-[key: 'AccessionNumber',      value: 'INA2S12']
-[key: 'InstanceNumber',       value: '2']
-[key: 'CalibrationFileName',  value: 'phantomcal_121015.snirf']
-```
-The metadata tags `"StudyID"` and `"AccessionNumber"` are unique strings that 
+This record stores the SI length unit used in this measurement. Sample
+length units include "mm", "cm", and "m". A value of "um" is the same
+as "μm", i.e. micrometer.
+
+#### /nirs(i)/metaDataTags/TimeUnit
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/TimeUnit`
+
+This record stores the SI time unit used in this measurement. Sample
+length units include "s", and "ms". A value of "us" is the same
+as "μs", i.e. microsecond.
+
+We do not limit the total number of metadata records in the `metaDataTags`. Users
+can add additional customized metadata records; no duplicated metadata record names
+are allowed.
+
+Additional metadata record samples can be found in the below table.
+
+| Metadata Key Name | Metadata value |
+|-------------------|----------------|
+|ManufacturerName | "ISS" |
+|Model | "Imagent" |
+|SubjectName | "Pseudonym, I.M.A." |
+|DateOfBirth | "20120401" |
+|AcquisitionStartTime | "150127.34" |
+|StudyID | "Infant Brain Development" |
+|StudyDescription | "We study infant cognitive development" |
+|AccessionNumber | "INA2S12" |
+|InstanceNumber  | 2 |
+|CalibrationFileName | "phantomcal_121015.snirf" |
+|UnixTime | "1569465667" |
+
+The metadata records `"StudyID"` and `"AccessionNumber"` are unique strings that 
 can be used to link the current dataset to a particular study and a particular 
 procedure, respectively. The `"StudyID"` tag is similar to the DICOM tag "Study 
 ID" (0020,0010) and `"AccessionNumber"` is similar to the DICOM tag "Accession 
 Number"(0008,0050), as defined in the DICOM standard (ISO 12052).
 
-The metadata tag `"InstanceNumber"` is defined similarly to the DICOM tag 
+The metadata record `"InstanceNumber"` is defined similarly to the DICOM tag 
 "Instance Number" (0020,0013), and can be used as the sequence number to group 
 multiple datasets into a larger dataset - for example, concatenating streamed 
 data segments during a long measurement session.
 
+The metadata record `"UnixTime"` defines the Unix Epoch Time, i.e. the total elapse
+time in seconds since 1970-01-01T00:00:00Z (UTC) minus the leap seconds.
 
 #### /nirs(i)/data(j) 
 * **Presence**: required
@@ -247,7 +327,7 @@ entry
 	
 #### /nirs(i)/data(j)/dataTimeSeries 
 * **Presence**: required
-* **Type**:  numeric 2-D array
+* **Type**:  numerical 2-D array
 * **Location**: `/nirs(i)/data(j)/dataTimeSeries`
 
 This is the actual raw or processed data variable. This variable has dimensions 
@@ -263,7 +343,7 @@ Chunked data is allowed to support real-time streaming of data in this array.
 
 #### /nirs(i)/data(j)/time 
 * **Presence**: required
-* **Type**:  numeric 1-D array
+* **Type**:  numerical 1-D array
 * **Location**: `/nirs(i)/data(j)/time`
 
 The `time` variable. This provides the acquisition time of the measurement 
@@ -334,7 +414,7 @@ Data-type identifier. See Appendix for list possible values.
 Data-type label. Only required if dataType is "processed" (`99999`). See Appendix 
 for list of possible values.
 
-#### /nirs/measurementList(k)/dataTypeIndex 
+#### /nirs(i)/data(j)/measurementList(k)/dataTypeIndex 
 * **Presence**: required
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataTypeIndex`
@@ -407,7 +487,7 @@ has the following required fields.
 
 
 #### /nirs(i)/stim(j)/name 
-* **Presence**: required  as part of stim(i) 
+* **Presence**: required  as part of `stim(i)` 
 * **Type**:  string
 * **Location**: `/nirs(i)/stim(j)/name`
 
@@ -415,8 +495,8 @@ This is a string describing the j<sup>th</sup> stimulus condition.
 
 
 #### /nirs(i)/stim(j)/data 
-* **Presence**: required  as part of stim(i) 
-* **Type**:  numeric 2-D array
+* **Presence**: required  as part of `stim(i)` 
+* **Type**:  numerical 2-D array
 * **Location**: `/nirs(i)/stim(j)/data`
 
 This is a three-column array specifying the stimulus time course for the 
@@ -438,13 +518,13 @@ geometry.  This variable has a number of required fields.
 
 #### /nirs(i)/probe/wavelengths 
 * **Presence**: required 
-* **Type**:  numeric 1-D array
+* **Type**:  numerical 1-D array
 * **Location**: `/nirs(i)/probe/wavelengths`
 
 This field describes the wavelengths used.  This is indexed by the wavelength 
-index of the measurementList variable. For example, `probe.wavelengths` = [690 
-780 830]; implies that the measurements were taken at three wavelengths (690nm, 
-780nm, and 830nm).  The wavelength index of 
+index of the measurementList variable. For example, `probe.wavelengths` = [690, 
+780, 830]; implies that the measurements were taken at three wavelengths (690 nm, 
+780 nm, and 830 nm).  The wavelength index of 
 `measurementList(k).wavelengthIndex` variable refers to this field.
 `measurementList(k).wavelengthIndex` = 2 means the k<sup>th</sup> measurement 
 was at 780nm.
@@ -457,7 +537,7 @@ generally have measurements at all wavelengths.
 
 #### /nirs(i)/probe/wavelengthsEmission 
 * **Presence**: optional 
-* **Type**:  numeric 1-D array
+* **Type**:  numerical 1-D array
 * **Location**: `/nirs(i)/probe/wavelengthsEmission`
 
 This field is required only for fluorescence data types, and describes the 
