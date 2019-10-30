@@ -1,3 +1,12 @@
 [submodule "samples"]
 	path = samples
 	url = https://github.com/fNIRS/snirf-samples.git
+[submodule "lib/matlab/easyh5"]
+	path = lib/matlab/easyh5
+	url = https://github.com/fNIRS/easyh5.git
+[submodule "lib/matlab/jsnirf"]
+	path = lib/matlab/jsnirf
+	url = https://github.com/fNIRS/jsnirf.git
+[submodule "lib/python/pysnirf"]
+	path = lib/python/pysnirf
+	url = https://github.com/fNIRS/pysnirf.git
