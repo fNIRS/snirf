@@ -10,6 +10,37 @@ The latest version of the SNIRF specification can be found in the file named
 in the [Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 for convenient editing and version control.
 
+## How to download the specification, sample files and parsers
+
+To browse the latest version of the SNIRF Specification document, you may click on 
+[this link](snirf_specification.md).
+
+To download the latest specification document alone, you should use the below command
+```
+   git clone https://github.com/fNIRS/snirf.git
+```
+or click on this [download link](https://github.com/fNIRS/snirf/archive/master.zip).
+
+If you use [TortoiseGit](https://tortoisegit.org/) on Windows, you should open a file browser, navigate to a folder
+where you want to store the files, right click, and select "Git Clone ..." from the 
+pop-up menu, then type in `https://github.com/fNIRS/snirf.git` as the URL.
+
+You may optionally download the sample data, or a parser that you need. To do so, you need
+to first `cd` the folder where the snirf repository was cloned, and then run the below commands
+```
+   cd snirf                                # cd the folder where the repo was cloned
+   git submodule update samples            # checkout the sample data files 
+   git submodule update lib/matlab/easyh5  # checkout a specific matlab parsers, or
+   git submodule update --init --remote    # checkout all components
+```
+
+To download the entire package at once, including the latest specification document, 
+sample files and all currently supported parsers, you should use the below command
+```
+   git clone --recursive https://github.com/fNIRS/snirf.git
+```
+If you use TortoiseGit, you must check the "Recursive" checkbox in the clone dialog.
+
 ## How to participate
 
 You can use a number of methods to provide your feedback to the working 
