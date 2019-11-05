@@ -4,9 +4,9 @@
 [submodule "lib/matlab/easyh5"]
 	path = lib/matlab/easyh5
 	url = https://github.com/fangq/easyh5.git
-[submodule "lib/matlab/jsnirf"]
-	path = lib/matlab/jsnirf
-	url = https://github.com/fangq/jsnirf.git
+[submodule "lib/matlab/jsnirfy"]
+	path = lib/matlab/jsnirfy
+	url = https://github.com/fangq/jsnirfy.git
 [submodule "lib/python/pysnirf"]
 	path = lib/python/pysnirf
 	url = https://github.com/fNIRS/pysnirf.git

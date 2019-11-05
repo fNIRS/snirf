@@ -91,7 +91,7 @@ alternatively, you can use
 
 JSNIRF Toolbox
 --------------------
-* Folder: `jsnirf`
+* Folder: `jsnirfy`
 * Author: Qianqian Fang <q.fang at neu.edu>
 * Version: 0.4
 
@@ -102,7 +102,7 @@ of EasyH5 toolbox.
 Following the above general instruction, and run the below command in MATLAB to use
 this toolbox:
 ```
-  addpath('jsnirf')
+  addpath('jsnirfy')
   addpath('easyh5')
 ```
 ### How to use
