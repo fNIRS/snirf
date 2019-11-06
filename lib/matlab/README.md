@@ -25,7 +25,8 @@ if the toolbox was checked out as part of the `snirf` repository, then you shoul
 make sure the toolbox is a subfolder in the path above. Then, you can use the below command to
 add the path
 ```
-  addpath('toolbox_folder_name')
+  cd toolbox_folder_name
+  addpath(pwd)
 ```
 If you want to add this path permanently, you need to type `pathtool`, 
 browse and select the toolbox folder and add to the list, then click "Save".
@@ -51,7 +52,8 @@ Following the above general instruction, and run the below command in MATLAB to 
 this toolbox:
 
 ```
-  addpath('easyh5')
+  cd easyh5
+  addpath(pwd)
 ```
 ### How to use
 
@@ -79,7 +81,8 @@ Following the above general instruction, and run the below command in MATLAB to 
 this toolbox:
 
 ```
-  addpath(genpath('snirf_homer3'))
+  cd snirf_homer3
+  addpath(genpath(pwd))
 ```
 
 alternatively, you can use 
@@ -102,8 +105,10 @@ of EasyH5 toolbox.
 Following the above general instruction, and run the below command in MATLAB to use
 this toolbox:
 ```
-  addpath('jsnirfy')
-  addpath('easyh5')
+  cd jsnirfy
+  addpath(pwd)
+  cd ../easyh5
+  addpath(pwd)
 ```
 ### How to use
 
