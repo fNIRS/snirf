@@ -67,7 +67,7 @@ Loading SNIRF file:
 
 Saving SNIRF file:
 ```
-  saveh5(data_raw, 'datafile.snirf','rootname','');   % snf must be a snirf structure containing {'formatVersion','nirs'} subfield
+  saveh5(data_raw, 'datafile.snirf','rootname','');   % data_raw must be a snirf structure containing {'formatVersion','nirs'} subfield
   saveh5(data_raw, 'datafile_zlib.snirf',,'rootname','','compression','deflate'); % use 'compression' flag to save data with compression to save space
 ```
 
