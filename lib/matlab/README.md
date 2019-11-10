@@ -124,7 +124,7 @@ this toolbox:
 
 Loading SNIRF file:
 ```
-  samplepath=[fileparts(which('loadsnirf')) '/../../../samples/'];        % locate the sample data folder
+  samplepath=[fileparts(which('loadh5')) regexprep('/../../../samples/','/',filesep)];  % locate the sample data folder
   samplefile=[samplepath filesep 'basic' filesep 'neuro_run01.snirf'];    % set the sample file
   snf=loadsnirf(samplefile);                                              % this is the same as loadh5(..,'regroup',1);
 ```
