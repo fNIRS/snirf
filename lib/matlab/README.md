@@ -16,7 +16,7 @@ in the below sections.
 
 General instructions
 --------------------
-You must first add path to the toolbox to be used before you can call their functions in MATLAB.
+You must first add the path to the toolbox to be used before you can call its functions in MATLAB.
 To do this, you typically need to navigate to the folder that contains this toolbox, for example,
 if the toolbox was checked out as part of the `snirf` repository, then you should run
 ```
