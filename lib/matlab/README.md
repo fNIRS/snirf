@@ -59,14 +59,16 @@ this toolbox:
 
 Loading SNIRF file:
 ```
-  data=loadh5('datafile.snirf');                % .snirf is the same as .h5
-  data=loadh5('datafile.snirf', 'regroup',1);   % regroup flag merge data into cell/struct array, recommended
+  samplepath=[fileparts(which('loadh5')) regexprep('/../../../samples/','/',filesep)];  % locate the sample data folder
+  samplefile=[samplepath filesep 'basic' filesep 'neuro_run01.snirf'];    % set the sample file
+  data_raw=loadh5(samplefile);                                            % .snirf is the same as .h5
+  data_simplified=loadh5(samplefile, 'regroup',1);   % regroup flag merge data into cell/struct array, recommended
 ```
 
 Saving SNIRF file:
 ```
-  saveh5(snf, 'datafile.snirf');   % snf must be a snirf structure containing {'formatVersion','nirs'} subfield
-  saveh5(snf, 'datafile.snirf','compression','deflate');   % use 'compression' flag to save data with compression to save space
+  saveh5(data_raw, 'datafile.snirf','rootname','');   % snf must be a snirf structure containing {'formatVersion','nirs'} subfield
+  saveh5(data_raw, 'datafile_zlib.snirf',,'rootname','','compression','deflate'); % use 'compression' flag to save data with compression to save space
 ```
 
 
@@ -88,9 +90,17 @@ this toolbox:
 alternatively, you can use 
 ```
   cd /path/to/snirf_homer3/
-  setpath
+  setpaths
 ```
-
+### How to use
+Loading SNIRF file:
+```
+  %% to be added
+```
+Saving SNIRF file:
+```
+  %% to be added
+```
 
 JSNIRF Toolbox
 --------------------
@@ -114,13 +124,15 @@ this toolbox:
 
 Loading SNIRF file:
 ```
-  data=loadsnirf('datafile.snirf');            % this is the same as loadh5(..,'regroup',1);
+  samplepath=[fileparts(which('loadsnirf')) '/../../../samples/'];        % locate the sample data folder
+  samplefile=[samplepath filesep 'basic' filesep 'neuro_run01.snirf'];    % set the sample file
+  snf=loadsnirf(samplefile);                                              % this is the same as loadh5(..,'regroup',1);
 ```
 
 Saving SNIRF file:
 ```
   savesnirf(snf, 'datafile.snirf');   % snf must be a snirf structure containing {'formatVersion','nirs'} subfield
-  savesnirf(snf, 'datafile.snirf','compression','deflate');   % use 'compression' flag to save data with compression to save space
+  savesnirf(snf, 'datafile_zlib.snirf','compression','deflate');   % use 'compression' flag to save data with compression to save space
 ```
 
 Create an empty SNIRF data struture
