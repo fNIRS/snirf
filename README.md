@@ -41,6 +41,18 @@ sample files and all currently supported parsers, you should use the below comma
 ```
 If you use TortoiseGit, you must check the "Recursive" checkbox in the clone dialog.
 
+The latest versions of the individual submodules, including sample data and parsers, can also 
+be downloaded by clicking on the the below links. After download, please follow the README
+file in each package for instructions on how to use.
+
+| Submodule   |                               URL                         |
+|-------------|-----------------------------------------------------------|
+| sample data | https://github.com/fNIRS/snirf-samples/archive/master.zip |
+| EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz    |
+| JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz   |
+| SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip|
+| pysnirf     | https://github.com/fNIRS/pysnirf/archive/master.zip       |
+
 ## How to participate
 
 You can use a number of methods to provide your feedback to the working 
