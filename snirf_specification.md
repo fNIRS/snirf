@@ -553,11 +553,13 @@ is paired with this emission wavelength for a given measurement.
 * **Location**: `/nirs(i)/probe/sourcePos`
 
 This field describes the position (in `LengthUnit` units) of each source 
-optode.  This field has size `<number of sources> x 3`. For example, 
-`probe.sourcePos(1,:) = [1.4 1 0]`, and `LengthUnit='cm'`; places source 
+optode. The postions can be either coordinates in a flattened 2D probe 
+geometry (`z` is assumed to be 0), or 3D positions in the world-coordinate
+system. If both information is stored in the file, one should use `sourcePos` 
+to store the flattened 2D probe coordinates and `sourcePos3D` to store the 
+3D optode coordinates. This field has size `<number of sources> x 3`. For example, 
+`probe.sourcePos(1,:) = [1.4 1 0]`, and `LengthUnit='cm'` places source 
 number 1 at x=1.4 cm and y=1 cm and z=0 cm.
-
-Dimensions are relative coordinates (i.e. to some arbitrary defined origin). 
 
 #### /nirs(i)/probe/sourcePos3D 
 * **Presence**: optional 
@@ -565,7 +567,9 @@ Dimensions are relative coordinates (i.e. to some arbitrary defined origin).
 * **Location**: `/nirs(i)/probe/sourcePos3D`
 
 This field describes the position (in `LengthUnit` units) of each source 
-optode in 3D.
+optode in 3D. When both `sourcePos` and `sourcePos3D` present, the former
+specifies the source optode coordinates in a flattened 2D geometry, while 
+the latter specifies the 3D coordinates of the source optodes.
 
 
 #### /nirs(i)/probe/detectorPos 
@@ -582,7 +586,7 @@ Same as `probe.sourcePos`, but describing the detector positions.
 * **Location**: `/nirs(i)/probe/detectorPos3D`
 
 This field describes the position (in `LengthUnit` units) of each detector 
-optode in 3D.
+optode in 3D, defined similarly to `sourcePos3D`.
 
 
 #### /nirs(i)/probe/frequencies 
