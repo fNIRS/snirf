@@ -558,6 +558,16 @@ This field has size `<number of sources> x 2`. For example,
 `probe.sourcePos2D(1,:) = [1.4 1]`, and `LengthUnit='cm'` places source 
 number 1 at x=1.4 cm and y=1 cm.
 
+
+#### /nirs(i)/probe/sourcePos
+* **Presence**: optional
+* **Type**:  numeric 2-D array
+* **Location**: `/nirs(i)/probe/sourcePos`
+
+An alias to `sourcePos2D` for backward compatibility. See `sourcePos2D` for 
+details.
+
+
 #### /nirs(i)/probe/sourcePos3D 
 * **Presence**: optional 
 * **Type**:  numeric 2-D array
@@ -574,6 +584,15 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 Same as `probe.sourcePos2D`, but describing the detector positions in a 
 flattened 2D probe layout.
+
+
+#### /nirs(i)/probe/detectorPos
+* **Presence**: optional 
+* **Type**:  numeric
+* **Location**: `/nirs(i)/probe/detectorPos`
+
+An alias to `detectorPos2D` for backward compatibility. See `detectorPos2D` for 
+details.
 
 
 #### /nirs(i)/probe/detectorPos3D 
