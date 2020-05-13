@@ -565,7 +565,7 @@ number 1 at x=1.4 cm and y=1 cm.
 * **Location**: `/nirs(i)/probe/sourcePos`
 
 An alias to `sourcePos2D` for backward compatibility. See `sourcePos2D` for 
-details.
+details. You are recommended to use `sourcePos2D` for better clarity.
 
 
 #### /nirs(i)/probe/sourcePos3D 
@@ -592,7 +592,7 @@ flattened 2D probe layout.
 * **Location**: `/nirs(i)/probe/detectorPos`
 
 An alias to `detectorPos2D` for backward compatibility. See `detectorPos2D` for 
-details.
+details. You are recommended to use `detectorPos2D` for better clarity.
 
 
 #### /nirs(i)/probe/detectorPos3D 
