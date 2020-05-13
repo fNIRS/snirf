@@ -48,7 +48,6 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe.sourceLabels](#nirsiprobesourcelabels)
        * [probe.detectorLabels](#nirsiprobedetectorlabels)
        * [probe.landmarkPos](#nirsiprobelandmarkpos)
-       * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
        * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
@@ -170,8 +169,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
 |         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
-|         `landmarkPos`                 | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
-|         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
+|         `landmarkPos`                 | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
@@ -421,7 +419,7 @@ for list of possible values.
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataTypeIndex`
 
-Data-type specific parameter indices. One use of this parameter is as a 
+Data-type specific parameter indices. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the probe structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters. One use of this parameter is as a 
 stimulus condition index when `measurementList(k).dataType = 99999` (i.e, `processed` and 
 `measurementList(k).dataTypeLabel = 'HRF ...'` .
 
@@ -706,21 +704,6 @@ of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
 given landmark. Label names are stored in the `probe.landmarkLabels` subfield. 
 An label index of 0 refers to an undefined landmark. 
-
-
-#### /nirs(i)/probe/landmarkPos3D 
-* **Presence**: optional 
-* **Type**:  numeric 2-D array
-* **Location**: `/nirs(i)/probe.landmarkPos3D`
-
-This is a 2-D array storing the neurological landmark positions measurement 
-from 3-D digitization and tracking systems to facilitate the registration and 
-mapping of optical data to brain anatomy. This array should contain a minimum 
-of 3 columns, representing the x, y and z coordinates of the digitized landmark 
-positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the `probe.landmarkLabels` subfield. 
-An label index of 0 refers to an undefined landmark. 
-
 
 #### /nirs(i)/probe/landmarkLabels(j) 
 * **Presence**: optional 
