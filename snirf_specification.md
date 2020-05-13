@@ -46,7 +46,6 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe.sourceLabels](#nirsiprobesourcelabels)
        * [probe.detectorLabels](#nirsiprobedetectorlabels)
        * [probe.landmarkPos](#nirsiprobelandmarkpos)
-       * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
        * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
@@ -168,8 +167,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
 |         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
-|         `landmarkPos`                 | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
-|         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
+|         `landmarkPos`                 | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
@@ -689,21 +687,6 @@ of 3 columns, representing the x, y and z coordinates of the digitized landmark
 positions. If a 4th column presents, it stores the index to the labels of the 
 given landmark. Label names are stored in the `probe.landmarkLabels` subfield. 
 An label index of 0 refers to an undefined landmark. 
-
-
-#### /nirs(i)/probe/landmarkPos3D 
-* **Presence**: optional 
-* **Type**:  numeric 2-D array
-* **Location**: `/nirs(i)/probe.landmarkPos3D`
-
-This is a 2-D array storing the neurological landmark positions measurement 
-from 3-D digitization and tracking systems to facilitate the registration and 
-mapping of optical data to brain anatomy. This array should contain a minimum 
-of 3 columns, representing the x, y and z coordinates of the digitized landmark 
-positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the `probe.landmarkLabels` subfield. 
-An label index of 0 refers to an undefined landmark. 
-
 
 #### /nirs(i)/probe/landmarkLabels(j) 
 * **Presence**: optional 
