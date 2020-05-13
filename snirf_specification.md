@@ -23,7 +23,7 @@ Shared Near Infrared File Format V1.0 Specification
        * [data.measurementList.wavelengthIndex](#nirsidatajmeasurementlistkwavelengthindex)
        * [data.measurementList.dataType](#nirsidatajmeasurementlistkdatatype)
        * [data.measurementList.dataTypeLabel](#nirsidatajmeasurementlistkdatatypelabel)
-       * [data.measurementList.dataTypeIndex](#nirsmeasurementlistkdatatypeindex)
+       * [data.measurementList.dataTypeIndex](#nirsidatajmeasurementlistkdatatypeindex)
        * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
        * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
        * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
@@ -33,8 +33,10 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe](#nirsiprobe)
        * [probe.wavelengths](#nirsiprobewavelengths)
        * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
+       * [probe.sourcePos2D](#nirsiprobesourcepos2d)
        * [probe.sourcePos](#nirsiprobesourcepos)
        * [probe.sourcePos3D](#nirsiprobesourcepos3d)
+       * [probe.detectorPos2D](#nirsiprobedetectorpos2d)
        * [probe.detectorPos](#nirsiprobedetectorpos)
        * [probe.detectorPos3D](#nirsiprobedetectorpos3d)
        * [probe.frequencies](#nirsiprobefrequencies)
@@ -155,9 +157,9 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths                        |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths               |  `[<f>,...]`   |
-|         `sourcePos`                   | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
+|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
 |         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`  |
-|         `detectorPos`                 | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`* |
+|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`* |
 |         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`  |
 |         `frequencies`                 | * Modulation frequency list                  |  `[<f>,...]`   |
 |         `timeDelays`                  | * Time delays for gated time-domain data     |  `[<f>,...]`   |
@@ -545,19 +547,26 @@ excitation wavelength
 is paired with this emission wavelength for a given measurement.
 
 
-#### /nirs(i)/probe/sourcePos 
+#### /nirs(i)/probe/sourcePos2D 
 * **Presence**: required 
+* **Type**:  numeric 2-D array
+* **Location**: `/nirs(i)/probe/sourcePos2D`
+
+This field describes the position (in `LengthUnit` units) of each source 
+optode. The postions are coordinates in a flattened 2D probe layout. 
+This field has size `<number of sources> x 2`. For example, 
+`probe.sourcePos2D(1,:) = [1.4 1]`, and `LengthUnit='cm'` places source 
+number 1 at x=1.4 cm and y=1 cm.
+
+
+#### /nirs(i)/probe/sourcePos
+* **Presence**: optional
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos`
 
-This field describes the position (in `LengthUnit` units) of each source 
-optode. The postions can be either coordinates in a flattened 2D probe 
-geometry (`z` is assumed to be 0), or 3D positions in the world-coordinate
-system. If both information is stored in the file, one should use `sourcePos` 
-to store the flattened 2D probe coordinates and `sourcePos3D` to store the 
-3D optode coordinates. This field has size `<number of sources> x 3`. For example, 
-`probe.sourcePos(1,:) = [1.4 1 0]`, and `LengthUnit='cm'` places source 
-number 1 at x=1.4 cm and y=1 cm and z=0 cm.
+An alias to `sourcePos2D` for backward compatibility. See `sourcePos2D` for 
+details. You are recommended to use `sourcePos2D` for better clarity.
+
 
 #### /nirs(i)/probe/sourcePos3D 
 * **Presence**: optional 
@@ -565,17 +574,25 @@ number 1 at x=1.4 cm and y=1 cm and z=0 cm.
 * **Location**: `/nirs(i)/probe/sourcePos3D`
 
 This field describes the position (in `LengthUnit` units) of each source 
-optode in 3D. When both `sourcePos` and `sourcePos3D` present, the former
-specifies the source optode coordinates in a flattened 2D geometry, while 
-the latter specifies the 3D coordinates of the source optodes.
+optode in 3D. This field has size `<number of sources> x 3`.
 
 
-#### /nirs(i)/probe/detectorPos 
+#### /nirs(i)/probe/detectorPos2D
 * **Presence**: required 
+* **Type**:  numeric
+* **Location**: `/nirs(i)/probe/detectorPos2D`
+
+Same as `probe.sourcePos2D`, but describing the detector positions in a 
+flattened 2D probe layout.
+
+
+#### /nirs(i)/probe/detectorPos
+* **Presence**: optional 
 * **Type**:  numeric
 * **Location**: `/nirs(i)/probe/detectorPos`
 
-Same as `probe.sourcePos`, but describing the detector positions.
+An alias to `detectorPos2D` for backward compatibility. See `detectorPos2D` for 
+details. You are recommended to use `detectorPos2D` for better clarity.
 
 
 #### /nirs(i)/probe/detectorPos3D 
