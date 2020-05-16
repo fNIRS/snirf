@@ -47,7 +47,9 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe.correlationTimeDelayWidths](#nirsiprobecorrelationtimedelaywidths)
        * [probe.sourceLabels](#nirsiprobesourcelabels)
        * [probe.detectorLabels](#nirsiprobedetectorlabels)
+       * [probe.landmarkPos2D](#nirsiprobelandmarkpos2d)
        * [probe.landmarkPos](#nirsiprobelandmarkpos)
+       * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
        * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
@@ -100,6 +102,9 @@ including
 For `integer` and `numeric` data fields, users should use HDF5's Datatype 
 Interface to query the byte-length stored in the file.
 
+The array dimensions in this Specification refer to the **HDF5 dataset 
+dimensions** and are independent to programming languages.
+
 Note, native datatypes are defined by the build of the software (e.g. 
 little/big endian) and are autmatically converted by the HDF5 backend for 
 consistent read/write between OS platforms.
@@ -135,8 +140,9 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |        `SubjectID`                    | * Subject identifier                         |   `"s"`      * |
 |        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
 |        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
-|        `LengthUnit`                   | * Length unit                                |   `"s"`      * |
-|        `TimeUnit`                     | * Time unit                                  |   `"s"`      * |
+|        `LengthUnit`                   | * Length unit (case sensitive)               |   `"s"`      * |
+|        `TimeUnit`                     | * Time unit (case sensitive)                 |   `"s"`      * |
+|        `FrequencyUnit`                | * Frequency unit (case sensitive)            |   `"s"`      * |
 |         ...                           | * Additional user-defined metadata entries   |                |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
@@ -155,8 +161,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
-|         `wavelengths`                 | * List of wavelengths                        |  `[<f>,...]` * |
-|         `wavelengthsEmission`         | * List of emission wavelengths               |  `[<f>,...]`   |
+|         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
+|         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
 |         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
 |         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`  |
 |         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`* |
@@ -169,7 +175,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
 |         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
-|         `landmarkPos`                 | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
+|         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
+|         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
@@ -265,18 +272,28 @@ string must follow the ISO 8601 time string format `hh:mm:ss.sTZD`, where
 * **Type**:  string
 * **Location**: `/nirs(i)/metaDataTags/LengthUnit`
 
-This record stores the SI length unit used in this measurement. Sample
-length units include "mm", "cm", and "m". A value of "um" is the same
-as "μm", i.e. micrometer.
+This record stores the **case-sensitive** SI length unit used in this 
+measurement. Sample length units include "mm", "cm", and "m". A value of 
+"um" is the same as "μm", i.e. micrometer.
 
 #### /nirs(i)/metaDataTags/TimeUnit
 * **Presence**: required  as part of `metaDataTags`
 * **Type**:  string
 * **Location**: `/nirs(i)/metaDataTags/TimeUnit`
 
-This record stores the SI time unit used in this measurement. Sample
-length units include "s", and "ms". A value of "us" is the same
-as "μs", i.e. microsecond.
+This record stores the **case-sensitive** SI time unit used in this 
+measurement. Sample time units include "s", and "ms". A value of "us" 
+is the same as "μs", i.e. microsecond.
+
+#### /nirs(i)/metaDataTags/FrequencyUnit
+* **Presence**: required  as part of `metaDataTags`
+* **Type**:  string
+* **Location**: `/nirs(i)/metaDataTags/FrequencyUnit`
+
+This record stores the **case-sensitive** SI frequency unit used in 
+this measurement. Sample frequency units "Hz", "MHz" and "GHz". Please
+note that "mHz" is milli-Hz while "MHz" denotes "mega-Hz" according to
+SI unit system.
 
 We do not limit the total number of metadata records in the `metaDataTags`. Users
 can add additional customized metadata records; no duplicated metadata record names
@@ -286,14 +303,14 @@ Additional metadata record samples can be found in the below table.
 
 | Metadata Key Name | Metadata value |
 |-------------------|----------------|
-|ManufacturerName | "ISS" |
-|Model | "Imagent" |
-|SubjectName | "Pseudonym, I.M.A." |
-|DateOfBirth | "20120401" |
-|AcquisitionStartTime | "150127.34" |
+|ManufacturerName | "Company Name" |
+|Model | "Model Name" |
+|SubjectName | "LastName, FirstName" |
+|DateOfBirth | "YYYY-MM-DD" |
+|AcquisitionStartTime | "1569465620" |
 |StudyID | "Infant Brain Development" |
-|StudyDescription | "We study infant cognitive development" |
-|AccessionNumber | "INA2S12" |
+|StudyDescription | "In this study, we measure ...." |
+|AccessionNumber | "##########################" |
 |InstanceNumber  | 2 |
 |CalibrationFileName | "phantomcal_121015.snirf" |
 |UnixTime | "1569465667" |
@@ -335,9 +352,9 @@ of `<number of time points> x <number of channels>`. Columns in
 `dataTimeSeries` are mapped to the measurement list (`measurementList` variable 
 described below).
 
-`dataTimeSeries` can be compressed using the HDF5 filter (prebuilt filters 
-`305-LZO` or `307-bzip2` supported; see 
-https://support.hdfgroup.org/services/filters.html).
+`dataTimeSeries` can be compressed using the HDF5 filter (using the built-in 
+[`deflate`](https://portal.hdfgroup.org/display/HDF5/H5P_SET_DEFLATE)
+filter or [3rd party filters such as `305-LZO` or `307-bzip2`](https://portal.hdfgroup.org/display/support/Registered+Filter+Plugins)
 
 Chunked data is allowed to support real-time streaming of data in this array. 
 
@@ -521,7 +538,7 @@ geometry.  This variable has a number of required fields.
 * **Type**:  numerical 1-D array
 * **Location**: `/nirs(i)/probe/wavelengths`
 
-This field describes the wavelengths used.  This is indexed by the wavelength 
+This field describes the wavelengths used (in `nm` unit).  This is indexed by the wavelength 
 index of the measurementList variable. For example, `probe.wavelengths` = [690, 
 780, 830]; implies that the measurements were taken at three wavelengths (690 nm, 
 780 nm, and 830 nm).  The wavelength index of 
@@ -541,10 +558,9 @@ generally have measurements at all wavelengths.
 * **Location**: `/nirs(i)/probe/wavelengthsEmission`
 
 This field is required only for fluorescence data types, and describes the 
-emission wavelengths used.  The indexing of this variable is the same 
+emission wavelengths used (in `nm` unit).  The indexing of this variable is the same 
 wavelength index in measurementList used for `probe.wavelengths` such that the 
-excitation wavelength 
-is paired with this emission wavelength for a given measurement.
+excitation wavelength is paired with this emission wavelength for a given measurement.
 
 
 #### /nirs(i)/probe/sourcePos2D 
@@ -609,9 +625,9 @@ optode in 3D, defined similarly to `sourcePos3D`.
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/frequencies`
 
-This field describes the frequencies used for frequency domain measurements. 
-This field is only required for frequency domain data types, and is indexed by 
-`measurementList(k).dataTypeIndex`.
+This field describes the frequencies used (in `FrequencyUnit` units)  for 
+frequency domain measurements. This field is only required for frequency 
+domain data types, and is indexed by `measurementList(k).dataTypeIndex`.
 
 
 #### /nirs(i)/probe/timeDelays 
@@ -619,7 +635,7 @@ This field is only required for frequency domain data types, and is indexed by
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/timeDelays`
 
-This field describes the time delays used for gated time domain measurements. 
+This field describes the time delays (in `TimeUnit` units) used for gated time domain measurements. 
 This field is only required for gated time domain data types, and is indexed by 
 `measurementList(k).dataTypeIndex`. The indexing of this field is paired with 
 the indexing of `probe.timeDelayWidths`. 
@@ -630,7 +646,7 @@ the indexing of `probe.timeDelayWidths`.
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/timeDelayWidths`
 
-This field describes the time delay widths used for gated time domain 
+This field describes the time delay widths (in `TimeUnit` units) used for gated time domain 
 measurements. This field is only required for gated time domain data types, and 
 is indexed by `measurementList(k).dataTypeIndex`.  The indexing of this field 
 is paired with the indexing of `probe.timeDelays`.
@@ -651,7 +667,7 @@ time domain data types, and is indexed by `measurementList(k).dataTypeIndex`.
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/correlationTimeDelays`
 
-This field describes the time delays used for diffuse correlation spectroscopy 
+This field describes the time delays (in `TimeUnit` units) used for diffuse correlation spectroscopy 
 measurements. This field is only required for diffuse correlation spectroscopy 
 data types, and is indexed by `measurementList(k).dataTypeIndex`.  The indexing 
 of this field is paired with the indexing of `probe.correlationTimeDelayWidths`.
@@ -662,7 +678,7 @@ of this field is paired with the indexing of `probe.correlationTimeDelayWidths`.
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/correlationTimeDelayWidth`
 
-This field describes the time delay widths used for diffuse correlation 
+This field describes the time delay widths (in `TimeUnit` units) used for diffuse correlation 
 spectroscopy measurements. This field is only required for gated time domain 
 data types, and is indexed by `measurementList(k).dataTypeIndex`. The indexing 
 of this field is paired with the indexing of `probe.correlationTimeDelays`.  
@@ -690,20 +706,44 @@ This is a string array providing user friendly or instrument specific labels
 for each detector. Each element of the array must be a unique string among both 
 `probe.sourceLabels` and `probe.detectorLabels`. This is indexed by 
 `measurementList(k).detectorIndex`.
-	
 
-#### /nirs(i)/probe/landmarkPos 
+
+#### /nirs(i)/probe/landmarkPos2D
 * **Presence**: optional 
 * **Type**:  numeric 2-D array
+* **Location**: `/nirs(i)/probe/landmarkPos2D`
+
+This is a 2-D array storing the neurological landmark positions projected
+along the 2-D (flattened) probe plane in order to map optical data from the
+flattened optode positions to brain anatomy. This array should contain a minimum 
+of 2 columns, representing the x and y coordinates (in `LengthUnit` units)
+of the 2-D projected landmark positions. If a 3rd column presents, it stores 
+the index to the labels of the given landmark. Label names are stored in the 
+`probe.landmarkLabels` subfield. An label index of 0 refers to an undefined landmark. 
+
+
+#### /nirs(i)/probe/landmarkPos
+* **Presence**: optional 
+* **Type**:  numeric
 * **Location**: `/nirs(i)/probe/landmarkPos`
+
+An alias to `landmarkPos2D` for backward compatibility. See `landmarkPos2D` for 
+details. You are recommended to use `landmarkPos2D` for better clarity.
+
+
+#### /nirs(i)/probe/landmarkPos3D
+* **Presence**: optional 
+* **Type**:  numeric 2-D array
+* **Location**: `/nirs(i)/probe/landmarkPos3D`
 
 This is a 2-D array storing the neurological landmark positions measurement 
 from 3-D digitization and tracking systems to facilitate the registration and 
 mapping of optical data to brain anatomy. This array should contain a minimum 
-of 3 columns, representing the x, y and z coordinates of the digitized landmark 
-positions. If a 4th column presents, it stores the index to the labels of the 
-given landmark. Label names are stored in the `probe.landmarkLabels` subfield. 
-An label index of 0 refers to an undefined landmark. 
+of 3 columns, representing the x, y and z coordinates (in `LengthUnit` units) 
+of the digitized landmark positions. If a 4th column presents, it stores the 
+index to the labels of the given landmark. Label names are stored in the 
+`probe.landmarkLabels` subfield. An label index of 0 refers to an undefined landmark. 
+
 
 #### /nirs(i)/probe/landmarkLabels(j) 
 * **Presence**: optional 
@@ -762,11 +802,12 @@ Chunked data is allowed to support real-time data streaming
 * **Type**:  numeric
 * **Location**: `/nirs(i)/aux(j)/time`
 
-The time variable. This provides the acquisition time of the aux measurement 
-relative to the time origin.  This will usually be a straight line with slope 
-equal to the acquisition frequency, but does not need to be equal spacing. The 
-size of this variable is `<number of time points> x 1` or `<2x1>` similar 
-to definition of the /nirs/data/time field.
+The time variable. This provides the acquisition time (in `TimeUnit` units) 
+of the aux measurement relative to the time origin.  This will usually be 
+a straight line with slope equal to the acquisition frequency, but does 
+not need to be equal spacing. The size of this variable is 
+`<number of time points> x 1` or `<2x1>` similar  to definition of the 
+`/nirs(i)/data(j)/time` field.
 
 Chunked data is allowed to support real-time data streaming
 
@@ -776,7 +817,7 @@ Chunked data is allowed to support real-time data streaming
 * **Location**: `/nirs(i)/aux(j)/timeOffset`
 
 This variable specifies the offset of the file time origin relative to absolute 
-(clock) time in seconds. 
+(clock) time in `TimeUnit` units.
 
 
 ## Appendix
