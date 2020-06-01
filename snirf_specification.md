@@ -21,6 +21,8 @@ Shared Near Infrared File Format V1.0 Specification
        * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
        * [data.measurementList.detectorIndex](#nirsidatajmeasurementlistkdetectorindex)
        * [data.measurementList.wavelengthIndex](#nirsidatajmeasurementlistkwavelengthindex)
+       * [data.measurementList.wavelengthActual](#nirsidatajmeasurementlistkwavelengthactual)
+       * [data.measurementList.wavelengthEmissionActual](#nirsidatajmeasurementlistkwavelengthemissionactual)
        * [data.measurementList.dataType](#nirsidatajmeasurementlistkdatatype)
        * [data.measurementList.dataTypeLabel](#nirsidatajmeasurementlistkdatatypelabel)
        * [data.measurementList.dataTypeIndex](#nirsidatajmeasurementlistkdatatypeindex)
@@ -148,6 +150,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
+|            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
+|            `wavelengthEmissionActual`| * Actual emission wavelength for a channel   |   `<f>`        |
 |            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
 |            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
@@ -411,7 +415,21 @@ Index of the detector.
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/wavelengthIndex`
 
-Index of the wavelength.
+Index of the "nominal" wavelength (in `probe.wavelengths`).
+
+#### /nirs(i)/data(j)/measurementList(k)/wavelengthActual 
+* **Presence**: optional
+* **Type**:  numeric
+* **Location**: `/nirs(i)/data(j)/measurementList(k)/wavelengthActual`
+
+Actual (measured) wavelength in nm, if available, for the source in a given channel.
+
+#### /nirs(i)/data(j)/measurementList(k)/wavelengthEmissionActual
+* **Presence**: optional
+* **Type**:  numeric
+* **Location**: `/nirs(i)/data(j)/measurementList(k)/wavelengthEmissionActual`
+
+Actual (measured) emission wavelength in nm, if available, for the source in a given channel.
 	
 #### /nirs(i)/data(j)/measurementList(k)/dataType 
 * **Presence**: required
@@ -535,18 +553,24 @@ geometry.  This variable has a number of required fields.
 * **Type**:  numerical 1-D array
 * **Location**: `/nirs(i)/probe/wavelengths`
 
-This field describes the wavelengths used (in `nm` unit).  This is indexed by the wavelength 
-index of the measurementList variable. For example, `probe.wavelengths` = [690, 
+This field describes the "nominal" wavelengths used (in `nm` unit).  This is indexed by the 
+`wavelengthIndex` of the measurementList variable. For example, `probe.wavelengths` = [690, 
 780, 830]; implies that the measurements were taken at three wavelengths (690 nm, 
 780 nm, and 830 nm).  The wavelength index of 
 `measurementList(k).wavelengthIndex` variable refers to this field.
 `measurementList(k).wavelengthIndex` = 2 means the k<sup>th</sup> measurement 
-was at 780nm.
+was at 780 nm.
+
+Please note that this field stores the "nominal" wavelengths. If the precise 
+(measured) wavelengths differ from the nominal wavelengths, one can store those
+in the `measurementList.wavelengthActual` field in a per-channel fashion.
 
 The number of wavelengths is not limited (except that at least two are needed 
 to calculate the two forms of hemoglobin).  Each source-detector pair would 
 generally have measurements at all wavelengths.
 
+This field must present, but can be empty, for example, in the case that the stored
+data are processed data (`dataType=99999`, see Appendix).
 
 
 #### /nirs(i)/probe/wavelengthsEmission 
@@ -555,9 +579,13 @@ generally have measurements at all wavelengths.
 * **Location**: `/nirs(i)/probe/wavelengthsEmission`
 
 This field is required only for fluorescence data types, and describes the 
-emission wavelengths used (in `nm` unit).  The indexing of this variable is the same 
+"nominal" emission wavelengths used (in `nm` unit).  The indexing of this variable is the same 
 wavelength index in measurementList used for `probe.wavelengths` such that the 
 excitation wavelength is paired with this emission wavelength for a given measurement.
+
+Please note that this field stores the "nominal" emission wavelengths. If the precise 
+(measured) emission wavelengths differ from the nominal ones, one can store those
+in the `measurementList.wavelengthEmissionActual` field in a per-channel fashion.
 
 
 #### /nirs(i)/probe/sourcePos2D 
