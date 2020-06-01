@@ -34,10 +34,8 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe.wavelengths](#nirsiprobewavelengths)
        * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
        * [probe.sourcePos2D](#nirsiprobesourcepos2d)
-       * [probe.sourcePos](#nirsiprobesourcepos)
        * [probe.sourcePos3D](#nirsiprobesourcepos3d)
        * [probe.detectorPos2D](#nirsiprobedetectorpos2d)
-       * [probe.detectorPos](#nirsiprobedetectorpos)
        * [probe.detectorPos3D](#nirsiprobedetectorpos3d)
        * [probe.frequencies](#nirsiprobefrequencies)
        * [probe.timeDelays](#nirsiprobetimedelays)
@@ -48,7 +46,6 @@ Shared Near Infrared File Format V1.0 Specification
        * [probe.sourceLabels](#nirsiprobesourcelabels)
        * [probe.detectorLabels](#nirsiprobedetectorlabels)
        * [probe.landmarkPos2D](#nirsiprobelandmarkpos2d)
-       * [probe.landmarkPos](#nirsiprobelandmarkpos)
        * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
        * [probe.useLocalIndex](#nirsiprobeuselocalindex)
@@ -575,15 +572,6 @@ This field has size `<number of sources> x 2`. For example,
 number 1 at x=1.4 cm and y=1 cm.
 
 
-#### /nirs(i)/probe/sourcePos
-* **Presence**: optional
-* **Type**:  numeric 2-D array
-* **Location**: `/nirs(i)/probe/sourcePos`
-
-An alias to `sourcePos2D` for backward compatibility. See `sourcePos2D` for 
-details. You are recommended to use `sourcePos2D` for better clarity.
-
-
 #### /nirs(i)/probe/sourcePos3D 
 * **Presence**: optional 
 * **Type**:  numeric 2-D array
@@ -600,15 +588,6 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 Same as `probe.sourcePos2D`, but describing the detector positions in a 
 flattened 2D probe layout.
-
-
-#### /nirs(i)/probe/detectorPos
-* **Presence**: optional 
-* **Type**:  numeric
-* **Location**: `/nirs(i)/probe/detectorPos`
-
-An alias to `detectorPos2D` for backward compatibility. See `detectorPos2D` for 
-details. You are recommended to use `detectorPos2D` for better clarity.
 
 
 #### /nirs(i)/probe/detectorPos3D 
@@ -720,15 +699,6 @@ of 2 columns, representing the x and y coordinates (in `LengthUnit` units)
 of the 2-D projected landmark positions. If a 3rd column presents, it stores 
 the index to the labels of the given landmark. Label names are stored in the 
 `probe.landmarkLabels` subfield. An label index of 0 refers to an undefined landmark. 
-
-
-#### /nirs(i)/probe/landmarkPos
-* **Presence**: optional 
-* **Type**:  numeric
-* **Location**: `/nirs(i)/probe/landmarkPos`
-
-An alias to `landmarkPos2D` for backward compatibility. See `landmarkPos2D` for 
-details. You are recommended to use `landmarkPos2D` for better clarity.
 
 
 #### /nirs(i)/probe/landmarkPos3D
