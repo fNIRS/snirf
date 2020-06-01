@@ -246,7 +246,7 @@ This record stores the string-valued ID of the study subject or experiment.
 * **Location**: `/nirs(i)/metaDataTags/MeasurementDate`
 
 This record stores the date of the measurement as a string. The format of the date
-string must follow the ISO 8601 date string format `YYYY-MM-DD`, where
+string must either be `"unknown"`, or follow the ISO 8601 date string format `YYYY-MM-DD`, where
 - `YYYY` is the 4-digit year
 - `MM` is the 2-digit month (padding zero if a single digit)
 - `DD` is the 2-digit date (padding zero if a single digit)
@@ -257,7 +257,7 @@ string must follow the ISO 8601 date string format `YYYY-MM-DD`, where
 * **Location**: `/nirs(i)/metaDataTags/MeasurementTime`
 
 This record stores the time of the measurement as a string. The format of the time
-string must follow the ISO 8601 time string format `hh:mm:ss.sTZD`, where
+string must either be `"unknown"` or follow the ISO 8601 time string format `hh:mm:ss.sTZD`, where
 - `hh` is the 2-digit hour
 - `mm` is the 2-digit minute
 - `ss` is the 2-digit second
