@@ -894,17 +894,17 @@ specification:
 - Joe Culver, University of Washington, neuroDOT
 - Hamid Deghani, University of Birmingham, NIRFAST
 - Adam Eggebrecht, University of Washington, neuroDOT
-- Christophe Grova, McGill University, NIRS Storm
+- Christophe Grova, McGill University, NIRSTORM
 - Felipe Orihuela-Espina, Instituto Nacional de Astrofísica, Óptica y Electrónica, ICNNA
 - Luca Pollonini, Houston Methodist, Phoebe
-- Sungho Tak, Korea Basic Science Institute, NIR-SPM
+- Sungho Tak, Korea Basic Science Institute, NIRS-SPM
 - Alessandro Torricelli, Politecnico di Milano
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
 - Rob Cooper, Gower Labs Inc
-- Mathieu Coursolle, Rogue
+- Mathieu Coursolle, Rogue Research
 - Rueben Hill, Gower Labs Inc
 - Jorn Horschig, Artinis Inc
 - Takumi Inakazu, Hitachi
