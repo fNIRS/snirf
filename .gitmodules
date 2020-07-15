@@ -13,3 +13,6 @@
 [submodule "lib/matlab/snirf_homer3"]
 	path = lib/matlab/snirf_homer3
 	url = https://github.com/fNIRS/snirf_homer3.git
+[submodule "lib/python/python_snirf_validator"]
+	path = lib/python/python_snirf_validator
+	url = https://github.com/BUNPC/python_snirf_validator
