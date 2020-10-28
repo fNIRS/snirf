@@ -1,15 +1,3 @@
-# SNIRF Format Specification Development Guide
-
-We use this repository to gather feedback from the community regarding the 
-["Shared Near Infrared File Format Specification"](snirf_specification.md), or SNIRF format. Such 
-feedback is crucial to finalize this file specification and help to improve
-it in the future once disseminated. 
-
-The latest version of the SNIRF specification can be found in the file named 
-[snirf_specification.md](snirf_specification.md). The specification is written
-in the [Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
-for convenient editing and version control.
-
 ## How to download the specification, sample files and parsers
 
 To browse the latest version of the SNIRF Specification document, you may click on 
@@ -56,6 +44,16 @@ file in each package for instructions on how to use.
 [This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving) provides examples of how to work with Snirf files using the [Homer3](https://github.com/BUNPC/Homer3) interface.
 
 ## How to participate
+
+We use this repository to gather feedback from the community regarding the 
+["Shared Near Infrared File Format Specification"](snirf_specification.md), or SNIRF format. Such 
+feedback is crucial to finalize this file specification and help to improve
+it in the future once disseminated. 
+
+The latest version of the SNIRF specification can be found in the file named 
+[snirf_specification.md](snirf_specification.md). The specification is written
+in the [Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
+for convenient editing and version control.
 
 You can use a number of methods to provide your feedback to the working 
 draft of this file specification, including
