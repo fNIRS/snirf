@@ -1,3 +1,5 @@
+# SNIRF File Format
+
 ## How to download the specification, sample files and parsers
 
 To browse the latest version of the SNIRF Specification document, you may click on 
