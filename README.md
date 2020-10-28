@@ -53,6 +53,8 @@ file in each package for instructions on how to use.
 | SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip|
 | pysnirf     | https://github.com/fNIRS/pysnirf/archive/master.zip       |
 
+[This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving) provides examples of how to work with Snirf files using the [Homer3](https://github.com/BUNPC/Homer3) interface.
+
 ## How to participate
 
 You can use a number of methods to provide your feedback to the working 
