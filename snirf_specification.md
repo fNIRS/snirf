@@ -162,11 +162,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|         `dataLabels`                  | * Names of additional 
-
-
-
-of stim data   |  `["s",...]`   |
+|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
