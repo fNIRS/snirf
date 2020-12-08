@@ -162,7 +162,11 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
+|         `dataLabels`                  | * Names of additional 
+
+
+
+of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
@@ -552,8 +556,8 @@ in 'dataLabels'.
 * **Location**: `/nirs(i)/stim(j)/dataLabels`
 
 This is an optional array of strings which provides descriptive names for any extra
-columns of `/nirs(i)/stim(j)/data`. It must have 3 fewer elements than 'data' has columns.
-All strings are ASCII encoded char arrays.
+columns of `/nirs(i)/stim(j)/data`. It must have 3 fewer elements than `/nirs(i)/stim(j)/data`
+has columns. Each element is an ASCII encoded char array.
 
 
 #### /nirs(i)/probe 
