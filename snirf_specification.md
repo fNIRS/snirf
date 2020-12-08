@@ -32,6 +32,7 @@ Shared Near Infrared File Format V1.0 Specification
        * [stim](#nirsistimj)
        * [stim.name](#nirsistimjname)
        * [stim.data](#nirsistimjdata)
+       * [stim.dataLabels](#nirsistimjdatalabels)
        * [probe](#nirsiprobe)
        * [probe.wavelengths](#nirsiprobewavelengths)
        * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
@@ -151,7 +152,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
 |            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
-|            `wavelengthEmissionActual`| * Actual emission wavelength for a channel   |   `<f>`        |
+|            `wavelengthEmissionActual` | * Actual emission wavelength for a channel   |   `<f>`        |
 |            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
 |            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
@@ -161,6 +162,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
+|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
@@ -530,7 +532,6 @@ This is a string describing the j<sup>th</sup> stimulus condition.
 * **Presence**: required  as part of `stim(i)` 
 * **Type**:  numerical 2-D array
 * **Location**: `/nirs(i)/stim(j)/data`
-* **Allowed attribute**: `names`
 
 This is a numerical 2-D array with at least 3 columns, specifying the stimulus 
 time course for the j<sup>th</sup> condition. Each row corresponds with a 
@@ -541,13 +542,18 @@ value continues, and value is the stimulus amplitude.  The number of rows is
 not constrained. (see examples in the appendix).
 
 Additional columns can be used to store user-specified data associated with 
-each stimulus trial. An optional HDF5 attribute `names` can be attached to 
-`/nirs(i)/stim(j)/data` to annotate the meaning of each data column. When 
-such attribute presents, it must be a 2-D ASCII encoded 8-bit char-array, 
-where the k<sup>th</sup> row stores the string name, padding space (' ', 0x20) 
-to the right, for the k<sup>th</sup> column of `/nirs(i)/stim(j)/data`. 
-The column number of the `names` attribute must be greater than or 
-equal to the longest name of all data columns.
+each stimulus trial. These additional columns can optionally be identified with strings
+in 'dataLabels'.
+
+
+#### /nirs(i)/stim(j)/dataLabels 
+* **Presence**: optional 
+* **Type**:  string array
+* **Location**: `/nirs(i)/stim(j)/dataLabels`
+
+This is an optional array of strings which provides descriptive names for any extra
+columns of `/nirs(i)/stim(j)/data`. It must have 3 fewer elements than 'data' has columns.
+All strings are ASCII encoded char arrays.
 
 
 #### /nirs(i)/probe 
