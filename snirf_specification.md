@@ -533,7 +533,7 @@ This is a string describing the j<sup>th</sup> stimulus condition.
 * **Allowed attribute**: `names`
 
 This is a numerical 2-D array with at least 3 columns, specifying the stimulus 
-time course for the j<sup>th</sup> condition. Each row corresponds with a 
+time course for the j<sup>th</sup> condition. Each row corresponds to a 
 specific stimulus trial. The first three columns indicate `[starttime duration value]`.  
 The starttime, in seconds, is the time relative to the time origin when the 
 stimulus takes on a value; the duration is the time in seconds that the stimulus 
@@ -541,14 +541,18 @@ value continues, and value is the stimulus amplitude.  The number of rows is
 not constrained. (see examples in the appendix).
 
 Additional columns can be used to store user-specified data associated with 
-each stimulus trial. An optional HDF5 attribute `names` can be attached to 
-`/nirs(i)/stim(j)/data` to annotate the meaning of each data column. When 
-such attribute presents, it must be a 2-D ASCII encoded 8-bit char-array, 
-where the k<sup>th</sup> row stores the string name, padding space (' ', 0x20) 
-to the right, for the k<sup>th</sup> column of `/nirs(i)/stim(j)/data`. 
-The column number of the `names` attribute must be greater than or 
-equal to the longest name of all data columns.
+each stimulus trial. An optional record `/nirs(i)/stim(j)/dataLabels` can be 
+used to annotate the meanings of each data column. 
 
+#### /nirs(i)/stim(j)/dataLabels
+* **Presence**: optional 
+* **Type**:  string array
+* **Location**: `/nirs(i)/stim(j)/dataLabels(k)`
+
+This is a string array providing annotations for each data column in 
+`/nirs(i)/stim(j)/data`. Each element of the array must be a string;
+the total length of this array must be the same as the column number
+of `/nirs(i)/stim(j)/data`, including the first 3 required columns.
 
 #### /nirs(i)/probe 
 * **Presence**: required 
