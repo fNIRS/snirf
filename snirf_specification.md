@@ -32,7 +32,7 @@ Shared Near Infrared File Format V1.0 Specification
        * [stim](#nirsistimj)
        * [stim.name](#nirsistimjname)
        * [stim.data](#nirsistimjdata)
-       * [stim.dataLabels](#nirsistimjdatalabels)
+       * [stim.dataLabels](#nirsistimjdatalabels)
        * [probe](#nirsiprobe)
        * [probe.wavelengths](#nirsiprobewavelengths)
        * [probe.wavelengthsEmission](#nirsiprobewavelengthsemission)
