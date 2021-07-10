@@ -29,6 +29,8 @@ Shared Near Infrared File Format V1.0 Specification
        * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
        * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
        * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
+       * [data.measurementList.sourceModuleIndex](#nirsidatajmeasurementlistksourcemoduleindex)
+       * [data.measurementList.detectorModuleIndex](#nirsidatajmeasurementlistkdetectormoduleindex)
        * [stim](#nirsistimj)
        * [stim.name](#nirsistimjname)
        * [stim.data](#nirsistimjdata)
