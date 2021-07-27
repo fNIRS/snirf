@@ -680,9 +680,12 @@ is paired with the indexing of `probe.timeDelays`.
 * **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/momentOrders`
 
-This field describes the moment orders of the temporal point spread function 
+This field describes the moment orders of the temporal point spread function (TPSF)
 for moment time domain measurements. This field is only required for moment 
 time domain data types, and is indexed by `measurementList(k).dataTypeIndex`.  
+Note that the numeric value in this array is the exponent in the moment integral
+\integral t^{momentOrder} I(t) dt
+where I(t) is the TPSF.
 
 
 #### /nirs(i)/probe/correlationTimeDelays 
