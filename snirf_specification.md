@@ -67,14 +67,13 @@ The file format specification uses the extension `.snirf`.  These are HDF5
 format files, renamed with the `.snirf` extension.  For a program to be 
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.
 
-The HDF5 specificiations are defined by the HDF5 group and found at 
+The HDF5 specifications are defined by the HDF5 group and found at 
 https://www.hdfgroup.org. It is expected that HDF5 future versions will remain 
 backwards compatibility in the foreseeable future.
 
 The HDF5 format defines "groups" (`H5G` class) and "datasets" (`H5D` class) 
 that are the two primary data organization and storage classes used in the 
-SNIRF specificiation. 
-
+SNIRF specification. 
 
 The structure of each data file has a minimum of required elements noted below. 
 For each element in the data structure, one of the 4 types is assigned, 
@@ -106,7 +105,7 @@ The array dimensions in this Specification refer to the **HDF5 dataset
 dimensions** and are independent to programming languages.
 
 Note, native datatypes are defined by the build of the software (e.g. 
-little/big endian) and are autmatically converted by the HDF5 backend for 
+little/big endian) and are automatically converted by the HDF5 backend for 
 consistent read/write between OS platforms.
 
 ## SNIRF file specification
@@ -377,7 +376,7 @@ a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 		
 * **Option 1** - The size of this variable is `<number of time points x 1>` and 
              corresponds to the sample time of every data point
-* **Option 2**-  The size of this variable is `<2x1>` and correponds to the start
+* **Option 2**-  The size of this variable is `<2x1>` and corresponds to the start
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
@@ -610,7 +609,7 @@ in the `measurementList.wavelengthEmissionActual` field in a per-channel fashion
 * **Location**: `/nirs(i)/probe/sourcePos2D`
 
 This field describes the position (in `LengthUnit` units) of each source 
-optode. The postions are coordinates in a flattened 2D probe layout. 
+optode. The positions are coordinates in a flattened 2D probe layout. 
 This field has size `<number of sources> x 2`. For example, 
 `probe.sourcePos2D(1,:) = [1.4 1]`, and `LengthUnit='cm'` places source 
 number 1 at x=1.4 cm and y=1 cm.
