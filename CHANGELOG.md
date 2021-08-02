@@ -3,8 +3,7 @@
 
 ### `1.0`
 
-[View this version](https://github.com/fNIRS/snirf/tree/9dcf29a56d4db5f572cadb0220448f4f96a28b9c)  
-Commit: 9dcf29a56d4db5f572cadb0220448f4f96a28b9c
+**This version is in development and has not been released yet**
 
 * General clarification of wording throughout the specification
 * Remove sourcePos, detectorPos, and landmarkPos
