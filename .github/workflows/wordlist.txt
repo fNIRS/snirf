@@ -6,7 +6,22 @@ easyh
 fangq
 https
 pysnirf
+fNIRS
+fnirs
+TortoiseGit
+TimeUnit
+milliwatt
 jsnirfy
+waveforms
+TPSF
+timeDelayWidths
+dt
+nanometers
+deoxy
+oxy
+starttime
+th
+momentOrder
 jsnirf
 subfolder
 submodule
@@ -19,6 +34,8 @@ measurementList
 sourceIndex
 detectorIndex
 subfield
+fNIR Devices
+addpath
 wavelengthIndex
 AccessionNumber
 AcquisitionStartTime
