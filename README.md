@@ -3,7 +3,8 @@
 ## How to download the specification, sample files and parsers
 
 To browse the latest version of the SNIRF Specification document, you may click on 
-[this link](snirf_specification.md).
+[this link](snirf_specification.md). A history of changes to the specification and
+information on version history is available in the [change log](CHANGELOG.md).
 
 To download the latest specification document alone, you should use the below command
 ```
