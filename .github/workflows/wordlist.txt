@@ -34,7 +34,7 @@ measurementList
 sourceIndex
 detectorIndex
 subfield
-fNIR Devices
+fNIR
 addpath
 wavelengthIndex
 AccessionNumber
@@ -78,6 +78,10 @@ Deoxygenated
 HRF
 BFi
 nirs
+nd
+gz
+dataset's
+designator
 HbO
 HbR
 HbT
