@@ -82,7 +82,7 @@ including
 - `group`: a structure containing sub-fields  (defined in the `H5G` object 
   class).  Arrays of groups, also known as the indexed-groups, are denoted 
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
-  index 1.  Array indices should be contiguious with no skipped values 
+  index 1.  Array indices should be contiguous with no skipped values 
   (an empty group with no sub-member is permitted).
 - `string`: either a `H5T.C_S1` (null terminated string) type or as ASCII 
   encoded 8-bit `char` array or UNICODE UTF-16 array.
