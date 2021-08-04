@@ -29,6 +29,8 @@ Shared Near Infrared File Format V1.0 Specification
        * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
        * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
        * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
+       * [data.measurementList.sourceModuleIndex](#nirsidatajmeasurementlistksourcemoduleindex)
+       * [data.measurementList.detectorModuleIndex](#nirsidatajmeasurementlistkdetectormoduleindex)
        * [stim](#nirsistimj)
        * [stim.name](#nirsistimjname)
        * [stim.data](#nirsistimjdata)
@@ -158,6 +160,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
+|            `sourceModuleIndex`       | * Index of the source's parent module        |   `<i>`        |
+|            `detectorModuleIndex`     | * Index of the detector's parent module     |   `<i>`        |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
@@ -475,8 +479,34 @@ Detector gain
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/moduleIndex`
 
-Index of a repeating module. 
-			
+Index of a repeating module. If `moduleIndex` is provided while `useLocalIndex`
+is set to `true`, then, both `measurementList(k).sourceIndex` and 
+`measurementList(k).detectorIndex` are assumed to be the local indices
+of the same module specified by `moduleIndex`. If the source and
+detector are located on different modules, one must use `sourceModuleIndex`
+and `detectorModuleIndex` instead to specify separate parent module 
+indices. See below.
+
+
+#### /nirs(i)/data(j)/measurementList(k)/sourceModuleIndex 
+* **Presence**: optional
+* **Type**:  integer
+* **Location**: `/nirs(i)/data(j)/measurementList(k)/sourceModuleIndex`
+
+Index of the module that contains the source of the channel. 
+This index must be used together with `detectorModuleIndex`, and 
+can not be used when `moduleIndex` presents.
+
+#### /nirs(i)/data(j)/measurementList(k)/detectorModuleIndex 
+* **Presence**: optional
+* **Type**:  integer
+* **Location**: `/nirs(i)/data(j)/measurementList(k)/detectorModuleIndex`
+
+Index of the module that contains the detector of the channel. 
+This index must be used together with `sourceModuleIndex`, and 
+can not be used when `moduleIndex` presents.
+
+
 For example, if `measurementList5` is a structure with `sourceIndex=2`, 
 `detectorIndex=3`, `wavelengthIndex=1`, `dataType=1`, `dataTypeIndex=1` would 
 imply that the data in the 5th column of the `dataTimeSeries` variable was 
@@ -784,8 +814,10 @@ ASCII encoded char arrays.
 For modular NIRS systems, setting this flag to a non-zero integer indicates 
 that `measurementList(k).sourceIndex` and `measurementList(k).detectorIndex` 
 are module-specific local-indices. One must also include 
-`measurementList(k).moduleIndex` in the `measurementList` structure in order to 
-restore the global indices of the sources/detectors.
+`measurementList(k).moduleIndex`, or when cross-module channels present, both 
+`measurementList(k).sourceModuleIndex` and `measurementList(k).detectorModuleIndex` 
+in the `measurementList` structure in order to restore the global indices 
+of the sources/detectors.
 
 
 #### /nirs(i)/aux(j) 
