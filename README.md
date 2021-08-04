@@ -3,7 +3,8 @@
 ## How to download the specification, sample files and parsers
 
 To browse the latest version of the SNIRF Specification document, you may click on 
-[this link](snirf_specification.md).
+[this link](snirf_specification.md). A history of changes to the specification and
+information on released versions is available in the [change log](CHANGELOG.md).
 
 To download the latest specification document alone, you should use the below command
 ```
@@ -99,6 +100,8 @@ first, and then follow the below steps
   - once you fork the SNIRF project to your own repository, you may edit the
     files in your browser directly, or download to your local folder, and 
     edit the files using a text editor;
+  - if you make a change to the specification (i.e. not a trivial change to the README)
+    then add a line item to the CHANGELOG.md file;
   - once your revision is complete, please "commit" and "push" it to your forked
     git repository. Then you should create a pull-request against the upstream
     repository (i.e., fNIRS/snirf). Please select "Compare cross forks" and 
