@@ -21,6 +21,9 @@ deoxy
 oxy
 starttime
 th
+sourceModuleIndex
+detectorModuleIndex
+CHANGELOG
 momentOrder
 jsnirf
 subfolder
