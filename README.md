@@ -100,7 +100,7 @@ first, and then follow the below steps
     files in your browser directly, or download to your local folder, and 
     edit the files using a text editor;
   - once your revision is complete, please "commit" and "push" it to your forked
-    git repository. Then you should create a pull-request agaist the upstream
+    git repository. Then you should create a pull-request against the upstream
     repository (i.e., fNIRS/snirf). Please select "Compare cross forks" and 
     select "fNIRS/snirf" as "base fork". Please write a descriptive title for
     your pull-request. The project maintainer will review your updates
