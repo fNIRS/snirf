@@ -135,13 +135,13 @@ Saving SNIRF file:
   savesnirf(snf, 'datafile_zlib.snirf','compression','deflate');   % use 'compression' flag to save data with compression to save space
 ```
 
-Create an empty SNIRF data struture
+Create an empty SNIRF data structure
 ```
   snf=snirfcreate;
   snf=snirfcreate('data',mydata,'aux',myaux);
 ```
 
-Create a JSNIRF data struture
+Create a JSNIRF data structure
 ```
   snf=jsnirfcreate;
   snf=jsnirfcreate('data',mydata,'aux',myaux);
