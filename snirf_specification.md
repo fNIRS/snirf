@@ -714,7 +714,7 @@ for moment time domain measurements. This field is only required for moment
 time domain data types, and is indexed by `measurementList(k).dataTypeIndex`.  
 Note that the numeric value in this array is the exponent in the integral used for calculating the moments. For a full description of the moment definitions, see Wabnitz et al, 2020 or Liebert et al, 2003.
 
-In Brief, given a DTOF (N(t): photon counts vs. photon arrival time at the detector): \
+In brief, given a DTOF N(t) (photon counts vs. photon arrival time at the detector): \
 momentOrder = 0: total counts: `N_total = \intergral N(t)dt` \
 momentOrder = 1: mean time of flight: `m = <t> = (1/N_total) \integral t N(t) dt` \
 momentOrder = 2: variance/second central moment: `V = (1/N_total) \integral (t - <t>)^2 N(t) dt` \
