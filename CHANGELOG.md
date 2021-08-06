@@ -14,7 +14,5 @@
 ### `1.0 - Draft 3` (November 11 2019)
 
 [View this version](https://github.com/fNIRS/snirf/tree/da550abf7ec70084e31ba428df09a9dcbf3e6036)  
-Commit: da550abf7ec70084e31ba428df09a9dcbf3e6036
-
 
 * Initial version with change log
