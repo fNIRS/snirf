@@ -713,7 +713,7 @@ This field describes the moment orders of the temporal point spread function (TP
 for moment time domain measurements. This field is only required for moment time domain data types, and is indexed by `measurementList(k).dataTypeIndex`.  
 Note that the numeric value in this array is the exponent in the integral used for calculating the moments. For detailed/specific definitions of moments, see [Wabnitz et al, 2020](https://doi.org/10.1364/BOE.396585); for general definitions of moments see [here](https://en.wikipedia.org/wiki/Moment_(mathematics) ).
 
-In brief, given a DTOF N(t) (photon counts vs. photon arrival time at the detector): \
+In brief, given a TPSF or DTOF N(t) (photon counts vs. photon arrival time at the detector): \
 momentOrder = 0: total counts: `N_total = \intergral N(t)dt` \
 momentOrder = 1: mean time of flight: `m = <t> = (1/N_total) \integral t N(t) dt` \
 momentOrder = 2: variance/second central moment: `V = (1/N_total) \integral (t - <t>)^2 N(t) dt` \
