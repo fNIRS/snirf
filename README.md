@@ -1,4 +1,4 @@
-# Shared Near Infrared File (SNIRF) Format
+# Shared Near Infrared Spectroscopy Format (SNIRF)
 
 This repository stores the Shared Near Infrared Spectroscopy Format (SNIRF).  
 SNIRF is designed by the community in an effort to facilitate sharing and analysis of NIRS data.
