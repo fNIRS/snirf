@@ -30,6 +30,7 @@ The following vendors export data in SNIRF format.
 | Vendor         |              URL                 |
 |----------------|----------------------------------|
 | NIRx           | https://nirx.net                 |
+| Kernel         | https://www.kernel.com           |
 
 
 ## Development Information
