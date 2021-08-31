@@ -633,7 +633,7 @@ in the `measurementList.wavelengthEmissionActual` field in a per-channel fashion
 
 
 #### /nirs(i)/probe/sourcePos2D 
-* **Presence**: required 
+* **Presence**: at least one of sourcePos2D or sourcePos3D is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos2D`
 
@@ -645,7 +645,7 @@ number 1 at x=1.4 cm and y=1 cm.
 
 
 #### /nirs(i)/probe/sourcePos3D 
-* **Presence**: optional 
+* **Presence**: at least one of sourcePos2D or sourcePos3D is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos3D`
 
@@ -654,7 +654,7 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 
 #### /nirs(i)/probe/detectorPos2D
-* **Presence**: required 
+* **Presence**: at least one of detectorPos2D or detectorPos3D is required
 * **Type**:  numeric
 * **Location**: `/nirs(i)/probe/detectorPos2D`
 
@@ -663,7 +663,7 @@ flattened 2D probe layout.
 
 
 #### /nirs(i)/probe/detectorPos3D 
-* **Presence**: optional 
+* **Presence**: at least one of detectorPos2D or detectorPos3D is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/detectorPos3D`
 
