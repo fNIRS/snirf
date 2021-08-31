@@ -70,7 +70,6 @@ file in each package for instructions on how to use.
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
 | SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip  |
-| pysnirf        | https://github.com/fNIRS/pysnirf/archive/master.zip       |
 
 [This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving) provides examples of how to work with Snirf files using the [Homer3](https://github.com/BUNPC/Homer3) interface.
 
