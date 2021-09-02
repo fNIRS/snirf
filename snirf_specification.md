@@ -916,6 +916,21 @@ This variable specifies the offset of the file time origin relative to absolute
 |"HRF BFi"  | Hemodynamic response function for blood flow index               |
 
 
+### Supported `/nirs(i)/aux(j)/name` values
+
+| Tag Name  |                           Meanings                               |
+|-----------|------------------------------------------------------------------|
+|"ACCEL_X"  | Accelerometer data, first axis of orientation                    |
+|"ACCEL_Y"  | Accelerometer data, second axis of orientation                   |
+|"ACCEL_Z"  | Accelerometer data, third axis of orientation                    |
+|"GYRO_X"   | Gyrometer data, first axis of orientation                        |
+|"GYRO_Y"   | Gyrometer data, second axis of orientation                       |
+|"GYRO_Z"   | Gyrometer data, third axis of orientation                        |
+|"MAGN_X"   | Magnetometer data, first axis of orientation                     |
+|"MAGN_Y"   | Magnetometer data, second axis of orientation                    |
+|"MAGN_Z"   | Magnetometer data, third axis of orientation                     |
+
+
 ### Examples of stimulus waveforms
 
 Assume there are 10 time points, starting at zero, spaced 0.1s apart.  If we 
