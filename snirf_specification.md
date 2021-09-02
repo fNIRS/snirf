@@ -152,19 +152,19 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
 |            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
-|            `wavelengthEmissionActual`| * Actual emission wavelength for a channel   |   `<f>`        |
+|            `wavelengthEmissionActual` | * Actual emission wavelength for a channel   |   `<f>`        |
 |            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
 |            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|            `sourceModuleIndex`       | * Index of the source's parent module        |   `<i>`        |
-|            `detectorModuleIndex`     | * Index of the detector's parent module     |   `<i>`        |
+|            `sourceModuleIndex`        | * Index of the source's parent module        |   `<i>`        |
+|            `detectorModuleIndex`      | * Index of the detector's parent module      |   `<i>`        |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|         `dataLabels`                 | * Names of additional columns of stim data   |  `["s",...]`   |
+|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
