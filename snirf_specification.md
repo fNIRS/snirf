@@ -201,7 +201,7 @@ In the above table, the used notations are explained below
 * `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
-* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by n required
+* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` required
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
