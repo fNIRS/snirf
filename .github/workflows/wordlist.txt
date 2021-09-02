@@ -21,6 +21,7 @@ deoxy
 oxy
 nirx
 starttime
+subfields
 th
 sourceModuleIndex
 detectorModuleIndex
