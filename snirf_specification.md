@@ -152,26 +152,26 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
 |            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
-|            `wavelengthEmissionActual` | * Actual emission wavelength for a channel   |   `<f>`        |
+|            `wavelengthEmissionActual`| * Actual emission wavelength for a channel   |   `<f>`        |
 |            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
 |            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
 |            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|            `sourceModuleIndex`        | * Index of the source's parent module        |   `<i>`        |
-|            `detectorModuleIndex`      | * Index of the detector's parent module      |   `<i>`        |
+|            `sourceModuleIndex`       | * Index of the source's parent module        |   `<i>`        |
+|            `detectorModuleIndex`     | * Index of the detector's parent module     |   `<i>`        |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
+|         `dataLabels`                 | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
-|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
-|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`  |
-|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`* |
-|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`  |
+|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
+|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
+|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
+|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
 |         `frequencies`                 | * Modulation frequency list                  |  `[<f>,...]`   |
 |         `timeDelays`                  | * Time delays for gated time-domain data     |  `[<f>,...]`   |
 |         `timeDelayWidths`             | * Time delay width for gated time-domain data|  `[<f>,...]`   |
@@ -201,6 +201,7 @@ In the above table, the used notations are explained below
 * `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
+* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` required
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
@@ -633,7 +634,7 @@ in the `measurementList.wavelengthEmissionActual` field in a per-channel fashion
 
 
 #### /nirs(i)/probe/sourcePos2D 
-* **Presence**: required 
+* **Presence**: at least one of `sourcePos2D` or `sourcePos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos2D`
 
@@ -645,7 +646,7 @@ number 1 at x=1.4 cm and y=1 cm.
 
 
 #### /nirs(i)/probe/sourcePos3D 
-* **Presence**: optional 
+* **Presence**: at least one of `sourcePos2D` or `sourcePos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos3D`
 
@@ -654,7 +655,7 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 
 #### /nirs(i)/probe/detectorPos2D
-* **Presence**: required 
+* **Presence**: at least one of `detectorPos2D` or `detectorPos3D` is required
 * **Type**:  numeric
 * **Location**: `/nirs(i)/probe/detectorPos2D`
 
@@ -663,7 +664,7 @@ flattened 2D probe layout.
 
 
 #### /nirs(i)/probe/detectorPos3D 
-* **Presence**: optional 
+* **Presence**: at least one of `detectorPos2D` or `detectorPos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/detectorPos3D`
 
