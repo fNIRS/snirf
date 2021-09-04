@@ -34,6 +34,9 @@ subfolder
 BUNPC
 FieldTrip
 MNE
+ok
+mailchi
+ec
 NIRStorm
 Nirstorm
 fieldtriptoolbox
