@@ -46,7 +46,7 @@ You may optionally download the sample data, or a parser that you need. To do so
 to first `cd` the folder where the snirf repository was cloned, and then run the below commands
 ```
    cd snirf                                # cd the folder where the repo was cloned
-   git submodule update samples            # checkout the sample data files 
+   git submodule update samples            # checkout the sample data files (needs >240MB)
    git submodule update lib/matlab/easyh5  # checkout a specific matlab parsers, or
    git submodule update --init --remote    # checkout all components
 ```
@@ -66,9 +66,11 @@ file in each package for instructions on how to use.
 
 | Submodule      |                               URL                         |
 |----------------|-----------------------------------------------------------|
-| sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping             |
+| sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip   |
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
 | SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip  |
 
-[This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving) provides examples of how to work with Snirf files using the [Homer3](https://github.com/BUNPC/Homer3) interface.
+[This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving)
+provides examples of how to work with SNIRF files using the
+[Homer3](https://github.com/BUNPC/Homer3) interface.
