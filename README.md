@@ -66,7 +66,7 @@ file in each package for instructions on how to use.
 
 | Submodule      |                               URL                         |
 |----------------|-----------------------------------------------------------|
-| sample data    | https://github.com/fNIRS/snirf-samples/archive/master.zip |
+| sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping             |
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
 | SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip  |

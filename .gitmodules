@@ -1,6 +1,6 @@
 [submodule "samples"]
 	path = samples
-	url = https://github.com/fNIRS/snirf-samples.git
+	url = https://github.com/rob-luke/BIDS-NIRS-Tapping.git
 [submodule "lib/matlab/easyh5"]
 	path = lib/matlab/easyh5
 	url = https://github.com/fangq/easyh5.git
