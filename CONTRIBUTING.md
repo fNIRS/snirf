@@ -2,7 +2,7 @@
 
 We actively welcome contributions from the fNIRS community.
 Contributions may take many forms including suggested text changes,
-highlighting areas of ambiguity, reports of incompatability, etc.
+highlighting areas of ambiguity, reports of incompatibility, etc.
 Please use the GitHub issues tracker to make your contributions,
 we can then publicly work with you to merge your contribution in to the SNIRF specification.
 
