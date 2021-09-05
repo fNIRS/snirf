@@ -953,6 +953,7 @@ specification:
 - Sungho Tak, Korea Basic Science Institute, NIRS-SPM
 - Alessandro Torricelli, Politecnico di Milano
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
+- Robert Luke, Macquarie University, MNE-NIRS
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
