@@ -223,3 +223,4 @@ dMTF
 dSkew
 dVar
 skewness
+dMean
