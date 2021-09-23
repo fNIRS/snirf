@@ -11,7 +11,6 @@ in the below sections.
 
 - [General instructions](#general-instructions)
 - [EasyH5 HDF5/SNIRF Parser](#easyh5-hdf5snirf-parser)
-- [HOMER3 SNIRF Parser](#homer3-snirf-parser)
 - [JSNIRF Toolbox](#jsnirf-toolbox)
 
 General instructions
@@ -69,37 +68,6 @@ Saving SNIRF file:
 ```
   saveh5(data_raw, 'datafile.snirf','rootname','');   % data_raw must be a snirf structure containing {'formatVersion','nirs'} subfield
   saveh5(data_raw, 'datafile_zlib.snirf',,'rootname','','compression','deflate'); % use 'compression' flag to save data with compression to save space
-```
-
-
-HOMER3 SNIRF Parser
---------------------
-* Folder: `snirf_homer3`
-* Author: Jay Dubb <jdubb at bu.edu>
-* Version: 1.13.4
-
-### How to install
-Following the above general instruction, and run the below command in MATLAB to use
-this toolbox:
-
-```
-  cd snirf_homer3
-  addpath(genpath(pwd))
-```
-
-alternatively, you can use 
-```
-  cd /path/to/snirf_homer3/
-  setpaths
-```
-### How to use
-Loading SNIRF file:
-```
-  %% to be added
-```
-Saving SNIRF file:
-```
-  %% to be added
 ```
 
 JSNIRF Toolbox
