@@ -3,8 +3,6 @@
 
 ### `1.0`
 
-**This version is in development and has not been released yet**
-
 * General clarification of wording throughout the specification
 * Remove sourcePos, detectorPos, and landmarkPos
 * Add wavelengthActual and wavelengthEmissionActual
