@@ -219,3 +219,7 @@ Wabnitz
 al
 et
 DTOF
+dMTF
+dSkew
+dVar
+skewness
