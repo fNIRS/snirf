@@ -134,61 +134,61 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 
 |  SNIRF-formatted NIRS data structure  |            Meaning of the data               |     Type       |
 |---------------------------------------|----------------------------------------------|----------------|
-| `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
-| `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
-|     `metaDataTags`                    | * Root-group for metadata headers            |   `{.}`      * |
-|        `SubjectID`                    | * Subject identifier                         |   `"s"`      * |
-|        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
-|        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
-|        `LengthUnit`                   | * Length unit (case sensitive)               |   `"s"`      * |
-|        `TimeUnit`                     | * Time unit (case sensitive)                 |   `"s"`      * |
-|        `FrequencyUnit`                | * Frequency unit (case sensitive)            |   `"s"`      * |
-|         ...                           | * Additional user-defined metadata entries   |                |
-|     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
-|        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
-|        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
-|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
-|            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
-|            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
-|            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
-|            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
-|            `wavelengthEmissionActual`| * Actual emission wavelength for a channel   |   `<f>`        |
-|            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
-|            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
-|            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
-|            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
-|            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
-|            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|            `sourceModuleIndex`       | * Index of the source's parent module        |   `<i>`        |
-|            `detectorModuleIndex`     | * Index of the detector's parent module     |   `<i>`        |
-|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
-|         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
-|         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
-|         `dataLabels`                 | * Names of additional columns of stim data   |  `["s",...]`   |
-|     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
-|         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
-|         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
-|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`* |
-|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`  |
-|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`* |
-|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`  |
-|         `frequencies`                 | * Modulation frequency list                  |  `[<f>,...]`   |
-|         `timeDelays`                  | * Time delays for gated time-domain data     |  `[<f>,...]`   |
-|         `timeDelayWidths`             | * Time delay width for gated time-domain data|  `[<f>,...]`   |
-|         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
-|         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
-|         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
-|         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
-|         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
-|         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
-|         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
-|         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
-|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
-|         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
-|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
-|         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
-|         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
+| `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
+| `/nirs{i}`                            | * Root-group for 1 or more NIRS datasets     |   `{i}`      * |
+|     `metaDataTags`                    | * Root-group for metadata headers            |   `{.}`      * |
+|        `SubjectID`                    | * Subject identifier                         |   `"s"`      * |
+|        `MeasurementDate`              | * Date of the measurement                    |   `"s"`      * |
+|        `MeasurementTime`              | * Time of the measurement                    |   `"s"`      * |
+|        `LengthUnit`                   | * Length unit (case sensitive)               |   `"s"`      * |
+|        `TimeUnit`                     | * Time unit (case sensitive)                 |   `"s"`      * |
+|        `FrequencyUnit`                | * Frequency unit (case sensitive)            |   `"s"`      * |
+|         ...                           | * Additional user-defined metadata entries   |                |
+|     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
+|        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
+|        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
+|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
+|            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
+|            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
+|            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
+|            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
+|            `wavelengthEmissionActual` | * Actual emission wavelength for a channel   |   `<f>`        |
+|            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
+|            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
+|            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
+|            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
+|            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
+|            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
+|            `sourceModuleIndex`        | * Index of the source's parent module        |   `<i>`        |
+|            `detectorModuleIndex`      | * Index of the detector's parent module      |   `<i>`        |
+|     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
+|         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
+|         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
+|         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
+|     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
+|         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
+|         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
+|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
+|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
+|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
+|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
+|         `frequencies`                 | * Modulation frequency list                  |  `[<f>,...]`   |
+|         `timeDelays`                  | * Time delays for gated time-domain data     |  `[<f>,...]`   |
+|         `timeDelayWidths`             | * Time delay width for gated time-domain data|  `[<f>,...]`   |
+|         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
+|         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
+|         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
+|         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
+|         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
+|         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
+|         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
+|         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
+|     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
+|         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
+|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
+|         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
+|         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
 In the above table, the used notations are explained below
 
@@ -201,6 +201,7 @@ In the above table, the used notations are explained below
 * `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
+* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` required
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
@@ -633,7 +634,7 @@ in the `measurementList.wavelengthEmissionActual` field in a per-channel fashion
 
 
 #### /nirs(i)/probe/sourcePos2D 
-* **Presence**: required 
+* **Presence**: at least one of `sourcePos2D` or `sourcePos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos2D`
 
@@ -645,7 +646,7 @@ number 1 at x=1.4 cm and y=1 cm.
 
 
 #### /nirs(i)/probe/sourcePos3D 
-* **Presence**: optional 
+* **Presence**: at least one of `sourcePos2D` or `sourcePos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/sourcePos3D`
 
@@ -654,7 +655,7 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 
 #### /nirs(i)/probe/detectorPos2D
-* **Presence**: required 
+* **Presence**: at least one of `detectorPos2D` or `detectorPos3D` is required
 * **Type**:  numeric
 * **Location**: `/nirs(i)/probe/detectorPos2D`
 
@@ -663,7 +664,7 @@ flattened 2D probe layout.
 
 
 #### /nirs(i)/probe/detectorPos3D 
-* **Presence**: optional 
+* **Presence**: at least one of `detectorPos2D` or `detectorPos3D` is required
 * **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/detectorPos3D`
 
@@ -866,7 +867,7 @@ Chunked data is allowed to support real-time data streaming
 * **Type**:  numeric
 * **Location**: `/nirs(i)/aux(j)/timeOffset`
 
-This variable specifies the offset of the file time origin relative to absolute 
+This variable specifies the offset of the file time origin relative to absolute
 (clock) time in `TimeUnit` units.
 
 
@@ -967,6 +968,7 @@ specification:
 - Sungho Tak, Korea Basic Science Institute, NIRS-SPM
 - Alessandro Torricelli, Politecnico di Milano
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
+- Robert Luke, Macquarie University, MNE-NIRS
 
 ### Hardware
 - Hirokazu Asaka, Hitachi

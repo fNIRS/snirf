@@ -1,18 +1,12 @@
 [submodule "samples"]
 	path = samples
-	url = https://github.com/fNIRS/snirf-samples.git
+	url = https://github.com/rob-luke/BIDS-NIRS-Tapping.git
 [submodule "lib/matlab/easyh5"]
 	path = lib/matlab/easyh5
 	url = https://github.com/fangq/easyh5.git
 [submodule "lib/matlab/jsnirfy"]
 	path = lib/matlab/jsnirfy
 	url = https://github.com/fangq/jsnirfy.git
-[submodule "lib/python/pysnirf"]
-	path = lib/python/pysnirf
-	url = https://github.com/fNIRS/pysnirf.git
 [submodule "lib/matlab/snirf_homer3"]
 	path = lib/matlab/snirf_homer3
 	url = https://github.com/fNIRS/snirf_homer3.git
-[submodule "lib/python/python_snirf_validator"]
-	path = lib/python/python_snirf_validator
-	url = https://github.com/BUNPC/python_snirf_validator

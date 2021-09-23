@@ -20,7 +20,9 @@ nanometers
 deoxy
 oxy
 nirx
+Macquarie
 starttime
+subfields
 th
 sourceModuleIndex
 detectorModuleIndex
@@ -33,6 +35,9 @@ subfolder
 BUNPC
 FieldTrip
 MNE
+ok
+mailchi
+ec
 NIRStorm
 Nirstorm
 fieldtriptoolbox
@@ -85,6 +90,7 @@ Nasion
 SubjectID
 DCS
 mHz
+luke
 timecourse
 BFi
 Deoxygenated
