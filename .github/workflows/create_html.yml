@@ -1,0 +1,43 @@
+name: Create HTML
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: create output directory
+        run: |
+          mkdir output
+          
+      - uses: docker://pandoc/core:2.9
+        with:
+          args: --output=output/index.html snirf_specification.md
+          
+      - uses: actions/upload-artifact@master
+        with:
+          name: snirf.html
+          path: output/index.html
+          
+      - name: Deploy
+#         if: ${{ github.ref == 'refs/heads/master' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'action@github.com'
+          keep_files: false
+          commit_message: 'Update documentation'      

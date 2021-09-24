@@ -109,6 +109,9 @@ Note, native datatypes are defined by the build of the software (e.g.
 little/big endian) and are automatically converted by the HDF5 backend for 
 consistent read/write between OS platforms.
 
+The development of the SNIRF specification is conducted in an open manner using the GitHub
+platform. To contribute or provide feedback visit [https://github.com/fNIRS/snirf](https://github.com/fNIRS/snirf).
+
 ## SNIRF file specification
 
 The SNIRF data format must have the initial `H5G` group type `/nirs` at the 
