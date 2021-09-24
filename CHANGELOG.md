@@ -1,9 +1,7 @@
 # Change Log For The SNIRF File Format
 
 
-### `1.0`
-
-**This version is in development and has not been released yet**
+### `1.0` (September 23 2021)
 
 * General clarification of wording throughout the specification.
 * Remove sourcePos, detectorPos, and landmarkPos.

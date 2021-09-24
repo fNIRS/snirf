@@ -1,7 +1,7 @@
 Shared Near Infrared Spectroscopy Format (SNIRF) Specification
 ==============================================================
 
-* **Document Version**: v1.0 Draft 3
+* **Document Version**: v1.0
 * **License**: This document is in the public domain.
 
 ## Table of Content
