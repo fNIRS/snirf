@@ -7,6 +7,3 @@
 [submodule "lib/matlab/jsnirfy"]
 	path = lib/matlab/jsnirfy
 	url = https://github.com/fangq/jsnirfy.git
-[submodule "lib/matlab/snirf_homer3"]
-	path = lib/matlab/snirf_homer3
-	url = https://github.com/fNIRS/snirf_homer3.git

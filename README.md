@@ -35,6 +35,8 @@ The following vendors export data in SNIRF format.
 
 ## Development Information
 
+Please read the procedure for [making contributions to SNIRF](CONTRIBUTING.md).
+
 To download the latest specification document alone click on this
 [download link](https://github.com/fNIRS/snirf/archive/master.zip),
 or use the below command
@@ -69,7 +71,6 @@ file in each package for instructions on how to use.
 | sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip   |
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
-| SNIRF_HOMER3   | https://github.com/fNIRS/snirf_homer3/archive/master.zip  |
 
 [This page](https://github.com/BUNPC/Homer3/wiki/Standalone-SNIRF-loading-and-saving)
 provides examples of how to work with SNIRF files using the
