@@ -20,8 +20,9 @@ Only someone with write access to the `fNIRS/snirf` repository can complete this
 6. Update the README.md document to reflect the new release by:
    1. Change the path of the "View the most recent release version of the format" link to reflect the tagged version.
       This will be something like https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md
-7. Modify the specification document to indicate that it is now a development version by:
+7. Modify the repository to indicate that it is now a development version by:
    1. Increase the version number in the SNIRF specification and append the word "development" to it. E.g., `v1.1-development`.
       This ensure that people can differentiate between released versions of the draft and work-in-progress versions.
+   2. Update the changelog file by adding a link to the released version, specifying the release data, and adding the next development version.
 8. Send an email out on the mailing list via: https://mailchi.mp/89a906ec22cf/snirf
 9. Increase the version number listed on the Society for fNIRS website: https://fnirs.org/resources/software/snirf/
