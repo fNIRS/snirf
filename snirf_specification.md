@@ -902,6 +902,9 @@ This variable specifies the offset of the file time origin relative to absolute
 | Tag Name  |                           Meanings                               |
 |-----------|------------------------------------------------------------------|
 |"dOD"      | Change in optical density                                        |
+|"dMean"    | Change in mean time-of-flight                                    |
+|"dVar"     | Change in variance (2nd central moment)                          |
+|"dSkew"    | Change in skewness (3rd central moment)                          |
 |"mua"      | Absorption coefficient                                           |
 |"musp"     | Scattering coefficient                                           |
 |"HbO"      | Oxygenated hemoglobin (oxyhemoglobin) concentration              |
@@ -911,6 +914,9 @@ This variable specifies the offset of the file time origin relative to absolute
 |"Lipid"    | Lipid concentration                                              |
 |"BFi"      | Blood flow index                                                 |
 |"HRF dOD"  | Hemodynamic response function for change in optical density      |
+|"HRF dMean"| HRF for change in mean time-of-flight                            |
+|"HRF dVar" | HRF for change in variance (2nd central moment)                  |
+|"HRF dSkew"| HRF for change in skewness (3rd central moment)                  |
 |"HRF HbO"  | Hemodynamic response function for oxyhemoglobin concentration    |
 |"HRF HbR"  | Hemodynamic response function for deoxyhemoglobin concentration  |
 |"HRF HbT"  | Hemodynamic response function for total hemoglobin concentration |
