@@ -224,3 +224,9 @@ dSkew
 dVar
 skewness
 dMean
+accel
+magn
+ACCEL
+Accelerometer
+Gyrometer
+MAGN

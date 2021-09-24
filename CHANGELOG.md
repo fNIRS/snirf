@@ -10,9 +10,8 @@
 * Add wavelengthActual and wavelengthEmissionActual.
 * Change stim/data names from attribute to regular dataset.
 * Require either 2D or 3D positions, not just 2D.
-* Require either 2D or 3D positions, not just 2D.
+* Add list of supported aux name values including accel, gyro, magn
 * Add datatypes for processed TD moment data.
-
 
 ### `1.0 - Draft 3` (November 11 2019)
 
