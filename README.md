@@ -3,7 +3,7 @@
 This repository stores the Shared Near Infrared Spectroscopy Format (SNIRF).  
 SNIRF is designed by the community in an effort to facilitate sharing and analysis of NIRS data.
 
-View the most recent release version of the format: [here](https://github.com/fNIRS/snirf/blob/da550abf7ec70084e31ba428df09a9dcbf3e6036/snirf_specification.md).  
+View the most recent release version of the format: [here](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md).  
 View the development version of the format: [here](snirf_specification.md).   
 
 
