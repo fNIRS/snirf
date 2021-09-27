@@ -1,0 +1,26 @@
+name: Create PDF
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: --pdf-engine=xelatex --output=snirf.pdf snirf_specification.md
+          
+      - uses: actions/upload-artifact@master
+        with:
+          name: snirf.pdf
+          path: snirf.pdf
