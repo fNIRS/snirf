@@ -828,7 +828,7 @@ of the sources/detectors.
 * **Type**:  indexed group
 * **Location**: `/nirs(i)/aux(j)`
 
-This optional array specifies any recorded auxiliary data. The complete list of currently supported data types can be found in the appendix. In addition to the supported entries, additional auxiliary data can be added. Each element of 
+This optional array specifies any recorded auxiliary data. The complete list of currently supported data types can be found in the appendix. In addition to the supported entries, more auxiliary data can be added. Each element of 
 `aux` has the following required fields:
 
 #### /nirs(i)/aux(j)/name 
