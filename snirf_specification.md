@@ -513,7 +513,7 @@ imply that the data in the 5th column of the `dataTimeSeries` variable was
 measured with source #2 and detector #3 at wavelength #1.  Wavelengths (in 
 nanometers) are described in the `probe.wavelengths` variable  (described 
 later). The data type in this case is 1, implying that it was a continuous wave 
-measurement.  The complete list of currently supported data types is found in 
+measurement. The complete list of currently supported data types is found in 
 the Appendix. The data type index specifies additional data type specific 
 parameters that are further elaborated by other fields in the `probe` 
 structure, as detailed below. Note that the Time Domain and Diffuse Correlation 
@@ -569,7 +569,7 @@ specific stimulus trial. The first three columns indicate `[starttime duration v
 The starttime, in seconds, is the time relative to the time origin when the 
 stimulus takes on a value; the duration is the time in seconds that the stimulus 
 value continues, and value is the stimulus amplitude.  The number of rows is 
-not constrained. (see examples in the appendix).
+not constrained (see examples in the appendix).
 
 Additional columns can be used to store user-specified data associated with 
 each stimulus trial. An optional record `/nirs(i)/stim(j)/dataLabels` can be 
@@ -828,7 +828,7 @@ of the sources/detectors.
 * **Type**:  indexed group
 * **Location**: `/nirs(i)/aux(j)`
 
-This optional array specifies any recorded auxiliary data. Each element of 
+This optional array specifies any recorded auxiliary data. The complete list of currently supported data types can be found in the appendix. In addition to the supported entries, additional auxiliary data can be added. Each element of 
 `aux` has the following required fields:
 
 #### /nirs(i)/aux(j)/name 
