@@ -230,3 +230,5 @@ ACCEL
 Accelerometer
 Gyrometer
 MAGN
+dataUnit
+CMIXF
