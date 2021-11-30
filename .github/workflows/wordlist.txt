@@ -232,3 +232,4 @@ Gyrometer
 MAGN
 dataUnit
 CMIXF
+unscaled
