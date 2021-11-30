@@ -455,7 +455,7 @@ Data-type identifier. See Appendix for list possible values.
 * **Type**:  string
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataUnit`
 
-International System of Units (SI units) identifier for the given channel. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) for maximum portability, avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`.
+International System of Units (SI units) identifier for the given channel. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`. The recommended export format is in unscaled units such as V, s, Mole.
 
 #### /nirs(i)/data(j)/measurementList(k)/dataTypeLabel 
 * **Presence**: optional
@@ -867,7 +867,7 @@ Chunked data is allowed to support real-time data streaming
 * **Type**:  string
 * **Location**: `/nirs(i)/aux(j)/dataUnit`
 
-International System of Units (SI units) identifier for the values of the auxiliary signal. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) for maximum portability, avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`.
+International System of Units (SI units) identifier for the given channel. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`. The recommended export format is in unscaled units such as V, s, Mole.
 
 #### /nirs(i)/aux(j)/time 
 * **Presence**: optional; required if `aux` is used
