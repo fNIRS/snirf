@@ -23,6 +23,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [data.measurementList.wavelengthActual](#nirsidatajmeasurementlistkwavelengthactual)
        * [data.measurementList.wavelengthEmissionActual](#nirsidatajmeasurementlistkwavelengthemissionactual)
        * [data.measurementList.dataType](#nirsidatajmeasurementlistkdatatype)
+       * [data.measurementList.dataUnit](#nirsidatajmeasurementlistkdataunit)
        * [data.measurementList.dataTypeLabel](#nirsidatajmeasurementlistkdatatypelabel)
        * [data.measurementList.dataTypeIndex](#nirsidatajmeasurementlistkdatatypeindex)
        * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
@@ -56,6 +57,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [aux](#nirsiauxj)
        * [aux.name](#nirsiauxjname)
        * [aux.dataTimeSeries](#nirsiauxjdatatimeseries)
+       * [aux.dataUnit](#nirsiauxjdataunit)
        * [aux.time](#nirsiauxjtime)
        * [aux.timeOffset](#nirsiauxjtimeoffset)
 - [Appendix](#appendix)
@@ -157,6 +159,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `wavelengthActual`         | * Actual wavelength for a given channel      |   `<f>`        |
 |            `wavelengthEmissionActual` | * Actual emission wavelength for a channel   |   `<f>`        |
 |            `dataType`                 | * Data type for a given channel              |   `<i>`      * |
+|            `dataUnit`                 | * SI unit for a given channel                |   `"s"`        |
 |            `dataTypeLabel`            | * Data type name for a given channel         |   `"s"`        |
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
@@ -190,6 +193,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
+|         `dataUnit`                    | * SI unit of the auxiliary channel           |   `"s"`        |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
 |         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
@@ -445,6 +449,13 @@ Actual (measured) emission wavelength in nm, if available, for the source in a g
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataType`
 
 Data-type identifier. See Appendix for list possible values.
+
+#### /nirs(i)/data(j)/measurementList(k)/dataUnit 
+* **Presence**: optional
+* **Type**:  string
+* **Location**: `/nirs(i)/data(j)/measurementList(k)/dataUnit`
+
+International System of Units (SI units) identifier for the given channel. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`. The recommended export format is in unscaled units such as V, s, Mole.
 
 #### /nirs(i)/data(j)/measurementList(k)/dataTypeLabel 
 * **Presence**: optional
@@ -850,6 +861,13 @@ This is the aux data variable. This variable has dimensions of `<number of
 time points> x 1`.
 
 Chunked data is allowed to support real-time data streaming
+
+#### /nirs(i)/aux(j)/dataUnit 
+* **Presence**: optional
+* **Type**:  string
+* **Location**: `/nirs(i)/aux(j)/dataUnit`
+
+International System of Units (SI units) identifier for the given channel. Encoding should follow the [CMIXF-12 standard](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), avoiding special unicode symbols like U+03BC (μ) or U+00B5 (µ) and using '/' rather than 'per' for units such as `V/us`. The recommended export format is in unscaled units such as V, s, Mole.
 
 #### /nirs(i)/aux(j)/time 
 * **Presence**: optional; required if `aux` is used

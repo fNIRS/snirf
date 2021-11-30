@@ -5,7 +5,7 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 
 ### `1.0.1` In development
 
-* No changes have been made yet compared to v1.0
+* Add dataUnit to indexed groups aux and measurementList
 
 
 ### `1.0` (September 23 2021)
@@ -19,7 +19,6 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Require either 2D or 3D positions, not just 2D.
 * Add list of supported aux name values including accel, gyro, magn
 * Add datatypes for processed TD moment data.
-
 
 ### `1.0 - Draft 3` (November 11 2019)
 
