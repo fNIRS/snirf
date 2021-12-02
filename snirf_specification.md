@@ -670,7 +670,7 @@ optode in 3D. This field has size `<number of sources> x 3`.
 
 #### /nirs(i)/probe/detectorPos2D
 * **Presence**: at least one of `detectorPos2D` or `detectorPos3D` is required
-* **Type**:  numeric
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/probe/detectorPos2D`
 
 Same as `probe.sourcePos2D`, but describing the detector positions in a 
@@ -854,7 +854,7 @@ This is string describing the j<sup>th</sup> auxiliary data timecourse.
 
 #### /nirs(i)/aux(j)/dataTimeSeries 
 * **Presence**: optional; required if `aux` is used
-* **Type**:  numeric
+* **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/aux(j)/dataTimeSeries`
 
 This is the aux data variable. This variable has dimensions of `<number of 
@@ -871,7 +871,7 @@ International System of Units (SI units) identifier for the given channel. Encod
 
 #### /nirs(i)/aux(j)/time 
 * **Presence**: optional; required if `aux` is used
-* **Type**:  numeric
+* **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/aux(j)/time`
 
 The time variable. This provides the acquisition time (in `TimeUnit` units) 
