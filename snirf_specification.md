@@ -169,7 +169,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |            `detectorModuleIndex`      | * Index of the detector's parent module      |   `<i>`        |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
-|         `data`                        | * Data stream of the stimulus channel        |  `[<f>,...]` + |
+|         `data`                        | * Data stream of the stimulus channel        | `[[<f>,...]]` +|
 |         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
@@ -192,7 +192,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
-|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]`+ |
+|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   |  `[<f>,...]` + |
 |         `dataUnit`                    | * SI unit of the auxiliary channel           |   `"s"`        |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
 |         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
