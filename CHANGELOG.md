@@ -13,7 +13,6 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * probe/detectorPos2D was described as `numeric` in the document when it should be `2-D array`
 
 
-
 ### `1.0` (September 23 2021)
 
 [View this version of the specification](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md)  
