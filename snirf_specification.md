@@ -202,7 +202,7 @@ In the above table, the used notations are explained below
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
 * `<i>` represents an integer value
-* `<f>` represents a numerical value
+* `<f>` represents a numeric value
 * `"s"` represents a string of arbitrary length
 * `[...]` represents a 1-D vector (dataset), can be empty
 * `[[...]]` represents a 2-D array (dataset), can be empty
@@ -357,7 +357,7 @@ entry
 	
 #### /nirs(i)/data(j)/dataTimeSeries 
 * **Presence**: required
-* **Type**:  numerical 2-D array
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/data(j)/dataTimeSeries`
 
 This is the actual raw or processed data variable. This variable has dimensions 
@@ -373,7 +373,7 @@ Chunked data is allowed to support real-time streaming of data in this array.
 
 #### /nirs(i)/data(j)/time 
 * **Presence**: required
-* **Type**:  numerical 1-D array
+* **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/data(j)/time`
 
 The `time` variable. This provides the acquisition time of the measurement 
@@ -573,11 +573,11 @@ This is a string describing the j<sup>th</sup> stimulus condition.
 
 #### /nirs(i)/stim(j)/data 
 * **Presence**: required  as part of `stim(i)` 
-* **Type**:  numerical 2-D array
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/stim(j)/data`
 * **Allowed attribute**: `names`
 
-This is a numerical 2-D array with at least 3 columns, specifying the stimulus 
+This is a numeric 2-D array with at least 3 columns, specifying the stimulus 
 time course for the j<sup>th</sup> condition. Each row corresponds to a 
 specific stimulus trial. The first three columns indicate `[starttime duration value]`.  
 The starttime, in seconds, is the time relative to the time origin when the 
@@ -609,7 +609,7 @@ geometry.  This variable has a number of required fields.
 
 #### /nirs(i)/probe/wavelengths 
 * **Presence**: required 
-* **Type**:  numerical 1-D array
+* **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/wavelengths`
 
 This field describes the "nominal" wavelengths used (in `nm` unit).  This is indexed by the 
@@ -634,7 +634,7 @@ data are processed data (`dataType=99999`, see Appendix).
 
 #### /nirs(i)/probe/wavelengthsEmission 
 * **Presence**: optional 
-* **Type**:  numerical 1-D array
+* **Type**:  numeric 1-D array
 * **Location**: `/nirs(i)/probe/wavelengthsEmission`
 
 This field is required only for fluorescence data types, and describes the 
