@@ -202,7 +202,7 @@ In the above table, the used notations are explained below
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
 * `<i>` represents an integer value
-* `<f>` represents an numerical value
+* `<f>` represents a numerical value
 * `"s"` represents a string of arbitrary length
 * `[...]` represents a 1-D vector (dataset), can be empty
 * `[[...]]` represents a 2-D array (dataset), can be empty
