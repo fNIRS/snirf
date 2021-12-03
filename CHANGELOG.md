@@ -6,6 +6,11 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 ### `1.0.1` In development
 
 * Add dataUnit to indexed groups aux and measurementList
+* Uses of the word "numerical" were replaced with "numeric" for consistency.
+* stim/data was incorrectly described as `[<f>,...]+` in the table when it should be `[[<f>,...]]+`
+* aux/dataTimeSeries was incorrectly described as `[[<f>,...]]+` in the table when it should be `[<f>,...]+`
+* aux/dataTimeSeries and aux/time were described as `numeric` in the document when they should be `1-D numeric array`
+* probe/detectorPos2D was described as `numeric` in the document when it should be `2-D array`
 
 
 ### `1.0` (September 23 2021)
