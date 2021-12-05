@@ -233,3 +233,10 @@ MAGN
 dataUnit
 CMIXF
 unscaled
+coordinateSystem
+CapTrak
+MNI
+NLin
+bAsym
+defition
+coordinateSystemDescription
