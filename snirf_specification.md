@@ -846,6 +846,7 @@ for detailed descriptions of different coordinate systems.
 Free-form text description of the coordinate system.
 May also include a link to a documentation page or
 paper describing the system in greater detail.
+This field is required if the `coordinateSystem` field is set to "Other".
 
 
 #### /nirs(i)/probe/useLocalIndex 
