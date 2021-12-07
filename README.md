@@ -23,7 +23,7 @@ The following software packages support reading and/or writing SNIRF files.
 | FieldTrip      | MATLAB | https://www.fieldtriptoolbox.org             |
 | NIRStorm       | MATLAB | https://github.com/Nirstorm/nirstorm         |
 | MNE-Python     | Python | https://mne.tools                            |
-| MNE-Python     | Python | https://pypi.org/project/pysnirf2/            |
+| pysnirf2       | Python | https://pypi.org/project/pysnirf2/           |
 
 
 The following vendors export data in SNIRF format.
