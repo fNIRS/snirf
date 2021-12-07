@@ -233,3 +233,4 @@ MAGN
 dataUnit
 CMIXF
 unscaled
+pypi
