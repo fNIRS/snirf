@@ -32,6 +32,7 @@ The following vendors export data in SNIRF format.
 |----------------|----------------------------------|
 | NIRx           | https://nirx.net                 |
 | Kernel         | https://www.kernel.com           |
+| Cortivision    | https://www.cortivision.com      |
 
 
 ## Development Information
