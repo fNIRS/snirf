@@ -7,6 +7,12 @@ View the most recent release version of the format: [here](https://github.com/fN
 View the development version of the format: [here](snirf_specification.md).   
 
 
+## Validating SNIRF files
+
+[pysnirf2](https://pypi.org/project/pysnirf2/) is the currently actively maintained tool for reading, writing and validating SNIRF files. pysnirf2 can be easily installed in a Python 3 environment using pip.
+
+See the [pysnirf2 README](https://github.com/BUNPC/pysnirf2#validating-a-snirf-file) for usage examples.
+
 ## User Information
 
 To browse the latest version of the SNIRF Specification document, you may click on 
