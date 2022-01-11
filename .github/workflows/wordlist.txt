@@ -233,5 +233,6 @@ MAGN
 dataUnit
 CMIXF
 unscaled
+pypi
 Cortivision
 cortivision
