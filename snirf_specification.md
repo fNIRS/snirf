@@ -70,6 +70,11 @@ The file format specification uses the extension `.snirf`.  These are HDF5
 format files, renamed with the `.snirf` extension.  For a program to be 
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.
 
+The development of the SNIRF specification is conducted in an open manner using the GitHub
+platform. To contribute or provide feedback visit [https://github.com/fNIRS/snirf](https://github.com/fNIRS/snirf).
+
+## Data format 
+
 The HDF5 specifications are defined by the HDF5 group and found at 
 https://www.hdfgroup.org. It is expected that HDF5 future versions will remain 
 backwards compatibility in the foreseeable future.
@@ -79,6 +84,7 @@ that are the two primary data organization and storage classes used in the
 SNIRF specification. 
 
 The structure of each data file has a minimum of required elements noted below. 
+
 For each element in the data structure, one of the 4 types is assigned, 
 including
 
