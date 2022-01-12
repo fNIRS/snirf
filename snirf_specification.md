@@ -94,7 +94,7 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguous with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: a variable-length, null-terminated seqeuence of characters, i.e. `H5T_C_S1`
+- `string`: a variable-length, null-terminated sequence of characters, i.e. `H5T_C_S1`
   with size set to `H5T_VARIABLE`. At this time HDF5 does not have a UTF16 native type,
   so `H5T_NATIVE_B16` will need to be converted to/from unicode-16 within the read/write code).
   
@@ -114,7 +114,7 @@ Valid arrays MUST:
 * Occupy a [simple dataspace](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html).
 * Have exactly the number of dimensions specified. A SNIRF field specified by this document as a `numeric 1-D array` must occupy a dataspace with `rank` of 1.
 
-> For code samples in various programming langauges which demonstrate the writing of SNIRF-specified formats, see the [Appendix](#code-samples).
+> For code samples in various programming languages which demonstrate the writing of SNIRF-specified formats, see the [Appendix](#code-samples).
 
 ## SNIRF file specification
 
