@@ -1002,6 +1002,7 @@ specification:
 - Alessandro Torricelli, Politecnico di Milano
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 - Robert Luke, Macquarie University, MNE-NIRS
+- Stephen Tucker, Boston University
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
