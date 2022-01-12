@@ -87,15 +87,13 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguous with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: either a `H5T.C_S1` (null terminated string) type or as ASCII 
-  encoded 8-bit `char` array or UNICODE UTF-16 array.
-  Defined by the `H5T.NATIVE_CHAR` or
-  `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
-  have a UTF16 native type, so 
-  `H5T_NATIVE_B16` will need to be converted to/from unicode-16 within the 
-  read/write code).
+- `string`: a variable-length, null-terminated seqeuence of characters, i.e. `H5T_C_S1`
+  with size set to `H5T_VARIABLE`. At this time HDF5 does not have a UTF16 native type,
+  so `H5T_NATIVE_B16` will need to be converted to/from unicode-16 within the read/write code).
+  
+  > Strings MUST be stored in null-terminated 'variable-length' format to be considered valid. Fixed-length strings and variable-length strings are loaded differently by HDF5 interface implementations.* 
 - `integer`: the native integer types `H5T_NATIVE_INT` `H5T` datatype (alias of 
-  `H5T_STD_I32BE` or `H5T_STD_I32LE`)
+  `H5T_STD_I32BE` or `H5T_STD_I32LE`). 64-bit string types such as `H5T_STD_I64LE` are *not supported*, although most HDF5 interface implementations will not have issues converting between the two implicitly.
 - `numeric`: one of the native double or floating-point types; 
   `H5T_NATIVE_DOUBLE` or `H5T_NATIVE_FLOAT` in `H5T` (alias of 
   `H5T_IEEE_F64BE`,`H5T_IEEE_F64LE`, i.e. "double", or `H5T_IEEE_F32BE`, 
@@ -103,9 +101,6 @@ including
 
 For `integer` and `numeric` data fields, users should use HDF5's Datatype 
 Interface to query the byte-length stored in the file.
-
-The array dimensions in this Specification refer to the **HDF5 dataset 
-dimensions** and are independent to programming languages.
 
 Note, native datatypes are defined by the build of the software (e.g. 
 little/big endian) and are automatically converted by the HDF5 backend for 
