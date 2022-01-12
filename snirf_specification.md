@@ -975,6 +975,118 @@ would be specified as follows:
   [0.6 0.2 1.0]
 ```
 
+### Code samples
+
+The following code demonstrates how to use the Python `h5py` library and the MATLAB `H5ML.hdf5lib2` "low-level" interface to write specified SNIRF datatypes to disk as HDF5 Datasets of the proper format.
+
+### String `"s"`
+
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+sid = H5S.create('H5S_SCALAR')
+tid = H5T.copy('H5T_C_S1');
+H5T.set_size(tid, 'H5T_VARIABLE');
+did = H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', <value of string>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'w')
+varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
+file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=<value of string>)
+```
+
+### numeric `<f>`
+
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+tid = H5T.copy('H5T_NATIVE_DOUBLE')
+sid = H5S.create('H5S_SCALAR')
+H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+h5write(<SNIRF file path>, <dataset location>, <value of numeric>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'w')
+file.create_dataset(<dataset location>, dtype='f8', data=<value of numeric>)
+```
+
+### integer `<i>`
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+tid = H5T.copy('H5T_NATIVE_INT')
+sid = H5S.create('H5S_SCALAR')
+H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+h5write(<SNIRF file path>, <dataset location>, <value of integer>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'w')
+file.create_dataset(<dataset location>, dtype='i4', data=<value of integer>)
+```
+
+### string array `["s",...]`
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+
+str_arr = {'Hello', 'World', 'foo', 'bar'}  % values to write, a cell array of strings of any length
+
+sid = H5S.create_simple(1, numel(str_arr), H5ML.get_constant_value('H5S_UNLIMITED'));
+
+tid = H5T.copy('H5T_C_S1');
+H5T.set_size(tid, 'H5T_VARIABLE');
+
+pid = H5P.create('H5P_DATASET_CREATE');
+H5P.set_chunk(pid, 2);
+
+did = H5D.create(fid, <dataset location>, tid, sid, pid)
+
+H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', str_arr)
+```
+**Python**
+```python
+array = np.array(<list of strings>).astype('O')  # A list of strings must be converted to a NumPy list with dtype 'O'
+file = h5py.File(<SNIRF file path>, 'w')
+varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
+file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
+```
+### numeric array `[<f>,...]` or `[[<f>,...]]`
+**MATLAB**
+> Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
+`h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+```matlab
+data = <numeric array>
+h5create(<SNIRF file path>, <dataset location>, length(data) / size(data), 'Datatype', 'double')
+h5write(<SNIRF file path>, <dataset location>, data)
+```
+**Python**
+```python
+array = np.array(<numeric array>).astype(np.float64)  # A list or nested list of values should be converted to a NumPy array
+file = h5py.File(<SNIRF file path>, 'w')
+file.create_dataset(<dataset location>, dtype='f8', data=array)
+```
+
+### integer array `[<i>,...]` or `[[<i>,...]]`
+
+**MATLAB**
+> Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
+`h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+```matlab
+data = <integer array>
+h5create(<SNIRF file path>, <integer array dataset location>, length(data) / size(data), 'Datatype', 'int32')
+h5write(<SNIRF file path>, <integer array dataset location>, data)
+```
+**Python**
+```python
+array = np.array(<integer array>).astype(int)  # A list or nested list of values should be converted to a NumPy array
+file = h5py.File(<SNIRF file path>, 'w')
+file.create_dataset(<integer array dataset location>, dtype='i4', data=array)
+```
+
 ## Acknowledgement
 
 This document was originally drafted by Blaise Frederic (bbfrederick at 
