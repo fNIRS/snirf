@@ -11,6 +11,10 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * aux/dataTimeSeries was incorrectly described as `[[<f>,...]]+` in the table when it should be `[<f>,...]+`
 * aux/dataTimeSeries and aux/time were described as `numeric` in the document when they should be `1-D numeric array`
 * probe/detectorPos2D was described as `numeric` in the document when it should be `2-D array`
+* Added "Data format" section
+* Specified that non-array fields must be saved using scalar dataspaces, and that array fields must be saved using simple dataspaces of the specified rank
+* Specified that all strings must be saved in a variable length format
+* Added writing code samples
 
 
 ### `1.0` (September 23 2021)
