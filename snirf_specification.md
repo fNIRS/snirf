@@ -973,7 +973,7 @@ would be specified as follows:
 
 ### Code samples
 
-The following code demonstrates how to use the Python `h5py` library and the MATLAB `H5ML.hdf5lib2` "low-level" interface to write specified SNIRF datatypes to disk as HDF5 Datasets of the proper format.
+The following code demonstrates how to use the Python `h5py` and `numpy` libraries and the MATLAB `H5ML.hdf5lib2` "low-level" interface to write specified SNIRF datatypes to disk as HDF5 Datasets of the proper format.
 
 #### String `"s"`
 
@@ -1045,7 +1045,7 @@ H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', str_arr)
 ```
 **Python**
 ```python
-array = np.array(<list of strings>).astype('O')  # A list of strings must be converted to a NumPy list with dtype 'O'
+array = numpy.array(<list of strings>).astype('O')  # A list of strings must be converted to a NumPy list with dtype 'O'
 file = h5py.File(<SNIRF file path>, 'w')
 varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
 file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
@@ -1061,7 +1061,7 @@ h5write(<SNIRF file path>, <dataset location>, data)
 ```
 **Python**
 ```python
-array = np.array(<numeric array>).astype(np.float64)  # A list or nested list of values should be converted to a NumPy array
+array = numpy.array(<numeric array>).astype(numpy.float64)  # A list or nested list of values should be converted to a NumPy array
 file = h5py.File(<SNIRF file path>, 'w')
 file.create_dataset(<dataset location>, dtype='f8', data=array)
 ```
@@ -1078,7 +1078,7 @@ h5write(<SNIRF file path>, <integer array dataset location>, data)
 ```
 **Python**
 ```python
-array = np.array(<integer array>).astype(int)  # A list or nested list of values should be converted to a NumPy array
+array = numpy.array(<integer array>).astype(int)  # A list or nested list of values should be converted to a NumPy array
 file = h5py.File(<SNIRF file path>, 'w')
 file.create_dataset(<integer array dataset location>, dtype='i4', data=array)
 ```
