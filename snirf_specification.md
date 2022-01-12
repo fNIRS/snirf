@@ -114,6 +114,8 @@ Valid arrays MUST:
 * Occupy a [simple dataspace](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html).
 * Have exactly the number of dimensions specified. A SNIRF field specified by this document as a `numeric 1-D array` must occupy a dataspace with `rank` of 1.
 
+> For code samples in various programming langauges which demonstrate the writing of SNIRF-specified formats, see the [Appendix](#code-samples).
+
 ## SNIRF file specification
 
 The SNIRF data format must have the initial `H5G` group type `/nirs` at the 
@@ -973,7 +975,7 @@ would be specified as follows:
 
 The following code demonstrates how to use the Python `h5py` library and the MATLAB `H5ML.hdf5lib2` "low-level" interface to write specified SNIRF datatypes to disk as HDF5 Datasets of the proper format.
 
-### String `"s"`
+#### String `"s"`
 
 **MATLAB**
 ```matlab
@@ -991,7 +993,7 @@ varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
 file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=<value of string>)
 ```
 
-### numeric `<f>`
+#### numeric `<f>`
 
 **MATLAB**
 ```matlab
@@ -1007,7 +1009,7 @@ file = h5py.File(<SNIRF file path>, 'w')
 file.create_dataset(<dataset location>, dtype='f8', data=<value of numeric>)
 ```
 
-### integer `<i>`
+#### integer `<i>`
 **MATLAB**
 ```matlab
 fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
@@ -1022,7 +1024,7 @@ file = h5py.File(<SNIRF file path>, 'w')
 file.create_dataset(<dataset location>, dtype='i4', data=<value of integer>)
 ```
 
-### string array `["s",...]`
+#### string array `["s",...]`
 **MATLAB**
 ```matlab
 fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
@@ -1048,7 +1050,7 @@ file = h5py.File(<SNIRF file path>, 'w')
 varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
 file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
 ```
-### numeric array `[<f>,...]` or `[[<f>,...]]`
+#### numeric array `[<f>,...]` or `[[<f>,...]]`
 **MATLAB**
 > Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
 `h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
@@ -1064,7 +1066,7 @@ file = h5py.File(<SNIRF file path>, 'w')
 file.create_dataset(<dataset location>, dtype='f8', data=array)
 ```
 
-### integer array `[<i>,...]` or `[[<i>,...]]`
+#### integer array `[<i>,...]` or `[[<i>,...]]`
 
 **MATLAB**
 > Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
