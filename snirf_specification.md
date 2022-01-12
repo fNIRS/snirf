@@ -105,8 +105,13 @@ including
   `H5T_IEEE_F64BE`,`H5T_IEEE_F64LE`, i.e. "double", or `H5T_IEEE_F32BE`, 
   `H5T_IEEE_F32LE`, i.e. "float")
 
-For `integer` and `numeric` data fields, users should use HDF5's Datatype 
-Interface to query the byte-length stored in the file.
+Datasets which are not arrays must be saved in [scalar dataspaces](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html). It is NOT VALID to save Datasets which are not specified as arrays in simple dataspaces with 1 dimension and with size 1. HDF5 interface implementations distinguish between these two formats and exhibit different behavior depending on the format of the file.
+
+Valid arrays MUST:
+
+* Contain elements of a correct type as described above.
+* Occupy a [simple dataspace](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html).
+* Have exactly the number of dimensions specified. A SNIRF field specified by this document as a `numeric 1-D array` must occupy a dataspace with `rank` of 1.
 
 Note, native datatypes are defined by the build of the software (e.g. 
 little/big endian) and are automatically converted by the HDF5 backend for 
