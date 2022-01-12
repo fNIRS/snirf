@@ -7,6 +7,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
 ## Table of Content
 
 - [Introduction](#introduction)
+- [Data format](#data-format)
 - [SNIRF file specification](#snirf-file-specification)
   * [SNIRF data format summary](#snirf-data-format-summary)
   * [SNIRF data container definitions](#snirf-data-container-definitions)
