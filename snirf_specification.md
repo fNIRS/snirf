@@ -99,7 +99,7 @@ including
   
   > Strings MUST be stored in null-terminated 'variable-length' format to be considered valid. Fixed-length strings and variable-length strings are loaded differently by HDF5 interface implementations.* 
 - `integer`: the native integer types `H5T_NATIVE_INT` `H5T` datatype (alias of 
-  `H5T_STD_I32BE` or `H5T_STD_I32LE`). 64-bit string types such as `H5T_STD_I64LE` are *not supported*, although most HDF5 interface implementations will not have issues converting between the two implicitly.
+  `H5T_STD_I32BE` or `H5T_STD_I32LE`). Use of 64-bit `long` string types such as `H5T_STD_I64LE` is *not recommended*, although most HDF5 interface implementations will not have issues converting between the two implicitly.
 - `numeric`: one of the native double or floating-point types; 
   `H5T_NATIVE_DOUBLE` or `H5T_NATIVE_FLOAT` in `H5T` (alias of 
   `H5T_IEEE_F64BE`,`H5T_IEEE_F64LE`, i.e. "double", or `H5T_IEEE_F32BE`, 
