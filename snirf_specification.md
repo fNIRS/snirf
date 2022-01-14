@@ -988,7 +988,7 @@ H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', <value of string>)
 ```
 **Python**
 ```python
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
 file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=<value of string>)
 ```
@@ -1005,7 +1005,7 @@ h5write(<SNIRF file path>, <dataset location>, <value of numeric>)
 ```
 **Python**
 ```python
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 file.create_dataset(<dataset location>, dtype='f8', data=<value of numeric>)
 ```
 
@@ -1020,7 +1020,7 @@ h5write(<SNIRF file path>, <dataset location>, <value of integer>)
 ```
 **Python**
 ```python
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 file.create_dataset(<dataset location>, dtype='i4', data=<value of integer>)
 ```
 
@@ -1046,7 +1046,7 @@ H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', str_arr)
 **Python**
 ```python
 array = numpy.array(<list of strings>).astype('O')  # A list of strings must be converted to a NumPy list with dtype 'O'
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
 file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
 ```
@@ -1062,7 +1062,7 @@ h5write(<SNIRF file path>, <dataset location>, data)
 **Python**
 ```python
 array = numpy.array(<numeric array>).astype(numpy.float64)  # A list or nested list of values should be converted to a NumPy array
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 file.create_dataset(<dataset location>, dtype='f8', data=array)
 ```
 
@@ -1079,7 +1079,7 @@ h5write(<SNIRF file path>, <integer array dataset location>, data)
 **Python**
 ```python
 array = numpy.array(<integer array>).astype(int)  # A list or nested list of values should be converted to a NumPy array
-file = h5py.File(<SNIRF file path>, 'w')
+file = h5py.File(<SNIRF file path>, 'r+')
 file.create_dataset(<integer array dataset location>, dtype='i4', data=array)
 ```
 
