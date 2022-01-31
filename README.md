@@ -7,6 +7,12 @@ View the most recent release version of the format: [here](https://github.com/fN
 View the development version of the format: [here](snirf_specification.md).   
 
 
+## Validating SNIRF files
+
+[pysnirf2](https://pypi.org/project/pysnirf2/) is the currently actively maintained tool for reading, writing and validating SNIRF files. pysnirf2 can be easily installed in a Python 3 environment using pip.
+
+See the [pysnirf2 README](https://github.com/BUNPC/pysnirf2#validating-a-snirf-file) for usage examples.
+
 ## User Information
 
 To browse the latest version of the SNIRF Specification document, you may click on 
@@ -15,14 +21,15 @@ information on released versions is available in the [change log](CHANGELOG.md).
 
 The following software packages support reading and/or writing SNIRF files.
 
-| Software       |                   URL                        |
-|----------------|----------------------------------------------|
-| Homer2         | https://homer-fnirs.org                      |
-| Homer3         | https://github.com/BUNPC/Homer3              |
-| MNE-Python     | https://mne.tools                            |
-| NIRS-Toolbox   | https://github.com/huppertt/nirs-toolbox     |
-| FieldTrip      | https://www.fieldtriptoolbox.org             |
-| NIRStorm       | https://github.com/Nirstorm/nirstorm         |
+| Software       |Platform|                   URL                        |
+|----------------|--------|----------------------------------------------|
+| Homer2         | MATLAB | https://homer-fnirs.org                      |
+| Homer3         | MATLAB | https://github.com/BUNPC/Homer3              |
+| NIRS-Toolbox   | MATLAB | https://github.com/huppertt/nirs-toolbox     |
+| FieldTrip      | MATLAB | https://www.fieldtriptoolbox.org             |
+| NIRStorm       | MATLAB | https://github.com/Nirstorm/nirstorm         |
+| MNE-Python     | Python | https://mne.tools                            |
+| pysnirf2       | Python | https://pypi.org/project/pysnirf2/           |
 
 
 The following vendors export data in SNIRF format.
@@ -31,6 +38,7 @@ The following vendors export data in SNIRF format.
 |----------------|----------------------------------|
 | NIRx           | https://nirx.net                 |
 | Kernel         | https://www.kernel.com           |
+| Cortivision    | https://www.cortivision.com      |
 
 
 ## Development Information
