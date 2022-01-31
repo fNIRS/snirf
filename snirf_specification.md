@@ -190,6 +190,8 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
+|         `coordinateSystem`            | * Coordinate system used in probe description|   `"s"`        |
+|         `coordinateSystemDescription` | * Description of coordinate system           |   `"s"`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   |  `[<f>,...]` + |
@@ -823,10 +825,10 @@ associate the given landmark to a specific source or detector. All strings are
 ASCII encoded char arrays.
 
 
-#### /nirs(i)/probe/coordinateSystem(j) 
+#### /nirs(i)/probe/coordinateSystem
 * **Presence**: optional 
-* **Type**:  string array
-* **Location**: `/nirs(i)/probe/coordinateSystem(j)`
+* **Type**:  string
+* **Location**: `/nirs(i)/probe/coordinateSystem`
 
 Defines the coordinate system for sensor positions.
 The string must be one of the coordinate systems listed in the
@@ -838,10 +840,10 @@ See the [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/coords
 for detailed descriptions of different coordinate systems.
 
 
-#### /nirs(i)/probe/coordinateSystemDescription(j) 
+#### /nirs(i)/probe/coordinateSystemDescription
 * **Presence**: optional 
-* **Type**:  string array
-* **Location**: `/nirs(i)/probe/coordinateSystemDescription(j)`
+* **Type**:  string
+* **Location**: `/nirs(i)/probe/coordinateSystemDescription`
 
 Free-form text description of the coordinate system.
 May also include a link to a documentation page or
