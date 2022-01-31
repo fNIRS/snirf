@@ -823,6 +823,32 @@ associate the given landmark to a specific source or detector. All strings are
 ASCII encoded char arrays.
 
 
+#### /nirs(i)/probe/coordinateSystem(j) 
+* **Presence**: optional 
+* **Type**:  string array
+* **Location**: `/nirs(i)/probe/coordinateSystem(j)`
+
+Defines the coordinate system for sensor positions.
+The string must be one of the coordinate systems listed in the
+[BIDS specification (Appendix VII)](https://bids-specification.readthedocs.io/en/stable/99-appendices/08-coordinate-systems.html#standard-template-identifiers)
+such as "MNI152NLin2009bAsym", "CapTrak" or "Other".
+If the value "Other" is specified, then a defition of the coordinate
+system must be provided in `/nirs(i)/probe/coordinateSystemDescription`.
+See the [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/coordsys/)
+for detailed descriptions of different coordinate systems.
+
+
+#### /nirs(i)/probe/coordinateSystemDescription(j) 
+* **Presence**: optional 
+* **Type**:  string array
+* **Location**: `/nirs(i)/probe/coordinateSystemDescription(j)`
+
+Free-form text description of the coordinate system.
+May also include a link to a documentation page or
+paper describing the system in greater detail.
+This field is required if the `coordinateSystem` field is set to "Other".
+
+
 #### /nirs(i)/probe/useLocalIndex 
 * **Presence**: optional 
 * **Type**:  integer
