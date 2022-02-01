@@ -7,6 +7,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
 ## Table of Content
 
 - [Introduction](#introduction)
+- [Data format](#data-format)
 - [SNIRF file specification](#snirf-file-specification)
   * [SNIRF data format summary](#snirf-data-format-summary)
   * [SNIRF data container definitions](#snirf-data-container-definitions)
@@ -70,6 +71,11 @@ The file format specification uses the extension `.snirf`.  These are HDF5
 format files, renamed with the `.snirf` extension.  For a program to be 
 “SNIRF-compliant”, it must be able to read and write the SNIRF file.
 
+The development of the SNIRF specification is conducted in an open manner using the GitHub
+platform. To contribute or provide feedback visit [https://github.com/fNIRS/snirf](https://github.com/fNIRS/snirf).
+
+## Data format 
+
 The HDF5 specifications are defined by the HDF5 group and found at 
 https://www.hdfgroup.org. It is expected that HDF5 future versions will remain 
 backwards compatibility in the foreseeable future.
@@ -79,6 +85,7 @@ that are the two primary data organization and storage classes used in the
 SNIRF specification. 
 
 The structure of each data file has a minimum of required elements noted below. 
+
 For each element in the data structure, one of the 4 types is assigned, 
 including
 
@@ -87,32 +94,27 @@ including
   with numbers at the end (e.g. `/nirs/data1`, `/nirs/data2`) starting with 
   index 1.  Array indices should be contiguous with no skipped values 
   (an empty group with no sub-member is permitted).
-- `string`: either a `H5T.C_S1` (null terminated string) type or as ASCII 
-  encoded 8-bit `char` array or UNICODE UTF-16 array.
-  Defined by the `H5T.NATIVE_CHAR` or
-  `H5T.H5T_NATIVE_B16` datatypes in `H5T`.  (note, at this time HDF5 does not 
-  have a UTF16 native type, so 
-  `H5T_NATIVE_B16` will need to be converted to/from unicode-16 within the 
-  read/write code).
+- `string`: a variable-length, null-terminated sequence of characters, i.e. `H5T_C_S1`
+  with size set to `H5T_VARIABLE`. At this time HDF5 does not have a UTF16 native type,
+  so `H5T_NATIVE_B16` will need to be converted to/from unicode-16 within the read/write code).
+  
+  > Strings MUST be stored in null-terminated 'variable-length' format to be considered valid. Fixed-length strings and variable-length strings are loaded differently by HDF5 interface implementations.* 
 - `integer`: the native integer types `H5T_NATIVE_INT` `H5T` datatype (alias of 
-  `H5T_STD_I32BE` or `H5T_STD_I32LE`)
+  `H5T_STD_I32BE` or `H5T_STD_I32LE`). Use of 64-bit `long` string types such as `H5T_STD_I64LE` is *not recommended*, although most HDF5 interface implementations will not have issues converting between the two implicitly.
 - `numeric`: one of the native double or floating-point types; 
   `H5T_NATIVE_DOUBLE` or `H5T_NATIVE_FLOAT` in `H5T` (alias of 
   `H5T_IEEE_F64BE`,`H5T_IEEE_F64LE`, i.e. "double", or `H5T_IEEE_F32BE`, 
   `H5T_IEEE_F32LE`, i.e. "float")
 
-For `integer` and `numeric` data fields, users should use HDF5's Datatype 
-Interface to query the byte-length stored in the file.
+Datasets which are not arrays must be saved in [scalar dataspaces](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html). It is NOT VALID to save Datasets which are not specified as arrays in simple dataspaces with 1 dimension and with size 1. HDF5 interface implementations distinguish between these two formats and exhibit different behavior depending on the format of the file.
 
-The array dimensions in this Specification refer to the **HDF5 dataset 
-dimensions** and are independent to programming languages.
+Valid arrays MUST:
 
-Note, native datatypes are defined by the build of the software (e.g. 
-little/big endian) and are automatically converted by the HDF5 backend for 
-consistent read/write between OS platforms.
+* Contain elements of a correct type as described above.
+* Occupy a [simple dataspace](http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/UG_frame12Dataspaces.html).
+* Have exactly the number of dimensions specified. A SNIRF field specified by this document as a `numeric 1-D array` must occupy a dataspace with `rank` of 1.
 
-The development of the SNIRF specification is conducted in an open manner using the GitHub
-platform. To contribute or provide feedback visit [https://github.com/fNIRS/snirf](https://github.com/fNIRS/snirf).
+> For code samples in various programming languages which demonstrate the writing of SNIRF-specified formats, see the [Appendix](#code-samples).
 
 ## SNIRF file specification
 
@@ -995,6 +997,118 @@ would be specified as follows:
   [0.6 0.2 1.0]
 ```
 
+### Code samples
+
+The following code demonstrates how to use the Python `h5py` and `numpy` libraries and the MATLAB `H5ML.hdf5lib2` "low-level" interface to write specified SNIRF datatypes to disk as HDF5 Datasets of the proper format.
+
+#### String `"s"`
+
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+sid = H5S.create('H5S_SCALAR')
+tid = H5T.copy('H5T_C_S1');
+H5T.set_size(tid, 'H5T_VARIABLE');
+did = H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', <value of string>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'r+')
+varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
+file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=<value of string>)
+```
+
+#### numeric `<f>`
+
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+tid = H5T.copy('H5T_NATIVE_DOUBLE')
+sid = H5S.create('H5S_SCALAR')
+H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+h5write(<SNIRF file path>, <dataset location>, <value of numeric>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'r+')
+file.create_dataset(<dataset location>, dtype='f8', data=<value of numeric>)
+```
+
+#### integer `<i>`
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+tid = H5T.copy('H5T_NATIVE_INT')
+sid = H5S.create('H5S_SCALAR')
+H5D.create(fid, <dataset location>, tid, sid, 'H5P_DEFAULT')
+h5write(<SNIRF file path>, <dataset location>, <value of integer>)
+```
+**Python**
+```python
+file = h5py.File(<SNIRF file path>, 'r+')
+file.create_dataset(<dataset location>, dtype='i4', data=<value of integer>)
+```
+
+#### string array `["s",...]`
+**MATLAB**
+```matlab
+fid = H5F.open(<SNIRF file path>, 'H5F_ACC_RDWR', 'H5P_DEFAULT')
+
+str_arr = {'Hello', 'World', 'foo', 'bar'}  % values to write, a cell array of strings of any length
+
+sid = H5S.create_simple(1, numel(str_arr), H5ML.get_constant_value('H5S_UNLIMITED'));
+
+tid = H5T.copy('H5T_C_S1');
+H5T.set_size(tid, 'H5T_VARIABLE');
+
+pid = H5P.create('H5P_DATASET_CREATE');
+H5P.set_chunk(pid, 2);
+
+did = H5D.create(fid, <dataset location>, tid, sid, pid)
+
+H5D.write(did, tid, 'H5S_ALL', 'H5S_ALL', 'H5P_DEFAULT', str_arr)
+```
+**Python**
+```python
+array = numpy.array(<list of strings>).astype('O')  # A list of strings must be converted to a NumPy list with dtype 'O'
+file = h5py.File(<SNIRF file path>, 'r+')
+varlen_str_dtype = h5py.string_dtype(encoding='ascii', length=None)
+file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
+```
+#### numeric array `[<f>,...]` or `[[<f>,...]]`
+**MATLAB**
+> Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
+`h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+```matlab
+data = <numeric array>
+h5create(<SNIRF file path>, <dataset location>, length(data) / size(data), 'Datatype', 'double')
+h5write(<SNIRF file path>, <dataset location>, data)
+```
+**Python**
+```python
+array = numpy.array(<numeric array>).astype(numpy.float64)  # A list or nested list of values should be converted to a NumPy array
+file = h5py.File(<SNIRF file path>, 'r+')
+file.create_dataset(<dataset location>, dtype='f8', data=array)
+```
+
+#### integer array `[<i>,...]` or `[[<i>,...]]`
+
+**MATLAB**
+> Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
+`h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+```matlab
+data = <integer array>
+h5create(<SNIRF file path>, <integer array dataset location>, length(data) / size(data), 'Datatype', 'int32')
+h5write(<SNIRF file path>, <integer array dataset location>, data)
+```
+**Python**
+```python
+array = numpy.array(<integer array>).astype(int)  # A list or nested list of values should be converted to a NumPy array
+file = h5py.File(<SNIRF file path>, 'r+')
+file.create_dataset(<integer array dataset location>, dtype='i4', data=array)
+```
+
 ## Acknowledgement
 
 This document was originally drafted by Blaise Frederic (bbfrederick at 
@@ -1022,6 +1136,7 @@ specification:
 - Alessandro Torricelli, Politecnico di Milano
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 - Robert Luke, Macquarie University, MNE-NIRS
+- Stephen Tucker, Boston University
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
