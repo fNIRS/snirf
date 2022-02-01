@@ -53,6 +53,8 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [probe.landmarkPos2D](#nirsiprobelandmarkpos2d)
        * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
+       * [probe.useLocalIndex](#nirsiprobecoordinatesystem)
+       * [probe.useLocalIndex](#nirsiprobecoordinatesystemdescription)
        * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
        * [aux.name](#nirsiauxjname)
