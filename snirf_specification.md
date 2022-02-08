@@ -54,9 +54,9 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [probe.landmarkPos2D](#nirsiprobelandmarkpos2d)
        * [probe.landmarkPos3D](#nirsiprobelandmarkpos3d)
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
-       * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [probe.CoordinateSystem](#nirsiprobecoordinatesystem)
        * [probe.CoordinateSystemDescription](#nirsiprobecoordinatesystemdescription)
+       * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
        * [aux.name](#nirsiauxjname)
        * [aux.dataTimeSeries](#nirsiauxjdatatimeseries)
@@ -193,9 +193,9 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
-|         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |         `coordinateSystem`            | * Coordinate system used in probe description|   `"s"`        |
 |         `coordinateSystemDescription` | * Description of coordinate system           |   `"s"`        |
+|         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   |  `[<f>,...]` + |
