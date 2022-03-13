@@ -485,7 +485,7 @@ stimulus condition index when `measurementList(k).dataType = 99999` (i.e, `proce
 * **Type**:  numeric
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/sourcePower`
 
-Source power in milliwatt (mW). 
+The units are not defined, unless the user takes the option of using a `metaDataTag` as described below.
 
 #### /nirs(i)/data(j)/measurementList(k)/detectorGain 
 * **Presence**: optional

@@ -15,7 +15,7 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Specified that non-array fields must be saved using scalar dataspaces, and that array fields must be saved using simple dataspaces of the specified rank
 * Specified that all strings must be saved in a variable length format
 * Added writing code samples
-
+* Removed ambiguity in the units of the `nirs(i)/data(j)/measurementList(k)/sourcePower` field, which were defined as both being in mW, and arbitrary. Only the latter definiton is reatined.
 
 ### `1.0` (September 23 2021)
 
