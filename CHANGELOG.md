@@ -16,7 +16,8 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Specified that all strings must be saved in a variable length format
 * Added writing code samples
 * Removed ambiguity in the units of the `nirs(i)/data(j)/measurementList(k)/sourcePower` field, which were defined as both being in mW, and arbitrary. Only the latter definition is retained.
-
+* Changed `/nirs(i)/data(j)/time` and `/nirs(i)/aux(j)/time` to specify the variable be stored as a rank-1 array, rather than a rank-2 array with a singleton trailing dimension.
+  
 ### `1.0` (September 23 2021)
 
 [View this version of the specification](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md)  
