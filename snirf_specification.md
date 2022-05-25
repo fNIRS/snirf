@@ -385,15 +385,15 @@ Chunked data is allowed to support real-time streaming of data in this array.
 The `time` variable. This provides the acquisition time of the measurement 
 relative to the time origin.  This will usually be a straight line with slope 
 equal to the acquisition frequency, but does not need to be equal spacing.  For 
-the special case of equal sample spacing a shorthand `<2x1>` array is allowed 
+the special case of equal sample spacing an array of length `<2>` is allowed 
 where the first entry is the start time and the 
 second entry is the sample time spacing in `TimeUnit` specified in the 
 `metaDataTags`. The default time unit is in second ("s"). For example, 
 a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 		
-* **Option 1** - The size of this variable is `<number of time points x 1>` and 
+* **Option 1** - The size of this variable is `<number of time points>` and 
              corresponds to the sample time of every data point
-* **Option 2**-  The size of this variable is `<2x1>` and corresponds to the start
+* **Option 2**-  The size of this variable is `<2>` and corresponds to the start
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
@@ -910,7 +910,7 @@ The time variable. This provides the acquisition time (in `TimeUnit` units)
 of the aux measurement relative to the time origin.  This will usually be 
 a straight line with slope equal to the acquisition frequency, but does 
 not need to be equal spacing. The size of this variable is 
-`<number of time points> x 1` or `<2x1>` similar  to definition of the 
+`<number of time points>` or `<2>` similar  to definition of the 
 `/nirs(i)/data(j)/time` field.
 
 Chunked data is allowed to support real-time data streaming
