@@ -188,7 +188,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying source names      |  `["s",...]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]`   |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
@@ -764,7 +764,7 @@ of this field is paired with the indexing of `probe.correlationTimeDelays`.
 
 #### /nirs(i)/probe/sourceLabels 
 * **Presence**: optional 
-* **Type**:  string array
+* **Type**:  string 2-D array
 * **Location**: `/nirs(i)/probe/sourceLabels(j)`
 
 This is a string array providing user friendly or instrument specific labels 
