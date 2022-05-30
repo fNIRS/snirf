@@ -399,7 +399,7 @@ a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 Chunked data is allowed to support real-time streaming of data in this array.
 
 #### /nirs(i)/data(j)/measurementList(k) 
-* **Presence**: required
+* **Presence**: required if `measurementLists` is not present
 * **Type**:  indexed group
 * **Location**: `/nirs(i)/data(j)/measurementList(k)`
 
@@ -560,6 +560,119 @@ As described below, optional variables `probe.sourceLabels` and
 `probe.detectorLabels` are provided for indicating the instrument specific 
 label for sources and detectors.
 
+#### /nirs(i)/data(j)/measurementLists
+* **Presence**: optional
+* **Type**:  group
+* **Location**: `/nirs(i)/data(j)/measurementLists`
+
+The group for measurement list variables which map data array onto the to map the data array onto the probe geometry (sources and detectors), data type, and wavelength. This group's datasets are arrays with size `<number of channels>`, which each position describing the corresponding column in the data matrix. (i.e. the values at `measurementLists/sourceIndex(3)` and `measurementLists/detectorIndex(3)` correspond to `dataTimeSeries(:,3)`).
+
+This group is required only if the indexed-group format `/nirs(i)/data(j)/measurementList(k)` is not used to encode the measurement list. `measurementLists` is an alternative that may offer better performance for larger probes.
+
+The arrays of `measurementLists` are:
+
+#### /nirs(i)/data(j)/measurementLists/sourceIndex 
+* **Presence**: required
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/sourceIndex`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Source indices for each channel.
+	
+#### /nirs(i)/data(j)/measurementLists/detectorIndex 
+* **Presence**: required
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/detectorIndex`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Detector indices for each channel.
+
+#### /nirs(i)/data(j)/measurementLists/wavelengthIndex 
+* **Presence**: required
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/wavelengthIndex`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Index of the "nominal" wavelength (in `probe.wavelengths`) per channel.
+
+#### /nirs(i)/data(j)/measurementLists/wavelengthActual 
+* **Presence**: optional
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/wavelengthActual`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Actual (measured) wavelength in nm, if available, for the source in each channel.
+
+#### /nirs(i)/data(j)/measurementLists/wavelengthEmissionActual
+* **Presence**: optional
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/wavelengthEmissionActual`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Actual (measured) emission wavelength in nm, if available, for the source in each channel.
+	
+#### /nirs(i)/data(j)/measurementLists/dataType 
+* **Presence**: required
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/dataType`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. See Appendix for list of possible values.
+
+#### /nirs(i)/data(j)/measurementLists/dataUnit 
+* **Presence**: optional
+* **Type**:  string 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/dataUnit`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. International System of Units (SI units) identifier for each channel.
+
+#### /nirs(i)/data(j)/measurementLists/dataTypeLabel 
+* **Presence**: optional
+* **Type**:  string 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/dataTypeLabel`
+
+Data-type label. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`.
+
+#### /nirs(i)/data(j)/measurementLists/dataTypeIndex 
+* **Presence**: required
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/dataTypeIndex`
+
+Data-type specific parameter indices. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so `dataTimeIndex` must be a 2-D array with 2 columns that index the additional parameters.
+
+#### /nirs(i)/data(j)/measurementLists/sourcePower 
+* **Presence**: optional
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/sourcePower`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Units are optionally defined in `metaDataTags`.
+
+#### /nirs(i)/data(j)/measurementLists/detectorGain 
+* **Presence**: optional
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/detectorGain`
+
+Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Units are optionally defined in `metaDataTags`.
+
+#### /nirs(i)/data(j)/measurementLists/moduleIndex 
+* **Presence**: optional
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/moduleIndex`
+
+Index of a repeating module. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`.
+
+#### /nirs(i)/data(j)/measurementLists/sourceModuleIndex 
+* **Presence**: optional
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/sourceModuleIndex`
+
+Index of the module that contains the source of the channel. 
+This index must be used together with `detectorModuleIndex`, and 
+can not be used when `moduleIndex` presents. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`.
+
+#### /nirs(i)/data(j)/measurementLists/detectorModuleIndex 
+* **Presence**: optional
+* **Type**:  integer 1-D array
+* **Location**: `/nirs(i)/data(j)/measurementLists/detectorModuleIndex`
+
+Index of the module that contains the detector of the channel. 
+This index must be used together with `sourceModuleIndex`, and 
+can not be used when `moduleIndex` presents. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`.
+
 #### /nirs(i)/stim(j) 
 * **Presence**: optional
 * **Type**:  indexed group
@@ -597,7 +710,7 @@ used to annotate the meanings of each data column.
 
 #### /nirs(i)/stim(j)/dataLabels
 * **Presence**: optional 
-* **Type**:  string array
+* **Type**:  string 1-D array
 * **Location**: `/nirs(i)/stim(j)/dataLabels(k)`
 
 This is a string array providing annotations for each data column in 
@@ -777,7 +890,7 @@ wavelengths>`. This is indexed by `measurementList(k).sourceIndex` and
 
 #### /nirs(i)/probe/detectorLabels 
 * **Presence**: optional 
-* **Type**:  string array
+* **Type**:  string 1-D array
 * **Location**: `/nirs(i)/probe/detectorLabels(j)`
 
 This is a string array providing user friendly or instrument specific labels 
@@ -816,7 +929,7 @@ index to the labels of the given landmark. Label names are stored in the
 
 #### /nirs(i)/probe/landmarkLabels(j) 
 * **Presence**: optional 
-* **Type**:  string array
+* **Type**:  string 1-D array
 * **Location**: `/nirs(i)/probe/landmarkLabels(j)`
 
 This string array stores the names of the landmarks. The first string denotes 
