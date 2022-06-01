@@ -882,7 +882,7 @@ This optional array specifies any recorded auxiliary data. Each element of
 * **Type**:  string
 * **Location**: `/nirs(i)/aux(j)/name`
 
-This is string describing the j<sup>th</sup> auxiliary data timecourse.
+This is string describing the j<sup>th</sup> auxiliary data timecourse. While auxilliary data can be given any title, standard names for commonly used auxilliary channels (i.e. accelerometer data) are specified in the appendix.
 
 #### /nirs(i)/aux(j)/dataTimeSeries 
 * **Presence**: optional; required if `aux` is used
