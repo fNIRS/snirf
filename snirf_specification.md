@@ -198,7 +198,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
-|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   |  `[<f>,...]` + |
+|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]` +|
 |         `dataUnit`                    | * SI unit of the auxiliary channel           |   `"s"`        |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
 |         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
@@ -886,11 +886,11 @@ This is string describing the j<sup>th</sup> auxiliary data timecourse.
 
 #### /nirs(i)/aux(j)/dataTimeSeries 
 * **Presence**: optional; required if `aux` is used
-* **Type**:  numeric 1-D array
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/aux(j)/dataTimeSeries`
 
 This is the aux data variable. This variable has dimensions of `<number of 
-time points> x 1`.
+time points> x <number of channels>`. Channels can be used to encode high-volume sensors, complex numbers, or any situation in which it is preferable to avoid the overhead imposed by creating many `aux(j)` groups. Note that it is NOT recommended to encode the multiple dimensions of an accelerometer as multiple channels of the same `aux` Group: instead follow the `"ACCEL_X"`, `"ACCEL_Y"`, `"ACCEL_Z"` naming conventions described in the appendix.
 
 Chunked data is allowed to support real-time data streaming
 
