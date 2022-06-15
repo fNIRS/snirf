@@ -821,8 +821,8 @@ index to the labels of the given landmark. Label names are stored in the
 
 This string array stores the names of the landmarks. The first string denotes 
 the name of the landmarks with an index of 1 in the 4th column of 
-`probe.landmark`, and so on. One can adopt the commonly used 10-20 landmark 
-names, such as "Nasion", "Inion", "Cz" etc, or use user-defined landmark 
+`probe.landmarkPos`, and so on. One can adopt the commonly used landmark 
+names, such as "Nasion", "Inion", "LPA", etc, or use user-defined landmark 
 labels. The landmark label can also use the unique source and detector labels 
 defined in `probe.sourceLabels` and `probe.detectorLabels`, respectively, to 
 associate the given landmark to a specific source or detector. All strings are 
