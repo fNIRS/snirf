@@ -251,7 +251,7 @@ The `metaDataTags` group contains the metadata associated with the measurements.
 Each metadata record is represented as a dataset under this group - with the name of
 the record, i.e. the key, as the dataset's name, and the value of the record as the 
 actual data stored in the dataset. Each metadata record can potentially have different 
-data types.
+data types. Sub-groups should not be used to organize metadata records: a member of the `metaDataTags` Group must be a Dataset.
 
 The below five metadata records are minimally required in a SNIRF file
 
