@@ -19,6 +19,7 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Changed `/nirs(i)/data(j)/time` and `/nirs(i)/aux(j)/time` to specify the variable be stored as a rank-1 array, rather than a rank-2 array with a singleton trailing dimension.
 * Specified that `probe/sourceLabels` is 2D string array. In wavelength-less case, spec describes 2nd dimension of 1
 * Add language preventing `metaDataTags` sub-groups
+* Add notice that the summary table is intended to be machine-readable
   
 ### `1.0` (September 23 2021)
 
