@@ -1146,7 +1146,6 @@ specification:
 - Stephen Tucker, Boston University
 - Michael Lührs, Maastricht University, Brain Innovation B.V., Satori
 - Robert Oostenveld, Radboud University, FieldTrip
-- Zahra M. Aghajan, Kernel
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
@@ -1158,3 +1157,4 @@ specification:
 - Lamija Pasalic, NIRx
 - Davood Tashayyod, fNIR Devices and Biopac Inc
 - Hanseok Yun, OBELAB Inc
+- Zahra M. Aghajan, Kernel
