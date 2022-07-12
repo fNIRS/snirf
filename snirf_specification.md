@@ -1144,14 +1144,17 @@ specification:
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 - Robert Luke, Macquarie University, MNE-NIRS
 - Stephen Tucker, Boston University
+- Michael Lührs, Maastricht University, Brain Innovation B.V., Satori
+- Robert Oostenveld, Radboud University, FieldTrip
+- Zahra M. Aghajan, Kernel
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
 - Rob Cooper, Gower Labs Inc
 - Mathieu Coursolle, Rogue Research
 - Rueben Hill, Gower Labs Inc
-- Jorn Horschig, Artinis Inc
+- Jörn Horschig, Artinis Inc
 - Takumi Inakazu, Hitachi
 - Lamija Pasalic, NIRx
 - Davood Tashayyod, fNIR Devices and Biopac Inc
-- Hanseok Yun, OdeLab Inc
+- Hanseok Yun, OBELAB Inc
