@@ -141,6 +141,10 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 
 ### SNIRF data format summary
 
+Note that this table serves as machine-readable schema for the SNIRF format. Its format may not be altered.
+
+[//]: # (SCHEMA BEGIN)
+
 |  SNIRF-formatted NIRS data structure  |            Meaning of the data               |     Type       |
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
@@ -188,7 +192,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]` |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
@@ -203,8 +207,9 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
 |         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
-In the above table, the used notations are explained below
+[//]: # (SCHEMA END)
 
+In the above schema table, the used notations are explained below:
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
 * `<i>` represents an integer value
@@ -214,7 +219,7 @@ In the above table, the used notations are explained below
 * `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
-* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` required
+* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` is required
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
