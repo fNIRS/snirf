@@ -3,7 +3,7 @@
 SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 
 
-### `1.0.1` In development
+### `1.1` In development
 
 * Add dataUnit to indexed groups aux and measurementList
 * Uses of the word "numerical" were replaced with "numeric" for consistency.
