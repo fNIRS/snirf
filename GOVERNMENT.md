@@ -49,7 +49,7 @@ The meeting should result in the authorship of a brief report.
 
 **Section 5.** GitHub Repository Role. Maintainers must have the role of `Maintainer` on the GitHub repository.
 
-## Article II. Additional Bylaws
+## Article III. Additional Bylaws
 
 **Section 1.** Pull Requests. Maintainers are ultimately responsible for the merging of pull requests into the working branches of the SNIRF specification, but both Steering Committee Members and Maintainers have the authority to do so. A Steering Committee members and Maintainers may NOT merge their own pull requests, but should instead request the review of another contributor.
 
