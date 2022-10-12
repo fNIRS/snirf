@@ -11,7 +11,7 @@ The SNIRF specification serves to provide a binary file format for functional ne
 ### SNIRF Government
 The mission of the SNIRF government is to ensure the format's longevity and to encourage its adoption. Critical to this mission is the ability of the fNIRS community to expand or correct the specification as new developments emerge without creating issues and conflicts for users. The SNIRF government is responsible for moderating this process, and for collecting and disseminating important information to SNIRF users.
 
-SNIRF's government is composed of two groups: a Steering Committee ultimately responsible for motivating and justifying changes to the specification, and a group of Maintainers who are authorized to draft these changes.
+The SNIRF government is composed of two groups: a Steering Committee ultimately responsible for motivating and justifying changes to the specification, and a group of Maintainers who are authorized to draft these changes.
 Any user of the SNIRF format may be nominated to join these groups.
 
 ## Bylaws
@@ -24,7 +24,7 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 
 **Section 1.** Steering Committee Definition. The SNIRF Steering Committee is ultimately responsible for guiding the development of SNIRF in accordance with its mission. The committee must unanimously approve the releases of official and final changes to the specification, as well as changes to the SNIRF government or mission statement.
 
-**Section 2.** Election. Steering committee members must be nominated or self-nominated in advance of the end of a sitting member's term. The departing member is responsible for the organization of the election, and cannot be elected to remain in the same seat. All SNIRF Contributors, Maintainers, and Steering Committee members are eligble to vote in the election.
+**Section 2.** Election. Steering committee members must be nominated or self-nominated in advance of the end of a sitting member's term. The departing member is responsible for the organization of the election, and cannot be elected to remain in the same seat. All SNIRF Contributors, Maintainers, and Steering Committee members are eligible to vote in the election.
 
 **Section 3.** Terms. The Steering Committee is composed of 3 or 5 members of the fNIRS community who are elected to serve 3 year terms. The number of members should remain odd.
 
@@ -36,7 +36,7 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 
 The meeting should result in the authorship of a brief report.
 
-**Section 5.** Steering Committee Reports. The Steering Committee must author a brief report following each of its required biannaual meetings. This report must document the actions and considerations of the committee, and must be archived and disseminated via the GitHub repository. The report must include the names of the Steering Committee's members.
+**Section 5.** Steering Committee Reports. The Steering Committee must author a brief report following each of its required biannual meetings. This report must document the actions and considerations of the committee, and must be archived and disseminated via the GitHub repository. The report must include the names of the Steering Committee's members.
 
 **Section 6.** GitHub Repository Role. Steering Committee members must have the role of `Admin` on the GitHub repository.  
 
