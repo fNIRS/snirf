@@ -52,7 +52,7 @@ The current steering committee is:
 | David Boas     | Boston University                |
 | Robert Luke    | AE Studio                        |
 | Samuel Powell  | Gowerlabs                        |
-| Jörn Horschig  | Artinis Inc                      |
+| Jörn Horschig  | Artinis Medical Systems B.V. |
 
 We are in the process of establishing the maintainers team,
 please contact us if you would like to contribute.
