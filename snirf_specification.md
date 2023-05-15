@@ -1152,7 +1152,7 @@ specification:
 - Rob Cooper, Gower Labs Inc
 - Mathieu Coursolle, Rogue Research
 - Rueben Hill, Gower Labs Inc
-- Jörn Horschig, Artinis Inc
+- Jörn Horschig, Artinis Medical Systems B.V.
 - Takumi Inakazu, Hitachi
 - Lamija Pasalic, NIRx
 - Davood Tashayyod, fNIR Devices and Biopac Inc

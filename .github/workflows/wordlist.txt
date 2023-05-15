@@ -234,6 +234,8 @@ ACCEL
 Accelerometer
 Gyrometer
 MAGN
+AE
+Gowerlabs
 dataUnit
 CMIXF
 unscaled

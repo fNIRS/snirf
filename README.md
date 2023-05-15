@@ -42,6 +42,23 @@ The following vendors export data in SNIRF format.
 | Gowerlabs      | https://www.gowerlabs.co.uk      |
 
 
+## Governance
+
+SNIRF is a community guided project with oversight from academic and industry partners.
+The governance of the project is described in the [government.md](GOVERNMENT.md) document.
+The current steering committee is:
+
+| Name           |          Institution             |
+|----------------|----------------------------------|
+| David Boas     | Boston University                |
+| Robert Luke    | AE Studio                        |
+| Samuel Powell  | Gowerlabs                        |
+| Jörn Horschig  | Artinis Medical Systems B.V. |
+
+We are in the process of establishing the maintainers team,
+please contact us if you would like to contribute.
+
+
 ## Development Information
 
 Please read the procedure for [making contributions to SNIRF](CONTRIBUTING.md).
