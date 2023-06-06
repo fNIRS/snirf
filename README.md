@@ -40,6 +40,7 @@ The following vendors export data in SNIRF format.
 | Kernel         | https://www.kernel.com           |
 | Cortivision    | https://www.cortivision.com      |
 | Gowerlabs      | https://www.gowerlabs.co.uk      |
+| Artinis        | https://www.artinis.com          |
 
 
 ## Governance
