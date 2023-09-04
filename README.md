@@ -95,7 +95,8 @@ file in each package for instructions on how to use.
 
 | Submodule      |                               URL                         |
 |----------------|-----------------------------------------------------------|
-| sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip   |
+| BIDS sample data | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip |
+| Artinis sample data | https://github.com/Artinis-Medical-Systems-B-V/snirf_data_example |
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
 
