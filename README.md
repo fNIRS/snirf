@@ -30,6 +30,7 @@ The following software packages support reading and/or writing SNIRF files.
 | NIRStorm       | MATLAB | https://github.com/Nirstorm/nirstorm         |
 | MNE-Python     | Python | https://mne.tools                            |
 | pysnirf2       | Python | https://pypi.org/project/pysnirf2/           |
+| ICNNA          | MATLAB | https://github.com/forihuelaespina/ICNNA     |
 
 
 The following vendors export data in SNIRF format.
