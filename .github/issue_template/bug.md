@@ -1,34 +1,20 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: '[Bug] '
-labels: 'bug'
+name: Inconsistency report
+about: Report a specification inconsistency to help us improve the snirf specification
+title: '[Inconsistency] '
+labels: 'help wanted'
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the inconsistency**
+Describe what is inconsistent in the snirf specification. Note that we do not provide help or support for toolboxes.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Current specification**
+Copy & paste from the current snirf specification.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**How important is this issue?**
-low, normal or high
-
-**Is a fix for this issue urgent?**
-yes or no
-
-**What Software did you use?**
- - Name: 
- - Version: 
+**Corrected specification**
+A suggestion how to change the snif specification to eliminate the reported inconsistency.
 
 **Additional context**
 Add any other context about the problem here.
