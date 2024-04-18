@@ -1,8 +1,8 @@
 ---
 name: Asking a question / requesting help
-about: Ask the community for help or advise
+about: Ask the community for help or advice
 title: '[Question] '
-labels: 'Question'
+labels: 'question'
 assignees: ''
 
 ---
@@ -14,7 +14,7 @@ A clear and concise description of what the problem is. Ex. I'm always frustrate
 A simple, one sentence question.
 
 **Describe solutions you've tried**
-A clear and concise description of what you have tried on your own already before asking others to spend their valuable time on answering your question.
+A clear and concise description of what you have tried on your own already.
 
 **Additional context**
 Add any other context or screenshots about the question.
