@@ -16,6 +16,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [metaDataTags](#nirsimetadatatags)
        * [data](#nirsidataj)
        * [data.dataTimeSeries](#nirsidatajdatatimeseries)
+       * [data.dataOffset](#nirsidatajdataoffset)
        * [data.time](#nirsidatajtime)
        * [data.measurementList](#nirsidatajmeasurementlistk)
        * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
@@ -160,6 +161,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
+|        `offset`                       | * Absolute offset for all channels           |  `[<f>,...]` * |
 |        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
@@ -381,6 +383,19 @@ described below).
 filter or [3rd party filters such as `305-LZO` or `307-bzip2`](https://portal.hdfgroup.org/display/support/Registered+Filter+Plugins)
 
 Chunked data is allowed to support real-time streaming of data in this array. 
+
+
+#### /nirs(i)/data(j)/dataOffset 
+* **Presence**: optional
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/data(j)/dataOffset`
+
+This stores an optional offset value per channel, which, when added to
+`/nirs(i)/data(j)/dataTimeSeries`, results in absolute data values.
+
+The length of this array is equal to the <number of channels> as represented
+by the second dimension in the `dataTimeSeries`.
+
 
 #### /nirs(i)/data(j)/time 
 * **Presence**: required
