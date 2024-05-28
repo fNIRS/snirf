@@ -968,6 +968,7 @@ This variable specifies the offset of the file time origin relative to absolute
 |"HbT"      | Total hemoglobin concentration                                   |
 |"H2O"      | Water content                                                    |
 |"Lipid"    | Lipid concentration                                              |
+|"StO2"     | Tissue oxygen saturation                                         |
 |"BFi"      | Blood flow index                                                 |
 |"HRF dOD"  | Hemodynamic response function for change in optical density      |
 |"HRF dMean"| HRF for change in mean time-of-flight                            |
