@@ -565,7 +565,7 @@ label for sources and detectors.
 * **Type**:  group
 * **Location**: `/nirs(i)/data(j)/measurementLists`
 
-The group for measurement list variables which map data array onto the to map the data array onto the probe geometry (sources and detectors), data type, and wavelength. This group's datasets are arrays with size `<number of channels>`, which each position describing the corresponding column in the data matrix. (i.e. the values at `measurementLists/sourceIndex(3)` and `measurementLists/detectorIndex(3)` correspond to `dataTimeSeries(:,3)`).
+The group for measurement list variables which map the data array onto the probe geometry (sources and detectors), data type, and wavelength. This group's datasets are arrays with size `<number of channels>`, with each position describing the corresponding column in the data matrix. (i.e. the values at `measurementLists/sourceIndex(3)` and `measurementLists/detectorIndex(3)` correspond to `dataTimeSeries(:,3)`).
 
 This group is required only if the indexed-group format `/nirs(i)/data(j)/measurementList(k)` is not used to encode the measurement list. `measurementLists` is an alternative that may offer better performance for larger probes.
 
