@@ -3,7 +3,7 @@
 This repository stores the Shared Near Infrared Spectroscopy Format (SNIRF).  
 SNIRF is designed by the community in an effort to facilitate sharing and analysis of NIRS data.
 
-View the most recent release version of the format: [here](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md).  
+View the most recent release version of the format: [here](https://github.com/fNIRS/snirf/blob/v1.1/snirf_specification.md).  
 View the development version of the format: [here](snirf_specification.md).   
 
 
@@ -30,6 +30,7 @@ The following software packages support reading and/or writing SNIRF files.
 | NIRStorm       | MATLAB | https://github.com/Nirstorm/nirstorm         |
 | MNE-Python     | Python | https://mne.tools                            |
 | pysnirf2       | Python | https://pypi.org/project/pysnirf2/           |
+| ICNNA          | MATLAB | https://github.com/forihuelaespina/ICNNA     |
 
 
 The following vendors export data in SNIRF format.
@@ -39,6 +40,25 @@ The following vendors export data in SNIRF format.
 | NIRx           | https://nirx.net                 |
 | Kernel         | https://www.kernel.com           |
 | Cortivision    | https://www.cortivision.com      |
+| Gowerlabs      | https://www.gowerlabs.co.uk      |
+| Artinis        | https://www.artinis.com          |
+
+
+## Governance
+
+SNIRF is a community guided project with oversight from academic and industry partners.
+The governance of the project is described in the [government.md](GOVERNMENT.md) document.
+The current steering committee is:
+
+| Name           |          Institution             |
+|----------------|----------------------------------|
+| David Boas     | Boston University                |
+| Robert Luke    | AE Studio                        |
+| Samuel Powell  | Gowerlabs                        |
+| Jörn Horschig  | Artinis Medical Systems B.V. |
+
+We are in the process of establishing the maintainers team,
+please contact us if you would like to contribute.
 
 
 ## Development Information
@@ -76,7 +96,8 @@ file in each package for instructions on how to use.
 
 | Submodule      |                               URL                         |
 |----------------|-----------------------------------------------------------|
-| sample data    | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip   |
+| BIDS sample data | https://github.com/rob-luke/BIDS-NIRS-Tapping/archive/master.zip |
+| Artinis sample data | https://github.com/Artinis-Medical-Systems-B-V/snirf_data_example |
 | EasyH5 Toolbox | https://github.com/fangq/easyh5/archive/v0.8.tar.gz       |
 | JSNIRF Toolbox | https://github.com/fangq/jsnirfy/archive/v0.4.tar.gz      |
 

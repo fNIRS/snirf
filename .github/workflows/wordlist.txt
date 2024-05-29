@@ -14,8 +14,12 @@ milliwatt
 jsnirfy
 waveforms
 TPSF
+accelerometer
 timeDelayWidths
 dt
+Gowerlabs
+gowerlabs
+uk
 nanometers
 deoxy
 oxy
@@ -211,6 +215,7 @@ Inakazu
 Gower
 Rueben
 Artinis
+artinis
 Horschig
 Jorn
 Takumi
@@ -230,6 +235,8 @@ ACCEL
 Accelerometer
 Gyrometer
 MAGN
+AE
+Gowerlabs
 dataUnit
 CMIXF
 unscaled
@@ -262,3 +269,14 @@ dataspace
 ACC
 RDWR
 matlab
+Lührs
+Maastricht
+Oostenveld
+Radboud
+Aghajan
+Zahra
+Jörn
+OBELAB
+forihuelaespina
+StO
+StO2

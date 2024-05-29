@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "Cite the SNIRF format in your research."
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Tucker"
+    given-names: "Stephen"
+  - family-names: "Dubb"
+    given-names: "Jay"
+  - family-names: "Kura"
+    given-names: "Sreekanth"
+  - family-names: "von Lühmann"
+    given-names: "Alexander"
+  - family-names: "Franke"
+    given-names: "Robert"
+  - family-names: "Horschig"
+    given-names: "Jörn M"
+  - family-names: "Powell"
+    given-names: "Samuel"
+  - family-names: "Oostenveld"
+    given-names: "Robert"
+  - family-names: "Lührs"
+    given-names: "Michael"
+  - family-names: "Delaire"
+    given-names: "Édouard"
+  - family-names: "Aghajan"
+    given-names: "Zahra M"
+  - family-names: "Yun"
+    given-names: "Hanseok"
+  - family-names: "Yücel"
+    given-names: "Meryem A"
+  - family-names: "Fang"
+    given-names: "Qianqian"
+  - family-names: "Huppert"
+    given-names: "Theodore J"
+  - family-names: "Frederick"
+    given-names: "Blaise deB"
+  - family-names: "Pollonini"
+    given-names: "Luca"
+  - family-names: "Boas"
+    given-names: "David A"
+  - family-names: "Luke"
+    given-names: "Robert"
+  title: "Introduction to the shared near infrared spectroscopy format"
+  volume: 10
+  journal: "Neurophotonics"
+  number: 1
+  publisher: "SPIE"
+  pages: 013507
+  month: 12
+  year: 2022
+  doi: "10.1117/1.NPh.10.1.013507"
+  url: "https://doi.org/10.1117/1.NPh.10.1.013507"

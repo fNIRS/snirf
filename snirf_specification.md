@@ -1,7 +1,7 @@
 Shared Near Infrared Spectroscopy Format (SNIRF) Specification
 ==============================================================
 
-* **Document Version**: v1.1.0-development
+* **Document Version**: v1.1
 * **License**: This document is in the public domain.
 
 ## Table of Content
@@ -141,6 +141,10 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 
 ### SNIRF data format summary
 
+Note that this table serves as machine-readable schema for the SNIRF format. Its format may not be altered.
+
+[//]: # (SCHEMA BEGIN)
+
 |  SNIRF-formatted NIRS data structure  |            Meaning of the data               |     Type       |
 |---------------------------------------|----------------------------------------------|----------------|
 | `/formatVersion`                      | * SNIRF format version                       |   `"s"`      * |
@@ -188,7 +192,7 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
-|         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]`   |
+|         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]` |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
 |         `landmarkPos3D`               | * Anatomical landmark 3-D positions          | `[[<f>,...]]`  |
@@ -198,13 +202,14 @@ HDF5 location paths to denote the indices of sub-elements when multiplicity pres
 |         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
-|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   |  `[<f>,...]` + |
+|         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]` +|
 |         `dataUnit`                    | * SI unit of the auxiliary channel           |   `"s"`        |
 |         `time`                        | * Time (in `TimeUnit`) for auxiliary data    |  `[<f>,...]` + |
 |         `timeOffset`                  | * Time offset of auxiliary channel data      |  `[<f>,...]`   |
 
-In the above table, the used notations are explained below
+[//]: # (SCHEMA END)
 
+In the above schema table, the used notations are explained below:
 * `{.}` represents a simple HDF5 group
 * `{i}` represents an HDF5 group with one or multiple sub-groups (i.e. an indexed-group)
 * `<i>` represents an integer value
@@ -214,7 +219,7 @@ In the above table, the used notations are explained below
 * `[[...]]` represents a 2-D array (dataset), can be empty
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
-* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` required
+* `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` is required
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
@@ -251,7 +256,7 @@ The `metaDataTags` group contains the metadata associated with the measurements.
 Each metadata record is represented as a dataset under this group - with the name of
 the record, i.e. the key, as the dataset's name, and the value of the record as the 
 actual data stored in the dataset. Each metadata record can potentially have different 
-data types.
+data types. Sub-groups should not be used to organize metadata records: a member of the `metaDataTags` Group must be a Dataset.
 
 The below five metadata records are minimally required in a SNIRF file
 
@@ -995,17 +1000,15 @@ This optional array specifies any recorded auxiliary data. Each element of
 * **Type**:  string
 * **Location**: `/nirs(i)/aux(j)/name`
 
-This is string describing the j<sup>th</sup> auxiliary data timecourse.
+This is string describing the j<sup>th</sup> auxiliary data timecourse. While auxiliary data can be given any title, standard names for commonly used auxiliary channels (i.e. accelerometer data) are specified in the appendix.
 
 #### /nirs(i)/aux(j)/dataTimeSeries 
 * **Presence**: optional; required if `aux` is used
-* **Type**:  numeric 1-D array
+* **Type**:  numeric 2-D array
 * **Location**: `/nirs(i)/aux(j)/dataTimeSeries`
 
 This is the aux data variable. This variable has dimensions of `<number of 
-time points> x 1`.
-
-Chunked data is allowed to support real-time data streaming
+time points> x <number of channels>`. If multiple channels of related data are generated by a system, they may be encoded in the multiple columns of the time series (i.e. complex numbers). For example, a system containing more than one accelerometer may output this data as a set of `ACCEL_X`/`ACCEL_Y`/`ACCEL_Z` auxiliary time series, where each has the dimension of `<number of time points> x <number of accelerometers>`. Note that it is NOT recommended to encode the various accelerometer dimensions as multiple channels of the same `aux` Group: instead follow the `"ACCEL_X"`, `"ACCEL_Y"`, `"ACCEL_Z"` naming conventions described in the appendix. Chunked data is allowed to support real-time data streaming.
 
 #### /nirs(i)/aux(j)/dataUnit 
 * **Presence**: optional
@@ -1078,6 +1081,7 @@ This variable specifies the offset of the file time origin relative to absolute
 |"HbT"      | Total hemoglobin concentration                                   |
 |"H2O"      | Water content                                                    |
 |"Lipid"    | Lipid concentration                                              |
+|"StO2"     | Tissue oxygen saturation                                         |
 |"BFi"      | Blood flow index                                                 |
 |"HRF dOD"  | Hemodynamic response function for change in optical density      |
 |"HRF dMean"| HRF for change in mean time-of-flight                            |
@@ -1254,14 +1258,17 @@ specification:
 - Stanislaw Wojtkiewicz, University of Birmingham, NIRFAST
 - Robert Luke, Macquarie University, MNE-NIRS
 - Stephen Tucker, Boston University
+- Michael Lührs, Maastricht University, Brain Innovation B.V., Satori
+- Robert Oostenveld, Radboud University, FieldTrip
 
 ### Hardware
 - Hirokazu Asaka, Hitachi
 - Rob Cooper, Gower Labs Inc
 - Mathieu Coursolle, Rogue Research
 - Rueben Hill, Gower Labs Inc
-- Jorn Horschig, Artinis Inc
+- Jörn Horschig, Artinis Medical Systems B.V.
 - Takumi Inakazu, Hitachi
 - Lamija Pasalic, NIRx
 - Davood Tashayyod, fNIR Devices and Biopac Inc
-- Hanseok Yun, OdeLab Inc
+- Hanseok Yun, OBELAB Inc
+- Zahra M. Aghajan, Kernel
