@@ -279,3 +279,5 @@ Jörn
 OBELAB
 dataOffset
 forihuelaespina
+StO
+StO2
