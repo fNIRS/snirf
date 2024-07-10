@@ -29,9 +29,8 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 **Section 3.** Terms. The Steering Committee is composed of 3 or 5 members of the fNIRS community who are elected to serve 3 year terms. The number of members should remain odd.
 
 **Section 4.** Meetings. A majority of Steering Committee members must meet at least biannually. At least one Maintainer must be present at these meetings. These meetings should review the following:
-- The most recent Maintainers Report
 - Any pending releases or critical changes
-- project priorities and progress towards goals
+- Project priorities and progress towards goals
 - Delegation of resources (i.e maintainers' attention) towards completion of goals
 
 The meeting should result in the authorship of a brief report.
@@ -52,9 +51,7 @@ The meeting should result in the authorship of a brief report.
 
 **Section 3.** Terms. Maintainers serve 2 year terms. At the end of their term, they must step down or seek the renewal of their title from a member of the Steering Committee.
 
-**Section 4.** Maintainers' Report. Maintainers must collectively author a biannual report summarizing their prominent actions and considerations since their previous report. This document must include any critical issues or pending releases which the Steering Committee must consider. 
-
-**Section 5.** GitHub Repository Role. Maintainers must have the role of `Maintainer` on the GitHub repository.
+**Section 4.** GitHub Repository Role. Maintainers must have the role of `Maintainer` on the GitHub repository.
 
 ### Article III. Additional Bylaws
 
