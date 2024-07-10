@@ -28,7 +28,7 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 
 **Section 3.** Terms. The Steering Committee is composed of 3 or 5 members of the fNIRS community who are elected to serve 3 year terms. The number of members should remain odd.
 
-**Section 4.** Meetings. A majority of Steering Committee members must meet at least biannually. At least one Maintainer must be present at these meetings. These meetings should review the following:
+**Section 4.** Meetings. A majority of Steering Committee members must meet at least biannually (twice a year). At least one Maintainer must be present at these meetings. These meetings should review the following:
 - Any pending releases or critical changes
 - Project priorities and progress towards goals
 - Delegation of resources (i.e maintainers' attention) towards completion of goals
