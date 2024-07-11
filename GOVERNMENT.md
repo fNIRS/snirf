@@ -28,15 +28,14 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 
 **Section 3.** Terms. The Steering Committee is composed of 3 or 5 members of the fNIRS community who are elected to serve 3 year terms. The number of members should remain odd.
 
-**Section 4.** Meetings. A majority of Steering Committee members must meet at least biannually. At least one Maintainer must be present at these meetings. These meetings should review the following:
-- The most recent Maintainers Report
+**Section 4.** Meetings. A majority of Steering Committee members must meet at least biannually (twice a year). At least one Maintainer must be present at these meetings. These meetings should review the following:
 - Any pending releases or critical changes
-- project priorities and progress towards goals
+- Project priorities and progress towards goals
 - Delegation of resources (i.e maintainers' attention) towards completion of goals
 
-The meeting should result in the authorship of a brief report.
+The meeting decisions shall be publicly documented.
 
-**Section 5.** Steering Committee Reports. The Steering Committee must author a brief report following each of its required biannual meetings. This report must document the actions and considerations of the committee, and must be archived and disseminated via the GitHub repository. The report must include the names of the Steering Committee's members.
+**Section 5.** Meeting Documentation. The Steering Committee must document its decisions following each of its required biannual meetings. This consists of disseminating the actions and considerations of the committee via the GitHub repository.
 
 **Section 6.** GitHub Repository Role. Steering Committee members must have the role of `Admin` on the GitHub repository.  
 
@@ -52,9 +51,7 @@ The meeting should result in the authorship of a brief report.
 
 **Section 3.** Terms. Maintainers serve 2 year terms. At the end of their term, they must step down or seek the renewal of their title from a member of the Steering Committee.
 
-**Section 4.** Maintainers' Report. Maintainers must collectively author a biannual report summarizing their prominent actions and considerations since their previous report. This document must include any critical issues or pending releases which the Steering Committee must consider. 
-
-**Section 5.** GitHub Repository Role. Maintainers must have the role of `Maintainer` on the GitHub repository.
+**Section 4.** GitHub Repository Role. Maintainers must have the role of `Maintainer` on the GitHub repository.
 
 ### Article III. Additional Bylaws
 
