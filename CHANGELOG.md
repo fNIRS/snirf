@@ -22,8 +22,6 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Added language preventing `metaDataTags` sub-groups
 * Added notice that the summary table is intended to be machine-readable
 * Removed local channel indexing owing to incomplete specification.
-
-The implementation did not define a mapping from local to global indices, and was thus incomplete.
   
 ### `v1.0` (September 23 2021)
 
