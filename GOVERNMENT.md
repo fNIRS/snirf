@@ -33,9 +33,9 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 - Project priorities and progress towards goals
 - Delegation of resources (i.e maintainers' attention) towards completion of goals
 
-The meeting should result in the authorship of a brief report.
+The meeting decisions shall be publicly documented.
 
-**Section 5.** Steering Committee Reports. The Steering Committee must author a brief report following each of its required biannual meetings. This report must document the actions and considerations of the committee, and must be archived and disseminated via the GitHub repository. The report must include the names of the Steering Committee's members.
+**Section 5.** Meeting Documentation. The Steering Committee must document its decisions following each of its required biannual meetings. This consists in disseminating the actions and considerations of the committee via the GitHub repository.
 
 **Section 6.** GitHub Repository Role. Steering Committee members must have the role of `Admin` on the GitHub repository.  
 
