@@ -35,7 +35,7 @@ _"SNIRF Contributors"_ are individuals who have contributed changes, revisions, 
 
 The meeting decisions shall be publicly documented.
 
-**Section 5.** Meeting Documentation. The Steering Committee must document its decisions following each of its required biannual meetings. This consists in disseminating the actions and considerations of the committee via the GitHub repository.
+**Section 5.** Meeting Documentation. The Steering Committee must document its decisions following each of its required biannual meetings. This consists of disseminating the actions and considerations of the committee via the GitHub repository.
 
 **Section 6.** GitHub Repository Role. Steering Committee members must have the role of `Admin` on the GitHub repository.  
 
