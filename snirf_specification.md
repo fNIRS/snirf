@@ -577,21 +577,21 @@ This group is required only if the indexed-group format `/nirs(i)/data(j)/measur
 The arrays of `measurementLists` are:
 
 #### /nirs(i)/data(j)/measurementLists/sourceIndex 
-* **Presence**: required
+* **Presence**: required if measurementLists is present
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/sourceIndex`
 
 Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Source indices for each channel.
 	
 #### /nirs(i)/data(j)/measurementLists/detectorIndex 
-* **Presence**: required
+* **Presence**: required if measurementLists is present
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/detectorIndex`
 
 Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Detector indices for each channel.
 
 #### /nirs(i)/data(j)/measurementLists/wavelengthIndex 
-* **Presence**: required
+* **Presence**: required if measurementLists is present
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/wavelengthIndex`
 
@@ -612,7 +612,7 @@ Must be 1-D array with length equal to the size of the second dimension of `/nir
 Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Actual (measured) emission wavelength in nm, if available, for the source in each channel.
 	
 #### /nirs(i)/data(j)/measurementLists/dataType 
-* **Presence**: required
+* **Presence**: required if measurementLists is present
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/dataType`
 
@@ -633,7 +633,7 @@ Must be 1-D array with length equal to the size of the second dimension of `/nir
 Data-type label. Must be 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`.
 
 #### /nirs(i)/data(j)/measurementLists/dataTypeIndex 
-* **Presence**: required
+* **Presence**: required if measurementLists is present
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/dataTypeIndex`
 
