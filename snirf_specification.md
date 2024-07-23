@@ -496,9 +496,7 @@ for list of possible values.
 * **Type**:  integer
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/dataTypeIndex`
 
-Data-type specific parameter indices. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the probe structure, as detailed below. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so the data type index must be a vector with 2 elements that index the additional parameters. One use of this parameter is as a 
-stimulus condition index when `measurementList(k).dataType = 99999` (i.e, `processed` and 
-`measurementList(k).dataTypeLabel = 'HRF ...'` .
+Data-type specific parameter index. The data type index specifies additional data type specific parameters that are further elaborated by other fields in the probe structure, as detailed below. Note that where multiple parameters are required, the same index must be used into each (examples include data types such as Time Domain and Diffuse Correlation Spectroscopy). One use of this parameter is as a stimulus condition index when `measurementList(k).dataType = 99999` (i.e, `processed` and `measurementList(k).dataTypeLabel = 'HRF ...'` .
 
 #### /nirs(i)/data(j)/measurementList(k)/sourcePower 
 * **Presence**: optional
