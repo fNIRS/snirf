@@ -30,9 +30,6 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [data.measurementList.dataTypeIndex](#nirsidatajmeasurementlistkdatatypeindex)
        * [data.measurementList.sourcePower](#nirsidatajmeasurementlistksourcepower)
        * [data.measurementList.detectorGain](#nirsidatajmeasurementlistkdetectorgain)
-       * [data.measurementList.moduleIndex](#nirsidatajmeasurementlistkmoduleindex)
-       * [data.measurementList.sourceModuleIndex](#nirsidatajmeasurementlistksourcemoduleindex)
-       * [data.measurementList.detectorModuleIndex](#nirsidatajmeasurementlistkdetectormoduleindex)
        * [stim](#nirsistimj)
        * [stim.name](#nirsistimjname)
        * [stim.data](#nirsistimjdata)
@@ -57,7 +54,6 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [probe.landmarkLabels](#nirsiprobelandmarklabelsj)
        * [probe.CoordinateSystem](#nirsiprobecoordinatesystem)
        * [probe.CoordinateSystemDescription](#nirsiprobecoordinatesystemdescription)
-       * [probe.useLocalIndex](#nirsiprobeuselocalindex)
        * [aux](#nirsiauxj)
        * [aux.name](#nirsiauxjname)
        * [aux.dataTimeSeries](#nirsiauxjdatatimeseries)
@@ -174,9 +170,6 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
-|            `moduleIndex`              | * Index of the parent module (if modular)    |   `<i>`        |
-|            `sourceModuleIndex`        | * Index of the source's parent module        |   `<i>`        |
-|            `detectorModuleIndex`      | * Index of the detector's parent module      |   `<i>`        |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
 |         `data`                        | * Data stream of the stimulus channel        | `[[<f>,...]]` +|
@@ -201,7 +194,6 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |         `landmarkLabels`              | * String arrays specifying landmark names    |  `["s",...]`   |
 |         `coordinateSystem`            | * Coordinate system used in probe description|   `"s"`        |
 |         `coordinateSystemDescription` | * Description of coordinate system           |   `"s"`        |
-|         `useLocalIndex`               | * If source/detector index is within a module|   `<i>`        |
 |     `aux{i}`                          | * Root-group for auxiliary measurements      |   `{i}`        |
 |         `name`                        | * Name of the auxiliary channel              |   `"s"`      + |
 |         `dataTimeSeries`              | * Data acquired from the auxiliary channel   | `[[<f>,...]]` +|
@@ -511,39 +503,6 @@ The units are not defined, unless the user takes the option of using a `metaData
 * **Location**: `/nirs(i)/data(j)/measurementList(k)/detectorGain`
 
 Detector gain
-
-#### /nirs(i)/data(j)/measurementList(k)/moduleIndex 
-* **Presence**: optional
-* **Type**:  integer
-* **Location**: `/nirs(i)/data(j)/measurementList(k)/moduleIndex`
-
-Index of a repeating module. If `moduleIndex` is provided while `useLocalIndex`
-is set to `true`, then, both `measurementList(k).sourceIndex` and 
-`measurementList(k).detectorIndex` are assumed to be the local indices
-of the same module specified by `moduleIndex`. If the source and
-detector are located on different modules, one must use `sourceModuleIndex`
-and `detectorModuleIndex` instead to specify separate parent module 
-indices. See below.
-
-
-#### /nirs(i)/data(j)/measurementList(k)/sourceModuleIndex 
-* **Presence**: optional
-* **Type**:  integer
-* **Location**: `/nirs(i)/data(j)/measurementList(k)/sourceModuleIndex`
-
-Index of the module that contains the source of the channel. 
-This index must be used together with `detectorModuleIndex`, and 
-can not be used when `moduleIndex` presents.
-
-#### /nirs(i)/data(j)/measurementList(k)/detectorModuleIndex 
-* **Presence**: optional
-* **Type**:  integer
-* **Location**: `/nirs(i)/data(j)/measurementList(k)/detectorModuleIndex`
-
-Index of the module that contains the detector of the channel. 
-This index must be used together with `sourceModuleIndex`, and 
-can not be used when `moduleIndex` presents.
-
 
 For example, if `measurementList5` is a structure with `sourceIndex=2`, 
 `detectorIndex=3`, `wavelengthIndex=1`, `dataType=1`, `dataTypeIndex=1` would 
@@ -871,20 +830,6 @@ Free-form text description of the coordinate system.
 May also include a link to a documentation page or
 paper describing the system in greater detail.
 This field is required if the `coordinateSystem` field is set to "Other".
-
-
-#### /nirs(i)/probe/useLocalIndex 
-* **Presence**: optional 
-* **Type**:  integer
-* **Location**: `/nirs(i)/probe/useLocalIndex`
-
-For modular NIRS systems, setting this flag to a non-zero integer indicates 
-that `measurementList(k).sourceIndex` and `measurementList(k).detectorIndex` 
-are module-specific local-indices. One must also include 
-`measurementList(k).moduleIndex`, or when cross-module channels present, both 
-`measurementList(k).sourceModuleIndex` and `measurementList(k).detectorModuleIndex` 
-in the `measurementList` structure in order to restore the global indices 
-of the sources/detectors.
 
 
 #### /nirs(i)/aux(j) 
