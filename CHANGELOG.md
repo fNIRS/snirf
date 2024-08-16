@@ -23,7 +23,8 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Specified that `aux{i}/dataTimeSeris` is a 2D array. Multiple channels of data can be present, otherwise 2nd dimension should be 1.
 * Added language preventing `metaDataTags` sub-groups
 * Added notice that the summary table is intended to be machine-readable
-  
+* Removed local channel indexing owing to incomplete specification.
+
 ### `v1.0` (September 23 2021)
 
 [View this version of the specification](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md)  
