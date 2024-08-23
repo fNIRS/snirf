@@ -2,6 +2,8 @@
 
 SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 
+### `2.0` In development
+* Add `nirs(i)/data(j)/measurementLists` as an alternative to the indexed-Group measurementList `nirs(i)/data(j)/measurementList(k)`.
 
 ### `v1.1`
 
@@ -22,7 +24,7 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 * Added language preventing `metaDataTags` sub-groups
 * Added notice that the summary table is intended to be machine-readable
 * Removed local channel indexing owing to incomplete specification.
-  
+
 ### `v1.0` (September 23 2021)
 
 [View this version of the specification](https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md)  
