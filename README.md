@@ -48,6 +48,7 @@ The following vendors export data in SNIRF format.
 
 SNIRF is a community guided project with oversight from academic and industry partners.
 The governance of the project is described in the [government.md](GOVERNMENT.md) document.
+
 The current steering committee is:
 
 | Name           |          Institution             |
@@ -55,9 +56,18 @@ The current steering committee is:
 | David Boas     | Boston University                |
 | Robert Luke    | AE Studio                        |
 | Samuel Powell  | Gowerlabs                        |
-| Jörn Horschig  | Artinis Medical Systems B.V. |
+| Jörn Horschig  | Artinis Medical Systems B.V.     |
 
-We are in the process of establishing the maintainers team,
+
+The current maintainers are:
+
+| Name             |          Institution             |
+|------------------|----------------------------------|
+| Sreekanth Kura   | Boston University                |
+| Eike Middell     | TU Berlin                        |
+| Johann Benerradi | University of Cambridge          |
+
+We are in the process of developing the maintainers team,
 please contact us if you would like to contribute.
 
 
