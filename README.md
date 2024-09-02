@@ -64,7 +64,7 @@ The current maintainers are:
 | Name             |          Institution             |
 |------------------|----------------------------------|
 | Sreekanth Kura   | Boston University                |
-| Eike Middell     | TU Berlin                        |
+| Eike Middell     | IBS Lab, TU Berlin, BIFOLD       |
 | Johann Benerradi | University of Cambridge          |
 
 We are in the process of developing the maintainers team,
