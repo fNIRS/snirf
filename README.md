@@ -42,6 +42,7 @@ The following vendors export data in SNIRF format.
 | Cortivision    | https://www.cortivision.com      |
 | Gowerlabs      | https://www.gowerlabs.co.uk      |
 | Artinis        | https://www.artinis.com          |
+| OBELAB         | https://www.obelab.com           |
 
 
 ## Governance
