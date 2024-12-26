@@ -169,7 +169,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
-|        `offset`                       | * Absolute offset for all channels           |  `[<f>,...]` * |
+|        `dataOffset`                   | * Optional offset value per channel          |  `[<f>,...]`   |
 |        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
