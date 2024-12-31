@@ -1004,13 +1004,11 @@ This variable specifies the offset of the file time origin relative to absolute
 + 001-100:  Raw - Continuous Wave (CW)
    - 001 - Amplitude
    - 051 - Fluorescence Amplitude
-
 + 101-200:  Raw - Frequency Domain (FD)
    - 101 - AC Amplitude
    - 102 - Phase
    - 151 - Fluorescence Amplitude
    - 152 - Fluorescence Phase
-
 + 201-300: Raw - Time Domain - Gated (TD Gated)
    - 201 - Amplitude
    - 251 - Fluorescence Amplitude
@@ -1020,7 +1018,8 @@ This variable specifies the offset of the file time origin relative to absolute
 + 401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
    - 401 - g2
    - 410 - BFi
-+ 99999:  Processed
++ \>500:  
+   - 99999 - Processed
 
 
 ### Supported `measurementList(k).dataTypeLabel` values in `dataTimeSeries`
