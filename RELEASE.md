@@ -8,21 +8,21 @@ This procedure should be completed by a steering committee member in accordance 
 2. Unanimous approval is required from the steering committee.
    Ensure all steering committee members have explicitly given their approval as a public github comment in the issue.
 3. Open a pull request that makes the following modifications:
-   a. Modify the version number in the opening lines of the specification to match the version to be released (e.g., `1.0.0`).
+   1. Modify the version number in the opening lines of the specification to match the version to be released (e.g., `1.0.0`).
 4. Ensure at least one other admin approves the pull request, then it can be merged.
 5. Create a new release and git tag by:
-   a. Press the `Create a new release` button on the repository home page.
-   b. Click on the `Choose a tag` and type in the release version proceeded by a v, for example `v1.0.0`.
-   c. Set the release title to the same as the tag name.
-   d. Copy the dot points for this release from the CHANGELOG.md document to the release description field.
-   e. Hit `Publish release`
+   1. Press the `Create a new release` button on the repository home page.
+   2. Click on the `Choose a tag` and type in the release version proceeded by a v, for example `v1.0.0`.
+   3. Set the release title to the same as the tag name.
+   4. Copy the dot points for this release from the CHANGELOG.md document to the release description field.
+   5. Hit `Publish release`
 6. Update the README.md document to reflect the new release by:
-   a. Change the path of the "View the most recent release version of the format" link to reflect the tagged version.
+   1. Change the path of the "View the most recent release version of the format" link to reflect the tagged version.
       This will be something like https://github.com/fNIRS/snirf/blob/v1.0/snirf_specification.md
 7. Modify the repository to indicate that it is now a development version by:
-   a. Increase the version number in the SNIRF specification and append the word "development" to it. E.g., `v1.1.0-development`.
+   1. Increase the version number in the SNIRF specification and append the word "development" to it. E.g., `v1.1.0-development`.
       This ensures that people can differentiate between released versions of the draft and work-in-progress versions.
-   a. Update the change log file by adding a link to the released version, specifying the release data, and adding the next development version.
+   2. Update the change log file by adding a link to the released version, specifying the release data, and adding the next development version.
 8. Send an email out on the mailing list via: https://mailchi.mp/89a906ec22cf/snirf
 9. Increase the version number listed on the Society for fNIRS website: https://fnirs.org/resources/software/snirf/
 
