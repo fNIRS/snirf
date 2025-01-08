@@ -168,9 +168,9 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |         ...                           | * Additional user-defined metadata entries   |                |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
-|        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
 |        `dataOffset`                   | * Optional offset value per channel          |  `[<f>,...]`   |
-|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
+|        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
+|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      *¹|
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
@@ -182,7 +182,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
-|        `measurementLists`             | * source-detector information                |  `{.}`       * |
+|        `measurementLists`             | * source-detector information                |  `{.}`       *¹|
 |            `sourceIndex`              | * Source index for each channel              |   `[<i>,...]`* |
 |            `detectorIndex`            | * Detector index for each channel            |   `[<i>,...]`* |
 |            `wavelengthIndex`          | * Wavelength index for each channel          |   `[<i>,...]`* |
@@ -196,15 +196,15 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |            `detectorGain`             | * Detector gain for each channel             |   `[<f>,...]`  |
 |     `stim{i}`                         | * Root-group for stimulus measurements       |   `{i}`        |
 |         `name`                        | * Name of the stimulus data                  |   `"s"`      + |
-|         `data`                        | * Data stream of the stimulus channel        | `[[<f>,...]]` +|
+|         `data`                        | * Data stream of the stimulus channel        | `[[<f>,...]]`+ |
 |         `dataLabels`                  | * Names of additional columns of stim data   |  `["s",...]`   |
 |     `probe`                           | * Root group for NIRS probe information      |   `{.}`      * |
 |         `wavelengths`                 | * List of wavelengths (in nm)                |  `[<f>,...]` * |
 |         `wavelengthsEmission`         | * List of emission wavelengths (in nm)       |  `[<f>,...]`   |
-|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
-|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`*¹|
-|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
-|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`*²|
+|         `sourcePos2D`                 | * Source 2-D positions in `LengthUnit`       | `[[<f>,...]]`*²|
+|         `sourcePos3D`                 | * Source 3-D positions in `LengthUnit`       | `[[<f>,...]]`*²|
+|         `detectorPos2D`               | * Detector 2-D positions in `LengthUnit`     | `[[<f>,...]]`*³|
+|         `detectorPos3D`               | * Detector 3-D positions in `LengthUnit`     | `[[<f>,...]]`*³|
 |         `frequencies`                 | * Modulation frequency list                  |  `[<f>,...]`   |
 |         `timeDelays`                  | * Time delays for gated time-domain data     |  `[<f>,...]`   |
 |         `timeDelayWidths`             | * Time delay width for gated time-domain data|  `[<f>,...]`   |
@@ -1004,13 +1004,11 @@ This variable specifies the offset of the file time origin relative to absolute
 + 001-100:  Raw - Continuous Wave (CW)
    - 001 - Amplitude
    - 051 - Fluorescence Amplitude
-
 + 101-200:  Raw - Frequency Domain (FD)
    - 101 - AC Amplitude
    - 102 - Phase
    - 151 - Fluorescence Amplitude
    - 152 - Fluorescence Phase
-
 + 201-300: Raw - Time Domain - Gated (TD Gated)
    - 201 - Amplitude
    - 251 - Fluorescence Amplitude
@@ -1020,7 +1018,8 @@ This variable specifies the offset of the file time origin relative to absolute
 + 401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
    - 401 - g2
    - 410 - BFi
-+ 99999:  Processed
++ \>500:  
+   - 99999 - Processed
 
 
 ### Supported `measurementList(k).dataTypeLabel` values in `dataTimeSeries`
