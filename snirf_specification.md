@@ -170,7 +170,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
 |        `dataOffset`                   | * Optional offset value per channel          |  `[<f>,...]`   |
-|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`      * |
+|        `measurementList{i}`           | * Per-channel source-detector information    |   `{i}`     ^¹ |
 |            `sourceIndex`              | * Source index for a given channel           |   `<i>`      * |
 |            `detectorIndex`            | * Detector index for a given channel         |   `<i>`      * |
 |            `wavelengthIndex`          | * Wavelength index for a given channel       |   `<i>`      * |
@@ -182,7 +182,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |            `dataTypeIndex`            | * Data type index for a given channel        |   `<i>`      * |
 |            `sourcePower`              | * Source power for a given channel           |   `<f>`        |
 |            `detectorGain`             | * Detector gain for a given channel          |   `<f>`        |
-|        `measurementLists`             | * source-detector information                |  `{.}`       * |
+|        `measurementLists`             | * source-detector information                |  `{.}`      ^¹ |
 |            `sourceIndex`              | * Source index for each channel              |   `[<i>,...]`* |
 |            `detectorIndex`            | * Detector index for each channel            |   `[<i>,...]`* |
 |            `wavelengthIndex`          | * Wavelength index for each channel          |   `[<i>,...]`* |
@@ -238,6 +238,7 @@ In the above schema table, the used notations are explained below:
 * `...` (optional) additional elements similar to the previous element
 * `*` in the last column indicates a required subfield
 * `*ⁿ` in the last column indicates that at least one of the subfields in the subgroup identified by `n` is required
+* `^ⁿ` in the last column indicates that exactly one of the subfields in the subgroup identified by `n` is required, and no more than one should be present.
 * `+` in the last column indicates a required subfield if the optional parent object is included
 
 ### SNIRF data container definitions
