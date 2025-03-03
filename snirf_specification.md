@@ -920,7 +920,7 @@ ASCII encoded char arrays.
 
 
 #### /nirs(i)/probe/coordinateSystem
-* **Presence**: optional 
+* **Presence**: optional; recommended if `sourcePos3D` and `detectorPos3D` are present 
 * **Type**:  string
 * **Location**: `/nirs(i)/probe/coordinateSystem`
 
