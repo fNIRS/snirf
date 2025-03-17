@@ -905,7 +905,7 @@ index to the labels of the given landmark. Label names are stored in the
 
 
 #### /nirs(i)/probe/landmarkLabels(j) 
-* **Presence**: optional; recommended if `sourcePos3D` and `detectorPos3D` are present 
+* **Presence**: optional; recommended if `landmarkPos3D` is present 
 * **Type**:  string 1-D array
 * **Location**: `/nirs(i)/probe/landmarkLabels(j)`
 
