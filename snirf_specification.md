@@ -724,7 +724,7 @@ The number of wavelengths is not limited (except that at least two are needed
 to calculate the two forms of hemoglobin).  Each source-detector pair would 
 generally have measurements at all wavelengths.
 
-This field must present, but can be empty, for example, in the case that the stored
+This field must be present, but can be empty, for example, in the case that the stored
 data are processed data (`dataType=99999`, see Appendix).
 
 
