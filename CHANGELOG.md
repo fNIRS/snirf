@@ -2,8 +2,9 @@
 
 SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 
-### `2.0` In development
+### In development
 * Add `nirs(i)/data(j)/measurementLists` as an alternative to the indexed-Group measurementList `nirs(i)/data(j)/measurementList(k)`.
+* Add `nirs(i)/data(j)/name` as an optional, free-form string field to label time series (#177)
 
 ### `v1.1`
 
