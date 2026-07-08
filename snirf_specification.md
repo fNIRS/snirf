@@ -18,6 +18,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [data.dataTimeSeries](#nirsidatajdatatimeseries)
        * [data.dataOffset](#nirsidatajdataoffset)
        * [data.time](#nirsidatajtime)
+       * [data.name](#nirsidatajname)
        * [data.measurementList](#nirsidatajmeasurementlistk)
        * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
        * [data.measurementList.detectorIndex](#nirsidatajmeasurementlistkdetectorindex)
@@ -434,6 +435,15 @@ a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
+
+
+#### /nirs(i)/data(j)/name 
+* **Presence**: optional
+* **Type**:  string
+* **Location**: `/nirs(i)/data(j)/name`
+
+This is an optional, free-form string describing the j<sup>th</sup> data time course. One use of this parameter is to distinguish processed time courses which are indistinguishable by `measurementList(k).dataType`, `measurementList(k).dataTypeLabel` and `measurementList(k).dataTypeIndex` (like for example changes in optical density which were filtered by different artifact-rejection methods).
+
 
 #### /nirs(i)/data(j)/measurementList(k) 
 * **Presence**: required if `measurementLists` is not present
