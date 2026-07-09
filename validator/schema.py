@@ -86,12 +86,12 @@ class Nirs(BaseModel):
 # LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MetaDataTags(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    SubjectID: str = None
-    MeasurementDate: str = None
-    MeasurementTime: str = None
-    LengthUnit: str = None
-    TimeUnit: str = None
-    FrequencyUnit: str = None
+    SubjectID: str
+    MeasurementDate: str
+    MeasurementTime: str
+    LengthUnit: str
+    TimeUnit: str
+    FrequencyUnit: str
 
     # Additional user-defined metadata entries
     model_config = ConfigDict(extra="allow")
