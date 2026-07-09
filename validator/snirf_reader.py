@@ -1,6 +1,8 @@
 import re
 import h5py
 
+from snirf_schema import SNIRFFile
+
 
 # =============================================================================
 # HDF5 LOADERS
@@ -130,7 +132,7 @@ def load_nirs(nirs_group):
     return result
 
 
-def load_snirf(filename, SNIRFFile):
+def load_snirf(filename):
     """
     Main entry point.
     """

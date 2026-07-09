@@ -1,44 +1,70 @@
 from __future__ import annotations
 
 import numpy as np
+import os
+
 from pydantic import BaseModel, ConfigDict, model_validator, AfterValidator
+from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
+
+os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
 
 
 # =============================================================================
 # HELPERS
 # =============================================================================
 def check_int_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer)):
-        raise ValueError("expected a 1D array of integers")
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, int)):
+        raise PydanticCustomError(
+            "int_1d_ndarray",
+            "Input should be a valid 1D array of integers"
+        )
     return v
 
 
 def check_float_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.floating)):
-        raise ValueError("expected a 1D array of floats")
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, float)):
+        raise PydanticCustomError(
+            "float_1d_ndarray",
+            "Input should be a valid 1D array of floats"
+        )
     return v
 
 
 def check_float_2d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 2 and np.issubdtype(v.dtype, np.floating)):
-        raise ValueError("expected a 2D array of floats")
+    if not (v.ndim == 2 and np.issubdtype(v.dtype, float)):
+        raise PydanticCustomError(
+            "float_2d_ndarray",
+            "Input should be a valid 2D array of floats"
+        )
     return v
 
 
 def check_string_1d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 1 and v.dtype == object):
-        raise ValueError("expected a 1D array of variable-length strings")
-    if not all(isinstance(x, str) for x in v.flat):  # strict str (not bytes)
-        raise ValueError("expected a 1D array of variable-length strings")
+        raise PydanticCustomError(
+            "string_1d_ndarray",
+            "Input should be a valid 1D array of variable-length strings"
+        )
+    if not all(isinstance(x, (str, bytes)) for x in v.flat):
+        raise PydanticCustomError(
+            "string_1d_ndarray",
+            "Input should be a valid 1D array of variable-length strings"
+        )
     return v
 
 
 def check_string_2d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 2 and v.dtype == object):
-        raise ValueError("expected a 2D array of variable-length strings")
-    if not all(isinstance(x, str) for x in v.flat):  # strict str (not bytes)
-        raise ValueError("expected a 2D array of variable-length strings")
+        raise PydanticCustomError(
+            "string_2d_ndarray",
+            "Input should be a valid 2D array of variable-length strings"
+        )
+    if not all(isinstance(x, (str, bytes)) for x in v.flat):
+        raise PydanticCustomError(
+            "string_2d_ndarray",
+            "Input should be a valid 2D array of variable-length strings"
+        )
     return v
 
 

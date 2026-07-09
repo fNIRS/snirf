@@ -1,6 +1,5 @@
 import h5py
 
-from snirf_schema import SNIRFFile
 from snirf_reader import load_snirf
 
 
@@ -14,7 +13,7 @@ def print_hdf5_tree(group, indent=0):
             print_hdf5_tree(item, indent + 2)
 
 
-f = h5py.File("Simple_Probe.snirf", "r")
+f = h5py.File("neuro_run01.snirf", "r")
 print_hdf5_tree(f)
 
 
@@ -22,6 +21,5 @@ print_hdf5_tree(f)
 # VALIDATE FILE
 # =============================================================================
 snirf = load_snirf(
-    "Simple_Probe.snirf",
-    SNIRFFile
+    "neuro_run01.snirf"
 )
