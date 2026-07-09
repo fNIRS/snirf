@@ -1,6 +1,7 @@
 import re
 import h5py
 
+from pydantic_core import ValidationError
 from snirf_schema import SNIRFFile
 
 
@@ -105,7 +106,7 @@ def read_data(data_group):
     return data
 
 
-def load_nirs(nirs_group):
+def read_nirs(nirs_group):
     result = {}
 
     # Metadata
@@ -139,6 +140,12 @@ def load_snirf(filename):
     with h5py.File(filename, "r") as f:
         data = {
             "formatVersion": f["formatVersion"][()],
-            "nirs": read_single_or_indexed_groups(f, "nirs", load_nirs)
+            "nirs": read_single_or_indexed_groups(f, "nirs", read_nirs)
         }
-    return SNIRFFile(**data)
+    try:
+        snirf = SNIRFFile(**data)
+        print(f"{'\033[32m'}Valid SNIRFFile{'\033[0m'}")
+        return snirf
+
+    except ValidationError as e:
+        print(f"{'\033[31m'}{e}{'\033[0m'}")
