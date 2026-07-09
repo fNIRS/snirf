@@ -5,55 +5,57 @@ from pydantic import BaseModel, ConfigDict, model_validator, AfterValidator
 from typing import Optional, List, Annotated
 
 
-# TODO:
-# - [x] structure of variables (names and nesting)
-# - [x] types
-# - [x] required and optional conditionals
-# - [ ] formatting of variables (dimensions and shape matching)
-# - [ ] HDF5 to Pydantic
-
-
 # =============================================================================
 # HELPERS
 # =============================================================================
-def check_int_1d(v: np.ndarray) -> bool:
+def check_int_1d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer)):
         raise ValueError("expected a 1D array of integers")
     return v
 
 
-def check_float_1d(v: np.ndarray) -> bool:
+def check_float_1d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 1 and np.issubdtype(v.dtype, np.floating)):
         raise ValueError("expected a 1D array of floats")
     return v
 
 
-def check_float_2d(v: np.ndarray) -> bool:
+def check_float_2d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 2 and np.issubdtype(v.dtype, np.floating)):
         raise ValueError("expected a 2D array of floats")
     return v
 
 
-def check_string_1d(v: np.ndarray) -> bool:
+def check_string_1d(v: np.ndarray) -> np.ndarray:
+    ####################################
+    # FIXME: do we allow byte strings? #
+    ####################################
     if v.ndim != 1:
         raise ValueError("expected a 1D array of strings")
-    if not np.issubdtype(v.dtype, np.character):
-        raise ValueError("expected a 1D array of strings")
+    if np.issubdtype(v.dtype, np.str_):
+        return v
+    if np.issubdtype(v.dtype, np.bytes_):
+        return v
     if v.dtype == object:
-        if not all(isinstance(x, str) for x in v.flat):
-            raise ValueError("expected a 1D array of strings")
-    return v
+        if all(isinstance(x, (str, bytes, np.bytes_)) for x in v.flat):
+            return v
+    raise ValueError("expected a 1D array of strings")
 
 
-def check_string_2d(v: np.ndarray) -> bool:
+def check_string_2d(v: np.ndarray) -> np.ndarray:
+    ####################################
+    # FIXME: do we allow byte strings? #
+    ####################################
     if v.ndim != 2:
         raise ValueError("expected a 2D array of strings")
-    if not np.issubdtype(v.dtype, np.character):
-        raise ValueError("expected a 2D array of strings")
+    if np.issubdtype(v.dtype, np.str_):
+        return v
+    if np.issubdtype(v.dtype, np.bytes_):
+        return v
     if v.dtype == object:
-        if not all(isinstance(x, str) for x in v.flat):
-            raise ValueError("expected a 2D array of strings")
-    return v
+        if all(isinstance(x, (str, bytes, np.bytes_)) for x in v.flat):
+            return v
+    raise ValueError("expected a 2D array of strings")
 
 
 Integer1D = Annotated[np.ndarray, AfterValidator(check_int_1d)]
@@ -70,22 +72,25 @@ String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 class SNIRFFile(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     formatVersion: str
-    nirs: List[Nirs]  # TODO: indexed HDF5 group
+    nirs: List[Nirs]  # indexed
 
 
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Nirs(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    metaDataTags: MetaDataTags  # TODO: simple HDF5 group
-    data: List[Data]  # TODO: indexed HDF5 group
-    stim: Optional[List[Stim]] = None  # TODO: indexed HDF5 group
-    probe: Probe  # TODO: simple HDF5 group
-    aux: Optional[List[Aux]] = None  # TODO: indexed HDF5 group
+    metaDataTags: MetaDataTags  # simple
+    data: List[Data]  # indexed
+    stim: Optional[List[Stim]] = None  # indexed
+    probe: Probe  # simple
+    aux: Optional[List[Aux]] = None  # indexed
 
 
 # LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MetaDataTags(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="allow"  # allow additional user-defined metadata entries
+    )
     SubjectID: str
     MeasurementDate: str
     MeasurementTime: str
@@ -93,26 +98,27 @@ class MetaDataTags(BaseModel):
     TimeUnit: str
     FrequencyUnit: str
 
-    # Additional user-defined metadata entries
-    model_config = ConfigDict(extra="allow")
-
 
 class Data(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     dataTimeSeries: Float2D
     time: Float1D
     dataOffset: Optional[Float1D] = None
-    measurementList: Optional[List[MeasurementList]] = None  # TODO: indexed HDF5 group
-    measurementLists: Optional[MeasurementLists] = None  # TODO: simple HDF5 group
+    measurementList: Optional[List[MeasurementList]] = None  # indexed
+    measurementLists: Optional[MeasurementLists] = None  # simple
 
     @model_validator(mode='after')
     def require_measurementlist_xor_measurementlists(self) -> "Data":
-        if self.measurementList and self.measurementLists:
+        if (
+            self.measurementList is not None
+            and
+            self.measurementLists is not None
+        ):
             raise ValueError(
                 "'measurementList' and 'measurementLists' cannot both be "
                 "present"
             )
-        if not self.measurementList and not self.measurementLists:
+        if self.measurementList is None and self.measurementLists is None:
             raise ValueError(
                 "either 'measurementList' or 'measurementLists' is required"
             )
@@ -150,7 +156,7 @@ class Probe(BaseModel):
 
     @model_validator(mode='after')
     def require_sourcepos2d_or_sourcepos3d(self) -> "Probe":
-        if not self.sourcePos2D and not self.sourcePos3D:
+        if self.sourcePos2D is None and self.sourcePos3D is None:
             raise ValueError(
                 "at least one of sourcePos2D or sourcePos3D is required"
             )
@@ -158,7 +164,7 @@ class Probe(BaseModel):
 
     @model_validator(mode='after')
     def require_detectorpos2d_or_detectorpos3d(self) -> "Probe":
-        if not self.detectorPos2D and not self.detectorPos3D:
+        if self.detectorPos2D is None and self.detectorPos3D is None:
             raise ValueError(
                 "at least one of detectorPos2D or detectorPos3D is required"
             )
@@ -203,12 +209,3 @@ class MeasurementLists(BaseModel):
     dataTypeIndex: Integer1D
     sourcePower: Optional[Float1D] = None
     detectorGain: Optional[Float1D] = None
-
-
-# =============================================================================
-# TESTING
-# =============================================================================
-import h5py
-
-f = h5py.File('sub-01_task-tapping_nirs.snirf', 'r')
-print(f.keys())
