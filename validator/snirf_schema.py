@@ -27,35 +27,19 @@ def check_float_2d(v: np.ndarray) -> np.ndarray:
 
 
 def check_string_1d(v: np.ndarray) -> np.ndarray:
-    ####################################
-    # FIXME: do we allow byte strings? #
-    ####################################
-    if v.ndim != 1:
-        raise ValueError("expected a 1D array of strings")
-    if np.issubdtype(v.dtype, np.str_):
-        return v
-    if np.issubdtype(v.dtype, np.bytes_):
-        return v
-    if v.dtype == object:
-        if all(isinstance(x, (str, bytes, np.bytes_)) for x in v.flat):
-            return v
-    raise ValueError("expected a 1D array of strings")
+    if not (v.ndim == 1 and v.dtype == object):
+        raise ValueError("expected a 1D array of variable-length strings")
+    if not all(isinstance(x, str) for x in v.flat):  # strict str (not bytes)
+        raise ValueError("expected a 1D array of variable-length strings")
+    return v
 
 
 def check_string_2d(v: np.ndarray) -> np.ndarray:
-    ####################################
-    # FIXME: do we allow byte strings? #
-    ####################################
-    if v.ndim != 2:
-        raise ValueError("expected a 2D array of strings")
-    if np.issubdtype(v.dtype, np.str_):
-        return v
-    if np.issubdtype(v.dtype, np.bytes_):
-        return v
-    if v.dtype == object:
-        if all(isinstance(x, (str, bytes, np.bytes_)) for x in v.flat):
-            return v
-    raise ValueError("expected a 2D array of strings")
+    if not (v.ndim == 2 and v.dtype == object):
+        raise ValueError("expected a 2D array of variable-length strings")
+    if not all(isinstance(x, str) for x in v.flat):  # strict str (not bytes)
+        raise ValueError("expected a 2D array of variable-length strings")
+    return v
 
 
 Integer1D = Annotated[np.ndarray, AfterValidator(check_int_1d)]

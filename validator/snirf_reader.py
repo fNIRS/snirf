@@ -1,38 +1,10 @@
 import re
 import h5py
-import numpy as np
 
 
 # =============================================================================
 # HDF5 LOADERS
 # =============================================================================
-def read_dataset(hdf5_dataset):
-    """
-    Convert HDF5 dataset into a Python object or numpy array.
-    """
-
-    value = hdf5_dataset[()]
-
-    # Unwrap scalar-like arrays
-    if isinstance(value, np.ndarray) and value.size == 1:
-        value = value.reshape(()).item()
-
-    # Decode scalar bytes
-    if isinstance(value, (bytes, np.bytes_)):
-        return value.decode()
-
-    # Convert numpy scalar
-    if isinstance(value, np.generic):
-        return value.item()
-
-    # Decode arrays of bytes
-    if isinstance(value, np.ndarray) and value.dtype == object:
-        if all(isinstance(x, (bytes, np.bytes_)) for x in value.flat):
-            value = np.vectorize(lambda x: x.decode())(value)
-
-    return value
-
-
 def read_simple_group(group):
     """
     Convert a simple HDF5 group into a dictionary.
@@ -43,7 +15,7 @@ def read_simple_group(group):
     for name, item in group.items():
 
         if isinstance(item, h5py.Dataset):
-            result[name] = read_dataset(item)
+            result[name] = item[()]
 
         elif isinstance(item, h5py.Group):
             result[name] = read_simple_group(item)
@@ -114,7 +86,7 @@ def read_data(data_group):
     data = read_simple_group(data_group)
 
     has_measurement_list = has_indexed_groups(data_group, "measurementList")
-    has_measurement_lists = ("measurementLists" in data_group)
+    has_measurement_lists = "measurementLists" in data_group
 
     if has_measurement_list:
         data.pop("measurementList", None)
@@ -164,7 +136,7 @@ def load_snirf(filename, SNIRFFile):
     """
     with h5py.File(filename, "r") as f:
         data = {
-            "formatVersion": read_dataset(f["formatVersion"]),
+            "formatVersion": f["formatVersion"][()],
             "nirs": read_single_or_indexed_groups(f, "nirs", load_nirs)
         }
     return SNIRFFile(**data)

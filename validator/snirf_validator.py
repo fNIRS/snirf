@@ -5,7 +5,7 @@ from snirf_reader import load_snirf
 
 
 # =============================================================================
-# HDF5 TREE
+# CHECK FILE
 # =============================================================================
 def print_hdf5_tree(group, indent=0):
     for key, item in group.items():
@@ -14,14 +14,14 @@ def print_hdf5_tree(group, indent=0):
             print_hdf5_tree(item, indent + 2)
 
 
-with h5py.File("sub-01_task-tapping_nirs.snirf", "r") as f:
-    print_hdf5_tree(f)
+f = h5py.File("Simple_Probe.snirf", "r")
+print_hdf5_tree(f)
 
 
 # =============================================================================
-# VALIDATE
+# VALIDATE FILE
 # =============================================================================
 snirf = load_snirf(
-    "sub-01_task-tapping_nirs.snirf",
+    "Simple_Probe.snirf",
     SNIRFFile
 )
