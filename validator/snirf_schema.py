@@ -208,7 +208,7 @@ class Stim(BaseModelWarnExtra):
 
     # Matching dataLabels and data
     @model_validator(mode='after')
-    def match_datalabels_data(self) -> "Data":
+    def match_datalabels_data(self) -> "Stim":
         if self.dataLabels is not None:
             if self.data.shape[0] != len(self.dataLabels):
                 raise PydanticCustomError(
