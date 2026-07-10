@@ -4,6 +4,7 @@ import numpy as np
 import os
 
 from pydantic import BaseModel, ConfigDict, model_validator, AfterValidator
+from pydantic.types import NonNegativeInt
 from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
@@ -91,11 +92,21 @@ def check_string_2d(v: np.ndarray) -> np.ndarray:
     return v
 
 
+def check_nnint_1d(v: np.ndarray) -> np.ndarray:
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, int) and np.all(v >= 0)):
+        raise PydanticCustomError(
+            "int_1d_ndarray",
+            "Input should be a valid 1D array of integers greater than or equal to 0"
+        )
+    return v
+
+
 Integer1D = Annotated[np.ndarray, AfterValidator(check_int_1d)]
 Float1D = Annotated[np.ndarray, AfterValidator(check_float_1d)]
 Float2D = Annotated[np.ndarray, AfterValidator(check_float_2d)]
 String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
+NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 
 
 # =============================================================================
@@ -348,28 +359,28 @@ class Aux(BaseModelWarnExtra):
 
 # LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MeasurementList(BaseModelWarnExtra):
-    sourceIndex: int
-    detectorIndex: int
-    wavelengthIndex: int
+    sourceIndex: NonNegativeInt
+    detectorIndex: NonNegativeInt
+    wavelengthIndex: NonNegativeInt
     wavelengthActual: Optional[float] = None
     wavelengthEmissionActual: Optional[float] = None
     dataType: int
     dataUnit: Optional[str] = None
     dataTypeLabel: Optional[str] = None
-    dataTypeIndex: int
+    dataTypeIndex: NonNegativeInt
     sourcePower: Optional[float] = None
     detectorGain: Optional[float] = None
 
 
 class MeasurementLists(BaseModelWarnExtra):
-    sourceIndex: Integer1D
-    detectorIndex: Integer1D
-    wavelengthIndex: Integer1D
+    sourceIndex: NonNegativeInt1D
+    detectorIndex: NonNegativeInt1D
+    wavelengthIndex: NonNegativeInt1D
     wavelengthActual: Optional[Float1D] = None
     wavelengthEmissionActual: Optional[Float1D] = None
     dataType: Integer1D
     dataUnit: Optional[String1D] = None
     dataTypeLabel: Optional[String1D] = None
-    dataTypeIndex: Integer1D
+    dataTypeIndex: NonNegativeInt1D
     sourcePower: Optional[Float1D] = None
     detectorGain: Optional[Float1D] = None
