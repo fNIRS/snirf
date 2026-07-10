@@ -28,10 +28,10 @@ if not os.path.exists(filename):
     urllib.request.urlretrieve(url, filename)
 
 f = h5py.File(filename, "r")
-print("==============")
-print("HDF5 structure")
-print("--------------")
-print_hdf5_tree(f)
+# print("==============")
+# print("HDF5 structure")
+# print("--------------")
+# print_hdf5_tree(f)
 
 
 # =============================================================================

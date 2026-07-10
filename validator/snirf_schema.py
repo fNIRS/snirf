@@ -76,25 +76,35 @@ String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 
 
+class BaseModelAllowExtra(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
+
+
+class BaseModelWarnExtra(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
+
+    @model_validator(mode="after")
+    def log_extra_fields(self):
+        if self.__pydantic_extra__:
+            print(
+                f"{'\033[33m'}WARNING: Extra fields present in",
+                f"{type(self).__name__}:",
+                f"{list(self.__pydantic_extra__.keys())}{'\033[0m'}"
+            )
+        return self
+
+
 # =============================================================================
 # SNIRF PYDANTIC SCHEMA
 # =============================================================================
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class SNIRFFile(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class SNIRFFile(BaseModelWarnExtra):
     formatVersion: str
     nirs: List[Nirs]  # indexed
 
 
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class Nirs(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class Nirs(BaseModelWarnExtra):
     metaDataTags: MetaDataTags  # simple
     data: List[Data]  # indexed
     stim: Optional[List[Stim]] = None  # indexed
@@ -103,11 +113,7 @@ class Nirs(BaseModel):
 
 
 # LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class MetaDataTags(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="allow"  # allow additional user-defined metadata entries
-    )
+class MetaDataTags(BaseModelAllowExtra):
     SubjectID: str
     MeasurementDate: str
     MeasurementTime: str
@@ -116,11 +122,7 @@ class MetaDataTags(BaseModel):
     FrequencyUnit: str
 
 
-class Data(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class Data(BaseModelWarnExtra):
     dataTimeSeries: Float2D
     time: Float1D
     dataOffset: Optional[Float1D] = None
@@ -145,21 +147,13 @@ class Data(BaseModel):
         return self
 
 
-class Stim(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class Stim(BaseModelWarnExtra):
     name: str
     data: Float2D
     dataLabels: Optional[String1D] = None
 
 
-class Probe(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class Probe(BaseModelWarnExtra):
     wavelengths: Float1D
     wavelengthsEmission: Optional[Float1D] = None
     sourcePos2D: Optional[Float2D] = None
@@ -197,11 +191,7 @@ class Probe(BaseModel):
         return self
 
 
-class Aux(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class Aux(BaseModelWarnExtra):
     name: str
     dataTimeSeries: Float2D
     dataUnit: Optional[str] = None
@@ -210,11 +200,7 @@ class Aux(BaseModel):
 
 
 # LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class MeasurementList(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class MeasurementList(BaseModelWarnExtra):
     sourceIndex: int
     detectorIndex: int
     wavelengthIndex: int
@@ -228,11 +214,7 @@ class MeasurementList(BaseModel):
     detectorGain: Optional[float] = None
 
 
-class MeasurementLists(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid"  # forbid additional user-defined metadata entries
-    )
+class MeasurementLists(BaseModelWarnExtra):
     sourceIndex: Integer1D
     detectorIndex: Integer1D
     wavelengthIndex: Integer1D
