@@ -8,6 +8,7 @@ from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
 os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
+VALID_INDEXED_PREFIXES = ['nirs', 'data', 'stim', 'aux', 'measurementList']
 
 
 # =============================================================================
