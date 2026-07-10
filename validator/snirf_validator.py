@@ -48,6 +48,11 @@ def validate_snirf(filename):
     print("===============")
     print("SNIRF VALIDATOR")
     print("---------------")
+
+    if not filename.endswith('.snirf'):
+        print(f"{RED}ERROR: Valid SNIRF files must end with .snirf{RESET}")
+        return
+
     with h5py.File(filename, "r") as f:
         data = read_hdf5_group(f, os.path.basename(filename))
 
