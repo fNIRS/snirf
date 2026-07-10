@@ -25,7 +25,7 @@ class BaseModelWarnExtra(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
 
     @model_validator(mode="after")
-    def log_extra_fields(self):
+    def warn_extra_fields(self):
         if self.__pydantic_extra__:
             extra_fields = list(self.__pydantic_extra__.keys())
             print(
@@ -133,6 +133,7 @@ class Data(BaseModelWarnExtra):
     measurementList: Optional[List[MeasurementList]] = None  # indexed
     measurementLists: Optional[MeasurementLists] = None  # simple
 
+    # MeasurementList XOR MeasurementLists
     @model_validator(mode='after')
     def require_measurementlist_xor_measurementlists(self) -> "Data":
         if (
@@ -140,14 +141,63 @@ class Data(BaseModelWarnExtra):
             and
             self.measurementLists is not None
         ):
-            raise ValueError(
-                "'measurementList' and 'measurementLists' cannot both be "
-                "present"
+            raise PydanticCustomError(
+                "conflicting",
+                "Field measurementList and measurementLists cannot both be present"
             )
         if self.measurementList is None and self.measurementLists is None:
-            raise ValueError(
-                "either 'measurementList' or 'measurementLists' is required"
+            raise PydanticCustomError(
+                "missing",
+                "Strictly one of measurementList or measurementLists is required"
             )
+        return self
+
+    # Matching dataTimeSeries and measurementList
+    @model_validator(mode='after')
+    def match_datatimeseries_measurementlist(self) -> "Data":
+        if self.measurementList is not None:
+            if len(self.measurementList) != self.dataTimeSeries.shape[1]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field dataTimeSeries and measurementList should match in size"
+                )
+        return self
+
+    # Matching dataTimeSeries and measurementLists
+    @model_validator(mode='after')
+    def match_datatimeseries_measurementlists(self) -> "Data":
+        if self.measurementLists is not None:
+            mlst_shapes = [
+                len(item)
+                for item in self.measurementLists.model_dump().values()
+            ]
+            if not all(s == self.dataTimeSeries.shape[1] for s in mlst_shapes):
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field dataTimeSeries and measurementLists should match in size"
+                )
+        return self
+
+    # Matching dataTimeSeries and dataOffset
+    @model_validator(mode='after')
+    def match_datatimeseries_dataoffset(self) -> "Data":
+        if self.dataOffset is not None:
+            if len(self.dataOffset) != self.dataTimeSeries.shape[1]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field dataTimeSeries and dataOffset should match in size"
+                )
+        return self
+
+    # Matching dataTimeSeries and time
+    @model_validator(mode='after')
+    def match_datatimeseries_time(self) -> "Data":
+        if len(self.time) != 2:
+            if len(self.time) != self.dataTimeSeries.shape[0]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field dataTimeSeries and time should match in size"
+                )
         return self
 
 
@@ -155,6 +205,17 @@ class Stim(BaseModelWarnExtra):
     name: str
     data: Float2D
     dataLabels: Optional[String1D] = None
+
+    # Matching dataLabels and data
+    @model_validator(mode='after')
+    def match_datalabels_data(self) -> "Data":
+        if self.dataLabels is not None:
+            if self.data.shape[0] != len(self.dataLabels):
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field dataLabels and data should match in size"
+                )
+        return self
 
 
 class Probe(BaseModelWarnExtra):
@@ -178,19 +239,23 @@ class Probe(BaseModelWarnExtra):
     coordinateSystem: Optional[str] = None
     coordinateSystemDescription: Optional[str] = None
 
+    # sourcePos2D OR sourcePos3D
     @model_validator(mode='after')
     def require_sourcepos2d_or_sourcepos3d(self) -> "Probe":
         if self.sourcePos2D is None and self.sourcePos3D is None:
-            raise ValueError(
-                "at least one of sourcePos2D or sourcePos3D is required"
+            raise PydanticCustomError(
+                "missing",
+                "At least one of sourcePos2D or sourcePos3D is required"
             )
         return self
 
+    # detectorPos2D OR detectorPos3D
     @model_validator(mode='after')
     def require_detectorpos2d_or_detectorpos3d(self) -> "Probe":
         if self.detectorPos2D is None and self.detectorPos3D is None:
-            raise ValueError(
-                "at least one of detectorPos2D or detectorPos3D is required"
+            raise PydanticCustomError(
+                "missing",
+                "At least one of detectorPos2D or detectorPos3D is required"
             )
         return self
 
