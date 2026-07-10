@@ -5,6 +5,10 @@ import re
 from pydantic_core import ValidationError
 from snirf_schema import SNIRFFile, VALID_INDEXED_PREFIXES
 
+GREEN = '\033[32m'
+RED = '\033[31m'
+RESET = '\033[0m'
+
 
 # =============================================================================
 # HDF5 LOADER
@@ -49,8 +53,8 @@ def validate_snirf(filename):
 
     try:
         snirf = SNIRFFile(**data)
-        print(f"{'\033[32m'}Valid SNIRFFile{'\033[0m'}")
+        print(f"{GREEN}Valid SNIRFFile{RESET}")
         return snirf
 
     except ValidationError as e:
-        print(f"{'\033[31m'}{e}{'\033[0m'}")
+        print(f"{RED}{e}{RESET}")

@@ -10,10 +10,32 @@ from typing import Optional, List, Annotated
 os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
 VALID_INDEXED_PREFIXES = ['nirs', 'data', 'stim', 'aux', 'measurementList']
 
+ORANGE = '\033[33m'
+RESET = '\033[0m'
+
 
 # =============================================================================
 # HELPERS
 # =============================================================================
+class BaseModelAllowExtra(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
+
+
+class BaseModelWarnExtra(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
+
+    @model_validator(mode="after")
+    def log_extra_fields(self):
+        if self.__pydantic_extra__:
+            extra_fields = list(self.__pydantic_extra__.keys())
+            print(
+                f"{ORANGE}WARNING: Extra fields present in",
+                f"{type(self).__name__}",
+                f"({', '.join(extra_fields)}){RESET}"
+            )
+        return self
+
+
 def check_int_1d(v: np.ndarray) -> np.ndarray:
     if not (v.ndim == 1 and np.issubdtype(v.dtype, int)):
         raise PydanticCustomError(
@@ -74,24 +96,6 @@ Float1D = Annotated[np.ndarray, AfterValidator(check_float_1d)]
 Float2D = Annotated[np.ndarray, AfterValidator(check_float_2d)]
 String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
-
-
-class BaseModelAllowExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
-
-
-class BaseModelWarnExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
-
-    @model_validator(mode="after")
-    def log_extra_fields(self):
-        if self.__pydantic_extra__:
-            print(
-                f"{'\033[33m'}WARNING: Extra fields present in",
-                f"{type(self).__name__}:",
-                f"{list(self.__pydantic_extra__.keys())}{'\033[0m'}"
-            )
-        return self
 
 
 # =============================================================================
