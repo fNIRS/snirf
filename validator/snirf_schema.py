@@ -115,6 +115,84 @@ class Nirs(BaseModelWarnExtra):
     probe: Probe  # simple
     aux: Optional[List[Aux]] = None  # indexed
 
+    # Matching sourceIndex
+    @model_validator(mode='after')
+    def match_sourceindex(self) -> "Nirs":
+        for dat in self.data:
+            if dat.measurementLists is not None:
+                source_indices = dat.measurementLists.sourceIndex
+            elif dat.measurementList is not None:
+                source_indices = [
+                    ml.sourceIndex for ml in dat.measurementList
+                ]
+            if np.max(source_indices) > self.probe.sourceLabels.shape[0]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field sourceIndex and sourceLabels should match"
+                )
+            if self.probe.sourcePos2D is not None:
+                if np.max(source_indices) > self.probe.sourcePos2D.shape[0]:
+                    raise PydanticCustomError(
+                        "conflicting",
+                        "Field sourceIndex and sourcePos2D should match"
+                    )
+            if self.probe.sourcePos3D is not None:
+                if np.max(source_indices) > self.probe.sourcePos3D.shape[0]:
+                    raise PydanticCustomError(
+                        "conflicting",
+                        "Field sourceIndex and sourcePos3D should match"
+                    )
+
+        return self
+
+    # Matching detectorIndex
+    @model_validator(mode='after')
+    def match_detectorindex(self) -> "Nirs":
+        for dat in self.data:
+            if dat.measurementLists is not None:
+                detector_indices = dat.measurementLists.detectorIndex
+            elif dat.measurementList is not None:
+                detector_indices = [
+                    ml.detectorIndex for ml in dat.measurementList
+                ]
+            if np.max(detector_indices) > self.probe.detectorLabels.shape[0]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field detectorIndex and detectorLabels should match"
+                )
+            if self.probe.detectorPos2D is not None:
+                if np.max(detector_indices) > self.probe.detectorPos2D.shape[0]:
+                    raise PydanticCustomError(
+                        "conflicting",
+                        "Field detectorIndex and detectorPos2D should match"
+                    )
+            if self.probe.detectorPos3D is not None:
+                if np.max(detector_indices) > self.probe.detectorPos3D.shape[0]:
+                    raise PydanticCustomError(
+                        "conflicting",
+                        "Field detectorIndex and detectorPos3D should match"
+                    )
+
+        return self
+
+    # Matching wavelengthIndex
+    @model_validator(mode='after')
+    def match_wavelengthindex(self) -> "Nirs":
+        for dat in self.data:
+            if dat.measurementLists is not None:
+                wavelength_indices = dat.measurementLists.wavelengthIndex
+            elif dat.measurementList is not None:
+                wavelength_indices = [
+                    ml.wavelengthIndex for ml in dat.measurementList
+                ]
+            if np.max(wavelength_indices) > self.probe.wavelengths.shape[0]:
+                raise PydanticCustomError(
+                    "conflicting",
+                    "Field wavelengthIndex and wavelengths should match"
+                )
+
+        return self
+
 
 # LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MetaDataTags(BaseModelAllowExtra):
@@ -159,7 +237,7 @@ class Data(BaseModelWarnExtra):
             if len(self.measurementList) != self.dataTimeSeries.shape[1]:
                 raise PydanticCustomError(
                     "conflicting",
-                    "Field dataTimeSeries and measurementList should match in size"
+                    "Field dataTimeSeries and measurementList should match"
                 )
         return self
 
@@ -167,14 +245,14 @@ class Data(BaseModelWarnExtra):
     @model_validator(mode='after')
     def match_datatimeseries_measurementlists(self) -> "Data":
         if self.measurementLists is not None:
-            mlst_shapes = [
-                len(item)
+            ml_shapes = [
+                item.shape[0]
                 for item in self.measurementLists.model_dump().values()
             ]
-            if not all(s == self.dataTimeSeries.shape[1] for s in mlst_shapes):
+            if not all(s == self.dataTimeSeries.shape[1] for s in ml_shapes):
                 raise PydanticCustomError(
                     "conflicting",
-                    "Field dataTimeSeries and measurementLists should match in size"
+                    "Field dataTimeSeries and measurementLists should match"
                 )
         return self
 
@@ -182,21 +260,21 @@ class Data(BaseModelWarnExtra):
     @model_validator(mode='after')
     def match_datatimeseries_dataoffset(self) -> "Data":
         if self.dataOffset is not None:
-            if len(self.dataOffset) != self.dataTimeSeries.shape[1]:
+            if self.dataOffset.shape[0] != self.dataTimeSeries.shape[1]:
                 raise PydanticCustomError(
                     "conflicting",
-                    "Field dataTimeSeries and dataOffset should match in size"
+                    "Field dataTimeSeries and dataOffset should match"
                 )
         return self
 
     # Matching dataTimeSeries and time
     @model_validator(mode='after')
     def match_datatimeseries_time(self) -> "Data":
-        if len(self.time) != 2:
-            if len(self.time) != self.dataTimeSeries.shape[0]:
+        if self.time.shape[0] != 2:
+            if self.time.shape[0] != self.dataTimeSeries.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
-                    "Field dataTimeSeries and time should match in size"
+                    "Field dataTimeSeries and time should match"
                 )
         return self
 
@@ -210,10 +288,10 @@ class Stim(BaseModelWarnExtra):
     @model_validator(mode='after')
     def match_datalabels_data(self) -> "Stim":
         if self.dataLabels is not None:
-            if self.data.shape[0] != len(self.dataLabels):
+            if self.data.shape[0] != self.dataLabels.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
-                    "Field dataLabels and data should match in size"
+                    "Field dataLabels and data should match"
                 )
         return self
 
