@@ -81,14 +81,20 @@ String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 # =============================================================================
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SNIRFFile(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     formatVersion: str
     nirs: List[Nirs]  # indexed
 
 
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Nirs(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     metaDataTags: MetaDataTags  # simple
     data: List[Data]  # indexed
     stim: Optional[List[Stim]] = None  # indexed
@@ -111,7 +117,10 @@ class MetaDataTags(BaseModel):
 
 
 class Data(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     dataTimeSeries: Float2D
     time: Float1D
     dataOffset: Optional[Float1D] = None
@@ -137,14 +146,20 @@ class Data(BaseModel):
 
 
 class Stim(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     name: str
     data: Float2D
     dataLabels: Optional[String1D] = None
 
 
 class Probe(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     wavelengths: Float1D
     wavelengthsEmission: Optional[Float1D] = None
     sourcePos2D: Optional[Float2D] = None
@@ -183,7 +198,10 @@ class Probe(BaseModel):
 
 
 class Aux(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     name: str
     dataTimeSeries: Float2D
     dataUnit: Optional[str] = None
@@ -193,7 +211,10 @@ class Aux(BaseModel):
 
 # LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MeasurementList(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     sourceIndex: int
     detectorIndex: int
     wavelengthIndex: int
@@ -208,7 +229,10 @@ class MeasurementList(BaseModel):
 
 
 class MeasurementLists(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid"  # forbid additional user-defined metadata entries
+    )
     sourceIndex: Integer1D
     detectorIndex: Integer1D
     wavelengthIndex: Integer1D
