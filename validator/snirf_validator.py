@@ -1,25 +1,56 @@
 import h5py
+import os
+import re
 
-from snirf_reader import validate_snirf
-
-
-# =============================================================================
-# CHECK FILE
-# =============================================================================
-def print_hdf5_tree(group, indent=0):
-    for key, item in group.items():
-        print(" " * indent + key, type(item).__name__)
-        if isinstance(item, h5py.Group):
-            print_hdf5_tree(item, indent + 2)
-
-
-f = h5py.File("neuro_run01.snirf", "r")
-# print_hdf5_tree(f)
+from pydantic_core import ValidationError
+from snirf_schema import SNIRFFile, VALID_INDEXED_PREFIXES
 
 
 # =============================================================================
-# VALIDATE FILE
+# HDF5 LOADER
 # =============================================================================
-snirf = validate_snirf(
-    "neuro_run01.snirf"
-)
+def read_hdf5_group(group, group_name):
+    result = {}
+
+    for name, item in group.items():
+        if isinstance(item, h5py.Dataset):
+            result[name] = item[()]
+        elif isinstance(item, h5py.Group):
+            result[name] = read_hdf5_group(item, name)
+
+    # Sort by keys
+    result = dict(sorted(result.items()))
+
+    # Group indexed groups with valid prefixes
+    if "stim" not in group_name:  # avoid grouping stim.data
+        for valid_indexed_prefix in VALID_INDEXED_PREFIXES:
+            pattern = rf"^{re.escape(valid_indexed_prefix)}(\d+)?$"
+            indexed_keys = [k for k in result.keys() if re.match(pattern, k)]
+            if indexed_keys:
+                indexed_items = [result[key] for key in indexed_keys]
+                # Remove items with indexed names
+                for key in indexed_keys:
+                    del result[key]
+                # Add new item with a list of indexed groups
+                result[valid_indexed_prefix] = indexed_items
+
+    return result
+
+
+# =============================================================================
+# SNIRF VALIDATOR
+# =============================================================================
+def validate_snirf(filename):
+    print("===============")
+    print("SNIRF VALIDATOR")
+    print("---------------")
+    with h5py.File(filename, "r") as f:
+        data = read_hdf5_group(f, os.path.basename(filename))
+
+    try:
+        snirf = SNIRFFile(**data)
+        print(f"{'\033[32m'}Valid SNIRFFile{'\033[0m'}")
+        return snirf
+
+    except ValidationError as e:
+        print(f"{'\033[31m'}{e}{'\033[0m'}")
