@@ -3,7 +3,8 @@ from __future__ import annotations
 import numpy as np
 import os
 
-from pydantic import BaseModel, ConfigDict, model_validator, AfterValidator
+from pydantic import (BaseModel, ConfigDict, AfterValidator, ValidationInfo,
+                      model_validator, field_validator)
 from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
@@ -369,6 +370,20 @@ class MeasurementList(BaseModelWarnExtra):
     sourcePower: Optional[float | np.floating] = None
     detectorGain: Optional[float | np.floating] = None
 
+    @field_validator(
+        "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
+    )
+    @classmethod
+    def check_non_null(
+        cls, v: NonNegativeInt, info: ValidationInfo
+    ) -> NonNegativeInt:
+        if v == 0:
+            print(
+                f"{ORANGE}WARNING: An index of zero in {info.field_name}",
+                f"is usually undefined{RESET}",
+            )
+        return v
+
 
 class MeasurementLists(BaseModelWarnExtra):
     sourceIndex: NonNegativeInt1D
@@ -382,3 +397,17 @@ class MeasurementLists(BaseModelWarnExtra):
     dataTypeIndex: NonNegativeInt1D
     sourcePower: Optional[Float1D] = None
     detectorGain: Optional[Float1D] = None
+
+    @field_validator(
+        "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
+    )
+    @classmethod
+    def check_non_null(
+        cls, v: NonNegativeInt, info: ValidationInfo
+    ) -> NonNegativeInt:
+        if v == 0:
+            print(
+                f"{ORANGE}WARNING: An index of zero in {info.field_name}",
+                f"is usually undefined{RESET}",
+            )
+        return v
