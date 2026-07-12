@@ -91,7 +91,11 @@ def check_nnint(v: int | np.integer) -> int | np.integer:
 
 
 def check_nnint_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer) and np.all(v >= 0)):
+    if not (
+        v.ndim == 1
+        and np.issubdtype(v.dtype, np.integer)
+        and np.all(v >= 0)
+    ):
         raise PydanticCustomError(
             "nnint_1d_ndarray",
             "Input should be a valid 1D array of integers greater than or equal to 0"
@@ -489,6 +493,16 @@ class MeasurementList(BaseModelWarnExtra):
                 f"recognized (see Appendix){RESET}",
             )
         return v
+
+    # dataTypeLabel IF dataType 99999
+    @model_validator(mode='after')
+    def require_datatypelabel(self) -> "MeasurementList":
+        if self.dataType == 99999 and self.dataTypeLabel is None:
+            raise PydanticCustomError(
+                "missing",
+                "Field dataTypeLabel is required when dataType is 99999"
+            )
+        return self
 
 
 class MeasurementLists(BaseModelWarnExtra):
