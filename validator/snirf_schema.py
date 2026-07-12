@@ -166,16 +166,16 @@ class BaseModelAllowExtra(BaseModel):
 
 
 class BaseModelWarnExtra(BaseModelAllowExtra):
-    @model_validator(mode="after")
-    def warn_extra_fields(self):
-        if self.__pydantic_extra__:
-            extra_fields = list(self.__pydantic_extra__.keys())
+    @model_validator(mode="before")
+    @classmethod
+    def warn_extra_fields(cls, data):
+        extra_fields = set(data) - set(cls.model_fields)
+        if extra_fields:
             print(
                 f"{ORANGE}WARNING: Extra fields present in",
-                f"{type(self).__name__}",
-                f"({', '.join(extra_fields)}){RESET}"
+                f"{cls.__name__} ({', '.join(extra_fields)}){RESET}"
             )
-        return self
+        return data
 
 
 # =============================================================================
