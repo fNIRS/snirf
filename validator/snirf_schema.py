@@ -35,11 +35,20 @@ class BaseModelWarnExtra(BaseModelAllowExtra):
         return self
 
 
-def check_int_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer)):
+def check_nnint(v: int | np.integer) -> int | np.integer:
+    if v < 0:
         raise PydanticCustomError(
-            "int_1d_ndarray",
-            "Input should be a valid 1D array of integers"
+            "nnint_type",
+            "Input should be a valid integer greater than or equal to 0"
+        )
+    return v
+
+
+def check_nnint_1d(v: np.ndarray) -> np.ndarray:
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer) and np.all(v >= 0)):
+        raise PydanticCustomError(
+            "nnint_1d_ndarray",
+            "Input should be a valid 1D array of integers greater than or equal to 0"
         )
     return v
 
@@ -90,31 +99,12 @@ def check_string_2d(v: np.ndarray) -> np.ndarray:
     return v
 
 
-def check_nnint(v: int | np.integer) -> int | np.integer:
-    if v < 0:
-        raise PydanticCustomError(
-            "nnint_type",
-            "Input should be a valid integer greater than or equal to 0"
-        )
-    return v
-
-
-def check_nnint_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer) and np.all(v >= 0)):
-        raise PydanticCustomError(
-            "nnint_1d_ndarray",
-            "Input should be a valid 1D array of integers greater than or equal to 0"
-        )
-    return v
-
-
-Integer1D = Annotated[np.ndarray, AfterValidator(check_int_1d)]
+NonNegativeInt = Annotated[int | np.integer, AfterValidator(check_nnint)]
+NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 Float1D = Annotated[np.ndarray, AfterValidator(check_float_1d)]
 Float2D = Annotated[np.ndarray, AfterValidator(check_float_2d)]
 String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
-NonNegativeInt = Annotated[int | np.integer, AfterValidator(check_nnint)]
-NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 
 
 # =============================================================================
@@ -372,7 +362,7 @@ class MeasurementList(BaseModelWarnExtra):
     wavelengthIndex: NonNegativeInt
     wavelengthActual: Optional[float | np.floating] = None
     wavelengthEmissionActual: Optional[float | np.floating] = None
-    dataType: int | np.integer
+    dataType: NonNegativeInt
     dataUnit: Optional[str | bytes] = None
     dataTypeLabel: Optional[str | bytes] = None
     dataTypeIndex: NonNegativeInt
@@ -386,7 +376,7 @@ class MeasurementLists(BaseModelWarnExtra):
     wavelengthIndex: NonNegativeInt1D
     wavelengthActual: Optional[Float1D] = None
     wavelengthEmissionActual: Optional[Float1D] = None
-    dataType: Integer1D
+    dataType: NonNegativeInt1D
     dataUnit: Optional[String1D] = None
     dataTypeLabel: Optional[String1D] = None
     dataTypeIndex: NonNegativeInt1D
