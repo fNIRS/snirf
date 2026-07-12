@@ -11,24 +11,6 @@ RED = '\033[31m'
 RESET = '\033[0m'
 
 
-class ValidationReport:
-    def __init__(self):
-        self.warnings: list[str] = []
-
-    def add_warning(self, message: str):
-        self.warnings.append(message)
-
-    def print_warnings(self):
-        if self.warnings:
-            plural = 's' if len(self.warnings) > 1 else ''
-            print(
-                f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
-                f"SNIRFFile{RESET}"
-            )
-            for warning in self.warnings:
-                print(f"{ORANGE}  {warning}{RESET}")
-
-
 # =============================================================================
 # SNIRF GROUP LOADER
 # =============================================================================
@@ -63,6 +45,24 @@ def load_snirf_group(group, group_name):
 # =============================================================================
 # SNIRF VALIDATOR
 # =============================================================================
+class ValidationReport:
+    def __init__(self):
+        self.warnings: list[str] = []
+
+    def add_warning(self, message: str):
+        self.warnings.append(message)
+
+    def print_warnings(self):
+        if self.warnings:
+            plural = 's' if len(self.warnings) > 1 else ''
+            print(
+                f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
+                f"SNIRFFile{RESET}"
+            )
+            for warning in self.warnings:
+                print(f"{ORANGE}  {warning}{RESET}")
+
+
 def validate_snirf(filename):
     print("===============")
     print("SNIRF VALIDATOR")
