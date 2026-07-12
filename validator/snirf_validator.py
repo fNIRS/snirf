@@ -20,8 +20,9 @@ class ValidationReport:
 
     def print_warnings(self):
         if self.warnings:
+            plural = 's' if len(self.warnings) > 1 else ''
             print(
-                f"{ORANGE}{len(self.warnings)} validation warnings for",
+                f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
                 f"SNIRFFile{RESET}"
             )
             for warning in self.warnings:
