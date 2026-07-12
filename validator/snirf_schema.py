@@ -9,33 +9,89 @@ from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
 os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
-VALID_INDEXED_PREFIXES = ['nirs', 'data', 'stim', 'aux', 'measurementList']
+RECOGNIZED_INDEXED_PREFIXES = [
+    'nirs',
+    'data',
+    'stim',
+    'aux',
+    'measurementList'
+]
+RECOGNIZED_COORDINATE_SYSTEM_NAMES = [
+    'ICBM452AirSpace',
+    'ICBM452Warp5Space',
+    'IXI549Space',
+    'fsaverage',
+    'fsaverageSym',
+    'fsLR',
+    'MNIColin27',
+    'MNI152Lin',
+    'MNI152NLin2009[a-c][Sym|Asym]',
+    'MNI152NLin6Sym',
+    'MNI152NLin6ASym',
+    'MNI305',
+    'NIHPD',
+    'OASIS30AntsOASISAnts',
+    'OASIS30Atropos',
+    'Talairach',
+    'UNCInfant',
+]
+RECOGNIZED_AUX_NAMES = [
+    'ACCEL_X',
+    'ACCEL_Y',
+    'ACCEL_Z',
+    'GYRO_X',
+    'GYRO_Y',
+    'GYRO_Z',
+    'MAGN_X',
+    'MAGN_Y',
+    'MAGN_Z',
+]
+RECOGNIZED_DATA_TYPES = [
+    1,
+    51,
+    101,
+    102,
+    151,
+    152,
+    201,
+    251,
+    301,
+    351,
+    401,
+    410,
+    99999,
+]
+RECOGNIZED_DATA_TYPE_LABELS = [
+    'dOD',
+    'dMean',
+    'dVar',
+    'dSkew',
+    'mua',
+    'musp',
+    'HbO',
+    'HbR',
+    'HbT',
+    'H2O',
+    'Lipid',
+    'StO2',
+    'BFi',
+    'HRF dOD',
+    'HRF dMean',
+    'HRF dVar',
+    'HRF dSkew',
+    'HRF HbO',
+    'HRF HbR',
+    'HRF HbT',
+    'HRF BFi',
+]
 
 ORANGE = '\033[33m'
 RESET = '\033[0m'
 
 
 # =============================================================================
-# HELPERS
+# TYPE HELPERS
 # =============================================================================
-class BaseModelAllowExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow",
-                              strict=True)
-
-
-class BaseModelWarnExtra(BaseModelAllowExtra):
-    @model_validator(mode="after")
-    def warn_extra_fields(self):
-        if self.__pydantic_extra__:
-            extra_fields = list(self.__pydantic_extra__.keys())
-            print(
-                f"{ORANGE}WARNING: Extra fields present in",
-                f"{type(self).__name__}",
-                f"({', '.join(extra_fields)}){RESET}"
-            )
-        return self
-
-
 def check_nnint(v: int | np.integer) -> int | np.integer:
     if v < 0:
         raise PydanticCustomError(
@@ -109,7 +165,28 @@ String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 
 
 # =============================================================================
-# SNIRF PYDANTIC SCHEMA
+# SCHEMA CONFIGS
+# =============================================================================
+class BaseModelAllowExtra(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow",
+                              strict=True)
+
+
+class BaseModelWarnExtra(BaseModelAllowExtra):
+    @model_validator(mode="after")
+    def warn_extra_fields(self):
+        if self.__pydantic_extra__:
+            extra_fields = list(self.__pydantic_extra__.keys())
+            print(
+                f"{ORANGE}WARNING: Extra fields present in",
+                f"{type(self).__name__}",
+                f"({', '.join(extra_fields)}){RESET}"
+            )
+        return self
+
+
+# =============================================================================
+# SNIRF SCHEMA
 # =============================================================================
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SNIRFFile(BaseModelWarnExtra):
@@ -370,6 +447,7 @@ class MeasurementList(BaseModelWarnExtra):
     sourcePower: Optional[float | np.floating] = None
     detectorGain: Optional[float | np.floating] = None
 
+    # Warn if null index
     @field_validator(
         "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
     )
@@ -381,6 +459,32 @@ class MeasurementList(BaseModelWarnExtra):
             print(
                 f"{ORANGE}WARNING: An index of zero in {info.field_name}",
                 f"is usually undefined{RESET}",
+            )
+        return v
+
+    # Warn if unrecognized dataTypeLabel
+    @field_validator("dataTypeLabel")
+    @classmethod
+    def check_recognized_datatypelabel(
+        cls, v: str | bytes, info: ValidationInfo
+    ) -> str | bytes:
+        if v not in RECOGNIZED_DATA_TYPE_LABELS:
+            print(
+                f"{ORANGE}WARNING: Value of {info.field_name} is not",
+                f"recognized (see Appendix){RESET}",
+            )
+        return v
+
+    # Warn if unrecognized dataType
+    @field_validator("dataType")
+    @classmethod
+    def check_recognized_datatype(
+        cls, v: NonNegativeInt, info: ValidationInfo
+    ) -> NonNegativeInt:
+        if v not in RECOGNIZED_DATA_TYPES:
+            print(
+                f"{ORANGE}WARNING: Value of {info.field_name} is not",
+                f"recognized (see Appendix){RESET}",
             )
         return v
 
@@ -398,16 +502,43 @@ class MeasurementLists(BaseModelWarnExtra):
     sourcePower: Optional[Float1D] = None
     detectorGain: Optional[Float1D] = None
 
+    # Warn if null index
     @field_validator(
         "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
     )
     @classmethod
     def check_non_null(
-        cls, v: NonNegativeInt, info: ValidationInfo
-    ) -> NonNegativeInt:
-        if v == 0:
+        cls, v: NonNegativeInt1D, info: ValidationInfo
+    ) -> NonNegativeInt1D:
+        if np.any(v == 0):
             print(
                 f"{ORANGE}WARNING: An index of zero in {info.field_name}",
                 f"is usually undefined{RESET}",
+            )
+        return v
+
+    # Warn if unrecognized dataTypeLabel
+    @field_validator("dataTypeLabel")
+    @classmethod
+    def check_recognized_datatypelabel(
+        cls, v: String1D, info: ValidationInfo
+    ) -> String1D:
+        if np.any(~np.isin(v, RECOGNIZED_DATA_TYPE_LABELS)):
+            print(
+                f"{ORANGE}WARNING: Value of {info.field_name} is not",
+                f"recognized (see Appendix){RESET}",
+            )
+        return v
+
+    # Warn if unrecognized dataType
+    @field_validator("dataType")
+    @classmethod
+    def check_recognized_datatype(
+        cls, v: NonNegativeInt1D, info: ValidationInfo
+    ) -> NonNegativeInt1D:
+        if np.any(~np.isin(v, RECOGNIZED_DATA_TYPES)):
+            print(
+                f"{ORANGE}WARNING: Value of {info.field_name} is not",
+                f"recognized (see Appendix){RESET}",
             )
         return v

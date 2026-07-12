@@ -3,7 +3,7 @@ import os
 import re
 
 from pydantic_core import ValidationError
-from snirf_schema import SNIRFFile, VALID_INDEXED_PREFIXES
+from snirf_schema import SNIRFFile, RECOGNIZED_INDEXED_PREFIXES
 
 GREEN = '\033[32m'
 RED = '\033[31m'
@@ -11,23 +11,23 @@ RESET = '\033[0m'
 
 
 # =============================================================================
-# HDF5 LOADER
+# SNIRF GROUP LOADER
 # =============================================================================
-def read_hdf5_group(group, group_name):
+def load_snirf_group(group, group_name):
     result = {}
 
     for name, item in group.items():
         if isinstance(item, h5py.Dataset):
             result[name] = item[()]
         elif isinstance(item, h5py.Group):
-            result[name] = read_hdf5_group(item, name)
+            result[name] = load_snirf_group(item, name)
 
     # Sort by keys
     result = dict(sorted(result.items()))
 
     # Group indexed groups with valid prefixes
     if "stim" not in group_name:  # avoid grouping stim.data
-        for valid_indexed_prefix in VALID_INDEXED_PREFIXES:
+        for valid_indexed_prefix in RECOGNIZED_INDEXED_PREFIXES:
             pattern = rf"^{re.escape(valid_indexed_prefix)}(\d+)?$"
             indexed_keys = [k for k in result.keys() if re.match(pattern, k)]
             if indexed_keys:
@@ -54,7 +54,7 @@ def validate_snirf(filename):
         return
 
     with h5py.File(filename, "r") as f:
-        data = read_hdf5_group(f, os.path.basename(filename))
+        data = load_snirf_group(f, os.path.basename(filename))
 
     try:
         snirf = SNIRFFile(**data)
