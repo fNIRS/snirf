@@ -16,7 +16,7 @@ RECOGNIZED_INDEXED_PREFIXES = [
     'aux',
     'measurementList'
 ]
-RECOGNIZED_COORDINATE_SYSTEM_NAMES = [
+RECOGNIZED_COORDINATE_SYSTEMS = [
     'ICBM452AirSpace',
     'ICBM452Warp5Space',
     'IXI549Space',
@@ -34,17 +34,6 @@ RECOGNIZED_COORDINATE_SYSTEM_NAMES = [
     'OASIS30Atropos',
     'Talairach',
     'UNCInfant',
-]
-RECOGNIZED_AUX_NAMES = [
-    'ACCEL_X',
-    'ACCEL_Y',
-    'ACCEL_Z',
-    'GYRO_X',
-    'GYRO_Y',
-    'GYRO_Z',
-    'MAGN_X',
-    'MAGN_Y',
-    'MAGN_Z',
 ]
 RECOGNIZED_DATA_TYPES = [
     1,
@@ -403,6 +392,19 @@ class Probe(BaseModelWarnExtra):
     landmarkLabels: Optional[String1D] = None
     coordinateSystem: Optional[str | bytes] = None
     coordinateSystemDescription: Optional[str | bytes] = None
+
+    # Warn if unrecognized coordinateSystem
+    @field_validator("coordinateSystem")
+    @classmethod
+    def check_recognized_coordinatesystem(
+        cls, v: str | bytes, info: ValidationInfo
+    ) -> str | bytes:
+        if v not in RECOGNIZED_COORDINATE_SYSTEMS:
+            print(
+                f"{ORANGE}WARNING: Value of {info.field_name} is not",
+                f"recognized (see Appendix){RESET}",
+            )
+        return v
 
     # sourcePos2D OR sourcePos3D
     @model_validator(mode='after')
