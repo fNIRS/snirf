@@ -4,7 +4,6 @@ import numpy as np
 import os
 
 from pydantic import BaseModel, ConfigDict, model_validator, AfterValidator
-from pydantic.types import NonNegativeInt
 from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
@@ -19,12 +18,11 @@ RESET = '\033[0m'
 # HELPERS
 # =============================================================================
 class BaseModelAllowExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow",
+                              strict=True)
 
 
-class BaseModelWarnExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow")
-
+class BaseModelWarnExtra(BaseModelAllowExtra):
     @model_validator(mode="after")
     def warn_extra_fields(self):
         if self.__pydantic_extra__:
@@ -38,7 +36,7 @@ class BaseModelWarnExtra(BaseModel):
 
 
 def check_int_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, int)):
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer)):
         raise PydanticCustomError(
             "int_1d_ndarray",
             "Input should be a valid 1D array of integers"
@@ -47,7 +45,7 @@ def check_int_1d(v: np.ndarray) -> np.ndarray:
 
 
 def check_float_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, float)):
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.floating)):
         raise PydanticCustomError(
             "float_1d_ndarray",
             "Input should be a valid 1D array of floats"
@@ -56,7 +54,7 @@ def check_float_1d(v: np.ndarray) -> np.ndarray:
 
 
 def check_float_2d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 2 and np.issubdtype(v.dtype, float)):
+    if not (v.ndim == 2 and np.issubdtype(v.dtype, np.floating)):
         raise PydanticCustomError(
             "float_2d_ndarray",
             "Input should be a valid 2D array of floats"
@@ -92,10 +90,19 @@ def check_string_2d(v: np.ndarray) -> np.ndarray:
     return v
 
 
-def check_nnint_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, int) and np.all(v >= 0)):
+def check_nnint(v: int | np.integer) -> int | np.integer:
+    if v < 0:
         raise PydanticCustomError(
-            "int_1d_ndarray",
+            "nnint_type",
+            "Input should be a valid integer greater than or equal to 0"
+        )
+    return v
+
+
+def check_nnint_1d(v: np.ndarray) -> np.ndarray:
+    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.integer) and np.all(v >= 0)):
+        raise PydanticCustomError(
+            "nnint_1d_ndarray",
             "Input should be a valid 1D array of integers greater than or equal to 0"
         )
     return v
@@ -106,6 +113,7 @@ Float1D = Annotated[np.ndarray, AfterValidator(check_float_1d)]
 Float2D = Annotated[np.ndarray, AfterValidator(check_float_2d)]
 String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
+NonNegativeInt = Annotated[int | np.integer, AfterValidator(check_nnint)]
 NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 
 
@@ -114,7 +122,7 @@ NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 # =============================================================================
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SNIRFFile(BaseModelWarnExtra):
-    formatVersion: str
+    formatVersion: str | bytes
     nirs: List[Nirs]  # indexed
 
 
@@ -207,12 +215,12 @@ class Nirs(BaseModelWarnExtra):
 
 # LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MetaDataTags(BaseModelAllowExtra):
-    SubjectID: str
-    MeasurementDate: str
-    MeasurementTime: str
-    LengthUnit: str
-    TimeUnit: str
-    FrequencyUnit: str
+    SubjectID: str | bytes
+    MeasurementDate: str | bytes
+    MeasurementTime: str | bytes
+    LengthUnit: str | bytes
+    TimeUnit: str | bytes
+    FrequencyUnit: str | bytes
 
 
 class Data(BaseModelWarnExtra):
@@ -291,7 +299,7 @@ class Data(BaseModelWarnExtra):
 
 
 class Stim(BaseModelWarnExtra):
-    name: str
+    name: str | bytes
     data: Float2D
     dataLabels: Optional[String1D] = None
 
@@ -320,13 +328,13 @@ class Probe(BaseModelWarnExtra):
     momentOrders: Optional[Float1D] = None
     correlationTimeDelays: Optional[Float1D] = None
     correlationTimeDelayWidths: Optional[Float1D] = None
-    sourceLabels: Optional[String2D] = None
+    sourceLabels: Optional[String2D] = None  # FIXME
     detectorLabels: Optional[String1D] = None
     landmarkPos2D: Optional[Float2D] = None
     landmarkPos3D: Optional[Float2D] = None
     landmarkLabels: Optional[String1D] = None
-    coordinateSystem: Optional[str] = None
-    coordinateSystemDescription: Optional[str] = None
+    coordinateSystem: Optional[str | bytes] = None
+    coordinateSystemDescription: Optional[str | bytes] = None
 
     # sourcePos2D OR sourcePos3D
     @model_validator(mode='after')
@@ -350,9 +358,9 @@ class Probe(BaseModelWarnExtra):
 
 
 class Aux(BaseModelWarnExtra):
-    name: str
+    name: str | bytes
     dataTimeSeries: Float2D
-    dataUnit: Optional[str] = None
+    dataUnit: Optional[str | bytes] = None
     time: Float1D
     timeOffset: Optional[Float1D] = None
 
@@ -362,14 +370,14 @@ class MeasurementList(BaseModelWarnExtra):
     sourceIndex: NonNegativeInt
     detectorIndex: NonNegativeInt
     wavelengthIndex: NonNegativeInt
-    wavelengthActual: Optional[float] = None
-    wavelengthEmissionActual: Optional[float] = None
-    dataType: int
-    dataUnit: Optional[str] = None
-    dataTypeLabel: Optional[str] = None
+    wavelengthActual: Optional[float | np.floating] = None
+    wavelengthEmissionActual: Optional[float | np.floating] = None
+    dataType: int | np.integer
+    dataUnit: Optional[str | bytes] = None
+    dataTypeLabel: Optional[str | bytes] = None
     dataTypeIndex: NonNegativeInt
-    sourcePower: Optional[float] = None
-    detectorGain: Optional[float] = None
+    sourcePower: Optional[float | np.floating] = None
+    detectorGain: Optional[float | np.floating] = None
 
 
 class MeasurementLists(BaseModelWarnExtra):
