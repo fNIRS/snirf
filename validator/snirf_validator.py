@@ -6,8 +6,26 @@ from pydantic_core import ValidationError
 from snirf_schema import SNIRFFile, RECOGNIZED_INDEXED_PREFIXES
 
 GREEN = '\033[32m'
+ORANGE = '\033[33m'
 RED = '\033[31m'
 RESET = '\033[0m'
+
+
+class ValidationReport:
+    def __init__(self):
+        self.warnings: list[str] = []
+
+    def add_warning(self, message: str):
+        self.warnings.append(message)
+
+    def print_warnings(self):
+        if self.warnings:
+            print(
+                f"{ORANGE}{len(self.warnings)} validation warnings for",
+                f"SNIRFFile{RESET}"
+            )
+            for warning in self.warnings:
+                print(f"{ORANGE}  {warning}{RESET}")
 
 
 # =============================================================================
@@ -48,18 +66,21 @@ def validate_snirf(filename):
     print("===============")
     print("SNIRF VALIDATOR")
     print("---------------")
+    snirf = None
 
     if not filename.endswith('.snirf'):
         print(f"{RED}ERROR: Valid SNIRF files must end with .snirf{RESET}")
-        return
 
-    with h5py.File(filename, "r") as f:
-        data = load_snirf_group(f, os.path.basename(filename))
+    else:
+        report = ValidationReport()
+        with h5py.File(filename, "r") as f:
+            data = load_snirf_group(f, os.path.basename(filename))
+        try:
+            snirf = SNIRFFile.model_validate(data, context={"report": report})
+            print(f"{GREEN}Valid SNIRFFile{RESET}")
+        except ValidationError as e:
+            print(f"{RED}{e}{RESET}")
+        finally:
+            report.print_warnings()
 
-    try:
-        snirf = SNIRFFile(**data)
-        print(f"{GREEN}Valid SNIRFFile{RESET}")
-        return snirf
-
-    except ValidationError as e:
-        print(f"{RED}{e}{RESET}")
+    return snirf
