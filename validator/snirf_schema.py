@@ -397,19 +397,6 @@ class Probe(BaseModelWarnExtra):
     coordinateSystem: Optional[str | bytes] = None
     coordinateSystemDescription: Optional[str | bytes] = None
 
-    # Warn if unrecognized coordinateSystem
-    @field_validator("coordinateSystem")
-    @classmethod
-    def check_recognized_coordinatesystem(
-        cls, v: str | bytes, info: ValidationInfo
-    ) -> str | bytes:
-        if v not in RECOGNIZED_COORDINATE_SYSTEMS:
-            print(
-                f"{ORANGE}WARNING: Value of {info.field_name} is not",
-                f"recognized (see Appendix){RESET}",
-            )
-        return v
-
     # sourcePos2D OR sourcePos3D
     @model_validator(mode='after')
     def require_sourcepos2d_or_sourcepos3d(self) -> "Probe":
@@ -428,6 +415,24 @@ class Probe(BaseModelWarnExtra):
                 "missing",
                 "At least one of detectorPos2D or detectorPos3D is required"
             )
+        return self
+
+    # Check coordinateSystem and coordinateSystemDescription
+    @model_validator(mode='after')
+    def check_coordinatesystem(self) -> "Probe":
+        if (
+            self.coordinateSystem is not None
+            and self.coordinateSystem not in RECOGNIZED_COORDINATE_SYSTEMS
+        ):
+            print(
+                f"{ORANGE}WARNING: Value of coordinateSystem is not",
+                f"recognized (see Appendix){RESET}",
+            )
+            if self.coordinateSystemDescription is None:
+                print(
+                    f"{ORANGE}WARNING: Field coordinateSystemDescription is",
+                    f"required if coordinateSystem is not recognized{RESET}",
+                )
         return self
 
 
