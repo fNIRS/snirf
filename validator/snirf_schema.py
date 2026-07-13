@@ -1,14 +1,20 @@
 from __future__ import annotations
 
+import h5py
 import numpy as np
 import os
+import re
 
-from pydantic import (BaseModel, ConfigDict, AfterValidator, ValidationInfo,
-                      model_validator, field_validator)
+from pydantic import (BaseModel, ConfigDict, AfterValidator, ValidationError,
+                      ValidationInfo, model_validator, field_validator)
 from pydantic_core import PydanticCustomError
 from typing import Optional, List, Annotated
 
 os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
+GREEN = '\033[32m'
+ORANGE = '\033[33m'
+RED = '\033[31m'
+RESET = '\033[0m'
 
 RECOGNIZED_INDEXED_PREFIXES = [
     'nirs',
@@ -96,7 +102,8 @@ def check_nnint_1d(v: np.ndarray) -> np.ndarray:
     ):
         raise PydanticCustomError(
             "nnint_1d_ndarray",
-            "Input should be a valid 1D array of integers greater than or equal to 0"
+            "Input should be a valid 1D array of integers greater than or " \
+            "equal to 0"
         )
     return v
 
@@ -156,7 +163,72 @@ String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 
 
 # =============================================================================
-# SCHEMA CONFIGS
+# HDF5 HELPERS
+# =============================================================================
+def load_snirf_group(group, group_name):
+    """
+    Recursively loads a SNIRF HDF5 group into a Pydantic dictionary.
+    """
+    result = {}
+
+    for name, item in group.items():
+        if isinstance(item, h5py.Dataset):
+            result[name] = item[()]
+        elif isinstance(item, h5py.Group):
+            result[name] = load_snirf_group(item, name)
+
+    # Sort by keys
+    result = dict(sorted(result.items()))
+
+    # Group indexed groups with valid prefixes
+    if "stim" not in group_name:  # avoid grouping stim.data
+        for valid_indexed_prefix in RECOGNIZED_INDEXED_PREFIXES:
+            pattern = rf"^{re.escape(valid_indexed_prefix)}(\d+)?$"
+            indexed_keys = [k for k in result.keys() if re.match(pattern, k)]
+            if indexed_keys:
+                indexed_items = [result[key] for key in indexed_keys]
+                # Remove items with indexed names
+                for key in indexed_keys:
+                    del result[key]
+                # Add new item with a list of indexed groups
+                result[valid_indexed_prefix] = indexed_items
+
+    return result
+
+
+def create_snirf_group(group, data):
+    """
+    Recursively creates an SNIRF HDF5 group from a Pydantic dictionary.
+    """
+    for key, value in data.items():
+        if value is None:
+            continue
+
+        # Handle indexed prefixes (nirs, data, stim, aux, measurementList)
+        if isinstance(value, list) and key in RECOGNIZED_INDEXED_PREFIXES:
+            for idx, item in enumerate(value):
+                subgroup = group.create_group(f"{key}{idx+1}")
+                create_snirf_group(subgroup, item)
+            continue
+
+        if isinstance(value, dict):
+            subgroup = group.create_group(key)
+            create_snirf_group(subgroup, value)
+        elif isinstance(value, np.ndarray):
+            group.create_dataset(key, data=value)
+        elif isinstance(value, (list, tuple)):
+            group.create_dataset(key, data=np.asarray(value))
+        elif isinstance(value, str):
+            group.create_dataset(key, data=value.encode('utf-8'))
+        elif isinstance(value, bytes):
+            group.create_dataset(key, data=value)
+        else:
+            # Scalars (int, float, bool)
+            group.create_dataset(key, data=value)
+
+
+# =============================================================================
+# PYDANTIC HELPERS
 # =============================================================================
 class BaseModelAllowExtra(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow",
@@ -178,6 +250,24 @@ class BaseModelWarnExtra(BaseModelAllowExtra):
         return data
 
 
+class ValidationReport:
+    def __init__(self):
+        self.warnings: list[str] = []
+
+    def add_warning(self, message: str):
+        self.warnings.append(message)
+
+    def print_warnings(self):
+        if self.warnings:
+            plural = 's' if len(self.warnings) > 1 else ''
+            print(
+                f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
+                f"SNIRFFile{RESET}"
+            )
+            for warning in self.warnings:
+                print(f"{ORANGE}  {warning}{RESET}")
+
+
 # =============================================================================
 # SNIRF SCHEMA
 # =============================================================================
@@ -185,6 +275,14 @@ class BaseModelWarnExtra(BaseModelAllowExtra):
 class SNIRFFile(BaseModelWarnExtra):
     formatVersion: str | bytes
     nirs: List[Nirs]  # indexed
+
+    # SNIRF WRITER
+    def save(self, filename: str) -> None:
+        """Convert a SNIRFFile schema object to an HDF5 file."""
+        data = self.model_dump()
+        with h5py.File(filename, 'w') as f:
+            f.attrs['formatVersion'] = data['formatVersion']
+            create_snirf_group(f, data)
 
 
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -301,12 +399,14 @@ class Data(BaseModelWarnExtra):
         ):
             raise PydanticCustomError(
                 "conflicting",
-                "Field measurementList and measurementLists cannot both be present"
+                "Field measurementList and measurementLists cannot both be " \
+                "present"
             )
         if self.measurementList is None and self.measurementLists is None:
             raise PydanticCustomError(
                 "missing",
-                "Strictly one of measurementList or measurementLists is required"
+                "Strictly one of measurementList or measurementLists is " \
+                "required"
             )
         return self
 
@@ -593,3 +693,58 @@ class MeasurementLists(BaseModelWarnExtra):
                     "Field dataTypeLabel and dataType should match"
                 )
             return self
+
+
+# =============================================================================
+# SNIRF READER
+# =============================================================================
+def read_snirf(file_path, warnings=True):
+    """
+    Read a SNIRF file, logging potential errors and warnings.
+
+    Parameters
+    ----------
+    file_path : str
+        Path of the SNIRF file to load.
+
+    warnings : bool
+        Whether to print warnings.
+
+    Returns
+    -------
+    snirf : SNIRFFile
+        The loaded SNIRF Pydantic model object.
+    """
+    snirf = None
+
+    if not file_path.endswith('.snirf'):
+        print(f"{RED}ERROR: Valid SNIRF files must end with .snirf{RESET}")
+
+    else:
+        report = ValidationReport()
+        with h5py.File(file_path, "r") as f:
+            data = load_snirf_group(f, os.path.basename(file_path))
+        try:
+            snirf = SNIRFFile.model_validate(data, context={"report": report})
+            print(f"{GREEN}Valid SNIRFFile{RESET}")
+        except ValidationError as e:
+            print(f"{RED}{e}{RESET}")
+        finally:
+            if warnings is True:
+                report.print_warnings()
+
+    return snirf
+
+
+# =============================================================================
+# MAIN (SNIRF VALIDATOR)
+# =============================================================================
+if __name__ == "__main__":
+    import argparse
+    print("===============")
+    print("SNIRF VALIDATOR")
+    print("---------------")
+    parser = argparse.ArgumentParser(description='Validate a SNIRF file.')
+    parser.add_argument('filename', type=str, help='Path to the SNIRF file')
+    args = parser.parse_args()
+    snirf = read_snirf(args.filename, warnings=True)

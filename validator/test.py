@@ -1,7 +1,7 @@
 import os
 import urllib.request
 
-from snirf_validator import validate_snirf
+from snirf_schema import read_snirf
 
 
 # =============================================================================
@@ -20,4 +20,10 @@ if not os.path.exists(filename):
 # =============================================================================
 # VALIDATE FILE
 # =============================================================================
-snirf = validate_snirf(filename)
+snirf = read_snirf(filename, warnings=True)
+
+
+# =============================================================================
+# WRITE
+# =============================================================================
+snirf.save('new_'+filename)
