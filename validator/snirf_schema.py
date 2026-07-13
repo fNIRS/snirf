@@ -411,8 +411,7 @@ class Data(BaseModelWarnExtra):
         if self.measurementList is None and self.measurementLists is None:
             raise PydanticCustomError(
                 "missing",
-                "Strictly one of measurementList or measurementLists is " \
-                "required"
+                "One of measurementList or measurementLists is required"
             )
         return self
 
