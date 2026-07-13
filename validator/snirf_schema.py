@@ -276,11 +276,17 @@ class SNIRFFile(BaseModelWarnExtra):
     formatVersion: str | bytes
     nirs: List[Nirs]  # indexed
 
-    # SNIRF WRITER
-    def save(self, filename: str) -> None:
-        """Convert a SNIRFFile schema object to an HDF5 file."""
+    def save(self, file_path: str) -> None:
+        """
+        Save a SNIRFFile model object as HDF5.
+
+        Parameters
+        ----------
+        file_path : str
+            Path of the file to which the data is saved.
+        """
         data = self.model_dump()
-        with h5py.File(filename, 'w') as f:
+        with h5py.File(file_path, 'w') as f:
             f.attrs['formatVersion'] = data['formatVersion']
             create_snirf_group(f, data)
 
