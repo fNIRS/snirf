@@ -285,7 +285,7 @@ class SNIRFFile(BaseModelWarnExtra):
         file_path : str
             Path of the file to which the data is saved.
         """
-        data = self.model_dump()
+        data = self.model_dump(exclude_unset=True)
         with h5py.File(file_path, 'w') as f:
             f.attrs['formatVersion'] = data['formatVersion']
             create_snirf_group(f, data)
@@ -433,7 +433,9 @@ class Data(BaseModelWarnExtra):
         if self.measurementLists is not None:
             ml_shapes = [
                 item.shape[0]
-                for item in self.measurementLists.model_dump().values()
+                for item in self.measurementLists.model_dump(
+                    exclude_unset=True
+                ).values()
             ]
             if not all(s == self.dataTimeSeries.shape[1] for s in ml_shapes):
                 raise PydanticCustomError(
@@ -698,13 +700,13 @@ class MeasurementLists(BaseModelWarnExtra):
                     "conflicting",
                     "Field dataTypeLabel and dataType should match"
                 )
-            return self
+        return self
 
 
 # =============================================================================
 # SNIRF READER
 # =============================================================================
-def read_snirf(file_path, warnings=True):
+def read_snirf(file_path, verbose=False):
     """
     Read a SNIRF file, logging potential errors and warnings.
 
@@ -713,8 +715,8 @@ def read_snirf(file_path, warnings=True):
     file_path : str
         Path of the SNIRF file to load.
 
-    warnings : bool
-        Whether to print warnings.
+    verbose : bool
+        Whether to print validation info. Defaults to ``False``.
 
     Returns
     -------
@@ -732,11 +734,12 @@ def read_snirf(file_path, warnings=True):
             data = load_snirf_group(f, os.path.basename(file_path))
         try:
             snirf = SNIRFFile.model_validate(data, context={"report": report})
-            print(f"{GREEN}Valid SNIRFFile{RESET}")
         except ValidationError as e:
             print(f"{RED}{e}{RESET}")
         finally:
-            if warnings is True:
+            if verbose is True:
+                if snirf is not None:
+                    print(f"{GREEN}Valid SNIRFFile{RESET}")
                 report.print_warnings()
 
     return snirf
@@ -753,4 +756,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Validate a SNIRF file.')
     parser.add_argument('filename', type=str, help='Path to the SNIRF file')
     args = parser.parse_args()
-    snirf = read_snirf(args.filename, warnings=True)
+    snirf = read_snirf(args.filename, verbose=False)
