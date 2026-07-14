@@ -1,8 +1,6 @@
 import numpy as np
 import warnings
-from snirf_schema import (read_snirf,
-                          RECOGNIZED_COORDINATE_SYSTEMS,
-                          RECOGNIZED_DATA_TYPE_LABELS)
+from snirf_schema import read_snirf
 
 VALID_SNIRF_ML_PATH = "valid_ml.snirf"
 VALID_SNIRF_MLS_PATH = "valid_mls.snirf"
@@ -218,7 +216,7 @@ def test_invalid_data(tmp_path, capsys):
 def test_valid_datalabels(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.nirs[0].stim[0].dataLabels = np.array(
-        [b'label']*result.nirs[0].stim[0].data.shape[1],
+        [b'label'] * result.nirs[0].stim[0].data.shape[1],
         dtype=object
     )
     result.save(f"{tmp_path}test.snirf")
@@ -264,7 +262,7 @@ def test_missing_detector_positions(tmp_path, capsys):
 
 def test_valid_coordinatesystem(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
-    result.nirs[0].probe.coordinateSystem = RECOGNIZED_COORDINATE_SYSTEMS[0]
+    result.nirs[0].probe.coordinateSystem = 'fsaverage'
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
@@ -322,7 +320,7 @@ def test_invalid_ml_index(tmp_path, capsys):
 
 def test_valid_ml_datatypelabel(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
-    result.nirs[0].data[0].measurementList[0].dataTypeLabel = RECOGNIZED_DATA_TYPE_LABELS[0]
+    result.nirs[0].data[0].measurementList[0].dataTypeLabel = 'dOD'
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
@@ -356,6 +354,80 @@ def test_warn_unrecognized_ml_datatype(tmp_path, capsys):
 def test_missing_ml_datatype(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.nirs[0].data[0].measurementList[0].dataType = 99999
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is None and "Valid SNIRFFile" not in out
+    assert "Field dataTypeLabel is required when dataType is 99999" in out
+
+
+def test_warn_zero_mls_index(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.sourceIndex[0] = 0
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is not None and "Valid SNIRFFile" in out
+    assert "warning" in out.lower()
+    assert "An index of zero in sourceIndex is usually undefined" in out
+
+
+def test_invalid_mls_index(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.sourceIndex[0] = -1
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is None and "Valid SNIRFFile" not in out
+    assert "Input should be a valid 1D array of integers greater than or equal to 0" in out
+
+
+def test_valid_mls_datatypelabel(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.dataTypeLabel = np.array(
+        [b'dOD'] * result.nirs[0].data[0].measurementLists.dataType.shape[0],
+        dtype=object
+    )
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is not None and "Valid SNIRFFile" in out
+    assert "error" not in out.lower()
+    assert "warning" not in out.lower()
+
+
+def test_warn_unrecognized_mls_datatypelabel(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.dataTypeLabel = np.array(
+        [b'unrecognized'] * result.nirs[0].data[0].measurementLists.dataType.shape[0],
+        dtype=object
+    )
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is not None and "Valid SNIRFFile" in out
+    assert "warning" in out.lower()
+    assert "Value of dataTypeLabel is not recognized" in out
+
+
+def test_warn_unrecognized_mls_datatype(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.dataType = np.array(
+        [42] * result.nirs[0].data[0].measurementLists.dataType.shape[0]
+    )
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is not None and "Valid SNIRFFile" in out
+    assert "warning" in out.lower()
+    assert "Value of dataType is not recognized" in out
+
+
+def test_missing_mls_datatype(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_MLS_PATH)
+    result.nirs[0].data[0].measurementLists.dataType = np.array(
+        [99999] * result.nirs[0].data[0].measurementLists.dataType.shape[0]
+    )
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
