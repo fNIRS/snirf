@@ -12,7 +12,7 @@ VALID_SNIRF_MLS_PATH = f"{Path(__file__).parent}/data/valid_mls.snirf"
 def test_valid_measurementlist(capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH, verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -20,7 +20,7 @@ def test_valid_measurementlist(capsys):
 def test_valid_measurementlists(capsys):
     result = read_snirf(VALID_SNIRF_MLS_PATH, verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -31,7 +31,7 @@ def test_invalid_extension(tmp_path, capsys):
     result.save(f"{tmp_path}test.nirs")
     result = read_snirf(f"{tmp_path}test.nirs", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "ERROR: Valid SNIRF files must end with .snirf" in out
 
 
@@ -44,7 +44,7 @@ def test_invalid_type(tmp_path, capsys):
         result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "\nformatVersion.str\n  Input should be a valid string" in out
     assert "\nformatVersion.bytes\n  Input should be a valid bytes" in out
 
@@ -55,7 +55,7 @@ def test_missing_field(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "\nnirs\n  Field required" in out
 
 
@@ -65,9 +65,9 @@ def test_warn_extra_field(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
-    assert "Extra fields present in SNIRFFile" in out
+    assert "Extra fields present in SNIRFModel" in out
 
 
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +77,7 @@ def test_mismatched_sourceindex_sourcelabels(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field sourceIndex and sourceLabels should match" in out
 
 
@@ -87,7 +87,7 @@ def test_mismatched_sourceindex_sourcepos(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field sourceIndex and sourcePos2D should match" in out
 
 
@@ -97,7 +97,7 @@ def test_mismatched_detectorindex_detectorlabels(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field detectorIndex and detectorLabels should match" in out
 
 
@@ -107,7 +107,7 @@ def test_mismatched_detectorindex_detectorpos(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field detectorIndex and detectorPos2D should match" in out
 
 
@@ -117,7 +117,7 @@ def test_mismatched_wavelengthindex_wavelengthlabels(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field wavelengthIndex and wavelengths should match" in out
 
 
@@ -128,7 +128,7 @@ def test_valid_extra_field(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -139,7 +139,7 @@ def test_invalid_dim(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "\nnirs.0.data.0.dataTimeSeries\n  Input should be a valid 2D array" in out
 
 
@@ -150,7 +150,7 @@ def test_measurementlist_measurementlists(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "measurementList and measurementLists cannot both be present" in out
 
 
@@ -160,7 +160,7 @@ def test_missing_measurementlist_missing_measurementlists(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "One of measurementList or measurementLists" in out
 
 
@@ -170,7 +170,7 @@ def test_mismatched_datatimeseries_measurementlist(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTimeSeries and measurementList should match" in out
 
 
@@ -180,7 +180,7 @@ def test_mismatched_datatimeseries_measurementlists(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTimeSeries and measurementLists should match" in out
 
 
@@ -191,7 +191,7 @@ def test_mismatched_datatimeseries_dataoffset(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTimeSeries and dataOffset should match" in out
 
 
@@ -201,7 +201,7 @@ def test_mismatched_datatimeseries_time(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTimeSeries and time should match" in out
 
 
@@ -211,7 +211,7 @@ def test_invalid_data(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field data should have at least 3 columns" in out
 
 
@@ -224,7 +224,7 @@ def test_valid_datalabels(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -238,7 +238,7 @@ def test_mismatched_datalabels_data(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataLabels and data should match" in out
 
 
@@ -248,7 +248,7 @@ def test_missing_source_positions(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "At least one of sourcePos2D or sourcePos3D is required" in out
 
 
@@ -258,7 +258,7 @@ def test_missing_detector_positions(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "At least one of detectorPos2D or detectorPos3D is required" in out
 
 
@@ -268,7 +268,7 @@ def test_valid_coordinatesystem(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -280,7 +280,7 @@ def test_warn_unrecognized_coordinatesystem(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of coordinateSystem is not recognized" in out
     assert "Field coordinateSystemDescription is required" not in out
@@ -292,7 +292,7 @@ def test_warn_missing_coordinatesystemdescription(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of coordinateSystem is not recognized" in out
     assert "Field coordinateSystemDescription is required" in out
@@ -305,7 +305,7 @@ def test_warn_zero_ml_index(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "An index of zero in sourceIndex is usually undefined" in out
 
@@ -316,7 +316,7 @@ def test_invalid_ml_index(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Input should be a valid integer greater than or equal to 0" in out
 
 
@@ -326,7 +326,7 @@ def test_valid_ml_datatypelabel(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -337,7 +337,7 @@ def test_warn_unrecognized_ml_datatypelabel(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of dataTypeLabel is not recognized" in out
 
@@ -348,7 +348,7 @@ def test_warn_unrecognized_ml_datatype(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of dataType is not recognized" in out
 
@@ -359,7 +359,7 @@ def test_missing_ml_datatype(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTypeLabel is required when dataType is 99999" in out
 
 
@@ -369,7 +369,7 @@ def test_warn_zero_mls_index(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "An index of zero in sourceIndex is usually undefined" in out
 
@@ -380,7 +380,7 @@ def test_invalid_mls_index(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Input should be a valid 1D array of integers greater than or equal to 0" in out
 
 
@@ -393,7 +393,7 @@ def test_valid_mls_datatypelabel(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "error" not in out.lower()
     assert "warning" not in out.lower()
 
@@ -407,7 +407,7 @@ def test_warn_unrecognized_mls_datatypelabel(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of dataTypeLabel is not recognized" in out
 
@@ -420,7 +420,7 @@ def test_warn_unrecognized_mls_datatype(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is not None and "Valid SNIRFFile" in out
+    assert result is not None and "Valid SNIRFModel" in out
     assert "warning" in out.lower()
     assert "Value of dataType is not recognized" in out
 
@@ -433,5 +433,5 @@ def test_missing_mls_datatype(tmp_path, capsys):
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
-    assert result is None and "Valid SNIRFFile" not in out
+    assert result is None and "Valid SNIRFModel" not in out
     assert "Field dataTypeLabel is required when dataType is 99999" in out

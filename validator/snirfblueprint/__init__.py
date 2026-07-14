@@ -1,1 +1,1 @@
-from .snirfblueprint import main, read_snirf, SNIRFFile
+from .snirfblueprint import main, read_snirf, SNIRFModel

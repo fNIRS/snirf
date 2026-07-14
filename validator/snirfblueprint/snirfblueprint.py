@@ -261,7 +261,7 @@ class ValidationReport:
             plural = 's' if len(self.warnings) > 1 else ''
             print(
                 f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
-                f"SNIRFFile{RESET}"
+                f"SNIRFModel{RESET}"
             )
             for warning in self.warnings:
                 print(f"{ORANGE}  {warning}{RESET}")
@@ -271,13 +271,13 @@ class ValidationReport:
 # SNIRF SCHEMA
 # =============================================================================
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class SNIRFFile(BaseModelWarnExtra):
+class SNIRFModel(BaseModelWarnExtra):
     formatVersion: str | bytes
     nirs: List[Nirs]  # indexed
 
     def save(self, file_path: str) -> None:
         """
-        Save a SNIRFFile model object as HDF5.
+        Save a SNIRFModel as HDF5.
 
         Parameters
         ----------
@@ -726,7 +726,7 @@ def read_snirf(file_path, verbose=False):
 
     Returns
     -------
-    snirf : SNIRFFile
+    snirf : SNIRFModel
         The loaded SNIRF Pydantic model object.
     """
     snirf = None
@@ -739,13 +739,13 @@ def read_snirf(file_path, verbose=False):
         with h5py.File(file_path, "r") as f:
             data = load_snirf_group(f, os.path.basename(file_path))
         try:
-            snirf = SNIRFFile.model_validate(data, context={"report": report})
+            snirf = SNIRFModel.model_validate(data, context={"report": report})
         except ValidationError as e:
             print(f"{RED}{e}{RESET}")
         finally:
             if verbose is True:
                 if snirf is not None:
-                    print(f"{GREEN}Valid SNIRFFile{RESET}")
+                    print(f"{GREEN}Valid SNIRFModel{RESET}")
                 report.print_warnings()
 
     return snirf
