@@ -239,14 +239,13 @@ class BaseModelWarnExtra(BaseModelAllowExtra):
     @model_validator(mode="before")
     @classmethod
     def warn_extra_fields(cls, data, info: ValidationInfo):
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            extra_fields = set(data) - set(cls.model_fields)
-            if extra_fields:
-                report.add_warning(
-                    "Extra fields present in "
-                    f"{cls.__name__} ({', '.join(extra_fields)})"
-                )
+        report = info.context.get("report")
+        extra_fields = set(data) - set(cls.model_fields)
+        if extra_fields:
+            report.add_warning(
+                "Extra fields present in "
+                f"{cls.__name__} ({', '.join(extra_fields)})"
+            )
         return data
 
 
@@ -471,11 +470,24 @@ class Stim(BaseModelWarnExtra):
     data: Float2D
     dataLabels: Optional[String1D] = None
 
+    # At least 3 columns in data
+    @field_validator("data")
+    @classmethod
+    def check_shape_data(
+        cls, v: Float2D
+    ) -> Float2D:
+        if v.shape[1] < 3:
+            raise PydanticCustomError(
+                "shape",
+                "Field data should have at least 3 columns"
+            )
+        return v
+
     # Matching dataLabels and data
     @model_validator(mode='after')
     def match_datalabels_data(self) -> "Stim":
         if self.dataLabels is not None:
-            if self.data.shape[0] != self.dataLabels.shape[0]:
+            if self.data.shape[1] != self.dataLabels.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
                     "Field dataLabels and data should match"
@@ -527,11 +539,11 @@ class Probe(BaseModelWarnExtra):
     # Check coordinateSystem and coordinateSystemDescription
     @model_validator(mode='after')
     def check_coordinatesystem(self, info: ValidationInfo) -> "Probe":
-        report = info.context.get("report") if info.context else None
-        if report is not None:
+        report = info.context.get("report")
+        if self.coordinateSystem is not None:
             if (
-                self.coordinateSystem is not None
-                and self.coordinateSystem not in RECOGNIZED_COORDINATE_SYSTEMS
+                self.coordinateSystem.decode()
+                not in RECOGNIZED_COORDINATE_SYSTEMS
             ):
                 report.add_warning(
                     "Value of coordinateSystem is not recognized "
@@ -575,13 +587,12 @@ class MeasurementList(BaseModelWarnExtra):
     def check_non_null(
         cls, v: NonNegativeInt, info: ValidationInfo
     ) -> NonNegativeInt:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if v == 0:
-                report.add_warning(
-                    f"An index of zero in {info.field_name} is usually "
-                    "undefined"
-                )
+        report = info.context.get("report")
+        if v == 0:
+            report.add_warning(
+                f"An index of zero in {info.field_name} is usually "
+                "undefined"
+            )
         return v
 
     # Warn if unrecognized dataTypeLabel
@@ -590,13 +601,12 @@ class MeasurementList(BaseModelWarnExtra):
     def check_recognized_datatypelabel(
         cls, v: str | bytes, info: ValidationInfo
     ) -> str | bytes:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if v not in RECOGNIZED_DATA_TYPE_LABELS:
-                report.add_warning(
-                    f"Value of {info.field_name} is not recognized "
-                    "(see Appendix)"
-                )
+        report = info.context.get("report")
+        if v.decode() not in RECOGNIZED_DATA_TYPE_LABELS:
+            report.add_warning(
+                f"Value of {info.field_name} is not recognized "
+                "(see Appendix)"
+            )
         return v
 
     # Warn if unrecognized dataType
@@ -605,13 +615,12 @@ class MeasurementList(BaseModelWarnExtra):
     def check_recognized_datatype(
         cls, v: NonNegativeInt, info: ValidationInfo
     ) -> NonNegativeInt:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if v not in RECOGNIZED_DATA_TYPES:
-                report.add_warning(
-                    f"Value of {info.field_name} is not recognized "
-                    "(see Appendix)"
-                )
+        report = info.context.get("report")
+        if v not in RECOGNIZED_DATA_TYPES:
+            report.add_warning(
+                f"Value of {info.field_name} is not recognized "
+                "(see Appendix)"
+            )
         return v
 
     # dataTypeLabel IF dataType 99999
@@ -646,13 +655,12 @@ class MeasurementLists(BaseModelWarnExtra):
     def check_non_null(
         cls, v: NonNegativeInt1D, info: ValidationInfo
     ) -> NonNegativeInt1D:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if np.any(v == 0):
-                report.add_warning(
-                    f"An index of zero in {info.field_name} is usually "
-                    "undefined"
-                )
+        report = info.context.get("report")
+        if np.any(v == 0):
+            report.add_warning(
+                f"An index of zero in {info.field_name} is usually "
+                "undefined"
+            )
         return v
 
     # Warn if unrecognized dataTypeLabel
@@ -661,13 +669,13 @@ class MeasurementLists(BaseModelWarnExtra):
     def check_recognized_datatypelabel(
         cls, v: String1D, info: ValidationInfo
     ) -> String1D:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if np.any(~np.isin(v, RECOGNIZED_DATA_TYPE_LABELS)):
-                print(
-                    f"Value of {info.field_name} is not recognized "
-                    "(see Appendix)"
-                )
+        report = info.context.get("report")
+        v_str = np.array([s.decode() for s in v])
+        if np.any(~np.isin(v_str, RECOGNIZED_DATA_TYPE_LABELS)):
+            report.add_warning(
+                f"Value of {info.field_name} is not recognized "
+                "(see Appendix)"
+            )
         return v
 
     # Warn if unrecognized dataType
@@ -676,13 +684,12 @@ class MeasurementLists(BaseModelWarnExtra):
     def check_recognized_datatype(
         cls, v: NonNegativeInt1D, info: ValidationInfo
     ) -> NonNegativeInt1D:
-        report = info.context.get("report") if info.context else None
-        if report is not None:
-            if np.any(~np.isin(v, RECOGNIZED_DATA_TYPES)):
-                report.add_warning(
-                    f"Value of {info.field_name} is not recognized "
-                    "(see Appendix)"
-                )
+        report = info.context.get("report")
+        if np.any(~np.isin(v, RECOGNIZED_DATA_TYPES)):
+            report.add_warning(
+                f"Value of {info.field_name} is not recognized "
+                "(see Appendix)"
+            )
         return v
 
     # dataTypeLabel IF dataType 99999
