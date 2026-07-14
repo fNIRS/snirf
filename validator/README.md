@@ -1,6 +1,7 @@
-# SNIRF Blueprint
+# SNIRF Blueprint Validator
 
-## Install the package
+
+## Install
 
 1. [Install Python 3.12 or newer](https://www.anaconda.com/download/success?reg=skipped)
 
@@ -23,6 +24,7 @@ In a terminal:
 ```bash
 snirfblueprint <my_snirf_file_to_validate.snirf>
 ```
+
 
 ## Development
 
