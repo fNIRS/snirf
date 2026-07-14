@@ -754,7 +754,7 @@ def read_snirf(file_path, verbose=False):
 # =============================================================================
 # MAIN (SNIRF VALIDATOR)
 # =============================================================================
-if __name__ == "__main__":
+def main():
     import argparse
     print("===============")
     print("SNIRF VALIDATOR")
@@ -762,4 +762,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Validate a SNIRF file.')
     parser.add_argument('filename', type=str, help='Path to the SNIRF file')
     args = parser.parse_args()
-    snirf = read_snirf(args.filename, verbose=False)
+    read_snirf(args.filename, verbose=True)
+
+
+if __name__ == "__main__":
+    main()

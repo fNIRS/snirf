@@ -1,9 +1,9 @@
-from snirf_schema import read_snirf
+from snirfblueprint.snirfblueprint import read_snirf
 
 
-filename = "simple_probe_valid.snirf"
+filename = "./snirfblueprint/tests/data/valid_ml.snirf"
 
 snirf = read_snirf(filename, verbose=True)
 
 snirf.model_dump(exclude_unset=True)
-snirf.save('new_'+filename)
+snirf.save('./test.snirf')

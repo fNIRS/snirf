@@ -1,9 +1,11 @@
 import numpy as np
 import warnings
-from snirf_schema import read_snirf
 
-VALID_SNIRF_ML_PATH = "valid_ml.snirf"
-VALID_SNIRF_MLS_PATH = "valid_mls.snirf"
+from pathlib import Path
+from snirfblueprint.snirfblueprint import read_snirf
+
+VALID_SNIRF_ML_PATH = f"{Path(__file__).parent}/data/valid_ml.snirf"
+VALID_SNIRF_MLS_PATH = f"{Path(__file__).parent}/data/valid_mls.snirf"
 
 
 # GOOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
