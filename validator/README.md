@@ -25,6 +25,21 @@ In a terminal:
 snirfblueprint <my_snirf_file_to_validate.snirf>
 ```
 
+Or in a Python script:
+```python
+from snirfblueprint import read_snirf
+
+# Read SNIRF file
+filename = "path/to/original/valid_ml.snirf"
+snirf = read_snirf(filename, verbose=True)
+
+# It is possible to edit the SNIRF object
+snirf.nirs[0].metaDataTags.SubjectID = 'P1'
+
+# Save as SNIRF file
+snirf.save('path/to/new/valid_ml.snirf')
+```
+
 
 ## Development
 
