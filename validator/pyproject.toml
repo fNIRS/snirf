@@ -1,6 +1,6 @@
 [project]
 name = "snirfblueprint"
-version = "1.1.0"
+version = "1.2.0"
 description = "SNIRF Blueprint Validator"
 requires-python = ">=3.12"
 dependencies = [

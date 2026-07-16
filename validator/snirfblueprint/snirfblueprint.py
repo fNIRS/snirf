@@ -406,8 +406,7 @@ class Data(BaseModelWarnExtra):
     def require_measurementlist_xor_measurementlists(self) -> "Data":
         if (
             self.measurementList is not None
-            and
-            self.measurementLists is not None
+            and self.measurementLists is not None
         ):
             raise PydanticCustomError(
                 "conflicting",
