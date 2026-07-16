@@ -694,17 +694,11 @@ class MeasurementLists(BaseModelWarnExtra):
     # dataTypeLabel IF dataType 99999
     @model_validator(mode='after')
     def require_datatypelabel(self) -> "MeasurementLists":
-        if np.any(self.dataType == 99999):
-            if self.dataTypeLabel is None:
-                raise PydanticCustomError(
-                    "missing",
-                    "Field dataTypeLabel is required when dataType is 99999"
-                )
-            elif self.dataTypeLabel.shape[0] != self.dataType.shape[0]:
-                raise PydanticCustomError(
-                    "conflicting",
-                    "Field dataTypeLabel and dataType should match"
-                )
+        if np.any(self.dataType == 99999) and self.dataTypeLabel is None:
+            raise PydanticCustomError(
+                "missing",
+                "Field dataTypeLabel is required when dataType is 99999"
+            )
         return self
 
 
