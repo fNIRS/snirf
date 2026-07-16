@@ -8,7 +8,7 @@ import re
 from pydantic import (BaseModel, ConfigDict, AfterValidator, ValidationError,
                       ValidationInfo, model_validator, field_validator)
 from pydantic_core import PydanticCustomError
-from typing import Optional, List, Annotated
+from typing import Optional, Annotated, Any
 
 os.environ['PYDANTIC_ERRORS_INCLUDE_URL'] = 'false'
 GREEN = '\033[32m'
@@ -85,8 +85,8 @@ RECOGNIZED_DATA_TYPE_LABELS = [
 # =============================================================================
 # TYPE HELPERS
 # =============================================================================
-def check_nnint(v: int | np.integer) -> int | np.integer:
-    if v < 0:
+def check_nnint(v: np.integer) -> np.integer:
+    if not v >= 0:
         raise PydanticCustomError(
             "nnint_type",
             "Input should be a valid integer greater than or equal to 0"
@@ -109,7 +109,10 @@ def check_nnint_1d(v: np.ndarray) -> np.ndarray:
 
 
 def check_float_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and np.issubdtype(v.dtype, np.floating)):
+    if not (
+        v.ndim == 1
+        and np.issubdtype(v.dtype, np.floating)
+    ):
         raise PydanticCustomError(
             "float_1d_ndarray",
             "Input should be a valid 1D array of floats"
@@ -118,7 +121,10 @@ def check_float_1d(v: np.ndarray) -> np.ndarray:
 
 
 def check_float_2d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 2 and np.issubdtype(v.dtype, np.floating)):
+    if not (
+        v.ndim == 2
+        and np.issubdtype(v.dtype, np.floating)
+    ):
         raise PydanticCustomError(
             "float_2d_ndarray",
             "Input should be a valid 2D array of floats"
@@ -127,12 +133,11 @@ def check_float_2d(v: np.ndarray) -> np.ndarray:
 
 
 def check_string_1d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 1 and v.dtype == object):
-        raise PydanticCustomError(
-            "string_1d_ndarray",
-            "Input should be a valid 1D array of variable-length strings"
-        )
-    if not all(isinstance(x, (str, bytes)) for x in v.flat):
+    if not (
+        v.ndim == 1
+        and v.dtype == object
+        and all(isinstance(x, (str, bytes)) for x in v.flat)
+    ):
         raise PydanticCustomError(
             "string_1d_ndarray",
             "Input should be a valid 1D array of variable-length strings"
@@ -141,12 +146,11 @@ def check_string_1d(v: np.ndarray) -> np.ndarray:
 
 
 def check_string_2d(v: np.ndarray) -> np.ndarray:
-    if not (v.ndim == 2 and v.dtype == object):
-        raise PydanticCustomError(
-            "string_2d_ndarray",
-            "Input should be a valid 2D array of variable-length strings"
-        )
-    if not all(isinstance(x, (str, bytes)) for x in v.flat):
+    if not (
+        v.ndim == 2
+        and v.dtype == object
+        and all(isinstance(x, (str, bytes)) for x in v.flat)
+    ):
         raise PydanticCustomError(
             "string_2d_ndarray",
             "Input should be a valid 2D array of variable-length strings"
@@ -154,7 +158,7 @@ def check_string_2d(v: np.ndarray) -> np.ndarray:
     return v
 
 
-NonNegativeInt = Annotated[int | np.integer, AfterValidator(check_nnint)]
+NonNegativeInt = Annotated[np.integer, AfterValidator(check_nnint)]
 NonNegativeInt1D = Annotated[np.ndarray, AfterValidator(check_nnint_1d)]
 Float1D = Annotated[np.ndarray, AfterValidator(check_float_1d)]
 Float2D = Annotated[np.ndarray, AfterValidator(check_float_2d)]
@@ -204,7 +208,7 @@ def create_snirf_group(group, data):
         if value is None:
             continue
 
-        # Handle indexed prefixes (nirs, data, stim, aux, measurementList)
+        # Handle indexed prefixes
         if isinstance(value, list) and key in RECOGNIZED_INDEXED_PREFIXES:
             for idx, item in enumerate(value):
                 subgroup = group.create_group(f"{key}{idx+1}")
@@ -214,16 +218,9 @@ def create_snirf_group(group, data):
         if isinstance(value, dict):
             subgroup = group.create_group(key)
             create_snirf_group(subgroup, value)
-        elif isinstance(value, np.ndarray):
-            group.create_dataset(key, data=value)
-        elif isinstance(value, (list, tuple)):
-            group.create_dataset(key, data=np.asarray(value))
         elif isinstance(value, str):
             group.create_dataset(key, data=value.encode('utf-8'))
-        elif isinstance(value, bytes):
-            group.create_dataset(key, data=value)
         else:
-            # Scalars (int, float, bool)
             group.create_dataset(key, data=value)
 
 
@@ -231,14 +228,15 @@ def create_snirf_group(group, data):
 # PYDANTIC HELPERS
 # =============================================================================
 class BaseModelAllowExtra(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="allow",
-                              strict=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True, extra="allow", strict=True
+    )
 
 
 class BaseModelWarnExtra(BaseModelAllowExtra):
     @model_validator(mode="before")
     @classmethod
-    def warn_extra_fields(cls, data, info: ValidationInfo):
+    def warn_extra_fields(cls, data: Any, info: ValidationInfo) -> Any:
         report = info.context.get("report")
         extra_fields = set(data) - set(cls.model_fields)
         if extra_fields:
@@ -253,15 +251,15 @@ class ValidationReport:
     def __init__(self):
         self.warnings: list[str] = []
 
-    def add_warning(self, message: str):
+    def add_warning(self, message: str) -> None:
         self.warnings.append(message)
 
-    def print_warnings(self):
+    def print_warnings(self) -> None:
         if self.warnings:
-            plural = 's' if len(self.warnings) > 1 else ''
             print(
-                f"{ORANGE}{len(self.warnings)} validation warning{plural} for",
-                f"SNIRFModel{RESET}"
+                f"{ORANGE}{len(self.warnings)} validation",
+                f"warning{'s' if len(self.warnings) > 1 else ''}",
+                f"for SNIRFModel{RESET}"
             )
             for warning in self.warnings:
                 print(f"{ORANGE}  {warning}{RESET}")
@@ -273,7 +271,7 @@ class ValidationReport:
 # LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SNIRFModel(BaseModelWarnExtra):
     formatVersion: str | bytes
-    nirs: List[Nirs]  # indexed
+    nirs: list[Nirs]  # indexed
 
     def save(self, file_path: str) -> None:
         """
@@ -293,10 +291,10 @@ class SNIRFModel(BaseModelWarnExtra):
 # LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Nirs(BaseModelWarnExtra):
     metaDataTags: MetaDataTags  # simple
-    data: List[Data]  # indexed
-    stim: Optional[List[Stim]] = None  # indexed
+    data: list[Data]  # indexed
+    stim: Optional[list[Stim]] = None  # indexed
     probe: Probe  # simple
-    aux: Optional[List[Aux]] = None  # indexed
+    aux: Optional[list[Aux]] = None  # indexed
 
     # Matching sourceIndex
     @model_validator(mode='after')
@@ -391,7 +389,7 @@ class Data(BaseModelWarnExtra):
     dataTimeSeries: Float2D
     time: Float1D
     dataOffset: Optional[Float1D] = None
-    measurementList: Optional[List[MeasurementList]] = None  # indexed
+    measurementList: Optional[list[MeasurementList]] = None  # indexed
     measurementLists: Optional[MeasurementLists] = None  # simple
 
     # MeasurementList XOR MeasurementLists
