@@ -82,9 +82,9 @@ RECOGNIZED_DATA_TYPE_LABELS = [
 ]
 
 
-# =============================================================================
+# ======================================================================================
 # TYPE HELPERS
-# =============================================================================
+# ======================================================================================
 def check_nnint(v: np.integer) -> np.integer:
     if not v >= 0:
         raise PydanticCustomError(
@@ -102,8 +102,7 @@ def check_nnint_1d(v: np.ndarray) -> np.ndarray:
     ):
         raise PydanticCustomError(
             "nnint_1d_ndarray",
-            "Input should be a valid 1D array of integers greater than or " \
-            "equal to 0"
+            "Input should be a valid 1D array of integers greater than or equal to 0"
         )
     return v
 
@@ -166,9 +165,9 @@ String1D = Annotated[np.ndarray, AfterValidator(check_string_1d)]
 String2D = Annotated[np.ndarray, AfterValidator(check_string_2d)]
 
 
-# =============================================================================
+# ======================================================================================
 # HDF5 HELPERS
-# =============================================================================
+# ======================================================================================
 def load_snirf_group(group, group_name):
     """
     Recursively loads a SNIRF HDF5 group into a Pydantic dictionary.
@@ -224,30 +223,10 @@ def create_snirf_group(group, data):
             group.create_dataset(key, data=value)
 
 
-# =============================================================================
+# ======================================================================================
 # PYDANTIC HELPERS
-# =============================================================================
-class BaseModelAllowExtra(BaseModel):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True, extra="allow", strict=True
-    )
-
-
-class BaseModelWarnExtra(BaseModelAllowExtra):
-    @model_validator(mode="before")
-    @classmethod
-    def warn_extra_fields(cls, data: Any, info: ValidationInfo) -> Any:
-        report = info.context.get("report")
-        extra_fields = set(data) - set(cls.model_fields)
-        if extra_fields:
-            report.add_warning(
-                "Extra fields present in "
-                f"{cls.__name__} ({', '.join(extra_fields)})"
-            )
-        return data
-
-
-class ValidationReport:
+# ======================================================================================
+class ValidationInfoReport:
     def __init__(self):
         self.warnings: list[str] = []
 
@@ -265,10 +244,29 @@ class ValidationReport:
                 print(f"{ORANGE}  {warning}{RESET}")
 
 
-# =============================================================================
+class BaseModelAllowExtra(BaseModel):
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True, extra="allow", strict=True
+    )
+
+
+class BaseModelWarnExtra(BaseModelAllowExtra):
+    @model_validator(mode="before")
+    @classmethod
+    def warn_extra_fields(cls, data: Any, info: ValidationInfo) -> Any:
+        report = info.context.get("report")
+        extra_fields = set(data) - set(cls.model_fields)
+        if extra_fields:
+            report.add_warning(
+                f"Extra fields present in {cls.__name__} ({', '.join(extra_fields)})"
+            )
+        return data
+
+
+# ======================================================================================
 # SNIRF SCHEMA
-# =============================================================================
-# LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ======================================================================================
+# LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SNIRFModel(BaseModelWarnExtra):
     formatVersion: str | bytes
     nirs: list[Nirs]  # indexed
@@ -288,7 +286,7 @@ class SNIRFModel(BaseModelWarnExtra):
             create_snirf_group(f, data)
 
 
-# LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Nirs(BaseModelWarnExtra):
     metaDataTags: MetaDataTags  # simple
     data: list[Data]  # indexed
@@ -296,21 +294,29 @@ class Nirs(BaseModelWarnExtra):
     probe: Probe  # simple
     aux: Optional[list[Aux]] = None  # indexed
 
-    # Matching sourceIndex
+    # sourceIndex matches sourceLabels
     @model_validator(mode='after')
-    def match_sourceindex(self) -> "Nirs":
+    def match_sourceindex_sourcelabels(self) -> "Nirs":
         for dat in self.data:
             if dat.measurementLists is not None:
                 source_indices = dat.measurementLists.sourceIndex
             elif dat.measurementList is not None:
-                source_indices = [
-                    ml.sourceIndex for ml in dat.measurementList
-                ]
+                source_indices = [ml.sourceIndex for ml in dat.measurementList]
             if np.max(source_indices) > self.probe.sourceLabels.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
                     "Field sourceIndex and sourceLabels should match"
                 )
+        return self
+
+    # sourceIndex matches sourcePos2D/sourcePos3D
+    @model_validator(mode='after')
+    def match_sourceindex_sourcepos(self) -> "Nirs":
+        for dat in self.data:
+            if dat.measurementLists is not None:
+                source_indices = dat.measurementLists.sourceIndex
+            elif dat.measurementList is not None:
+                source_indices = [ml.sourceIndex for ml in dat.measurementList]
             if self.probe.sourcePos2D is not None:
                 if np.max(source_indices) > self.probe.sourcePos2D.shape[0]:
                     raise PydanticCustomError(
@@ -323,24 +329,31 @@ class Nirs(BaseModelWarnExtra):
                         "conflicting",
                         "Field sourceIndex and sourcePos3D should match"
                     )
-
         return self
 
-    # Matching detectorIndex
+    # detectorIndex matches detectorLabels
     @model_validator(mode='after')
-    def match_detectorindex(self) -> "Nirs":
+    def match_detectorindex_detectorlabels(self) -> "Nirs":
         for dat in self.data:
             if dat.measurementLists is not None:
                 detector_indices = dat.measurementLists.detectorIndex
             elif dat.measurementList is not None:
-                detector_indices = [
-                    ml.detectorIndex for ml in dat.measurementList
-                ]
+                detector_indices = [ml.detectorIndex for ml in dat.measurementList]
             if np.max(detector_indices) > self.probe.detectorLabels.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
                     "Field detectorIndex and detectorLabels should match"
                 )
+        return self
+
+    # detectorIndex matches detectorPos2D/detectorPos3D
+    @model_validator(mode='after')
+    def match_detectorindex_detectorpos(self) -> "Nirs":
+        for dat in self.data:
+            if dat.measurementLists is not None:
+                detector_indices = dat.measurementLists.detectorIndex
+            elif dat.measurementList is not None:
+                detector_indices = [ml.detectorIndex for ml in dat.measurementList]
             if self.probe.detectorPos2D is not None:
                 if np.max(detector_indices) > self.probe.detectorPos2D.shape[0]:
                     raise PydanticCustomError(
@@ -353,29 +366,25 @@ class Nirs(BaseModelWarnExtra):
                         "conflicting",
                         "Field detectorIndex and detectorPos3D should match"
                     )
-
         return self
 
-    # Matching wavelengthIndex
+    # wavelengthIndex matches wavelengths
     @model_validator(mode='after')
-    def match_wavelengthindex(self) -> "Nirs":
+    def match_wavelengthindex_wavelengths(self) -> "Nirs":
         for dat in self.data:
             if dat.measurementLists is not None:
                 wavelength_indices = dat.measurementLists.wavelengthIndex
             elif dat.measurementList is not None:
-                wavelength_indices = [
-                    ml.wavelengthIndex for ml in dat.measurementList
-                ]
+                wavelength_indices = [ml.wavelengthIndex for ml in dat.measurementList]
             if np.max(wavelength_indices) > self.probe.wavelengths.shape[0]:
                 raise PydanticCustomError(
                     "conflicting",
                     "Field wavelengthIndex and wavelengths should match"
                 )
-
         return self
 
 
-# LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MetaDataTags(BaseModelAllowExtra):
     SubjectID: str | bytes
     MeasurementDate: str | bytes
@@ -392,7 +401,7 @@ class Data(BaseModelWarnExtra):
     measurementList: Optional[list[MeasurementList]] = None  # indexed
     measurementLists: Optional[MeasurementLists] = None  # simple
 
-    # MeasurementList XOR MeasurementLists
+    # measurementList XOR measurementLists
     @model_validator(mode='after')
     def require_measurementlist_xor_measurementlists(self) -> "Data":
         if (
@@ -402,8 +411,7 @@ class Data(BaseModelWarnExtra):
         ):
             raise PydanticCustomError(
                 "conflicting",
-                "Field measurementList and measurementLists cannot both be " \
-                "present"
+                "Field measurementList and measurementLists cannot both be present"
             )
         if self.measurementList is None and self.measurementLists is None:
             raise PydanticCustomError(
@@ -412,7 +420,7 @@ class Data(BaseModelWarnExtra):
             )
         return self
 
-    # Matching dataTimeSeries and measurementList
+    # dataTimeSeries matches measurementList
     @model_validator(mode='after')
     def match_datatimeseries_measurementlist(self) -> "Data":
         if self.measurementList is not None:
@@ -423,15 +431,14 @@ class Data(BaseModelWarnExtra):
                 )
         return self
 
-    # Matching dataTimeSeries and measurementLists
+    # dataTimeSeries matches measurementLists
     @model_validator(mode='after')
     def match_datatimeseries_measurementlists(self) -> "Data":
         if self.measurementLists is not None:
             ml_shapes = [
                 item.shape[0]
-                for item in self.measurementLists.model_dump(
-                    exclude_unset=True
-                ).values()
+                for item
+                in self.measurementLists.model_dump(exclude_unset=True).values()
             ]
             if not all(s == self.dataTimeSeries.shape[1] for s in ml_shapes):
                 raise PydanticCustomError(
@@ -440,7 +447,7 @@ class Data(BaseModelWarnExtra):
                 )
         return self
 
-    # Matching dataTimeSeries and dataOffset
+    # dataTimeSeries matches dataOffset
     @model_validator(mode='after')
     def match_datatimeseries_dataoffset(self) -> "Data":
         if self.dataOffset is not None:
@@ -451,7 +458,7 @@ class Data(BaseModelWarnExtra):
                 )
         return self
 
-    # Matching dataTimeSeries and time
+    # dataTimeSeries matches time
     @model_validator(mode='after')
     def match_datatimeseries_time(self) -> "Data":
         if self.time.shape[0] != 2:
@@ -468,12 +475,10 @@ class Stim(BaseModelWarnExtra):
     data: Float2D
     dataLabels: Optional[String1D] = None
 
-    # At least 3 columns in data
+    # data has at least 3 columns
     @field_validator("data")
     @classmethod
-    def check_shape_data(
-        cls, v: Float2D
-    ) -> Float2D:
+    def check_shape_data(cls, v: Float2D) -> Float2D:
         if v.shape[1] < 3:
             raise PydanticCustomError(
                 "shape",
@@ -481,7 +486,7 @@ class Stim(BaseModelWarnExtra):
             )
         return v
 
-    # Matching dataLabels and data
+    # dataLabels matches data
     @model_validator(mode='after')
     def match_datalabels_data(self) -> "Stim":
         if self.dataLabels is not None:
@@ -534,24 +539,30 @@ class Probe(BaseModelWarnExtra):
             )
         return self
 
-    # Check coordinateSystem and coordinateSystemDescription
+    # Warn if unrecognized coordinateSystem
     @model_validator(mode='after')
     def check_coordinatesystem(self, info: ValidationInfo) -> "Probe":
         report = info.context.get("report")
         if self.coordinateSystem is not None:
+            if self.coordinateSystem.decode() not in RECOGNIZED_COORDINATE_SYSTEMS:
+                report.add_warning(
+                    "Value of coordinateSystem is not recognized (see Appendix)"
+                )
+        return self
+
+    # Warn if missing coordinateSystemDescription with unrecognized coordinateSystem
+    @model_validator(mode='after')
+    def check_coordinatesystemdescription(self, info: ValidationInfo) -> "Probe":
+        report = info.context.get("report")
+        if self.coordinateSystem is not None:
             if (
-                self.coordinateSystem.decode()
-                not in RECOGNIZED_COORDINATE_SYSTEMS
+                self.coordinateSystem.decode() not in RECOGNIZED_COORDINATE_SYSTEMS
+                and self.coordinateSystemDescription is None
             ):
                 report.add_warning(
-                    "Value of coordinateSystem is not recognized "
-                    "(see Appendix)"
+                    "Field coordinateSystemDescription is required if "
+                    "coordinateSystem is not recognized"
                 )
-                if self.coordinateSystemDescription is None:
-                    report.add_warning(
-                        "Field coordinateSystemDescription is required if "
-                        "coordinateSystem is not recognized"
-                    )
         return self
 
 
@@ -563,7 +574,7 @@ class Aux(BaseModelWarnExtra):
     timeOffset: Optional[Float1D] = None
 
 
-# LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class MeasurementList(BaseModelWarnExtra):
     sourceIndex: NonNegativeInt
     detectorIndex: NonNegativeInt
@@ -578,9 +589,7 @@ class MeasurementList(BaseModelWarnExtra):
     detectorGain: Optional[float | np.floating] = None
 
     # Warn if null index
-    @field_validator(
-        "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
-    )
+    @field_validator("sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex")
     @classmethod
     def check_non_null(
         cls, v: NonNegativeInt, info: ValidationInfo
@@ -588,8 +597,7 @@ class MeasurementList(BaseModelWarnExtra):
         report = info.context.get("report")
         if v == 0:
             report.add_warning(
-                f"An index of zero in {info.field_name} is usually "
-                "undefined"
+                f"An index of zero in {info.field_name} is usually undefined"
             )
         return v
 
@@ -602,8 +610,7 @@ class MeasurementList(BaseModelWarnExtra):
         report = info.context.get("report")
         if v.decode() not in RECOGNIZED_DATA_TYPE_LABELS:
             report.add_warning(
-                f"Value of {info.field_name} is not recognized "
-                "(see Appendix)"
+                f"Value of {info.field_name} is not recognized (see Appendix)"
             )
         return v
 
@@ -616,8 +623,7 @@ class MeasurementList(BaseModelWarnExtra):
         report = info.context.get("report")
         if v not in RECOGNIZED_DATA_TYPES:
             report.add_warning(
-                f"Value of {info.field_name} is not recognized "
-                "(see Appendix)"
+                f"Value of {info.field_name} is not recognized (see Appendix)"
             )
         return v
 
@@ -646,9 +652,7 @@ class MeasurementLists(BaseModelWarnExtra):
     detectorGain: Optional[Float1D] = None
 
     # Warn if null index
-    @field_validator(
-        "sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex"
-    )
+    @field_validator("sourceIndex", "detectorIndex", "wavelengthIndex", "dataTypeIndex")
     @classmethod
     def check_non_null(
         cls, v: NonNegativeInt1D, info: ValidationInfo
@@ -656,8 +660,7 @@ class MeasurementLists(BaseModelWarnExtra):
         report = info.context.get("report")
         if np.any(v == 0):
             report.add_warning(
-                f"An index of zero in {info.field_name} is usually "
-                "undefined"
+                f"An index of zero in {info.field_name} is usually undefined"
             )
         return v
 
@@ -671,8 +674,7 @@ class MeasurementLists(BaseModelWarnExtra):
         v_str = np.array([s.decode() for s in v])
         if np.any(~np.isin(v_str, RECOGNIZED_DATA_TYPE_LABELS)):
             report.add_warning(
-                f"Value of {info.field_name} is not recognized "
-                "(see Appendix)"
+                f"Value of {info.field_name} is not recognized (see Appendix)"
             )
         return v
 
@@ -685,8 +687,7 @@ class MeasurementLists(BaseModelWarnExtra):
         report = info.context.get("report")
         if np.any(~np.isin(v, RECOGNIZED_DATA_TYPES)):
             report.add_warning(
-                f"Value of {info.field_name} is not recognized "
-                "(see Appendix)"
+                f"Value of {info.field_name} is not recognized (see Appendix)"
             )
         return v
 
@@ -707,9 +708,9 @@ class MeasurementLists(BaseModelWarnExtra):
         return self
 
 
-# =============================================================================
+# ======================================================================================
 # SNIRF READER
-# =============================================================================
+# ======================================================================================
 def read_snirf(file_path, verbose=False):
     """
     Read a SNIRF file, logging potential errors and warnings.
@@ -733,7 +734,7 @@ def read_snirf(file_path, verbose=False):
         print(f"{RED}ERROR: Valid SNIRF files must end with .snirf{RESET}")
 
     else:
-        report = ValidationReport()
+        report = ValidationInfoReport()
         with h5py.File(file_path, "r") as f:
             data = load_snirf_group(f, os.path.basename(file_path))
         try:
@@ -749,9 +750,9 @@ def read_snirf(file_path, verbose=False):
     return snirf
 
 
-# =============================================================================
+# ======================================================================================
 # MAIN (SNIRF VALIDATOR)
-# =============================================================================
+# ======================================================================================
 def main():
     import argparse
     print("===============")

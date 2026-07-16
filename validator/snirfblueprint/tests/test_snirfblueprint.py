@@ -8,7 +8,7 @@ VALID_SNIRF_ML_PATH = f"{Path(__file__).parent}/data/valid_ml.snirf"
 VALID_SNIRF_MLS_PATH = f"{Path(__file__).parent}/data/valid_mls.snirf"
 
 
-# GOOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# GOOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_valid_measurementlist(capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH, verbose=True)
     out = capsys.readouterr().out
@@ -25,7 +25,7 @@ def test_valid_measurementlists(capsys):
     assert "warning" not in out.lower()
 
 
-# FILE PATH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# FILE PATH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_invalid_extension(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.save(f"{tmp_path}test.nirs")
@@ -35,7 +35,7 @@ def test_invalid_extension(tmp_path, capsys):
     assert "ERROR: Valid SNIRF files must end with .snirf" in out
 
 
-# LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_invalid_type(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     with warnings.catch_warnings():
@@ -70,7 +70,7 @@ def test_warn_extra_field(tmp_path, capsys):
     assert "Extra fields present in SNIRFModel" in out
 
 
-# LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_mismatched_sourceindex_sourcelabels(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.nirs[0].probe.sourceLabels = result.nirs[0].probe.sourceLabels[:-1]
@@ -121,7 +121,7 @@ def test_mismatched_wavelengthindex_wavelengthlabels(tmp_path, capsys):
     assert "Field wavelengthIndex and wavelengths should match" in out
 
 
-# LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_valid_extra_field(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.nirs[0].metaDataTags.extra = "extra"
@@ -135,7 +135,9 @@ def test_valid_extra_field(tmp_path, capsys):
 
 def test_invalid_dim(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_MLS_PATH)
-    result.nirs[0].data[0].dataTimeSeries = result.nirs[0].data[0].dataTimeSeries[:, :, None]
+    result.nirs[0].data[0].dataTimeSeries = result.nirs[0].data[0].dataTimeSeries[
+        :, :, None
+    ]
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
@@ -176,7 +178,9 @@ def test_mismatched_datatimeseries_measurementlist(tmp_path, capsys):
 
 def test_mismatched_datatimeseries_measurementlists(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_MLS_PATH)
-    result.nirs[0].data[0].dataTimeSeries = result.nirs[0].data[0].dataTimeSeries[:, :-1]
+    result.nirs[0].data[0].dataTimeSeries = result.nirs[0].data[0].dataTimeSeries[
+        :, :-1
+    ]
     result.save(f"{tmp_path}test.snirf")
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
@@ -298,7 +302,7 @@ def test_warn_missing_coordinatesystemdescription(tmp_path, capsys):
     assert "Field coordinateSystemDescription is required" in out
 
 
-# LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LEVEL -3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def test_warn_zero_ml_index(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     result.nirs[0].data[0].measurementList[0].sourceIndex = 0
@@ -381,7 +385,10 @@ def test_invalid_mls_index(tmp_path, capsys):
     result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
     out = capsys.readouterr().out
     assert result is None and "Valid SNIRFModel" not in out
-    assert "Input should be a valid 1D array of integers greater than or equal to 0" in out
+    assert (
+        "Input should be a valid 1D array of integers greater than or equal to 0"
+        in out
+    )
 
 
 def test_valid_mls_datatypelabel(tmp_path, capsys):
