@@ -145,6 +145,30 @@ def test_invalid_dim(tmp_path, capsys):
     assert "\nnirs.0.data.0.dataTimeSeries\n  Input should be a valid 2D array" in out
 
 
+def test_valid_name(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_ML_PATH)
+    result.nirs[0].data[0].name = 'test_data'
+    result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is not None and "Valid SNIRFModel" in out
+    assert "error" not in out.lower()
+    assert "warning" not in out.lower()
+
+
+def test_invalid_name(tmp_path, capsys):
+    result = read_snirf(VALID_SNIRF_ML_PATH)
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=UserWarning)
+        result.nirs[0].data[0].name = 42
+        result.save(f"{tmp_path}test.snirf")
+    result = read_snirf(f"{tmp_path}test.snirf", verbose=True)
+    out = capsys.readouterr().out
+    assert result is None and "Valid SNIRFModel" not in out
+    assert "\nnirs.0.data.0.name.str\n  Input should be a valid string" in out
+    assert "\nnirs.0.data.0.name.bytes\n  Input should be a valid bytes" in out
+
+
 def test_measurementlist_measurementlists(tmp_path, capsys):
     result = read_snirf(VALID_SNIRF_ML_PATH)
     mls = read_snirf(VALID_SNIRF_MLS_PATH).nirs[0].data[0].measurementLists

@@ -395,6 +395,7 @@ class MetaDataTags(BaseModelAllowExtra):
 
 
 class Data(BaseModelWarnExtra):
+    name: Optional[str | bytes] = None
     dataTimeSeries: Float2D
     time: Float1D
     dataOffset: Optional[Float1D] = None
