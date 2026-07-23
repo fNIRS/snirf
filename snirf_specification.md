@@ -15,10 +15,10 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [nirs](#nirsi)
        * [metaDataTags](#nirsimetadatatags)
        * [data](#nirsidataj)
+       * [data.name](#nirsidatajname)
        * [data.dataTimeSeries](#nirsidatajdatatimeseries)
        * [data.dataOffset](#nirsidatajdataoffset)
        * [data.time](#nirsidatajtime)
-       * [data.name](#nirsidatajname)
        * [data.measurementList](#nirsidatajmeasurementlistk)
        * [data.measurementList.sourceIndex](#nirsidatajmeasurementlistksourceindex)
        * [data.measurementList.detectorIndex](#nirsidatajmeasurementlistkdetectorindex)
@@ -168,6 +168,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |        `FrequencyUnit`                | * Frequency unit (case sensitive)            |   `"s"`      * |
 |         ...                           | * Additional user-defined metadata entries   |                |
 |     `data{i}`                         | * Root-group for 1 or more data blocks       |   `{i}`      * |
+|        `name`                         | * Name of the data block                     |   `"s"`        |
 |        `dataTimeSeries`               | * Time-varying signals from all channels     | `[[<f>,...]]`* |
 |        `time`                         | * Time (in `TimeUnit` defined in metaDataTag)|  `[<f>,...]` * |
 |        `dataOffset`                   | * Optional offset value per channel          |  `[<f>,...]`   |
@@ -385,7 +386,19 @@ entry
 * `/nirs/data1` =  data block 1
 * `/nirs/data2` =  data block 2	
 
-	
+
+#### /nirs(i)/data(j)/name 
+* **Presence**: optional
+* **Type**:  string
+* **Location**: `/nirs(i)/data(j)/name`
+
+This is an optional, free-form string describing the j<sup>th</sup> data time course.
+One use of this parameter is to distinguish processed time courses which are
+indistinguishable by `measurementList(k).dataType`, `measurementList(k).dataTypeLabel`
+and `measurementList(k).dataTypeIndex` (like for example changes in optical density
+which were filtered by different artifact-rejection methods).
+
+
 #### /nirs(i)/data(j)/dataTimeSeries 
 * **Presence**: required
 * **Type**:  numeric 2-D array
@@ -435,14 +448,6 @@ a time spacing of 0.2 (s) indicates a sampling rate of 5 Hz.
 	     time and sample spacing.
 
 Chunked data is allowed to support real-time streaming of data in this array.
-
-
-#### /nirs(i)/data(j)/name 
-* **Presence**: optional
-* **Type**:  string
-* **Location**: `/nirs(i)/data(j)/name`
-
-This is an optional, free-form string describing the j<sup>th</sup> data time course. One use of this parameter is to distinguish processed time courses which are indistinguishable by `measurementList(k).dataType`, `measurementList(k).dataTypeLabel` and `measurementList(k).dataTypeIndex` (like for example changes in optical density which were filtered by different artifact-rejection methods).
 
 
 #### /nirs(i)/data(j)/measurementList(k) 
