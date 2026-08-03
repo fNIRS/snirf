@@ -395,7 +395,7 @@ entry
 This is an optional, free-form string describing the j<sup>th</sup> data time course.
 One use of this parameter is to distinguish processed time courses which are
 indistinguishable by `measurementList(k).dataType`, `measurementList(k).dataTypeLabel`
-and `measurementList(k).dataTypeIndex` (like for example changes in optical density
+and `measurementList(k).dataTypeIndex` (for example changes in optical density
 which were filtered by different artifact-rejection methods).
 
 
