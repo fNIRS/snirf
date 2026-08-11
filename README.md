@@ -52,21 +52,23 @@ The governance of the project is described in the [government.md](GOVERNMENT.md)
 
 The current steering committee is:
 
-| Name           |          Institution             |
-|----------------|----------------------------------|
-| David Boas     | Boston University                |
-| Robert Luke    | AE Studio                        |
-| Samuel Powell  | Gowerlabs                        |
-| Jörn Horschig  | Artinis Medical Systems B.V.     |
+| Name                                             | Institution               |
+|--------------------------------------------------|---------------------------|
+| [David Boas](https://github.com/dboas)           | Boston University         |
+| [Robert Luke](https://github.com/rob-luke)       | AE Studio                 |
+| [Samuel Powell](https://github.com/samuelpowell) | Gowerlabs                 |
+| [Jörn Horschig](https://github.com/Horschig)  | Artinis Medical Systems B.V. |
 
 
 The current maintainers are:
 
-| Name             |          Institution             |
-|------------------|----------------------------------|
-| Sreekanth Kura   | Boston University                |
-| Eike Middell     | IBS Lab, TU Berlin, BIFOLD       |
-| Johann Benerradi | University of Cambridge          |
+| Name                                                 | Institution                |
+|------------------------------------------------------|----------------------------|
+| [Sreekanth Kura](https://github.com/sreekanthkura7)  | Boston University          |
+| [Eike Middell](https://github.com/emiddell)          | IBS Lab, TU Berlin, BIFOLD |
+| [Johann Benerradi](https://github.com/HanBnrd)       | University of Cambridge    |
+| [Damian Sofrevski](https://github.com/DamianNeurode) | Neurode                    |
+| [Edouard Delaire](https://github.com/Edouard2laire)  | Concordia University       |
 
 We are in the process of developing the maintainers team,
 please contact us if you would like to contribute.
