@@ -27,7 +27,7 @@ The following software packages support reading and/or writing SNIRF files.
 | Homer3         | MATLAB | https://github.com/BUNPC/Homer3              |
 | NIRS-Toolbox   | MATLAB | https://github.com/huppertt/nirs-toolbox     |
 | FieldTrip      | MATLAB | https://www.fieldtriptoolbox.org             |
-| NIRStorm       | MATLAB | https://github.com/Nirstorm/nirstorm         |
+| NIRSTORM       | MATLAB | https://github.com/Nirstorm/nirstorm         |
 | MNE-Python     | Python | https://mne.tools                            |
 | pysnirf2       | Python | https://pypi.org/project/pysnirf2/           |
 | ICNNA          | MATLAB | https://github.com/forihuelaespina/ICNNA     |
