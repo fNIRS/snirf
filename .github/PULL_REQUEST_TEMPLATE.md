@@ -11,5 +11,4 @@ to automatically close the issue when the pull request is merged.
 - [ ] The *snirf_specification.md* data format summary has been updated
 - [ ] The *snirf_specification.md* definitions have been updated
 - [ ] The *CHANGELOG.md* has been updated
-- [ ] A PR to update the  [validator](https://github.com/BUNPC/pysnirf2) has been created to support the changes. Link to the PR: 
-
+- [ ] A pull request to update the [validator](https://github.com/BUNPC/pysnirf2) has been created to support the changes (*add link to the pull request*)
