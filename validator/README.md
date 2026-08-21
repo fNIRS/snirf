@@ -8,7 +8,7 @@
 
 2. Create an environment:
 ```bash
-conda create -n snirfblueprint
+conda create -n snirfblueprint python=3.12
 conda activate snirfblueprint
 ```
 
