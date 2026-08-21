@@ -4,6 +4,7 @@ SNIRF uses the [Semantic Versioning](https://semver.org) scheme.
 
 ### `2.0` In development
 * Add `nirs(i)/data(j)/measurementLists` as an alternative to the indexed-Group measurementList `nirs(i)/data(j)/measurementList(k)`.
+* Add an official SNIRF validator in the repository.
 
 ### `v1.1`
 
