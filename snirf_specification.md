@@ -60,6 +60,7 @@ Shared Near Infrared Spectroscopy Format (SNIRF) Specification
        * [probe.momentOrders](#nirsiprobemomentorders)
        * [probe.correlationTimeDelays](#nirsiprobecorrelationtimedelays)
        * [probe.correlationTimeDelayWidths](#nirsiprobecorrelationtimedelaywidths)
+       * [probe.exposureTimes](#nirsiprobeexposuretimes)
        * [probe.sourceLabels](#nirsiprobesourcelabels)
        * [probe.detectorLabels](#nirsiprobedetectorlabels)
        * [probe.landmarkPos2D](#nirsiprobelandmarkpos2d)
@@ -213,6 +214,7 @@ Note that this table serves as machine-readable schema for the SNIRF format. Its
 |         `momentOrders`                | * Moment orders of the moment TD data        |  `[<f>,...]`   |
 |         `correlationTimeDelays`       | * Time delays for DCS measurements           |  `[<f>,...]`   |
 |         `correlationTimeDelayWidths`  | * Time delay width for DCS measurements      |  `[<f>,...]`   |
+|         `exposureTimes`               | * Exposure time for SCOS measurements        |  `[<f>,...]`   |
 |         `sourceLabels`                | * String arrays specifying source names      |  `[["s",...]]` |
 |         `detectorLabels`              | * String arrays specifying detector names    |  `["s",...]`   |
 |         `landmarkPos2D`               | * Anatomical landmark 2-D positions          | `[[<f>,...]]`  |
@@ -649,7 +651,7 @@ Data-type label. A 1-D array with length equal to the size of the second dimensi
 * **Type**:  integer 1-D array
 * **Location**: `/nirs(i)/data(j)/measurementLists/dataTypeIndex`
 
-Data-type specific parameter indices. A 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Note that the Time Domain and Diffuse Correlation Spectroscopy data types have two additional parameters and so `dataTimeIndex` must be a 2-D array with 2 columns that index the additional parameters.
+Data-type specific parameter indices. A 1-D array with length equal to the size of the second dimension of `/nirs(i)/data(j)/dataTimeSeries`. Note that the Time Domain, Diffuse Correlation Spectroscopy and Speckle Contrast Optical Spectroscopy data types have two additional parameters and so `dataTypeIndex` must be a 2-D array with 2 columns that index the additional parameters.
 
 #### /nirs(i)/data(j)/measurementLists/sourcePower 
 * **Presence**: optional
@@ -867,6 +869,15 @@ data types, and is indexed by `measurementList(k).dataTypeIndex`. The indexing
 of this field is paired with the indexing of `probe.correlationTimeDelays`.  
 
 
+#### /nirs(i)/probe/exposureTimes
+
+* **Presence**: optional 
+* **Type**:  numeric 1-D array
+* **Location**: `/nirs(i)/probe/exposureTime`
+
+This field describes the exposure time (in `TimeUnit` units) used for speckle contrast optical 
+spectroscopy measurements. This field is indexed by `measurementList(k).dataTypeIndex`. 
+
 #### /nirs(i)/probe/sourceLabels 
 * **Presence**: optional 
 * **Type**:  string 2-D array
@@ -1020,13 +1031,11 @@ This variable specifies the offset of the file time origin relative to absolute
 + 001-100:  Raw - Continuous Wave (CW)
    - 001 - Amplitude
    - 051 - Fluorescence Amplitude
-
 + 101-200:  Raw - Frequency Domain (FD)
    - 101 - AC Amplitude
    - 102 - Phase
    - 151 - Fluorescence Amplitude
    - 152 - Fluorescence Phase
-
 + 201-300: Raw - Time Domain - Gated (TD Gated)
    - 201 - Amplitude
    - 251 - Fluorescence Amplitude
@@ -1036,6 +1045,11 @@ This variable specifies the offset of the file time origin relative to absolute
 + 401-500:  Raw - Diffuse Correlation Spectroscopy (DCS):
    - 401 - g2
    - 410 - BFi
++ 501-600: Raw - Speckle Contrast Optical Spectroscopy (SCOS)
+   - 501 - Intensity mean
+   - 502 - Intensity variance
+   - 503 - corrected speckle contrast
+
 + 99999:  Processed
 
 
@@ -1174,6 +1188,7 @@ file.create_dataset(<dataset location>, dtype=varlen_str_dtype, data=array)
 **MATLAB**
 > Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
 `h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+
 ```matlab
 data = <numeric array>
 h5create(<SNIRF file path>, <dataset location>, length(data) / size(data), 'Datatype', 'double')
@@ -1191,6 +1206,7 @@ file.create_dataset(<dataset location>, dtype='f8', data=array)
 **MATLAB**
 > Note: Because MATLAB has no notion of arrays with fewer than 2 dimensions, using `size(data)` as the 3rd argument of 
 `h5create` will erroneously save arrays with 1 dimension as a row or column vector of 2 dimensions. In the 1D case, use `length(data)` as the 3rd argument of `h5create`.
+
 ```matlab
 data = <integer array>
 h5create(<SNIRF file path>, <integer array dataset location>, length(data) / size(data), 'Datatype', 'int32')
