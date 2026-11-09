@@ -54,18 +54,23 @@ The current steering committee is:
 
 | Name           |          Institution             |
 |----------------|----------------------------------|
-| David Boas     | Boston University                |
-| Robert Luke    | AE Studio                        |
 | Samuel Powell  | Gowerlabs                        |
 | Jörn Horschig  | Artinis Medical Systems B.V.     |
+| Eike Middell   | IBS Lab, TU Berlin, BIFOLD       |
 
+Previous members of the steering committee:
+
+| Name           |          Institution             |
+|----------------|----------------------------------|
+| David Boas     | Boston University                |
+| Robert Luke    | AE Studio                        |
 
 The current maintainers are:
 
 | Name             |          Institution             |
 |------------------|----------------------------------|
 | Sreekanth Kura   | Boston University                |
-| Eike Middell     | IBS Lab, TU Berlin, BIFOLD       |
+
 | Johann Benerradi | University of Cambridge          |
 
 We are in the process of developing the maintainers team,
